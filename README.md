@@ -67,4 +67,14 @@ Underscore::find(array(1, 2, 3), function($value) {
 });
 ```
 
+### Collection::filter
+
+Find all values in an array that passes a truth test
+
+```php
+Underscore::find(array(1, 2, 3), function($value) {
+  return $value % 2 != 0; // Returns array(1, 3)
+});
+```
+
 [Collection]: #collection

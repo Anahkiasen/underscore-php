@@ -2,9 +2,9 @@
 include '_startTest.php';
 
 use Underscore\Underscore;
-use Underscore\Collection;
+use Underscore\Arrays;
 
-class CollectionTest extends UnderscoreWrapper
+class ArraysTest extends UnderscoreWrapper
 {
   private $array = array('foo' => 'bar', 'bis' => 'ter');
 
@@ -12,7 +12,7 @@ class CollectionTest extends UnderscoreWrapper
 
   public function testCanUseClassDirectly()
   {
-    $under = Collection::get($this->array, 'foo');
+    $under = Arrays::get($this->array, 'foo');
 
     $this->assertEquals('bar', $under);
   }
