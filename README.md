@@ -27,6 +27,7 @@ Arrays::from($array)->filter(...)->get(2)
 ```
 
 It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
+You can also give custom aliases to all of Underscore's methods, in said config file. Just add entries to the `aliases` option, the key being the alias, and the value the method to point to.
 
 # Documentation
 
