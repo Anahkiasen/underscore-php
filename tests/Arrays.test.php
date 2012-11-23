@@ -60,4 +60,13 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals(2, $under);
   }
+
+  public function testCanFilterValuesFromAnArray()
+  {
+    $under = Underscore::filter(array(1, 2, 3), function($value) {
+      return $value % 2 != 0;
+    });
+
+    $this->assertEquals(array(0 => 1, 2 => 3), $under);
+  }
 }

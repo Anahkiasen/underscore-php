@@ -57,7 +57,7 @@ class Arrays
       if ($closure($value)) $filtered[$key] = $value;
     }
 
-    return $array;
+    return $filtered;
   }
 
   ////////////////////////////////////////////////////////////////////
