@@ -10,13 +10,14 @@ Underscore::map($array, function($value) { return $value * 2; })
 underscore($array)->map(function($value) { return $value * 2; })
 ```
 
-# API
+# Documentation
 
-[Collection][] : Helpers for objects and arrays
+**Available classes**
+- [Collection][] : Helpers for objects and arrays
 
-# Collection
+## Collection
 
-## Collection::get
+### Collection::get
 
 Get a value from an array using dot-notation
 
@@ -25,7 +26,7 @@ $array = underscore(array('foo' => array('bar' => 'ter')));
 $array->get('foo.bar') // Return 'ter'
 ```
 
-## Collection::each
+### Collection::each
 
 Iterate over an array to execute a callback at each loop
 
@@ -36,13 +37,23 @@ Underscore::each(array(1, 2, 3), function($value) use ($multiplier) {
 });
 ```
 
-## Collection::map
+### Collection::map
 
 Iterate over an array and apply a callback to each value
 
 ```php
 Underscore::map(array(1, 2, 3), function($value) {
   return $value * 3; // Return array(3, 6, 9)
+});
+```
+
+### Collection::find
+
+Find the first value in an array that passes a truth test
+
+```php
+Underscore::find(array(1, 2, 3), function($value) {
+  return $value % 2 == 0; // Returns 2
 });
 ```
 

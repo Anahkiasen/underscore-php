@@ -5,53 +5,78 @@ use \Closure;
 
 class Collection
 {
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// FETCH FROM //////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
   /**
-   * Get a value from an array using dot-notation
+   * Get a value from a collection using dot-notation
    *
-   * @param array  $array   The array to get from
-   * @param string $key     The key to look for
-   * @param mixed  $default Default value to fallback to
+   * @param collection $collection The collection to get from
+   * @param string     $key        The key to look for
+   * @param mixed      $default    Default value to fallback to
    *
    * @return mixed
    */
-  public static function get($array, $key, $default = null)
+  public static function get($collection, $key, $default = null)
   {
-    if (is_null($key)) return $array;
+    if (is_null($key)) return $collection;
 
     foreach (explode('.', $key) as $segment) {
       if (
-        !is_array($array) or
-        !array_key_exists($segment, $array)) {
+        !is_array($collection) or
+        !array_key_exists($segment, $collection)) {
           return is_callable($default) ? $default() : $default;
       }
 
-      $array = $array[$segment];
+      $collection = $collection[$segment];
     }
 
-    return $array;
+    return $collection;
   }
 
   /**
-   * Iterate over an array and execute a callback for each loop
+   * Find the first item in a collection that passes the truth test provided
    */
-  public static function each($array, Closure $closure)
+  public static function find($collection, Closure $closure)
   {
-    foreach ($array as $key => $value) {
+    foreach ($collection as $value) {
+      if ($closure($value)) return $value;
+    }
+
+    return $collection;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////////// ACT UPON ///////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Iterate over a collection and execute a callback for each loop
+   */
+  public static function each($collection, Closure $closure)
+  {
+    foreach ($collection as $key => $value) {
       $closure($value, $key);
     }
 
-    return $array;
+    return $collection;
   }
 
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////////// ALTER ////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
   /**
-   * Iterate over an array and modify the array's value
+   * Iterate over a collection and modify the collection's value
    */
-  public static function map($array, Closure $closure)
+  public static function map($collection, Closure $closure)
   {
-    foreach ($array as $key => $value) {
-      $array[$key] = $closure($value, $key);
+    foreach ($collection as $key => $value) {
+      $collection[$key] = $closure($value, $key);
     }
 
-    return $array;
+    return $collection;
   }
 }

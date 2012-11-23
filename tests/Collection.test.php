@@ -51,4 +51,13 @@ class CollectionTest extends UnderscoreWrapper
     $this->assertEquals($result, $underChain);
     $this->assertEquals($result, $underStatic);
   }
+
+  public function testCanFindAValueInAnArray()
+  {
+    $under = Underscore::find($this->array, function($value) {
+      return $value != 'nope';
+    });
+
+    $this->assertEquals('bar', $under);
+  }
 }
