@@ -12,7 +12,11 @@ underscore($array)->map(function($value) { return $value * 2; })
 
 # API
 
-## get
+[Collection][] : Helpers for objects and arrays
+
+# Collection
+
+## Collection::get
 
 Get a value from an array using dot-notation
 
@@ -21,7 +25,7 @@ $array = underscore(array('foo' => array('bar' => 'ter')));
 $array->get('foo.bar') // Return 'ter'
 ```
 
-## each
+## Collection::each
 
 Iterate over an array to execute a callback at each loop
 
@@ -32,7 +36,7 @@ Underscore::each(array(1, 2, 3), function($value) use ($multiplier) {
 });
 ```
 
-## map
+## Collection::map
 
 Iterate over an array and apply a callback to each value
 
@@ -41,3 +45,5 @@ Underscore::map(array(1, 2, 3), function($value) {
   return $value * 3; // Return array(3, 6, 9)
 });
 ```
+
+[Collection]: #collection
