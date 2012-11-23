@@ -56,6 +56,38 @@ class Arrays extends Methods
     return $array;
   }
 
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////// ACT UPON /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Iterate over an array and execute a callback for each loop
+   */
+  public static function each($array, Closure $closure)
+  {
+    foreach ($array as $key => $value) {
+      $closure($value, $key);
+    }
+
+    return $array;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// ALTER ///////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Iterate over an array and modify the array's value
+   */
+  public static function map($array, Closure $closure)
+  {
+    foreach ($array as $key => $value) {
+      $array[$key] = $closure($value, $key);
+    }
+
+    return $array;
+  }
+
   /**
    * Find all items in an array that pass the truth test
    */
@@ -74,37 +106,5 @@ class Arrays extends Methods
     }
 
     return $filtered;
-  }
-
-  ////////////////////////////////////////////////////////////////////
-  /////////////////////////////// ACT UPON ///////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Iterate over an array and execute a callback for each loop
-   */
-  public static function each($array, Closure $closure)
-  {
-    foreach ($array as $key => $value) {
-      $closure($value, $key);
-    }
-
-    return $array;
-  }
-
-  ////////////////////////////////////////////////////////////////////
-  ///////////////////////////////// ALTER ////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Iterate over an array and modify the array's value
-   */
-  public static function map($array, Closure $closure)
-  {
-    foreach ($array as $key => $value) {
-      $array[$key] = $closure($value, $key);
-    }
-
-    return $array;
   }
 }
