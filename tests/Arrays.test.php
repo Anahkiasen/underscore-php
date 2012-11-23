@@ -6,8 +6,6 @@ use Underscore\Arrays;
 
 class ArraysTest extends UnderscoreWrapper
 {
-  private $array = array('foo' => 'bar', 'bis' => 'ter');
-
   // Tests --------------------------------------------------------- /
 
   public function testCanUseClassDirectly()

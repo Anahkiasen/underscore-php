@@ -3,8 +3,16 @@ namespace Underscore;
 
 use \Closure;
 
-class Arrays
+class Arrays extends Methods
 {
+
+  /**
+   * Aliases of methods
+   * @var array
+   */
+  public static $aliases = array(
+    'select' => 'find',
+  );
 
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// FETCH FROM //////////////////////////
