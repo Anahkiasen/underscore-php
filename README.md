@@ -124,4 +124,12 @@ Underscore::matchesAny(array(1, 2, 3), function($value) {
 });
 ```
 
+### Arrays::invoke
+
+Invoke a function on all of an array's values
+
+```php
+Underscore::invoke(array('   foo'), 'trim'); // Returns array('foo')
+```
+
 [Arrays]: #arrays

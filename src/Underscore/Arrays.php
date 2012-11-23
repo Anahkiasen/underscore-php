@@ -143,7 +143,10 @@ class Arrays extends Methods
    */
   public static function invoke($array, $callable, $arguments = array())
   {
-    if (is_callable($callable)) return array_map($array, $callable, $arguments);
+    // If the callable has arguments, pass them
+    if ($arguments) return array_map($callable, $array, $callable);
+
+    return array_map($callable, $array);
   }
 
   /**
