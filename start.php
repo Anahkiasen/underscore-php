@@ -5,6 +5,10 @@ Autoloader::namespaces(array(
   'Underscore' => Bundle::path('underscore') . 'src' .DS. 'Underscore',
 ));
 
+// Alias the main class according to user config
+$alias = Config::get('underscore::underscore.alias');
+Autoloader::alias('Underscore\Underscore', $alias);
+
 /**
  * Shortcut alias to creating an Underscore object
  *
@@ -13,5 +17,5 @@ Autoloader::namespaces(array(
  */
 function underscore($array)
 {
-  return new \Underscore\Underscore($array);
+  return new Underscore\Underscore($array);
 }
