@@ -14,7 +14,7 @@ You can also alias Underscore's core classes and call them at any time, this mos
 
 ```php
 Arrays::first(...)
-Collection::each(...)
+Arrays::each(...)
 String::escape(...)
 ```
 
@@ -23,11 +23,11 @@ It comes with a config file that allows you to alias the main class to whatever 
 # Documentation
 
 **Available classes**
-- [Collection][] : Helpers for objects and arrays
+- [Arrays][] : Helpers for arrays
 
-## Collection
+## Arrays
 
-### Collection::get
+### Arrays::get
 
 Get a value from an array using dot-notation
 
@@ -36,7 +36,7 @@ $array = underscore(array('foo' => array('bar' => 'ter')));
 $array->get('foo.bar') // Return 'ter'
 ```
 
-### Collection::each
+### Arrays::each
 
 Iterate over an array to execute a callback at each loop
 
@@ -47,7 +47,7 @@ Underscore::each(array(1, 2, 3), function($value) use ($multiplier) {
 });
 ```
 
-### Collection::map
+### Arrays::map
 
 Iterate over an array and apply a callback to each value
 
@@ -57,7 +57,7 @@ Underscore::map(array(1, 2, 3), function($value) {
 });
 ```
 
-### Collection::find
+### Arrays::find
 
 Find the first value in an array that passes a truth test
 
@@ -67,7 +67,7 @@ Underscore::find(array(1, 2, 3), function($value) {
 });
 ```
 
-### Collection::filter
+### Arrays::filter
 
 Find all values in an array that passes a truth test
 
@@ -77,4 +77,4 @@ Underscore::find(array(1, 2, 3), function($value) {
 });
 ```
 
-[Collection]: #collection
+[Arrays]: #arrays
