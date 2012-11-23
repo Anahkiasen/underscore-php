@@ -60,6 +60,22 @@ class Arrays extends Methods
     return round((array_sum($array) / sizeof($array)), $decimals);
   }
 
+  /**
+   * Get the sum of an array
+   */
+  public static function sum($array)
+  {
+    return array_sum($array);
+  }
+
+  /**
+   * Get the size of an array
+   */
+  public static function size($array)
+  {
+    return sizeof($array);
+  }
+
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// FETCH FROM ////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -115,11 +131,19 @@ class Arrays extends Methods
   }
 
   /**
-   * Get the size of an array
+   * Get the first value from an array
    */
-  public static function size($array)
+  public static function first($array)
   {
-    return sizeof($array);
+    return array_shift($array);
+  }
+
+  /**
+   * Get the last value from an array
+   */
+  public static function last($array)
+  {
+    return array_pop($array);
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -129,7 +153,7 @@ class Arrays extends Methods
   /**
    * Iterate over an array and execute a callback for each loop
    */
-  public static function each($array, Closure $closure)
+  public static function at($array, Closure $closure)
   {
     foreach ($array as $key => $value) {
       $closure($value, $key);
@@ -145,7 +169,7 @@ class Arrays extends Methods
   /**
    * Iterate over an array and modify the array's value
    */
-  public static function map($array, Closure $closure)
+  public static function each($array, Closure $closure)
   {
     foreach ($array as $key => $value) {
       $array[$key] = $closure($value, $key);
