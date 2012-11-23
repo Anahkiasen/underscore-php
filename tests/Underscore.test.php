@@ -8,9 +8,20 @@ class UnderscoreTest extends UnderscoreWrapper
 
   public function testCanWrapObject()
   {
-    $under = new Underscore($this->array);
+    $under1 = new Underscore($this->array);
+    $under2 = Underscore::chain($this->array);
+
+    $this->assertInstanceOf('Underscore\Underscore', $under1);
+    $this->assertInstanceOf('Underscore\Underscore', $under2);
+  }
+
+  public function testCanWrapWithSubclasses()
+  {
+    $under = Arrays::from($this->array);
+    $chain = $under->get('foo');
 
     $this->assertInstanceOf('Underscore\Underscore', $under);
+    $this->assertEquals('bar', $chain);
   }
 
   public function testCanWrapWithShortcutFunction()

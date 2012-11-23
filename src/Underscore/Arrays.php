@@ -15,7 +15,41 @@ class Arrays extends Methods
   );
 
   ////////////////////////////////////////////////////////////////////
-  ////////////////////////////// FETCH FROM //////////////////////////
+  ///////////////////////////// ANALYZE //////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Check if all items in an array match a truth test
+   */
+  public static function matches($array, Closure $closure)
+  {
+    // Reduce the array to only booleans
+    $array = (array) static::map($array, $closure);
+
+    // Check the results
+    if (sizeof($array) === 0) return true;
+    $array = array_search(false, $array, false);
+
+    return is_bool($array);
+  }
+
+  /**
+   * Check if any item in an array matches a truth test
+   */
+  public static function matchesAny($array, Closure $closure)
+  {
+    // Reduce the array to only booleans
+    $array = (array) static::map($array, $closure);
+
+    // Check the results
+    if (sizeof($array) === 0) return true;
+    $array = array_search(true, $array, false);
+
+    return is_int($array);
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////////// FETCH FROM ////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
   /**
@@ -54,6 +88,14 @@ class Arrays extends Methods
     }
 
     return $array;
+  }
+
+  /**
+   * Get the size of an array
+   */
+  public static function size($array)
+  {
+    return sizeof($array);
   }
 
   ////////////////////////////////////////////////////////////////////

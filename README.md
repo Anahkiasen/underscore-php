@@ -6,16 +6,24 @@ It can be used both as a static class, and an Object-Oriented class, so both the
 ```php
 $array = array(1, 2, 3);
 
+// One-off calls to helpers
 Underscore::map($array, function($value) { return $value * 2; })
 underscore($array)->map(function($value) { return $value * 2; })
+
+// Or chain calls
+Underscore::chain($array)->filter(...)->sort(...)->get(2)
 ```
 
 You can also alias Underscore's core classes and call them at any time, this mostly provides syntaxic elegance :
 
 ```php
+// One-off calls
 Arrays::first(...)
 Arrays::each(...)
 String::escape(...)
+
+// Chained calls
+Arrays::from($array)->filter(...)->get(2)
 ```
 
 It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
@@ -34,6 +42,14 @@ Get a value from an array using dot-notation
 ```php
 $array = underscore(array('foo' => array('bar' => 'ter')));
 $array->get('foo.bar') // Return 'ter'
+```
+
+### Arrays::count
+
+Count the number of items in an array
+
+```php
+Underscore::count(array(1, 2, 3)) // Returns 3
 ```
 
 ### Arrays::each
@@ -72,9 +88,26 @@ Underscore::find(array(1, 2, 3), function($value) {
 Find all values in an array that passes a truth test
 
 ```php
-Underscore::find(array(1, 2, 3), function($value) {
+Underscore::filter(array(1, 2, 3), function($value) {
   return $value % 2 != 0; // Returns array(1, 3)
 });
 ```
+
+### Arrays::reject
+
+Find all values in an array that are rejected by a truth test
+
+```php
+Underscore::filter(array(1, 2, 3), function($value) {
+  return $value % 2 != 0; // Returns array(2)
+});
+```
+
+### Arrays::matches
+
+Check if all items in an array match a truth test
+
+```php
+Underscore::matches
 
 [Arrays]: #arrays

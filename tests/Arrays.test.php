@@ -15,10 +15,18 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals('bar', $under);
   }
 
+  public function testCanCreateChainableObject()
+  {
+    $under = Underscore::chain($this->arrayNumbers);
+    $under = $under->get(1);
+
+    $this->assertEquals(2, $under);
+  }
+
   public function testCanGetValueFromArray()
   {
     $array = array('foo' => array('bar' => 'bis'));
-    $under = Underscore::get($array, 'foo.bar');
+    $under = Arrays::get($array, 'foo.bar');
 
     $this->assertEquals('bis', $under);
   }
@@ -29,9 +37,8 @@ class ArraysTest extends UnderscoreWrapper
       echo $key.':'.$value.':';
     };
 
-    underscore($this->array)->each($closure)->obtain();
-    Underscore::each($this->array, $closure);
-    $result = 'foo:bar:bis:ter:foo:bar:bis:ter:';
+    Arrays::each($this->array, $closure);
+    $result = 'foo:bar:bis:ter:';
 
     $this->expectOutputString($result);
   }
@@ -42,17 +49,15 @@ class ArraysTest extends UnderscoreWrapper
       return $key.':'.$value;
     };
 
-    $underChain  = underscore($this->array)->map($closure)->obtain();
-    $underStatic = Underscore::map($this->array, $closure);
+    $under = Arrays::map($this->array, $closure);
     $result = array('foo' => 'foo:bar', 'bis' => 'bis:ter');
 
-    $this->assertEquals($result, $underChain);
-    $this->assertEquals($result, $underStatic);
+    $this->assertEquals($result, $under);
   }
 
   public function testCanFindAValueInAnArray()
   {
-    $under = Underscore::find(array(1, 2, 3), function($value) {
+    $under = Arrays::find($this->arrayNumbers, function($value) {
       return $value % 2 == 0;
     });
 
@@ -61,7 +66,7 @@ class ArraysTest extends UnderscoreWrapper
 
   public function testCanFilterValuesFromAnArray()
   {
-    $under = Underscore::filter(array(1, 2, 3), function($value) {
+    $under = Arrays::filter($this->arrayNumbers, function($value) {
       return $value % 2 != 0;
     });
 
@@ -70,10 +75,28 @@ class ArraysTest extends UnderscoreWrapper
 
   public function testCanFilterRejectedValuesFromAnArray()
   {
-    $under = Underscore::reject(array(1, 2, 3), function($value) {
+    $under = Arrays::reject($this->arrayNumbers, function($value) {
       return $value % 2 != 0;
     });
 
     $this->assertEquals(array(1 => 2), $under);
+  }
+
+  public function testCanMatchAnArrayContent()
+  {
+    $under = Arrays::matches($this->arrayNumbers, function($value) {
+      return is_int($value);
+    });
+
+    $this->assertTrue($under);
+  }
+
+  public function testCanMatchPathOfAnArrayContent()
+  {
+    $under = Arrays::matchesAny($this->arrayNumbers, function($value) {
+      return $value == 2;
+    });
+
+    $this->assertTrue($under);
   }
 }
