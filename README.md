@@ -29,119 +29,14 @@ Arrays::from($array)->filter(...)->get(2)
 It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
 You can also give custom aliases to all of Underscore's methods, in said config file. Just add entries to the `aliases` option, the key being the alias, and the value the method to point to.
 
-# Documentation
+## Documentation
 
-**Available classes**
-- [Arrays][] : Helpers for arrays
+You can find a detailed summary of all classes and methods in the [repo's wiki][]
 
-## Arrays
+## About underscore.php
 
-### Arrays::get
+There is technically another port of Underscore.js to PHP available [on Github][] — I first discovered it when I saw it was for a time used on Laravel 4. I quickly grew disapoint of what a mess the code was, the lack of updates, and the 1:1 mentality that went behind it.
+This revamped Underscore.php doesn't aim to be a direct port of Underscore.js. It sometimes omits methods that aren't relevant to PHP developers, rename others to match terms that are more common to them, provides a richer syntax and leaves room for future methods to be added all the time — whereas the previous port quickly recoded all JS methods to PHP and left it at that.
 
-Get a value from an array using dot-notation
-
-```php
-$array = underscore(array('foo' => array('bar' => 'ter')));
-$array->get('foo.bar') // Return 'ter'
-```
-
-### Arrays::count
-
-Count the number of items in an array
-
-```php
-Underscore::count(array(1, 2, 3)) // Returns 3
-```
-
-### Arrays::each
-
-Iterate over an array to execute a callback at each loop
-
-```php
-$multiplier = 3;
-Underscore::each(array(1, 2, 3), function($value) use ($multiplier) {
-  echo $value * $multiplier; // Prints out 3, 6, 9
-});
-```
-
-### Arrays::map
-
-Iterate over an array and apply a callback to each value
-
-```php
-Underscore::map(array(1, 2, 3), function($value) {
-  return $value * 3; // Return array(3, 6, 9)
-});
-```
-
-### Arrays::find
-
-Find the first value in an array that passes a truth test
-
-```php
-Underscore::find(array(1, 2, 3), function($value) {
-  return $value % 2 == 0; // Returns 2
-});
-```
-
-### Arrays::filter
-
-Find all values in an array that passes a truth test
-
-```php
-Underscore::filter(array(1, 2, 3), function($value) {
-  return $value % 2 != 0; // Returns array(1, 3)
-});
-```
-
-### Arrays::reject
-
-Find all values in an array that are rejected by a truth test
-
-```php
-Underscore::filter(array(1, 2, 3), function($value) {
-  return $value % 2 != 0; // Returns array(2)
-});
-```
-
-### Arrays::matches
-
-Check if all items in an array match a truth test
-
-```php
-Underscore::matches(array(1, 2, 3), function($value) {
-  return $value % 2 == 0; // Returns false
-});
-```
-
-### Arrays::matchesAny
-
-Same than above but returns true if at least one item matches
-
-```php
-Underscore::matchesAny(array(1, 2, 3), function($value) {
-  return $value % 2 == 0; // Returns true
-});
-```
-
-### Arrays::invoke
-
-Invoke a function on all of an array's values
-
-```php
-Underscore::invoke(array('   foo'), 'trim'); // Returns array('foo')
-```
-
-### Arrays::pluck
-
-Pluck a column from an array
-
-```php
-$array = array(
-  array('foo' => 'bar', 'bis' => 'ter'),
-  array('foo' => 'bar', 'bis' => 'ter'),
-);
-Underscore::pluck($array, 'foo'); // Returns array('bar', 'bar')
-```
-
-[Arrays]: #arrays
+[repo's wiki]: https://github.com/Anahkiasen/underscore-php/wiki
+[on Github]: https://github.com/brianhaveri/Underscore.php

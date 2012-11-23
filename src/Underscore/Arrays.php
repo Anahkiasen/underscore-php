@@ -48,6 +48,18 @@ class Arrays extends Methods
     return in_array($value, $array);
   }
 
+   /**
+   * Returns the average value of an array
+   *
+   * @param  array   $array    The source array
+   * @param  integer $decimals The number of decimals to return
+   * @return integer           The average value
+   */
+  public static function average($array, $decimals = 0)
+  {
+    return round((array_sum($array) / sizeof($array)), $decimals);
+  }
+
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// FETCH FROM ////////////////////////////
   ////////////////////////////////////////////////////////////////////
