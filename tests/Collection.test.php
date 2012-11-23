@@ -54,10 +54,10 @@ class CollectionTest extends UnderscoreWrapper
 
   public function testCanFindAValueInAnArray()
   {
-    $under = Underscore::find($this->array, function($value) {
-      return $value != 'nope';
+    $under = Underscore::find(array(1, 2, 3), function($value) {
+      return $value % 2 == 0;
     });
 
-    $this->assertEquals('bar', $under);
+    $this->assertEquals(2, $under);
   }
 }
