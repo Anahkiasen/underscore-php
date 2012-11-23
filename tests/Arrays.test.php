@@ -107,4 +107,12 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals(array('foo', 'bar'), $array);
   }
+
+  public function testCanPluckColumns()
+  {
+    $under = Arrays::pluck($this->arrayMulti, 'foo');
+    $matcher = array('bar', 'bar', array('bar' => 'foo', 'bis' => 'ter'));
+
+    $this->assertEquals($matcher, $under);
+  }
 }

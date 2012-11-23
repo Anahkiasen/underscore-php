@@ -91,6 +91,18 @@ class Arrays extends Methods
   }
 
   /**
+   * Fetches all columns $property from a multimensionnal array
+   */
+  public static function pluck($array, $property)
+  {
+    foreach ($array as $key => $value) {
+      $array[$key] = Arrays::get($value, $property, $value);
+    }
+
+    return $array;
+  }
+
+  /**
    * Get the size of an array
    */
   public static function size($array)

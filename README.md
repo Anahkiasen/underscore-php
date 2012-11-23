@@ -132,4 +132,16 @@ Invoke a function on all of an array's values
 Underscore::invoke(array('   foo'), 'trim'); // Returns array('foo')
 ```
 
+### Arrays::pluck
+
+Pluck a column from an array
+
+```php
+$array = array(
+  array('foo' => 'bar', 'bis' => 'ter'),
+  array('foo' => 'bar', 'bis' => 'ter'),
+);
+Underscore::pluck($array, 'foo'); // Returns array('bar', 'bar')
+```
+
 [Arrays]: #arrays
