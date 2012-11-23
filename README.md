@@ -1,6 +1,6 @@
 # Underscore.php
 
-Underscore.php is a PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays in PHP.
+Underscore.php is a PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP.
 It can be used both as a static class, and an Object-Oriented class, so both the following are valid :
 
 ```php
@@ -17,7 +17,7 @@ underscore($array)->map(function($value) { return $value * 2; })
 Get a value from an array using dot-notation
 
 ```php
-$array = underscore('foo' => array('bar' => 'ter'));
+$array = underscore(array('foo' => array('bar' => 'ter')));
 $array->get('foo.bar') // Return 'ter'
 ```
 
