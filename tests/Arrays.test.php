@@ -99,4 +99,12 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertTrue($under);
   }
+
+  public function testCanInvokeFunctionsOnValues()
+  {
+    $array = array('   foo', '   bar');
+    $array = Arrays::invoke($array, 'trim');
+
+    $this->assertEquals(array('foo', 'bar'), $array);
+  }
 }

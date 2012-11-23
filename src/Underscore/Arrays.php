@@ -139,6 +139,14 @@ class Arrays extends Methods
   }
 
   /**
+   * Invoke a function on all of an array's values
+   */
+  public static function invoke($array, $callable, $arguments = array())
+  {
+    if (is_callable($callable)) return array_map($array, $callable, $arguments);
+  }
+
+  /**
    * Return all items that fail the truth test
    */
   public static function reject($array, Closure $closure)
