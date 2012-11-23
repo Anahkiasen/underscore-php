@@ -3,7 +3,7 @@ namespace Underscore;
 
 use \Closure;
 
-class Arrays
+class Collection
 {
   /**
    * Get a value from an array using dot-notation

@@ -28,7 +28,7 @@ class Underscore
     $array   = array_get($arguments, 0);
     $closure = array_get($arguments, 1);
 
-    return Arrays::$method($array, $closure);
+    return Collection::$method($array, $closure);
   }
 
   /**
@@ -38,7 +38,7 @@ class Underscore
   {
     $closure = array_get($arguments, 0);
 
-    $this->array = Arrays::$method($this->array, $closure);
+    $this->array = Collection::$method($this->array, $closure);
 
     return $this;
   }
