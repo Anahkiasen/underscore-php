@@ -61,8 +61,16 @@ class Arrays extends Methods
    */
   public static function filter($array, Closure $closure)
   {
+    return array_filter($array, $closure);
+  }
+
+  /**
+   * Return all items that fail the truth test
+   */
+  public static function reject($array, Closure $closure)
+  {
     foreach ($array as $key => $value) {
-      if ($closure($value)) $filtered[$key] = $value;
+      if (!$closure($value)) $filtered[$key] = $value;
     }
 
     return $filtered;
