@@ -1,6 +1,7 @@
 # Underscore.php
+## A redacted port of Underscore.js
 
-Underscore.php is a PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP. My first goal is to match all of Underscore's methods but I'll probably add more helpers along the way for stuff that people do on a daily basis.
+Underscore.php is a _redacted_ PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP development. When I say redacted I mean that all methods were not just imported and converted blatantly — a lot of thought was put into removing methods that were unuseful to PHP developers, changing terms to make them less confusing in a PHP world, and add a lot of new methods and helpers on top of a new elegant syntax.
 It can be used both as a static class, and an Object-Oriented class, so both the following are valid :
 
 ```php
@@ -11,6 +12,7 @@ Underscore::map($array, function($value) { return $value * 2; })
 underscore($array)->map(function($value) { return $value * 2; })
 
 // Or chain calls
+underscore($array)->filter(...)->sort(...)->get(2)
 Underscore::chain($array)->filter(...)->sort(...)->get(2)
 ```
 
