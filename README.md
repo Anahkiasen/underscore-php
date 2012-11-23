@@ -108,6 +108,19 @@ Underscore::filter(array(1, 2, 3), function($value) {
 Check if all items in an array match a truth test
 
 ```php
-Underscore::matches
+Underscore::matches(array(1, 2, 3), function($value) {
+  return $value % 2 == 0; // Returns false
+});
+```
+
+### Arrays::matchesAny
+
+Same than above but returns true if at least one item matches
+
+```php
+Underscore::matchesAny(array(1, 2, 3), function($value) {
+  return $value % 2 == 0; // Returns true
+});
+```
 
 [Arrays]: #arrays

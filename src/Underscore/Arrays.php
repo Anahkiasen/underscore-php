@@ -6,14 +6,6 @@ use \Closure;
 class Arrays extends Methods
 {
 
-  /**
-   * Aliases of methods
-   * @var array
-   */
-  public static $aliases = array(
-    'select' => 'find',
-  );
-
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ANALYZE //////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -46,6 +38,14 @@ class Arrays extends Methods
     $array = array_search(true, $array, false);
 
     return is_int($array);
+  }
+
+  /**
+   * Check if an item is in an array
+   */
+  public static function contains($array, $value)
+  {
+    return in_array($value, $array);
   }
 
   ////////////////////////////////////////////////////////////////////
