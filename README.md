@@ -10,6 +10,8 @@ Underscore::map($array, function($value) { return $value * 2; })
 underscore($array)->map(function($value) { return $value * 2; })
 ```
 
+It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
+
 # Documentation
 
 **Available classes**
