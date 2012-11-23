@@ -1,6 +1,6 @@
 # Underscore.php
 
-Underscore.php is a PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP.
+Underscore.php is a PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP. My first goal is to match all of Underscore's methods but I'll probably add more helpers along the way for stuff that people do on a daily basis.
 It can be used both as a static class, and an Object-Oriented class, so both the following are valid :
 
 ```php
@@ -8,6 +8,14 @@ $array = array(1, 2, 3);
 
 Underscore::map($array, function($value) { return $value * 2; })
 underscore($array)->map(function($value) { return $value * 2; })
+```
+
+You can also alias Underscore's core classes and call them at any time, this mostly provides syntaxic elegance :
+
+```php
+Arrays::first(...)
+Collection::each(...)
+String::escape(...)
 ```
 
 It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
