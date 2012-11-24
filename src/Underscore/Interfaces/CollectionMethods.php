@@ -9,8 +9,23 @@ namespace Underscore\Interfaces;
 use \Closure;
 use \Underscore\Arrays;
 
+// Define UNFOUND constant for searchs
+define('UNFOUND', false);
+
 abstract class CollectionMethods extends Methods
 {
+
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////// ANALYZE //////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Check if an array has a given key
+   */
+  public static function has($array, $key)
+  {
+    return static::get($array, $key, UNFOUND) !== UNFOUND;
+  }
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// FETCH FROM ////////////////////////////
@@ -57,6 +72,16 @@ abstract class CollectionMethods extends Methods
   public static function set($collection, $key, $value)
   {
     static::_set($collection, $key, $value);
+
+    return $collection;
+  }
+
+  /**
+   * Remove a value from an array using dot notation
+   */
+  public static function remove($collection, $key)
+  {
+    static::_remove($collection, $key);
 
     return $collection;
   }
@@ -159,7 +184,7 @@ abstract class CollectionMethods extends Methods
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Internal set method by reference
+   * Internal mechanic of set method
    */
   private static function _set(&$collection, $key, $value)
   {
@@ -190,5 +215,39 @@ abstract class CollectionMethods extends Methods
 
     // Bind final tree on the collection
     $collection[array_shift($keys)] = $value;
+  }
+
+  /**
+   * Internal mechanics of remove method
+   */
+  private static function _remove(&$collection, $key)
+  {
+    // Explode keys
+    $keys = explode('.', $key);
+
+    // Crawl though the keys
+    while (count($keys) > 1)
+    {
+      $key = array_shift($keys);
+
+      // If we're dealing with an object
+      if (is_object($collection)) {
+        if (!isset($collection->$key)) {
+          return false;
+        }
+        $collection =& $collection->$key;
+
+      // If we're dealing with an array
+      } else {
+        if (!isset($collection[$key])) {
+          return false;
+        }
+        $collection =& $collection[$key];
+      }
+    }
+
+    $key = array_shift($keys);
+    if (is_object($collection)) unset($collection->$key);
+    else unset($collection[$key]);
   }
 }

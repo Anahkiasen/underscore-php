@@ -24,5 +24,10 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
   {
     // Create some dummy data
     $this->object = (object) $this->array;
+    $this->objectMulti = (object) array(
+      (object) $this->arrayMulti[0],
+      (object) $this->arrayMulti[1],
+      (object) $this->arrayMulti[2],
+    );
   }
 }

@@ -20,7 +20,7 @@ class ObjectTest extends UnderscoreWrapper
 
   public function testCanPluckColumns()
   {
-    $object = Object::pluck((object) $this->arrayMulti, 'foo');
+    $object = Object::pluck($this->objectMulti, 'foo');
     $matcher = (object) array('bar', 'bar', null);
 
     $this->assertEquals($matcher, $object);
@@ -33,6 +33,15 @@ class ObjectTest extends UnderscoreWrapper
 
     $this->assertEquals('ter', $object->foo['bar']['bis']);
     $this->assertObjectHasAttribute('bar', $object);
+  }
+
+  public function testCanRemoveValues()
+  {
+    $array = Object::remove($this->objectMulti, '0.foo');
+    $matcher = (array) $this->objectMulti;
+    unset($matcher[0]->foo);
+
+    $this->assertEquals((object) $matcher, $array);
   }
 
   public function testCanConvertToJson()

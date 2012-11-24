@@ -46,6 +46,15 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertArrayHasKey('bar', $array);
   }
 
+  public function testCanRemoveValues()
+  {
+    $array = Arrays::remove($this->arrayMulti, '0.foo');
+    $matcher = $this->arrayMulti;
+    unset($matcher[0]['foo']);
+
+    $this->assertEquals($matcher, $array);
+  }
+
   public function testCanGetSumOfArray()
   {
     $array = Arrays::sum(array(1, 2, 3));

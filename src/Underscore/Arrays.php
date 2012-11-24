@@ -45,14 +45,6 @@ class Arrays extends Interfaces\CollectionMethods
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Check if an array has a given key
-   */
-  public static function has($array, $key)
-  {
-    return static::get($array, $key, 'UNFOUND') !== 'UNFOUND';
-  }
-
-  /**
    * Search for the index of a value in an array
    */
   public static function search($array, $value)
@@ -239,14 +231,6 @@ class Arrays extends Interfaces\CollectionMethods
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// ALTER ///////////////////////////////
   ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Remove an entry from an array using dot notation
-   */
-  public static function remove($array, $key)
-  {
-    # code...
-  }
 
   /**
    * Iterate over an array and modify the array's value
