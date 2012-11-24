@@ -1,7 +1,12 @@
 <?php
+/**
+ * Underscore
+ *
+ * The base class and wrapper around all other classes
+ */
 namespace Underscore;
 
-class Underscore extends Methods
+class Underscore extends Interfaces\Methods
 {
   /**
    * The subject of methods
@@ -81,9 +86,10 @@ class Underscore extends Methods
   /**
    * Compute the right class to call according to something's type
    */
-  public static function typeFrom($subjet)
+  public static function typeFrom($subject)
   {
-    if (is_array($subjet)) $class = 'Arrays';
+    if (is_array($subject)) $class = 'Arrays';
+    elseif (is_string($subject)) $class = 'String';
 
     return $class;
   }

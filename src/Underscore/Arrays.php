@@ -1,9 +1,14 @@
 <?php
+/**
+ * Arrays
+ *
+ * Helpers and functions for arrays
+ */
 namespace Underscore;
 
 use \Closure;
 
-class Arrays extends Methods
+class Arrays extends Interfaces\Methods
 {
 
   ////////////////////////////////////////////////////////////////////

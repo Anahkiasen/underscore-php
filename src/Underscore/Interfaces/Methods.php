@@ -1,8 +1,14 @@
 <?php
-namespace Underscore;
+/**
+ * Methods
+ *
+ * Base abstract class for helpers
+ */
+namespace Underscore\Interfaces;
 
 use \Config;
 use \Exception;
+use \Underscore\Underscore;
 
 abstract class Methods
 {
