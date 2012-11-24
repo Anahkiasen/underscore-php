@@ -292,4 +292,11 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals(array('foo', 'foo', 'foo'), $repeat);
   }
+
+  public function testCanMergeArrays()
+  {
+    $array = Arrays::merge($this->array, array('foo' => 3), array('kal' => 'mon'));
+
+    $this->assertEquals(array('foo' => 3, 'bis' => 'ter', 'kal' => 'mon'), $array);
+  }
 }

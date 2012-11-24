@@ -10,4 +10,12 @@ class Object extends Interfaces\CollectionMethods
   {
     return get_class_methods(get_class($object));
   }
+
+  /**
+   * Converts an object to an array
+   */
+  public static function toArray($object)
+  {
+    return (array) $object;
+  }
 }

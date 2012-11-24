@@ -289,4 +289,12 @@ class Arrays extends Interfaces\CollectionMethods
 
     return $filtered;
   }
+
+  /**
+   * Merge one or more arrays
+   */
+  public static function merge()
+  {
+    return call_user_func_array('array_merge', func_get_args());
+  }
 }

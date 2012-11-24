@@ -53,4 +53,11 @@ class ObjectTest extends UnderscoreWrapper
     }, 'desc');
     $this->assertEquals(array($object_alt, $object), $under);
   }
+
+  public function testCanConvertToArray()
+  {
+    $object = Object::toArray($this->object);
+
+    $this->assertEquals($this->array, $object);
+  }
 }
