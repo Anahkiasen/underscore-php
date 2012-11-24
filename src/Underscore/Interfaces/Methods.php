@@ -8,10 +8,17 @@ namespace Underscore\Interfaces;
 
 use \Config;
 use \Exception;
+use \Underscore\Arrays;
 use \Underscore\Underscore;
 
 abstract class Methods
 {
+  /**
+   * Custom functions
+   * @var array
+   */
+  public static $macros = array();
+
   /**
    * Alias for Underscore::chain
    */
@@ -25,6 +32,12 @@ abstract class Methods
    */
   public static function __callStatic($method, $parameters)
   {
+    // Look in the macros
+    $macro = Arrays::get(static::$macros, $method);
+    if ($macro) {
+      return call_user_func_array($macro, $parameters);
+    }
+
     // Get alias from config
     $alias = Config::get('underscore::underscore.aliases.'.$method);
     if ($alias) {
@@ -32,5 +45,13 @@ abstract class Methods
     }
 
     throw new Exception('The method ' .get_called_class(). '::' .$method. ' does not exist');
+  }
+
+  /**
+   * Extend the class with a custom function
+   */
+  public static function extend($method, $closure)
+  {
+    static::$macros[$method] = $closure;
   }
 }

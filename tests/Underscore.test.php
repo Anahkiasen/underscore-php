@@ -39,4 +39,14 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $this->assertEquals(1, $under);
   }
+
+  public function testUserCanExtendWithCustomFunctions()
+  {
+    Arrays::extend('fooify', function($string) {
+      return 'bar';
+    });
+    $string = Arrays::fooify(array('foo'));
+
+    $this->assertEquals('bar', $string);
+  }
 }
