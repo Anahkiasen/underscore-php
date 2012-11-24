@@ -40,5 +40,5 @@ You can find a detailed summary of all classes and methods in the [repo's wiki][
 There is technically another port of Underscore.js to PHP available [on Github][] — I first discovered it when I saw it was for a time used on Laravel 4. I quickly grew disapoint of what a mess the code was, the lack of updates, and the 1:1 mentality that went behind it.
 This revamped Underscore.php doesn't aim to be a direct port of Underscore.js. It sometimes omits methods that aren't relevant to PHP developers, rename others to match terms that are more common to them, provides a richer syntax and leaves room for future methods to be added all the time — whereas the previous port quickly recoded all JS methods to PHP and left it at that.
 
-[repo's wiki]: https://github.com/Anahkiasen/underscore-php/wiki
+[repo's wiki]: https://github.com/Anahkiasen/underscore-php/wiki/_pages
 [on Github]: https://github.com/brianhaveri/Underscore.php
