@@ -81,6 +81,34 @@ class Arrays extends Interfaces\Methods
     return sizeof($array);
   }
 
+  /**
+   * Get the max value from an array
+   */
+  public static function max($array, $closure = null)
+  {
+    // If we have a closure, apply it to the array
+    if ($closure) $array = Arrays::each($array, $closure);
+
+    // Sort from max to min
+    arsort($array);
+
+    return Arrays::first($array);
+  }
+
+  /**
+   * Get the min value from an array
+   */
+  public static function min($array, $closure = null)
+  {
+    // If we have a closure, apply it to the array
+    if ($closure) $array = Arrays::each($array, $closure);
+
+    // Sort from max to min
+    asort($array);
+
+    return Arrays::first($array);
+  }
+
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// FETCH FROM ////////////////////////////
   ////////////////////////////////////////////////////////////////////
