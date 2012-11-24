@@ -6,6 +6,8 @@
  */
 namespace Underscore;
 
+use \Exception;
+
 class Underscore extends Interfaces\Methods
 {
   /**
@@ -16,11 +18,19 @@ class Underscore extends Interfaces\Methods
 
   /**
    * A list of methods that are allowed
-   * to break the chaind
+   * to break the chain
    * @var array
    */
   private static $breakers = array(
     'get',
+  );
+
+  /**
+   * Unchainable methods
+   * @var array
+   */
+  private static $unchainable = array(
+    'Arraysrange', 'Arraysrepeat',
   );
 
   /**
@@ -50,6 +60,11 @@ class Underscore extends Interfaces\Methods
   {
     // Get correct class
     $class = static::typeFrom($this->subject);
+
+    // Check for unchainable methods
+    if (in_array($class.$method, static::$unchainable)) {
+      throw new Exception('The method '.$class.'::'.$method. ' can\'t be chained');
+    }
 
     // Prepend subject to arguments and call the method
     array_unshift($arguments, $this->subject);
