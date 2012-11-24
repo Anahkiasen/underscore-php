@@ -1,5 +1,7 @@
 <?php namespace Laravel;
 
+define('MB_STRING', (int) function_exists('mb_get_info'));
+
 class Str {
 
   /**
@@ -23,7 +25,7 @@ class Str {
      */
     protected static function encoding()
     {
-        return static::$encoding ?: static::$encoding = Config::get('application.encoding');
+        return static::$encoding ?: static::$encoding = 'UTF-8';
     }
 
   /**
