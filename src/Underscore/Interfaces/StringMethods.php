@@ -7,6 +7,7 @@
 namespace Underscore\Interfaces;
 
 use \Str;
+use \Underscore\Underscore;
 
 abstract class StringMethods extends Str
 {

@@ -33,19 +33,26 @@ class StringTest extends UnderscoreWrapper
 
   public function testCanToggleBetweenTwoStrings()
   {
-    $firstToggle = String::toggle('foo', 'foo', 'bar');
-    $this->assertEquals('bar', $firstToggle);
+    $toggle = String::toggle('foo', 'foo', 'bar');
+    $this->assertEquals('bar', $toggle);
   }
 
   public function testCannotLooselyToggleBetweenStrings()
   {
-    $firstToggle = String::toggle('dei', 'foo', 'bar');
-    $this->assertEquals('dei', $firstToggle);
+    $toggle = String::toggle('dei', 'foo', 'bar');
+    $this->assertEquals('dei', $toggle);
   }
 
   public function testCanLooselyToggleBetweenStrings()
   {
-    $firstToggle = String::toggle('dei', 'foo', 'bar', $loose = true);
-    $this->assertEquals('foo', $firstToggle);
+    $toggle = String::toggle('dei', 'foo', 'bar', $loose = true);
+    $this->assertEquals('foo', $toggle);
+  }
+
+  public function testCanRepeatString()
+  {
+    $string = String::from('foo')->repeat(3)->obtain();
+
+    $this->assertEquals('foofoofoo', $string);
   }
 }

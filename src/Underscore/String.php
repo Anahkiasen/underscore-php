@@ -41,4 +41,12 @@ class String extends Interfaces\StringMethods
 
     return $string == $first ? $second : $first;
   }
+
+  /**
+   * Repeat a string $times times
+   */
+  public static function repeat($string, $times)
+  {
+    return str_repeat($string, $times);
+  }
 }
