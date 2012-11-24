@@ -58,6 +58,6 @@ class UnderscoreTest extends UnderscoreWrapper
     $array = Arrays::from($this->array);
     $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
 
-    $this->assertEquals(array('foo' => 'bar'), $array);
+    $this->assertEquals(array('foo' => 'bar'), $array->obtain());
   }
 }
