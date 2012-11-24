@@ -1,16 +1,19 @@
 {
-    "name": "anahkiasen/underscore-php",
-    "description": "A redacted port of Underscore.js for PHP",
-    "authors": [
-        {
-            "name": "Maxime Fabre",
-            "email": "ehtnam6@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-0": {
-            "Underscore": "src/",
-            "Laravel": "src/"
-        }
+  "name": "anahkiasen/underscore-php",
+  "description": "A redacted port of Underscore.js for PHP",
+  "authors": [
+    {
+      "name": "Maxime Fabre",
+      "email": "ehtnam6@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Underscore": "src/",
+      "Laravel": "src/"
+    }
+  }
 }
