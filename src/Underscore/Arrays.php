@@ -37,7 +37,6 @@ class Arrays extends Interfaces\CollectionMethods
   {
     $times = abs($times);
     if ($times == 0) return array();
-
     return array_fill(0, $times, $data);
   }
 
@@ -185,6 +184,14 @@ class Arrays extends Interfaces\CollectionMethods
     return $array;
   }
 
+  /**
+   * Get a random string from an array
+   */
+  public static function random($array)
+  {
+    return $array[array_rand($array)];
+  }
+
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// SLICERS //////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -204,7 +211,6 @@ class Arrays extends Interfaces\CollectionMethods
   public static function last($array, $take = null)
   {
     if (!$take) return array_pop($array);
-
     return Arrays::rest($array, -$take);
   }
 
@@ -259,12 +265,21 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
+   * Shuffle an array
+   */
+  public static function shuffle($array)
+  {
+    shuffle($array);
+
+    return $array;
+  }
+
+  /**
    * Find all items in an array that pass the truth test
    */
   public static function filter($array, $closure = null)
   {
     if (!$closure) return Arrays::clean($array);
-
     return array_filter($array, $closure);
   }
 
