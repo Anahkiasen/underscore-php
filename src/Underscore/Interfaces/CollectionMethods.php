@@ -68,7 +68,7 @@ abstract class CollectionMethods extends Methods
   {
     $plucked = array_map(function($value) use ($property)
     {
-      return static::get($value, $property);
+      return Arrays::get($value, $property);
 
     }, (array) $collection);
 
