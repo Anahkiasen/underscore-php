@@ -16,9 +16,6 @@ underscore($array)->filter(...)->sort(...)->get(2)
 Underscore::chain($array)->filter(...)->sort(...)->get(2)
 ```
 
-The core concept is this : static calls return values from their methods, while chained calls update the value of the object they're working on. Which means that an Underscore object don't return it's value until you call the `->obtain` method on it — until then you can chain as long as you want, it will remain an object.
-The exception are certains properties that are considered _breakers_ and that will return the object's value. An example is `Arrays->get`.
-
 You can also alias Underscore's core classes and call them at any time, this mostly provides syntaxic elegance :
 
 ```php
@@ -30,6 +27,9 @@ String::escape(...)
 // Chained calls
 Arrays::from($array)->filter(...)->get(2)
 ```
+
+The core concept is this : static calls return values from their methods, while chained calls update the value of the object they're working on. Which means that an Underscore object don't return its value until you call the `->obtain` method on it — until then you can chain as long as you want, it will remain an object.
+The exception are certains properties that are considered _breakers_ and that will return the object's value. An example is `Arrays->get`.
 
 ## Customizing Underscore
 
