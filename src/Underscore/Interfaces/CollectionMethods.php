@@ -7,6 +7,7 @@
 namespace Underscore\Interfaces;
 
 use \Closure;
+use \Underscore\Arrays;
 
 abstract class CollectionMethods extends Methods
 {
@@ -76,5 +77,49 @@ abstract class CollectionMethods extends Methods
   public static function toJSON($collection)
   {
     return json_encode((array) $collection);
+  }
+
+  /**
+   * Sort values from a collection according to the results of a closure
+   * A property name to sort by can also be passed
+   * Also the sorter can be null and the array will be sorted naturally
+   */
+  public static function sort($collection, $sorter = null, $direction = 'asc')
+  {
+    $collection = (array) $collection;
+
+    // Get correct PHP constant for direction
+    $direction = (strtolower($direction) == 'desc') ? SORT_DESC : SORT_ASC;
+
+    // Transform all values into their results
+    if ($sorter) {
+      foreach ($collection as $key => $value) {
+        $results[$key] = is_callable($sorter) ? $sorter($value) : Arrays::get($value, $sorter);
+      }
+    } else $results = $collection;
+
+    // Sort by the results and replace by original values
+    array_multisort($results, $direction, SORT_REGULAR, $collection);
+
+    return $collection;
+  }
+
+  /**
+   * Group values from a collection according to the results of a closure
+   */
+  public static function group($collection, $grouper)
+  {
+    $collection = (array) $collection;
+
+    // Iterate over values, group by property/results from closure
+    foreach($collection as $key => $value) {
+      $key = is_callable($grouper) ? $grouper($value, $key) : Arrays::get($value, $grouper);
+      if (!isset($result[$key])) $result[$key] = array();
+
+      // Add to results
+      $result[$key][] = $value;
+    }
+
+    return $result;
   }
 }

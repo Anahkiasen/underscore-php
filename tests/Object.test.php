@@ -24,4 +24,24 @@ class ObjectTest extends UnderscoreWrapper
 
     $this->assertEquals('{"foo":"bar","bis":"ter"}', $under);
   }
+
+  public function testCanSort()
+  {
+    $child = (object) array('sort' => 5);
+    $child_alt = (object) array('sort' => 12);
+    $object = (object) array('name' => 'foo', 'age' => 18, 'child' => $child);
+    $object_alt = (object) array('name' => 'bar', 'age' => 21, 'child' => $child_alt);
+    $collection = array($object, $object_alt);
+
+    $under = Object::sort($collection, 'name', 'asc');
+    $this->assertEquals(array($object_alt, $object), $under);
+
+    $under = Object::sort($collection, 'child.sort', 'desc');
+    $this->assertEquals(array($object_alt, $object), $under);
+
+    $under = Object::sort($collection, function($value) {
+      return $value->child->sort;
+    }, 'desc');
+    $this->assertEquals(array($object_alt, $object), $under);
+  }
 }

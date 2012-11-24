@@ -235,4 +235,27 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals('{"foo":"bar","bis":"ter"}', $under);
   }
+
+  public function testCanSortValues()
+  {
+    $under = Arrays::sort(array(5, 3, 1, 2, 4), null, 'desc');
+    $this->assertEquals(array(5, 4, 3, 2, 1), $under);
+
+    $under = Arrays::sort(range(1, 5), function($value) {
+      return $value % 2 == 0;
+    });
+    $this->assertEquals(array(1, 3, 5, 2, 4), $under);
+  }
+
+  public function testCanGroupValues()
+  {
+    $under = Arrays::group(range(1, 5), function($value) {
+      return $value % 2 == 0;
+    });
+    $matcher = array(
+      array(1, 3, 5), array(2, 4),
+    );
+
+    $this->assertEquals($matcher, $under);
+  }
 }
