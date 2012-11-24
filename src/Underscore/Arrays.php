@@ -160,6 +160,16 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
+   * Clean all falsy values from an array
+   */
+  public static function clean($array)
+  {
+    return Arrays::select($array, function($value) {
+      return (bool) $value;
+    });
+  }
+
+  /**
    * Fetches all columns $property from a multimensionnal array
    */
   public static function pluck($array, $property)

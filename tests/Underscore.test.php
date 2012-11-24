@@ -40,7 +40,7 @@ class UnderscoreTest extends UnderscoreWrapper
       return $value == 1;
     });
 
-    $this->assertEquals(1, $under);
+    $this->assertEquals(array(1), $under);
   }
 
   public function testUserCanExtendWithCustomFunctions()

@@ -189,6 +189,14 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals(array(2, 3), $under);
   }
 
+  public function testCanCleanArray()
+  {
+    $array = array(false, true, 0, 1, 'full', '');
+    $array = Arrays::clean($array);
+
+    $this->assertEquals(array(1 => true, 3 => 1, 4 => 'full'), $array);
+  }
+
   public function testCanGetMaxValueFromAnArray()
   {
     $under = Arrays::max($this->arrayNumbers);
