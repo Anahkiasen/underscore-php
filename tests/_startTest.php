@@ -14,7 +14,10 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
    */
   public static function setUpBeforeClass()
   {
-    Bundle::start('underscore');
+    // If we're inside Laravel, autoload Underscore
+    if (class_exists('Bundle')) {
+      Bundle::start('underscore');
+    }
   }
 
   public function setUp()

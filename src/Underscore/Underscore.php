@@ -84,6 +84,20 @@ class Underscore extends Interfaces\Methods
   ////////////////////////////////////////////////////////////////////
 
   /**
+   * Get an option from the config file
+   *
+   * @param string $option The key of the option
+   * @return mixed Its value
+   */
+  public static function option($option)
+  {
+    // Get config file
+    $config = include __DIR__.'/../../config/underscore.php';
+
+    return Arrays::get($config, $option);
+  }
+
+  /**
    * Compute the right class to call according to something's type
    */
   public static function typeFrom($subject)

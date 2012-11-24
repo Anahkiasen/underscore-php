@@ -39,7 +39,7 @@ abstract class Methods
     }
 
     // Get alias from config
-    $alias = Config::get('underscore::underscore.aliases.'.$method);
+    $alias = Underscore::option('aliases.'.$method);
     if ($alias) {
       return call_user_func_array('static::'.$alias, $parameters);
     }
