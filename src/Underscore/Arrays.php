@@ -111,14 +111,6 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
-   * Get the sum of an array
-   */
-  public static function sum($array)
-  {
-    return array_sum($array);
-  }
-
-  /**
    * Get the size of an array
    */
   public static function size($array)
