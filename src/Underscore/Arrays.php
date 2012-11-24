@@ -187,9 +187,29 @@ class Arrays extends Interfaces\CollectionMethods
   /**
    * Get the last value from an array
    */
-  public static function last($array)
+  public static function last($array, $take = null)
   {
-    return array_pop($array);
+    if (!$take) return array_pop($array);
+
+    return Arrays::rest($array, -$take);
+  }
+
+  /**
+   * Get everything but the last $to items
+   */
+  public static function initial($array, $to)
+  {
+    $slice = sizeof($array) - $to;
+
+    return Arrays::first($array, $slice);
+  }
+
+  /**
+   * Get the last elements from index $from
+   */
+  public static function rest($array, $from = 1)
+  {
+    return array_splice($array, $from);
   }
 
   ////////////////////////////////////////////////////////////////////

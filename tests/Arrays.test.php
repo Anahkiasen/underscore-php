@@ -168,6 +168,27 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals('ter', $under);
   }
 
+  public function testCanGetLastElements()
+  {
+    $under = Arrays::last($this->arrayNumbers, 2);
+
+    $this->assertEquals(array(2, 3), $under);
+  }
+
+  public function testCanXInitialElements()
+  {
+    $under = Arrays::initial($this->arrayNumbers, 1);
+
+    $this->assertEquals(array(1, 2), $under);
+  }
+
+  public function testCanGetRestFromArray()
+  {
+    $under = Arrays::rest($this->arrayNumbers, 1);
+
+    $this->assertEquals(array(2, 3), $under);
+  }
+
   public function testCanGetMaxValueFromAnArray()
   {
     $under = Arrays::max($this->arrayNumbers);
