@@ -1,0 +1,28 @@
+<?php
+use Underscore\Arrays;
+use Underscore\String;
+use Underscore\Underscore;
+
+class MethodsTest extends UnderscoreWrapper
+{
+  public function testThrowsErrorIfIncorrectMethod()
+  {
+    $this->setExpectedException('BadMethodCallException');
+
+    Underscore::invalid('foo');
+  }
+
+  public function testHasAccessToOriginalPhpFunctions()
+  {
+    $array = Arrays::from($this->array);
+    $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
+
+    $this->assertEquals(array('foo' => 'bar'), $array->obtain());
+
+    $string = String::replace('foo', 'bar', 'foo');
+    $this->assertEquals('bar', $string);
+
+    $string = String::from('   foo  ')->trim();
+    $this->assertEquals('foo', $string->obtain());
+  }
+}

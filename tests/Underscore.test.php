@@ -16,6 +16,13 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertInstanceOf('Underscore\Underscore', $under2);
   }
 
+  public function testCanRedirectToCorrectClass()
+  {
+    $under = Underscore::search(array(1, 2, 3), 3);
+
+    $this->assertEquals(2, $under);
+  }
+
   public function testCanWrapWithSubclasses()
   {
     $under = Arrays::from($this->array);
@@ -46,25 +53,14 @@ class UnderscoreTest extends UnderscoreWrapper
 
   public function testUserCanExtendWithCustomFunctions()
   {
-    Arrays::extend('fooify', function($string) {
+    Arrays::extend('fooify', function($array) {
       return 'bar';
     });
-    $string = Arrays::fooify(array('foo'));
+    $this->assertEquals('bar', Arrays::fooify(array('foo')));
 
-    $this->assertEquals('bar', $string);
-  }
-
-  public function testHasAccessToOriginalPhpFunctions()
-  {
-    $array = Arrays::from($this->array);
-    $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
-
-    $this->assertEquals(array('foo' => 'bar'), $array->obtain());
-
-    $string = String::replace('foo', 'bar', 'foo');
-    $this->assertEquals('bar', $string);
-
-    $string = String::from('   foo  ')->trim();
-    $this->assertEquals('foo', $string->obtain());
+    String::extend('unfooer', function($string) {
+      return String::replace('foo', 'bar', $string);
+    });
+    $this->assertEquals('bar', String::unfooer('foo'));
   }
 }

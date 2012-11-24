@@ -35,7 +35,7 @@ abstract class StringMethods extends Str
    */
   public static function extend($method, $closure)
   {
-    static::$macros[$method] = $closure;
+    Methods::$macros[$method] = $closure;
   }
 
   ////////////////////////////////////////////////////////////////////

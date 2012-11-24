@@ -7,7 +7,7 @@
 namespace Underscore\Interfaces;
 
 use \Config;
-use \Exception;
+use \BadMethodCallException;
 use \Underscore\Arrays;
 use \Underscore\Dispatch;
 use \Underscore\Underscore;
@@ -26,7 +26,7 @@ abstract class Methods
    * Custom functions
    * @var array
    */
-  protected static $macros = array();
+  public static $macros = array();
 
   /**
    * A list of methods that are allowed
@@ -92,7 +92,7 @@ abstract class Methods
       return call_user_func_array('static::'.$alias, $parameters);
     }
 
-    throw new Exception('The method ' .get_called_class(). '::' .$method. ' does not exist');
+    throw new BadMethodCallException('The method ' .get_called_class(). '::' .$method. ' does not exist');
   }
 
   ////////////////////////////////////////////////////////////////////

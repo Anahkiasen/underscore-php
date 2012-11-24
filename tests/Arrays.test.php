@@ -46,6 +46,29 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertArrayHasKey('bar', $array);
   }
 
+  public function testCanGetSumOfArray()
+  {
+    $array = Arrays::sum(array(1, 2, 3));
+
+    $this->assertEquals(6, $array);
+  }
+
+  public function testCanGetSizeOfArray()
+  {
+    $array = Arrays::size(array(1, 2, 3));
+
+    $this->assertEquals(3, $array);
+  }
+
+  public function testCanSeeIfArrayContainsValue()
+  {
+    $true = Arrays::contains(array(1, 2, 3), 2);
+    $false = Arrays::contains(array(1, 2, 3), 5);
+
+    $this->assertTrue($true);
+    $this->assertFalse($false);
+  }
+
   public function testCanCheckIfHasValue()
   {
     $under = Arrays::has($this->array, 'foo');
@@ -90,8 +113,12 @@ class ArraysTest extends UnderscoreWrapper
     $under = Arrays::find($this->arrayNumbers, function($value) {
       return $value % 2 == 0;
     });
-
     $this->assertEquals(2, $under);
+
+    $unfound = Arrays::find($this->arrayNumbers, function($value) {
+      return $value == 5;
+    });
+    $this->assertEquals($this->arrayNumbers, $unfound);
   }
 
   public function testCanFilterValuesFromAnArray()

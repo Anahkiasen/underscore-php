@@ -1,6 +1,7 @@
 <?php
 namespace Underscore;
 
+use \InvalidArgumentException;
 use \Underscore\Interfaces\Methods;
 
 class Dispatch
@@ -27,6 +28,9 @@ class Dispatch
         $class = 'Object';
         break;
     }
+
+    // Return false for unsupported types
+    if (!isset($class)) throw new InvalidArgumentException('This type is not supported');
 
     return '\\'.__NAMESPACE__.'\\'.$class;
   }
