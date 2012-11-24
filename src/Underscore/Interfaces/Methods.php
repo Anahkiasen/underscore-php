@@ -15,18 +15,18 @@ use \Underscore\Underscore;
 abstract class Methods
 {
   /**
-   * Custom functions
-   * @var array
-   */
-  public static $macros = array();
-
-  /**
    * A list of methods to automatically defer to PHP
    * @var array
    */
   public static $defer = array(
     'trim' => 'trim',
   );
+
+  /**
+   * Custom functions
+   * @var array
+   */
+  protected static $macros = array();
 
   /**
    * A list of methods that are allowed

@@ -16,7 +16,7 @@ abstract class StringMethods extends Str
    * Custom functions
    * @var array
    */
-  public static $macros = array();
+  protected static $macros = array();
 
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// PUBLIC METHODS /////////////////////////
