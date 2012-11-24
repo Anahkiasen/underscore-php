@@ -241,4 +241,12 @@ class Arrays extends Interfaces\Methods
 
     return $filtered;
   }
+
+  /**
+   * Convert an array to JSON
+   */
+  public static function toJSON($array)
+  {
+    return json_encode($array);
+  }
 }

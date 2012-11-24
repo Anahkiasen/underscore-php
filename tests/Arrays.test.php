@@ -178,4 +178,11 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals(-3, $under);
   }
+
+  public function testCanConvertToJson()
+  {
+    $under = Arrays::toJSON($this->array);
+
+    $this->assertEquals('{"foo":"bar","bis":"ter"}', $under);
+  }
 }
