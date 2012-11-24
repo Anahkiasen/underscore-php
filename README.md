@@ -8,8 +8,8 @@ It can be used both as a static class, and an Object-Oriented class, so both the
 $array = array(1, 2, 3);
 
 // One-off calls to helpers
-Underscore::map($array, function($value) { return $value * 2; })
-underscore($array)->map(function($value) { return $value * 2; })
+Underscore::each($array, function($value) { return $value * 2; })
+underscore($array)->each(function($value) { return $value * 2; })
 
 // Or chain calls
 underscore($array)->filter(...)->sort(...)->get(2)
