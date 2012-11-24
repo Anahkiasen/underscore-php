@@ -285,4 +285,11 @@ class ArraysTest extends UnderscoreWrapper
     $this->setExpectedException('Exception');
     $range = Arrays::from($this->arrayNumbers)->range(5);
   }
+
+  public function testCanCreateFromRepeat()
+  {
+    $repeat = Arrays::repeat('foo', 3);
+
+    $this->assertEquals(array('foo', 'foo', 'foo'), $repeat);
+  }
 }

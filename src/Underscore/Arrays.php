@@ -14,6 +14,9 @@ class Arrays extends Interfaces\CollectionMethods
   ///////////////////////////// GENERATE /////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
+  /**
+   * Generate an array from a range
+   */
   public static function range($_base, $stop = null, $step = 1)
   {
     // Dynamic arguments
@@ -25,6 +28,17 @@ class Arrays extends Interfaces\CollectionMethods
     }
 
     return range($start, $stop, $step);
+  }
+
+  /**
+   * Fill an array with $times times some $data
+   */
+  public static function repeat($data, $times)
+  {
+    $times = abs($times);
+    if ($times == 0) return array();
+
+    return array_fill(0, $times, $data);
   }
 
   ////////////////////////////////////////////////////////////////////
