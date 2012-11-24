@@ -20,6 +20,15 @@ abstract class Methods
   public static $macros = array();
 
   /**
+   * A list of methods to automatically defer to PHP
+   * @var array
+   */
+  public static $defer = array(
+    'diff'  => 'array_diff',
+    'merge' => 'array_merge',
+  );
+
+  /**
    * Alias for Underscore::chain
    */
   public static function from($subject)
@@ -32,6 +41,11 @@ abstract class Methods
    */
   public static function __callStatic($method, $parameters)
   {
+    // Defered methods
+    if (isset(static::$defer[$method])) {
+      return call_user_func_array(static::$defer[$method], $parameters);
+    }
+
     // Look in the macros
     $macro = Arrays::get(static::$macros, $method);
     if ($macro) {

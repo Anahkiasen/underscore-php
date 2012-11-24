@@ -306,4 +306,20 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertContains($array, $this->array);
   }
+
+  public function testCanSearchForAValue()
+  {
+    $array = Arrays::search($this->array, 'ter');
+
+    $this->assertEquals('bis', $array);
+  }
+
+  public function testCanDiffBetweenArrays()
+  {
+    $array = Arrays::diff($this->array, array('foo' => 'bar', 'ter' => 'kal'));
+    $chain = Arrays::from($this->array)->diff(array('foo' => 'bar', 'ter' => 'kal'));
+
+    $this->assertEquals(array('bis' => 'ter'), $array);
+    $this->assertEquals(array('bis' => 'ter'), $chain->obtain());
+  }
 }
