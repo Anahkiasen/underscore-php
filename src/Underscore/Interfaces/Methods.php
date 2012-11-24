@@ -27,6 +27,23 @@ abstract class Methods
     'trim' => 'trim',
   );
 
+  /**
+   * A list of methods that are allowed
+   * to break the chain
+   * @var array
+   */
+  private static $breakers = array(
+    'get',
+  );
+
+  /**
+   * Unchainable methods
+   * @var array
+   */
+  private static $unchainable = array(
+    '\Underscore\Arrays::range', '\Underscore\Arrays::repeat',
+  );
+
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// PUBLIC METHODS /////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -76,6 +93,30 @@ abstract class Methods
     }
 
     throw new Exception('The method ' .get_called_class(). '::' .$method. ' does not exist');
+  }
+
+  /**
+   * Whether a method should not be chained
+   *
+   * @param string $class  The class
+   * @param string $method The method
+   *
+   * @return boolean
+   */
+  public static function isUnchainable($class, $method)
+  {
+    return in_array($class.'::'.$method, static::$unchainable);
+  }
+
+  /**
+   * Whether a method is a breaker
+   *
+   * @param string $method The method
+   * @return boolean
+   */
+  public static function isBreaker($method)
+  {
+    return in_array($method, static::$breakers);
   }
 
   /**
