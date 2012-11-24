@@ -32,9 +32,18 @@ class ArraysTest extends UnderscoreWrapper
 
   public function testCanGetValues()
   {
-    $array = Arrays::Values($this->array);
+    $array = Arrays::values($this->array);
 
     $this->assertEquals(array('bar', 'ter'), $array);
+  }
+
+  public function testCanSetValues()
+  {
+    $array = array('foo' => array('foo' => 'bar'), 'bar' => 'bis');
+    $array = Arrays::set($array, 'foo.bar.bis', 'ter');
+
+    $this->assertEquals('ter', $array['foo']['bar']['bis']);
+    $this->assertArrayHasKey('bar', $array);
   }
 
   public function testCanCheckIfHasValue()
@@ -269,5 +278,11 @@ class ArraysTest extends UnderscoreWrapper
 
     $range = Arrays::range(1, 10, 2);
     $this->assertEquals(array(1, 3, 5, 7, 9), $range);
+  }
+
+  public function testCantChainRange()
+  {
+    $this->setExpectedException('Exception');
+    $range = Arrays::from($this->arrayNumbers)->range(5);
   }
 }

@@ -47,6 +47,55 @@ abstract class CollectionMethods extends Methods
     return $collection;
   }
 
+  /**
+   * Set a value in an array using dot notation
+   *
+   * @param mixed  $collection The collection
+   * @param string $key        The key to set
+   * @param mixed  $value      Its value
+   */
+  public static function set($collection, $key, $value)
+  {
+    static::_set($collection, $key, $value);
+
+    return $collection;
+  }
+
+  /**
+   * Internal set method by reference
+   */
+  private static function _set(&$collection, $key, $value)
+  {
+    if (is_null($key)) return $collection = $value;
+
+    // Explode the keys
+    $keys = explode('.', $key);
+
+    // Crawl through the keys
+    while (count($keys) > 1)
+    {
+      $key = array_shift($keys);
+
+      // If we're dealing with an object
+      if (is_object($collection)) {
+        if (!isset($collection->$key) or !is_array($collection->$key)) {
+          $collection->$key = array();
+        }
+        $collection =& $collection->$key;
+
+      // If we're dealing with an array
+      } else {
+        if (!isset($collection[$key]) or !is_array($collection[$key])) {
+          $collection[$key] = array();
+        }
+        $collection =& $collection[$key];
+      }
+    }
+
+    // Bind final tree on the collection
+    $collection[array_shift($keys)] = $value;
+  }
+
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ANALYZE //////////////////////////////
   ////////////////////////////////////////////////////////////////////

@@ -18,6 +18,15 @@ class ObjectTest extends UnderscoreWrapper
     $this->assertEquals(array('bar', 'ter'), $object);
   }
 
+  public function testCanSetValues()
+  {
+    $object = (object) array('foo' => array('foo' => 'bar'), 'bar' => 'bis');
+    $object = Object::set($object, 'foo.bar.bis', 'ter');
+
+    $this->assertEquals('ter', $object->foo['bar']['bis']);
+    $this->assertObjectHasAttribute('bar', $object);
+  }
+
   public function testCanConvertToJson()
   {
     $under = Object::toJSON($this->object);
