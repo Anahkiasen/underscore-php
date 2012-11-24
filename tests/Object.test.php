@@ -17,4 +17,11 @@ class ObjectTest extends UnderscoreWrapper
 
     $this->assertEquals(array('bar', 'ter'), $object);
   }
+
+  public function testCanConvertToJson()
+  {
+    $under = Object::toJSON($this->object);
+
+    $this->assertEquals('{"foo":"bar","bis":"ter"}', $under);
+  }
 }

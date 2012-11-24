@@ -23,4 +23,12 @@ abstract class CollectionMethods extends Methods
   {
     return array_values((array) $collection);
   }
+
+  /**
+   * Convert a collection to JSON
+   */
+  public static function toJSON($collection)
+  {
+    return json_encode((array) $collection);
+  }
 }
