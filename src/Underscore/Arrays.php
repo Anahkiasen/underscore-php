@@ -16,6 +16,14 @@ class Arrays extends Interfaces\Methods
   ////////////////////////////////////////////////////////////////////
 
   /**
+   * Check if an array has a given key
+   */
+  public static function has($array, $key)
+  {
+    return static::get($array, $key, 'UNFOUND') !== 'UNFOUND';
+  }
+
+  /**
    * Check if all items in an array match a truth test
    */
   public static function matches($array, Closure $closure)
