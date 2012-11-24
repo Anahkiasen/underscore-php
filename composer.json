@@ -1,0 +1,15 @@
+{
+    "name": "anahkiasen/underscore-php",
+    "description": "A redacted port of Underscore.js for PHP",
+    "authors": [
+        {
+            "name": "Maxime Fabre",
+            "email": "ehtnam6@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Underscore": "src/"
+        }
+    }
+}
