@@ -31,25 +31,25 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals('bis', $under);
   }
 
-  public function testCanEachOverAnArray()
+  public function testCanDoSomethingAtEachValue()
   {
     $closure = function($value, $key) {
       echo $key.':'.$value.':';
     };
 
-    Arrays::each($this->array, $closure);
+    Arrays::at($this->array, $closure);
     $result = 'foo:bar:bis:ter:';
 
     $this->expectOutputString($result);
   }
 
-  public function testCanMapValuesToAnArray()
+  public function testCanActOnEachValueFromArray()
   {
     $closure = function($value, $key) {
       return $key.':'.$value;
     };
 
-    $under = Arrays::map($this->array, $closure);
+    $under = Arrays::each($this->array, $closure);
     $result = array('foo' => 'foo:bar', 'bis' => 'bis:ter');
 
     $this->assertEquals($result, $under);
@@ -133,9 +133,11 @@ class ArraysTest extends UnderscoreWrapper
 
   public function testCanGetFirstValue()
   {
-    $under = Arrays::first($this->array);
+    $under1 = Arrays::first($this->array);
+    $under2 = Arrays::first($this->arrayNumbers, 2);
 
-    $this->assertEquals('bar', $under);
+    $this->assertEquals('bar', $under1);
+    $this->assertEquals(array(1, 2), $under2);
   }
 
   public function testCanGetLastValue()

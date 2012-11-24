@@ -16,7 +16,7 @@ class Arrays extends Methods
   public static function matches($array, Closure $closure)
   {
     // Reduce the array to only booleans
-    $array = (array) static::map($array, $closure);
+    $array = (array) static::each($array, $closure);
 
     // Check the results
     if (sizeof($array) === 0) return true;
@@ -31,7 +31,7 @@ class Arrays extends Methods
   public static function matchesAny($array, Closure $closure)
   {
     // Reduce the array to only booleans
-    $array = (array) static::map($array, $closure);
+    $array = (array) static::each($array, $closure);
 
     // Check the results
     if (sizeof($array) === 0) return true;
@@ -133,9 +133,11 @@ class Arrays extends Methods
   /**
    * Get the first value from an array
    */
-  public static function first($array)
+  public static function first($array, $take = null)
   {
-    return array_shift($array);
+    if (!$take) return array_shift($array);
+
+    return array_splice($array, 0, $take, true);
   }
 
   /**
