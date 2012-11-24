@@ -7,11 +7,15 @@ Underscore.php is a _redacted_ PHP port of Underscore.js. Its goal is to ease th
 
 To install Underscore.php you can either add it via Composer :
 
-    "anahkiasen/underscore-php":"dev-master"
+    "anahkiasen/underscore-php" : "dev-master"
 
 Or if you're using the Laravel framework, via the Artisan CLI :
 
     artisan bundle:install underscore
+
+And then adding the following to your bundles files :
+
+    'underscore' => array('auto' => true),
 
 ### Using Underscore
 
@@ -34,11 +38,11 @@ You can also alias Underscore's core classes and call them at any time, this mos
 ```php
 // One-off calls
 Arrays::first()
-Arrays::each()
+Object::methods()
 String::escape()
 
 // Chained calls
-Arrays::from($array)->filter(...)->get(2)
+Arrays::from($array)->sort()->toJSON()
 ```
 
 The core concept is this : static calls return values from their methods, while chained calls update the value of the object they're working on. Which means that an Underscore object don't return its value until you call the `->obtain` method on it — until then you can chain as long as you want, it will remain an object.
@@ -50,10 +54,10 @@ Underscore.php provides the ability to extend any class with custom functions so
 
 ```php
 String::extend('summary', function($string) {
-  return String::limit($string, 50, '... — click to read more');
+  return String::limitWords($string, 10, '... — click to read more');
 });
 
-String::summary($article->content)
+String::from($article->content)->summary()->title()
 ```
 
 It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
