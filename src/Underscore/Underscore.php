@@ -18,6 +18,16 @@ class Underscore extends Interfaces\Methods
   private $subject;
 
   /**
+   * The current config
+   * @var array
+   */
+  private static $options;
+
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////// PUBLIC METHODS /////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
    * Build a chainable object
    *
    * @param mixed $subject The methods subject
@@ -36,6 +46,20 @@ class Underscore extends Interfaces\Methods
   {
     return new Underscore($subject);
   }
+
+  /**
+   * Get the subject from the object
+   *
+   * @return mixed
+   */
+  public function obtain()
+  {
+    return $this->subject;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////////// CORE METHODS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Allow the chained calling of methods
@@ -68,16 +92,6 @@ class Underscore extends Interfaces\Methods
     return call_user_func_array($class.'::'.$method, $parameters);
   }
 
-  /**
-   * Get the subject from the object
-   *
-   * @return mixed
-   */
-  public function obtain()
-  {
-    return $this->subject;
-  }
-
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// HELPERS //////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -91,8 +105,10 @@ class Underscore extends Interfaces\Methods
   public static function option($option)
   {
     // Get config file
-    $config = include __DIR__.'/../../config/underscore.php';
+    if (!static::$options) {
+      static::$options = include __DIR__.'/../../config/underscore.php';
+    }
 
-    return Arrays::get($config, $option);
+    return Arrays::get(static::$options, $option);
   }
 }

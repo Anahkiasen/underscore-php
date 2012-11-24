@@ -18,6 +18,10 @@ abstract class StringMethods extends Str
    */
   public static $macros = array();
 
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////// PUBLIC METHODS /////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
   /**
    * Alias for Underscore::chain
    */
@@ -25,6 +29,18 @@ abstract class StringMethods extends Str
   {
     return new Underscore($subject);
   }
+
+  /**
+   * Extend the class with a custom function
+   */
+  public static function extend($method, $closure)
+  {
+    static::$macros[$method] = $closure;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////////// CORE METHODS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Catch aliases and reroute them to the right methods
@@ -38,13 +54,5 @@ abstract class StringMethods extends Str
     }
 
     return Methods::__callStatic($method, $parameters);
-  }
-
-  /**
-   * Extend the class with a custom function
-   */
-  public static function extend($method, $closure)
-  {
-    static::$macros[$method] = $closure;
   }
 }
