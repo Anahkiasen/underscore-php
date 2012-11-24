@@ -53,6 +53,14 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
+   * Search for the index of a value in an array
+   */
+  public static function search($array, $value)
+  {
+    return array_search($value, $array);
+  }
+
+  /**
    * Check if all items in an array match a truth test
    */
   public static function matches($array, Closure $closure)
@@ -299,13 +307,5 @@ class Arrays extends Interfaces\CollectionMethods
     }
 
     return $filtered;
-  }
-
-  /**
-   * Merge one or more arrays
-   */
-  public static function merge()
-  {
-    return call_user_func_array('array_merge', func_get_args());
   }
 }
