@@ -26,6 +26,9 @@ class UnderscoreTest extends UnderscoreWrapper
 
   public function testCanWrapWithShortcutFunction()
   {
+    // Skip if base function not present
+    if (!function_exists('underscore')) $this->markTestSkipped('Shortcut function unavailable');
+
     $under = underscore($this->array);
 
     $this->assertInstanceOf('Underscore\Underscore', $under);
