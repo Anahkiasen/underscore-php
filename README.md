@@ -67,6 +67,13 @@ You can also give custom aliases to all of Underscore's methods, in said config 
 
 You can find a detailed summary of all classes and methods in the [repo's wiki][]
 
+Note that as Underscore natively extends PHP, it can automatically reference original PHP functions when the context matches. Per example the following will go call the origin `array_intersect` function. The advantage is obviously that it allows chaining on a lot of otherwise one-off functions or that only work by reference/
+
+```php
+Arrays::diff($array, $array2, $array3)
+Arrays::from($array)->diff($array2, $array3)->merge($array4)
+```
+
 ## About underscore.php
 
 There is technically another port of Underscore.js to PHP available [on Github][] — I first discovered it when I saw it was for a time used on Laravel 4. I quickly grew disapoint of what a mess the code was, the lack of updates, and the 1:1 mentality that went behind it.

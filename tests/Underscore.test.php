@@ -52,4 +52,12 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $this->assertEquals('bar', $string);
   }
+
+  public function testHasAccessToOriginalPhpFunctions()
+  {
+    $array = Arrays::from($this->array);
+    $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
+
+    $this->assertEquals(array('foo' => 'bar'), $array);
+  }
 }

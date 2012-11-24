@@ -24,8 +24,6 @@ abstract class Methods
    * @var array
    */
   public static $defer = array(
-    'diff'  => 'array_diff',
-    'merge' => 'array_merge',
   );
 
   /**
@@ -42,8 +40,9 @@ abstract class Methods
   public static function __callStatic($method, $parameters)
   {
     // Defered methods
-    if (isset(static::$defer[$method])) {
-      return call_user_func_array(static::$defer[$method], $parameters);
+    $defered = static::getDefered($method);
+    if ($defered) {
+      return call_user_func_array($defered, $parameters);
     }
 
     // Look in the macros
@@ -67,5 +66,24 @@ abstract class Methods
   public static function extend($method, $closure)
   {
     static::$macros[$method] = $closure;
+  }
+
+  // Helpers ------------------------------------------------------- /
+
+  /**
+   * Get the correct name of a defered method
+   *
+   * @param string $method The original method
+   * @return string The defered method, or false if none found
+   */
+  private static function getDefered($method)
+  {
+    // Native function
+    if (function_exists('array_'.$method)) return 'array_'.$method;
+
+    // Aliased native function
+    if (isset(static::$defer[$method])) return static::$defer[$method];
+
+    return false;
   }
 }
