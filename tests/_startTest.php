@@ -16,4 +16,10 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
   {
     Bundle::start('underscore');
   }
+
+  public function setUp()
+  {
+    // Create some dummy data
+    $this->object = (object) $this->array;
+  }
 }

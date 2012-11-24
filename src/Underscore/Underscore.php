@@ -90,6 +90,7 @@ class Underscore extends Interfaces\Methods
   {
     if (is_array($subject)) $class = 'Arrays';
     elseif (is_string($subject)) $class = 'String';
+    elseif (is_object($subject)) $class = 'Object';
 
     return $class;
   }
