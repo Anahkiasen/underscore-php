@@ -88,9 +88,16 @@ class Underscore extends Interfaces\Methods
    */
   public static function typeFrom($subject)
   {
-    if (is_array($subject)) $class = 'Arrays';
-    elseif (is_string($subject)) $class = 'String';
-    elseif (is_object($subject)) $class = 'Object';
-    return $class;
+    switch (gettype($subject)) {
+      case 'string':
+        return 'String';
+
+      case 'array':
+        return 'Arrays';
+
+      case 'object':
+      case 'resource':
+        return 'Object';
+    }
   }
 }
