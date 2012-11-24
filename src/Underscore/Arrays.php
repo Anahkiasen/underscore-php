@@ -141,7 +141,6 @@ class Arrays extends Interfaces\Methods
   public static function first($array, $take = null)
   {
     if (!$take) return array_shift($array);
-
     return array_splice($array, 0, $take, true);
   }
 
@@ -200,7 +199,6 @@ class Arrays extends Interfaces\Methods
   {
     // If the callable has arguments, pass them
     if ($arguments) return array_map($callable, $array, $callable);
-
     return array_map($callable, $array);
   }
 
