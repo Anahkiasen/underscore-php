@@ -1,4 +1,4 @@
-# Underscore.php
+# Underscore.php [![Build Status](https://secure.travis-ci.org/Anahkiasen/underscore-php.png?branch=master)](https://travis-ci.org/Anahkiasen/underscore-php)
 ## A redacted port of Underscore.js
 
 Underscore.php is a _redacted_ PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP development. When I say redacted I mean that all methods were not just imported and converted blatantly — a lot of thought was put into removing methods that were unuseful to PHP developers, changing terms to make them less confusing in a PHP world, and add a lot of new methods and helpers on top of a new elegant syntax.
