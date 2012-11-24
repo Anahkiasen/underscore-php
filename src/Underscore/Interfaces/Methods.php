@@ -9,6 +9,7 @@ namespace Underscore\Interfaces;
 use \Config;
 use \Exception;
 use \Underscore\Arrays;
+use \Underscore\Dispatch;
 use \Underscore\Underscore;
 
 abstract class Methods
@@ -65,9 +66,8 @@ abstract class Methods
   }
 
   ////////////////////////////////////////////////////////////////////
-  ////////////////////////////// HELPERS /////////////////////////////
+  //////////////////////////// CORE METHODS //////////////////////////
   ////////////////////////////////////////////////////////////////////
-
 
   /**
    * Catch aliases and reroute them to the right methods
@@ -75,7 +75,7 @@ abstract class Methods
   public static function __callStatic($method, $parameters)
   {
     // Defered methods
-    $defered = static::getDefered(get_called_class(), $method);
+    $defered = Dispatch::toNative(get_called_class(), $method);
     if ($defered) {
       return call_user_func_array($defered, $parameters);
     }
@@ -94,6 +94,10 @@ abstract class Methods
 
     throw new Exception('The method ' .get_called_class(). '::' .$method. ' does not exist');
   }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// HELPERS /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Whether a method should not be chained
@@ -117,36 +121,5 @@ abstract class Methods
   public static function isBreaker($method)
   {
     return in_array($method, static::$breakers);
-  }
-
-  /**
-   * Get the correct name of a defered method
-   *
-   * @param string $method The original method
-   * @return string The defered method, or false if none found
-   */
-  public static function getDefered($class, $method)
-  {
-    // Aliased native function
-    if (isset(static::$defer[$method])) return static::$defer[$method];
-
-    // Transform class to php function prefix
-    switch($class) {
-      case 'Underscore\Arrays':
-        $prefix = 'array_';
-        break;
-      case 'Underscore\String':
-        $prefix = 'str_';
-        break;
-    }
-
-    // If no function prefix found, return false
-    if (!isset($prefix)) return false;
-
-    // Native function
-    $function = $prefix.$method;
-    if (function_exists($function)) return $function;
-
-    return false;
   }
 }

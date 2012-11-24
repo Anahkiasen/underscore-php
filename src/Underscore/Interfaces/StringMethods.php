@@ -7,6 +7,7 @@
 namespace Underscore\Interfaces;
 
 use \Laravel\Str;
+use \Underscore\Dispatch;
 use \Underscore\Underscore;
 
 abstract class StringMethods extends Str
@@ -31,7 +32,7 @@ abstract class StringMethods extends Str
   public static function __callStatic($method, $parameters)
   {
     // Defered methods
-    $defered = Methods::getDefered(get_called_class(), $method);
+    $defered = Dispatch::toNative(get_called_class(), $method);
     if ($defered) {
       return call_user_func_array($defered, $parameters);
     }
