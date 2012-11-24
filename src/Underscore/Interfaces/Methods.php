@@ -24,7 +24,12 @@ abstract class Methods
    * @var array
    */
   public static $defer = array(
+    'trim' => 'trim',
   );
+
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////// PUBLIC METHODS /////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Alias for Underscore::chain
@@ -35,12 +40,25 @@ abstract class Methods
   }
 
   /**
+   * Extend the class with a custom function
+   */
+  public static function extend($method, $closure)
+  {
+    static::$macros[$method] = $closure;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// HELPERS /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+
+  /**
    * Catch aliases and reroute them to the right methods
    */
   public static function __callStatic($method, $parameters)
   {
     // Defered methods
-    $defered = static::getDefered($method);
+    $defered = static::getDefered(get_called_class(), $method);
     if ($defered) {
       return call_user_func_array($defered, $parameters);
     }
@@ -61,28 +79,32 @@ abstract class Methods
   }
 
   /**
-   * Extend the class with a custom function
-   */
-  public static function extend($method, $closure)
-  {
-    static::$macros[$method] = $closure;
-  }
-
-  // Helpers ------------------------------------------------------- /
-
-  /**
    * Get the correct name of a defered method
    *
    * @param string $method The original method
    * @return string The defered method, or false if none found
    */
-  private static function getDefered($method)
+  public static function getDefered($class, $method)
   {
-    // Native function
-    if (function_exists('array_'.$method)) return 'array_'.$method;
-
     // Aliased native function
     if (isset(static::$defer[$method])) return static::$defer[$method];
+
+    // Transform class to php function prefix
+    switch($class) {
+      case 'Underscore\Arrays':
+        $prefix = 'array_';
+        break;
+      case 'Underscore\String':
+        $prefix = 'str_';
+        break;
+    }
+
+    // If no function prefix found, return false
+    if (!isset($prefix)) return false;
+
+    // Native function
+    $function = $prefix.$method;
+    if (function_exists($function)) return $function;
 
     return false;
   }

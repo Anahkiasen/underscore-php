@@ -1,5 +1,6 @@
 <?php
 use Underscore\Arrays;
+use Underscore\String;
 use Underscore\Underscore;
 
 class UnderscoreTest extends UnderscoreWrapper
@@ -59,5 +60,11 @@ class UnderscoreTest extends UnderscoreWrapper
     $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
 
     $this->assertEquals(array('foo' => 'bar'), $array->obtain());
+
+    $string = String::replace('foo', 'bar', 'foo');
+    $this->assertEquals('bar', $string);
+
+    $string = String::from('   foo  ')->trim();
+    $this->assertEquals('foo', $string->obtain());
   }
 }
