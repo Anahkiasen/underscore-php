@@ -2,6 +2,19 @@
 ## A redacted port of Underscore.js
 
 Underscore.php is a _redacted_ PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP development. When I say redacted I mean that all methods were not just imported and converted blatantly — a lot of thought was put into removing methods that were unuseful to PHP developers, changing terms to make them less confusing in a PHP world, and add a lot of new methods and helpers on top of a new elegant syntax.
+
+### Install Underscore
+
+To install Underscore.php you can either add it via Composer :
+
+    "anahkiasen/underscore-php":"dev-master"
+
+Or if you're using the Laravel framework, via the Artisan CLI :
+
+    artisan bundle:install underscore
+
+### Using Underscore
+
 It can be used both as a static class, and an Object-Oriented class, so both the following are valid :
 
 ```php
@@ -20,9 +33,9 @@ You can also alias Underscore's core classes and call them at any time, this mos
 
 ```php
 // One-off calls
-Arrays::first(...)
-Arrays::each(...)
-String::escape(...)
+Arrays::first()
+Arrays::each()
+String::escape()
 
 // Chained calls
 Arrays::from($array)->filter(...)->get(2)
