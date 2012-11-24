@@ -23,6 +23,20 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals(2, $under);
   }
 
+  public function testCanGetKeys()
+  {
+    $array = Arrays::keys($this->array);
+
+    $this->assertEquals(array('foo', 'bis'), $array);
+  }
+
+  public function testCanGetValues()
+  {
+    $array = Arrays::Values($this->array);
+
+    $this->assertEquals(array('bar', 'ter'), $array);
+  }
+
   public function testCanCheckIfHasValue()
   {
     $under = Arrays::has($this->array, 'foo');

@@ -1,24 +1,8 @@
 <?php
 namespace Underscore;
 
-class Object extends Interfaces\Methods
+class Object extends Interfaces\CollectionMethods
 {
-  /**
-   * Get all keys from an object
-   */
-  public static function keys($object)
-  {
-    return array_keys((array) $object);
-  }
-
-  /**
-   * Get all values from an object
-   */
-  public static function values($object)
-  {
-    return array_values((array) $object);
-  }
-
   /**
    * Get all methods from an object
    */
