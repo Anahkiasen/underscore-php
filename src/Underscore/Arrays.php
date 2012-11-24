@@ -10,6 +10,22 @@ use \Closure;
 
 class Arrays extends Interfaces\CollectionMethods
 {
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////// GENERATE /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  public static function range($_base, $stop = null, $step = 1)
+  {
+    // Dynamic arguments
+    if (!is_null($stop)) {
+      $start = $_base;
+    } else {
+      $start = 1;
+      $stop = $_base;
+    }
+
+    return range($start, $stop, $step);
+  }
 
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ANALYZE //////////////////////////////
@@ -181,7 +197,7 @@ class Arrays extends Interfaces\CollectionMethods
   /**
    * Get everything but the last $to items
    */
-  public static function initial($array, $to)
+  public static function initial($array, $to = 1)
   {
     $slice = sizeof($array) - $to;
 
@@ -231,8 +247,10 @@ class Arrays extends Interfaces\CollectionMethods
   /**
    * Find all items in an array that pass the truth test
    */
-  public static function filter($array, Closure $closure)
+  public static function filter($array, $closure = null)
   {
+    if (!$closure) return Arrays::clean($array);
+
     return array_filter($array, $closure);
   }
 

@@ -258,4 +258,16 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals($matcher, $under);
   }
+
+  public function testCanCreateFromRange()
+  {
+    $range = Arrays::range(5);
+    $this->assertEquals(array(1, 2, 3, 4, 5), $range);
+
+    $range = Arrays::range(-2, 2);
+    $this->assertEquals(array(-2, -1, 0, 1, 2), $range);
+
+    $range = Arrays::range(1, 10, 2);
+    $this->assertEquals(array(1, 3, 5, 7, 9), $range);
+  }
 }
