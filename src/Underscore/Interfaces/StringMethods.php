@@ -6,7 +6,7 @@
  */
 namespace Underscore\Interfaces;
 
-use \Str;
+use \Laravel\Str;
 use \Underscore\Underscore;
 
 abstract class StringMethods extends Str

@@ -9,7 +9,8 @@
     ],
     "autoload": {
         "psr-0": {
-            "Underscore": "src/"
+            "Underscore": "src/",
+            "Laravel": "src/"
         }
     }
 }
