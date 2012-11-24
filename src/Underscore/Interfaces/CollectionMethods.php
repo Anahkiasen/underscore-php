@@ -62,6 +62,23 @@ abstract class CollectionMethods extends Methods
   }
 
   /**
+   * Fetches all columns $property from a multimensionnal array
+   */
+  public static function pluck($collection, $property)
+  {
+    $plucked = array_map(function($value) use ($property)
+    {
+      return static::get($value, $property);
+
+    }, (array) $collection);
+
+    // Convert back to object if necessary
+    if (is_object($collection)) $plucked = (object) $plucked;
+
+    return $plucked;
+  }
+
+  /**
    * Internal set method by reference
    */
   private static function _set(&$collection, $key, $value)

@@ -18,6 +18,14 @@ class ObjectTest extends UnderscoreWrapper
     $this->assertEquals(array('bar', 'ter'), $object);
   }
 
+  public function testCanPluckColumns()
+  {
+    $object = Object::pluck((object) $this->arrayMulti, 'foo');
+    $matcher = (object) array('bar', 'bar', null);
+
+    $this->assertEquals($matcher, $object);
+  }
+
   public function testCanSetValues()
   {
     $object = (object) array('foo' => array('foo' => 'bar'), 'bar' => 'bis');

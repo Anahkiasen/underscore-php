@@ -173,18 +173,6 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
-   * Fetches all columns $property from a multimensionnal array
-   */
-  public static function pluck($array, $property)
-  {
-    foreach ($array as $key => $value) {
-      $array[$key] = Arrays::get($value, $property, $value);
-    }
-
-    return $array;
-  }
-
-  /**
    * Get a random string from an array
    */
   public static function random($array)
@@ -251,6 +239,14 @@ class Arrays extends Interfaces\CollectionMethods
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// ALTER ///////////////////////////////
   ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Remove an entry from an array using dot notation
+   */
+  public static function remove($array, $key)
+  {
+    # code...
+  }
 
   /**
    * Iterate over an array and modify the array's value

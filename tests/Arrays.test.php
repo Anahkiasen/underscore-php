@@ -141,7 +141,7 @@ class ArraysTest extends UnderscoreWrapper
   public function testCanPluckColumns()
   {
     $under = Arrays::pluck($this->arrayMulti, 'foo');
-    $matcher = array('bar', 'bar', array('bar' => 'foo', 'bis' => 'ter'));
+    $matcher = array('bar', 'bar', null);
 
     $this->assertEquals($matcher, $under);
   }
