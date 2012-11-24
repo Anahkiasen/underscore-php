@@ -72,8 +72,7 @@ abstract class CollectionMethods extends Methods
     $keys = explode('.', $key);
 
     // Crawl through the keys
-    while (count($keys) > 1)
-    {
+    while (count($keys) > 1) {
       $key = array_shift($keys);
 
       // If we're dealing with an object
@@ -161,7 +160,7 @@ abstract class CollectionMethods extends Methods
     $collection = (array) $collection;
 
     // Iterate over values, group by property/results from closure
-    foreach($collection as $key => $value) {
+    foreach ($collection as $key => $value) {
       $key = is_callable($grouper) ? $grouper($value, $key) : Arrays::get($value, $grouper);
       if (!isset($result[$key])) $result[$key] = array();
 

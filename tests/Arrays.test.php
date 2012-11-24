@@ -299,4 +299,11 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals(array('foo' => 3, 'bis' => 'ter', 'kal' => 'mon'), $array);
   }
+
+  public function testCanGetRandomValue()
+  {
+    $array = Arrays::random($this->array);
+
+    $this->assertContains($array, $this->array);
+  }
 }
