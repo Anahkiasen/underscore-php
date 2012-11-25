@@ -102,4 +102,15 @@ class StringTest extends UnderscoreWrapper
     $this->assertTrue(String::endsWith('foobar', 'bar'));
     $this->assertFalse(String::endsWith('barfoo', 'bar'));
   }
+
+  public function testStringsCanBeSlugged()
+  {
+    $this->assertEquals('my-new-post', String::slugify('My_nEw  @ post!!!'));
+    $this->assertEquals('my_new_post', String::slugify('My nEw post!!!', '_'));
+  }
+
+  public function testRandomStringsCanBeGenerated()
+  {
+    $this->assertEquals(40, strlen(String::random(40)));
+  }
 }
