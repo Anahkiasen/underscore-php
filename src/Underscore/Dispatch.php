@@ -43,6 +43,7 @@ class Dispatch
    *
    * @return string The correct function to call
    */
+
   public static function toNative($class, $method)
   {
     // Aliased native function

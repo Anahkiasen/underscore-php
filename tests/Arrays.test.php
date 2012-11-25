@@ -366,4 +366,25 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals(array('bis' => 'ter'), $array);
     $this->assertEquals(array('bis' => 'ter'), $chain->obtain());
   }
+
+  public function testCanFlattenArraysToDotNotation()
+  {
+    $array = array(
+      'foo' => 'bar',
+      'kal' => array(
+        'foo' => array(
+          'bar', 'ter',
+        ),
+      ),
+    );
+    $flattened = array(
+      'foo' => 'bar',
+      'kal.foo.0' => 'bar',
+      'kal.foo.1' => 'ter',
+    );
+
+    $flatten = Arrays::flatten($array);
+
+    $this->assertEquals($flatten, $flattened);
+  }
 }

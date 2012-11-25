@@ -277,6 +277,35 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
+   * Flattens an array to dot notation
+   *
+   * @param  array  $array  An array
+   * @param  string $parent The parent passed to the child (private)
+   * @return array          Flattened array to one level
+   */
+  public static function flatten($array, $parent = null)
+  {
+    if(!is_array($array)) return $array;
+
+    $_flattened = array();
+
+    // Rewrite keys
+    foreach ($array as $key => $value) {
+      if($parent) $key = $parent.'.'.$key;
+      $_flattened[$key] = static::flatten($value, $key);
+    }
+
+    // Flatten
+    $flattened = array();
+    foreach ($_flattened as $key => $value) {
+      if(is_array($value)) $flattened = array_merge($flattened, $value);
+      else $flattened[$key] = $value;
+    }
+
+    return $flattened;
+  }
+
+  /**
    * Invoke a function on all of an array's values
    */
   public static function invoke($array, $callable, $arguments = array())
