@@ -112,4 +112,14 @@ class String extends Interfaces\StringMethods
 
     return $string == $first ? $second : $first;
   }
+
+  /**
+   * Slugifies a string
+   */
+  public static function slugify($string, $separator = '-')
+  {
+    $string = preg_replace('/[\.&=_]/', ' ', $string);
+
+    return static::slug($string, $separator);
+  }
 }
