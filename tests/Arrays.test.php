@@ -55,6 +55,14 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals($matcher, $array);
   }
 
+  public function testCanReturnAnArrayWithoutSomeValues()
+  {
+    $array = array('foo', 'foo', 'bar', 'bis', 'bar', 'bis', 'ter');
+    $array = Arrays::without($array, 'foo', 'bar');
+
+    $this->assertEquals(array(3 => 'bis', 5 => 'bis', 6 => 'ter'), $array);
+  }
+
   public function testCanGetSumOfArray()
   {
     $array = Arrays::sum(array(1, 2, 3));

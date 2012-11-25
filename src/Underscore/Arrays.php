@@ -172,6 +172,19 @@ class Arrays extends Interfaces\CollectionMethods
     return $array[array_rand($array)];
   }
 
+  /**
+   * Return an array without all instances of certain values
+   */
+  public static function without()
+  {
+    $arguments = func_get_args();
+    $array = array_shift($arguments);
+
+    return Arrays::filter($array, function($value) use ($arguments) {
+      return !in_array($value, $arguments);
+    });
+  }
+
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// SLICERS //////////////////////////////
   ////////////////////////////////////////////////////////////////////
