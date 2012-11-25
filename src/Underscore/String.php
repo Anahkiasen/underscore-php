@@ -8,8 +8,75 @@ namespace Underscore;
 
 class String extends Interfaces\StringMethods
 {
+
   ////////////////////////////////////////////////////////////////////
-  //////////////////////////////// ALERT /////////////////////////////
+  ////////////////////////////// ANALYZE /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Whether a string starts with another string
+   */
+  public static function startsWith($string, $with)
+  {
+    return strpos($string, $with) === 0;
+  }
+
+  /**
+   * Whether a string ends with another string
+   */
+  public static function endsWith($string, $with)
+  {
+    return $with == substr($string, strlen($string) - strlen($with));
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////// FETCH FROM ///////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Find one or more needles in one or more haystacks
+   *
+   * @param  mixed   $string        The haystack(s) to search in
+   * @param  mixed   $needle        The needle(s) to search for
+   * @param  boolean $caseSensitive Whether the function is case sensitive or not
+   * @param  boolean $absolute      Whether all needle need to be found or whether one is enough
+   * @return boolean Found or not
+   */
+  public static function find($string, $needle, $caseSensitive = false, $absolute = false)
+  {
+    // If several needles
+    if (is_array($needle) or is_array($string)) {
+
+      if (is_array($needle)) {
+        $from = $needle;
+        $to   = $string;
+      } else {
+        $from = $string;
+        $to   = $needle;
+      }
+
+      $found = 0;
+      foreach($from as $need) {
+        if(static::find($to, $need, $absolute, $caseSensitive)) $found++;
+      }
+
+      return ($absolute) ? count($from) == $found : $found > 0;
+    }
+
+    // If not case sensitive
+    if (!$caseSensitive) {
+      $string = strtolower($string);
+      $needle   = strtolower($needle);
+    }
+
+    // If string found
+    $pos = strpos($string, $needle);
+
+    return !($pos === false);
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////////// ALTER //////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
   /**
@@ -44,13 +111,5 @@ class String extends Interfaces\StringMethods
     }
 
     return $string == $first ? $second : $first;
-  }
-
-  /**
-   * Repeat a string $times times
-   */
-  public static function repeat($string, $times)
-  {
-    return str_repeat($string, $times);
   }
 }
