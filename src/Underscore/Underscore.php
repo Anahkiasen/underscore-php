@@ -48,6 +48,22 @@ class Underscore extends Interfaces\Methods
   }
 
   /**
+   * Get a key from the subject
+   */
+  public function __get($key)
+  {
+    return Arrays::get($this->subject, $key);
+  }
+
+  /**
+   * Set a value on the subject
+   */
+  public function __set($key, $value)
+  {
+    $this->subject = Arrays::set($this->subject, $key, $value);
+  }
+
+  /**
    * Get the subject from the object
    *
    * @return mixed

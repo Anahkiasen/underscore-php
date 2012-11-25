@@ -48,6 +48,18 @@ Arrays::from($array)->sort()->toJSON()
 The core concept is this : static calls return values from their methods, while chained calls update the value of the object they're working on. Which means that an Underscore object don't return its value until you call the `->obtain` method on it — until then you can chain as long as you want, it will remain an object.
 The exception are certains properties that are considered _breakers_ and that will return the object's value. An example is `Arrays->get`.
 
+Note that since all data passed to Underscore is transformed into an object, you can do this sort of things, plus the power of chained methods, it all makes the manipulation of arrays and objects a breeze.
+
+```php
+$array = array('foo' => 'bar');
+$array = Arrays::from($array);
+
+echo $array->foo // Returns 'bar'
+
+$array->bis = 'ter'
+$array->obtain() // Returns array('foo' => 'bar', 'bis' => 'ter')
+```
+
 ## Customizing Underscore
 
 Underscore.php provides the ability to extend any class with custom functions so go crazy. Don't forget that if you think you have a function anybody could enjoy, do a pull request, let everyone enjoy it !

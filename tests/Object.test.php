@@ -4,6 +4,17 @@ use Underscore\Underscore;
 
 class ObjectTest extends UnderscoreWrapper
 {
+  public function testCanObjectifyAnArray()
+  {
+    $object = Object::from(array('foo' => 'bar'));
+    $this->assertEquals('bar', $object->foo);
+
+    $object->bis = 'ter';
+    $this->assertEquals('ter', $object->bis);
+
+    $this->assertEquals(array('foo' => 'bar', 'bis' => 'ter'), $object->obtain());
+  }
+
   public function testCanGetKeys()
   {
     $object = Object::keys($this->object);
