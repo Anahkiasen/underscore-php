@@ -1,8 +1,8 @@
 <?php
 include '_startTest.php';
 
-use Underscore\Underscore;
 use Underscore\Arrays;
+use Underscore\Underscore;
 
 class ArraysTest extends UnderscoreWrapper
 {
@@ -327,7 +327,7 @@ class ArraysTest extends UnderscoreWrapper
   public function testCantChainRange()
   {
     $this->setExpectedException('Exception');
-    $range = Arrays::from($this->arrayNumbers)->range(5);
+    Arrays::from($this->arrayNumbers)->range(5);
   }
 
   public function testCanCreateFromRepeat()

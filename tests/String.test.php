@@ -6,6 +6,15 @@ class StringTest extends UnderscoreWrapper
 {
   public $remove = 'foo foo bar foo kal ter son';
 
+  public function provideAccord()
+  {
+    return array(
+      array(10, '10 things'),
+      array(1,  'one thing'),
+      array(0,  'nothing'),
+    );
+  }
+
   public function provideFind()
   {
     return array(
@@ -70,7 +79,7 @@ class StringTest extends UnderscoreWrapper
 
   public function testCanLooselyToggleBetweenStrings()
   {
-    $toggle = String::toggle('dei', 'foo', 'bar', $loose = true);
+    $toggle = String::toggle('dei', 'foo', 'bar', true);
     $this->assertEquals('foo', $toggle);
   }
 
@@ -112,5 +121,15 @@ class StringTest extends UnderscoreWrapper
   public function testRandomStringsCanBeGenerated()
   {
     $this->assertEquals(40, strlen(String::random(40)));
+  }
+
+  /**
+   * @dataProvider provideAccord
+   */
+  public function testCanAccordAStringToItsNumeral($number, $expect)
+  {
+    $result = String::accord($number, $number. ' things', 'one thing', 'nothing');
+
+    $this->assertEquals($expect, $result);
   }
 }
