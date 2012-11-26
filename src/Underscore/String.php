@@ -10,6 +10,26 @@ class String extends Interfaces\StringMethods
 {
 
   ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// CREATE  /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Create a string from a number
+   *
+   * @param  integer $count A number
+   * @param  string  $many  If many
+   * @param  string  $one   If one
+   * @param  string  $zero  If one
+   * @return string         A string
+   */
+  public static function accord($count, $many, $one, $zero = null)
+  {
+    if($count == 1) return $one;
+    else if($count == 0 and !empty($zero)) return $zero;
+    else return $many;
+  }
+
+  ////////////////////////////////////////////////////////////////////
   ////////////////////////////// ANALYZE /////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
@@ -27,22 +47,6 @@ class String extends Interfaces\StringMethods
   public static function endsWith($string, $with)
   {
     return $with == substr($string, strlen($string) - strlen($with));
-  }
-
-  /**
-   * Create a string from a number
-   *
-   * @param  integer $count A number
-   * @param  string  $many  If many
-   * @param  string  $one   If one
-   * @param  string  $zero  If one
-   * @return string         A string
-   */
-  public static function accord($count, $many, $one, $zero = null)
-  {
-    if($count == 1) return $one;
-    else if($count == 0 and !empty($zero)) return $zero;
-    else return $many;
   }
 
   ////////////////////////////////////////////////////////////////////
