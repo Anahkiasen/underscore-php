@@ -88,4 +88,18 @@ class ObjectTest extends UnderscoreWrapper
 
     $this->assertEquals($this->array, $object);
   }
+
+  public function testCanUnpackObjects()
+  {
+    $multi = (object) array('attributes' => array('name' => 'foo', 'age' => 18));
+    $objectAuto = Object::unpack($multi);
+    $objectManual = Object::unpack($multi, 'attributes');
+
+    $this->assertObjectHasAttribute('name', $objectAuto);
+    $this->assertObjectHasAttribute('age', $objectAuto);
+    $this->assertEquals('foo', $objectAuto->name);
+    $this->assertEquals(18, $objectAuto->age);
+    $this->assertEquals($objectManual, $objectAuto);
+
+  }
 }

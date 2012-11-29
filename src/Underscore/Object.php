@@ -12,6 +12,19 @@ class Object extends Interfaces\CollectionMethods
   }
 
   /**
+   * Unpack an object's properties
+   */
+  public static function unpack($object, $attribute = null)
+  {
+    $object = (array) $object;
+    $object = $attribute
+      ? Arrays::get($object, $attribute)
+      : Arrays::first($object);
+
+    return (object) $object;
+  }
+
+  /**
    * Converts an object to an array
    */
   public static function toArray($object)
