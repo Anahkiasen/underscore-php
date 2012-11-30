@@ -55,6 +55,16 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals($matcher, $array);
   }
 
+  public function testCanRemoveMultipleValues()
+  {
+    $array = Arrays::remove($this->arrayMulti, array('0.foo', '1.foo'));
+    $matcher = $this->arrayMulti;
+    unset($matcher[0]['foo']);
+    unset($matcher[1]['foo']);
+
+    $this->assertEquals($matcher, $array);
+  }
+
   public function testCanReturnAnArrayWithoutSomeValues()
   {
     $array = array('foo', 'foo', 'bar', 'bis', 'bar', 'bis', 'ter');

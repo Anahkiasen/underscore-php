@@ -81,6 +81,12 @@ abstract class CollectionMethods extends Methods
    */
   public static function remove($collection, $key)
   {
+    // Recursive call
+    if (is_array($key)) {
+      foreach($key as $k) static::_remove($collection, $k);
+      return $collection;
+    }
+
     static::_remove($collection, $key);
 
     return $collection;
