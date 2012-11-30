@@ -167,9 +167,11 @@ class Arrays extends Interfaces\CollectionMethods
   /**
    * Get a random string from an array
    */
-  public static function random($array)
+  public static function random($array, $take = null)
   {
-    return $array[array_rand($array)];
+    if (!$take) return $array[array_rand($array)];
+
+    return Arrays::from($array)->shuffle()->first($take)->obtain();
   }
 
   /**

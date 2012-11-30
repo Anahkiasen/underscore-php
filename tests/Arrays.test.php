@@ -361,6 +361,12 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertContains($array, $this->array);
   }
 
+  public function testCanGetSeveralRandomValue()
+  {
+    $array = Arrays::random($this->arrayNumbers, 2);
+    foreach ($array as $a) $this->assertContains($a, $this->arrayNumbers);
+  }
+
   public function testCanSearchForAValue()
   {
     $array = Arrays::search($this->array, 'ter');
