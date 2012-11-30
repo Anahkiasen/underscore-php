@@ -8,6 +8,13 @@ namespace Underscore;
 
 class String extends Interfaces\StringMethods
 {
+  /**
+   * Create a new String instance
+   */
+  public static function create()
+  {
+    return static::from('');
+  }
 
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// CREATE  /////////////////////////////

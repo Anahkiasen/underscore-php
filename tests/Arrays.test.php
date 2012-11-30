@@ -8,6 +8,13 @@ class ArraysTest extends UnderscoreWrapper
 {
   // Tests --------------------------------------------------------- /
 
+  public function testCanCreateArray()
+  {
+    $array = Arrays::create();
+
+    $this->assertEquals(array(), $array->obtain());
+  }
+
   public function testCanUseClassDirectly()
   {
     $under = Arrays::get($this->array, 'foo');

@@ -4,6 +4,14 @@ use Underscore\Underscore;
 
 class ObjectTest extends UnderscoreWrapper
 {
+
+  public function testCanCreateObject()
+  {
+    $object = Object::create();
+
+    $this->assertInstanceOf('stdClass', $object->obtain());
+  }
+
   public function testCanObjectifyAnArray()
   {
     $object = Object::from(array('foo' => 'bar'));
