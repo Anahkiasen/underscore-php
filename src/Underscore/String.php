@@ -95,6 +95,37 @@ class String extends Interfaces\StringMethods
     return !($pos === false);
   }
 
+  /**
+   * Slice a string with another string
+   */
+  public static function slice($string, $slice)
+  {
+    $to   = static::sliceTo($string, $slice);
+    $from = static::sliceFrom($string, $slice);
+
+    return array($to, $from);
+  }
+
+  /**
+   * Slice a string from a certain point
+   */
+  public static function sliceFrom($string, $slice)
+  {
+    $slice = strpos($string, $slice);
+
+    return substr($string, $slice);
+  }
+
+  /**
+   * Slice a string up to a certain point
+   */
+  public static function sliceTo($string, $slice)
+  {
+    $slice = strpos($string, $slice);
+
+    return substr($string, 0, $slice);
+  }
+
   ////////////////////////////////////////////////////////////////////
   /////////////////////////////// ALTER //////////////////////////////
   ////////////////////////////////////////////////////////////////////

@@ -132,4 +132,25 @@ class StringTest extends UnderscoreWrapper
 
     $this->assertEquals($expect, $result);
   }
+
+  public function testCanSliceFromAString()
+  {
+    $string = String::sliceFrom('abcdef', 'c');
+
+    return $this->assertEquals('cdef', $string);
+  }
+
+  public function testCanSliceToAString()
+  {
+    $string = String::sliceTo('abcdef', 'c');
+
+    return $this->assertEquals('ab', $string);
+  }
+
+  public function testCanSliceAString()
+  {
+    $string = String::slice('abcdef', 'c');
+
+    return $this->assertEquals(array('ab', 'cdef'), $string);
+  }
 }
