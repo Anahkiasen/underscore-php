@@ -42,6 +42,7 @@ Object::methods()
 String::escape()
 
 // Chained calls
+Arrays::create()->set('foo', 'bar')
 Arrays::from($array)->sort()->toJSON()
 ```
 

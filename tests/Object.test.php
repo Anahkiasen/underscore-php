@@ -4,6 +4,14 @@ use Underscore\Underscore;
 
 class ObjectTest extends UnderscoreWrapper
 {
+
+  public function testCanCreateObject()
+  {
+    $object = Object::create();
+
+    $this->assertInstanceOf('stdClass', $object->obtain());
+  }
+
   public function testCanObjectifyAnArray()
   {
     $object = Object::from(array('foo' => 'bar'));
@@ -87,5 +95,19 @@ class ObjectTest extends UnderscoreWrapper
     $object = Object::toArray($this->object);
 
     $this->assertEquals($this->array, $object);
+  }
+
+  public function testCanUnpackObjects()
+  {
+    $multi = (object) array('attributes' => array('name' => 'foo', 'age' => 18));
+    $objectAuto = Object::unpack($multi);
+    $objectManual = Object::unpack($multi, 'attributes');
+
+    $this->assertObjectHasAttribute('name', $objectAuto);
+    $this->assertObjectHasAttribute('age', $objectAuto);
+    $this->assertEquals('foo', $objectAuto->name);
+    $this->assertEquals(18, $objectAuto->age);
+    $this->assertEquals($objectManual, $objectAuto);
+
   }
 }

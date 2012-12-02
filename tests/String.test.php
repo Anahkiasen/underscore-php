@@ -42,6 +42,13 @@ class StringTest extends UnderscoreWrapper
 
   // Tests --------------------------------------------------------- /
 
+  public function testCanCreateString()
+  {
+    $string = String::create();
+
+    $this->assertEquals('', $string->obtain());
+  }
+
   public function testHasAccessToStrMethods()
   {
     $string1 = String::limit('foo', 1);

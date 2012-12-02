@@ -8,6 +8,13 @@ class ArraysTest extends UnderscoreWrapper
 {
   // Tests --------------------------------------------------------- /
 
+  public function testCanCreateArray()
+  {
+    $array = Arrays::create();
+
+    $this->assertEquals(array(), $array->obtain());
+  }
+
   public function testCanUseClassDirectly()
   {
     $under = Arrays::get($this->array, 'foo');
@@ -51,6 +58,16 @@ class ArraysTest extends UnderscoreWrapper
     $array = Arrays::remove($this->arrayMulti, '0.foo');
     $matcher = $this->arrayMulti;
     unset($matcher[0]['foo']);
+
+    $this->assertEquals($matcher, $array);
+  }
+
+  public function testCanRemoveMultipleValues()
+  {
+    $array = Arrays::remove($this->arrayMulti, array('0.foo', '1.foo'));
+    $matcher = $this->arrayMulti;
+    unset($matcher[0]['foo']);
+    unset($matcher[1]['foo']);
 
     $this->assertEquals($matcher, $array);
   }
@@ -349,6 +366,12 @@ class ArraysTest extends UnderscoreWrapper
     $array = Arrays::random($this->array);
 
     $this->assertContains($array, $this->array);
+  }
+
+  public function testCanGetSeveralRandomValue()
+  {
+    $array = Arrays::random($this->arrayNumbers, 2);
+    foreach ($array as $a) $this->assertContains($a, $this->arrayNumbers);
   }
 
   public function testCanSearchForAValue()
