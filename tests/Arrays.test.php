@@ -118,6 +118,24 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals('bis', $under);
   }
 
+  public function testCantConflictWithNativeFunctions()
+  {
+    $array = array('foo' => array('bar' => 'bis'));
+    $under = Arrays::get($array, 'ter', 'str_replace');
+
+    $this->assertEquals('str_replace', $under);
+  }
+
+  public function testCanFallbackClosure()
+  {
+    $array = array('foo' => array('bar' => 'bis'));
+    $under = Arrays::get($array, 'ter', function() {
+      return 'closure';
+    });
+
+    $this->assertEquals('closure', $under);
+  }
+
   public function testCanDoSomethingAtEachValue()
   {
     $closure = function($value, $key) {

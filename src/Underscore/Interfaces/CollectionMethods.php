@@ -49,12 +49,12 @@ abstract class CollectionMethods extends Methods
 
       // If object
       if (is_object($collection)) {
-        if (!isset($collection->$segment)) return is_callable($default) ? $default() : $default;
+        if (!isset($collection->$segment)) return $default instanceof Closure ? $default() : $default;
         else $collection = $collection->$segment;
 
       // If array
       } else {
-        if (!isset($collection[$segment])) return is_callable($default) ? $default() : $default;
+        if (!isset($collection[$segment])) return $default instanceof Closure ? $default() : $default;
         else $collection = $collection[$segment];
       }
     }
