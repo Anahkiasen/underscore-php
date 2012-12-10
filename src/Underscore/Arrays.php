@@ -155,8 +155,8 @@ class Arrays extends Interfaces\CollectionMethods
    */
   public static function find($array, Closure $closure)
   {
-    foreach ($array as $value) {
-      if ($closure($value)) return $value;
+    foreach ($array as $key => $value) {
+      if ($closure($value, $key)) return $value;
     }
 
     return $array;
@@ -331,7 +331,7 @@ class Arrays extends Interfaces\CollectionMethods
   public static function reject($array, Closure $closure)
   {
     foreach ($array as $key => $value) {
-      if (!$closure($value)) $filtered[$key] = $value;
+      if (!$closure($value, $key)) $filtered[$key] = $value;
     }
 
     return $filtered;
