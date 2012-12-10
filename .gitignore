@@ -1,2 +1,4 @@
 vendor
 tests/logs
+composer.phar
+composer.lock

@@ -336,4 +336,24 @@ class Arrays extends Interfaces\CollectionMethods
 
     return $filtered;
   }
+
+  /**
+   * Remove the first value from an array
+   */
+  public static function removeFirst($array)
+  {
+    array_shift($array);
+
+    return $array;
+  }
+
+  /**
+   * Remove the last value from an array
+   */
+  public static function removeLast($array)
+  {
+    array_pop($array);
+
+    return $array;
+  }
 }

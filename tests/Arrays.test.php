@@ -408,6 +408,20 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals(array('bis' => 'ter'), $chain->obtain());
   }
 
+  public function testCanRemoveFirstValueFromAnArray()
+  {
+    $array = Arrays::removeFirst($this->array);
+
+    $this->assertEquals(array('bis' => 'ter'), $array);
+  }
+
+  public function testCanRemoveLasttValueFromAnArray()
+  {
+    $array = Arrays::removeLast($this->array);
+
+    $this->assertEquals(array('foo' => 'bar'), $array);
+  }
+
   public function testCanFlattenArraysToDotNotation()
   {
     $array = array(
