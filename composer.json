@@ -1,6 +1,7 @@
 {
   "name": "anahkiasen/underscore-php",
   "description": "A redacted port of Underscore.js for PHP",
+  "license": "CC-BY-NC-SA-3.0",
   "authors": [
     {
       "name": "Maxime Fabre",
