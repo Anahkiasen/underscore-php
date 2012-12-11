@@ -422,6 +422,13 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals(array('foo' => 'bar'), $array);
   }
 
+  public function testCanImplodeAnArray()
+  {
+    $array = Arrays::implode($this->array, ',');
+
+    $this->assertEquals('bar,ter', $array);
+  }
+
   public function testCanFlattenArraysToDotNotation()
   {
     $array = array(
