@@ -278,6 +278,19 @@ class Arrays extends Interfaces\CollectionMethods
   }
 
   /**
+   * Implodes an array
+   *
+   * @param array  $array The array
+   * @param string $with  What to implode it with
+   *
+   * @return String
+   */
+  public static function implode($array, $with)
+  {
+    return implode($with, $array);
+  }
+
+  /**
    * Find all items in an array that pass the truth test
    */
   public static function filter($array, $closure = null)
