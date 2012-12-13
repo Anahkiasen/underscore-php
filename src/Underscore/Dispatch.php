@@ -27,10 +27,15 @@ class Dispatch
       case 'resource':
         $class = 'Object';
         break;
+
+      case 'NULL':
+        $subject = '';
+        $class = 'String';
+        break;
     }
 
     // Return false for unsupported types
-    if (!isset($class)) throw new InvalidArgumentException('This type is not supported');
+    if (!isset($class)) throw new InvalidArgumentException('The type ' .gettype($subject). ' is not supported');
 
     return '\\'.__NAMESPACE__.'\\'.$class;
   }
