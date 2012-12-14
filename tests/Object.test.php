@@ -108,6 +108,13 @@ class ObjectTest extends UnderscoreWrapper
     $this->assertEquals('foo', $objectAuto->name);
     $this->assertEquals(18, $objectAuto->age);
     $this->assertEquals($objectManual, $objectAuto);
+  }
 
+  public function testCanReplaceValues()
+  {
+    $object = Object::replace($this->object, 'foo', 'notfoo', 'notbar');
+    $matcher = (object) array('notfoo' => 'notbar', 'bis' => 'ter');
+
+    $this->assertEquals($matcher, $object);
   }
 }

@@ -449,4 +449,12 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals($flatten, $flattened);
   }
+
+  public function testCanReplaceValues()
+  {
+    $array = Arrays::replace($this->array, 'foo', 'notfoo', 'notbar');
+    $matcher = array('notfoo' => 'notbar', 'bis' => 'ter');
+
+    $this->assertEquals($matcher, $array);
+  }
 }

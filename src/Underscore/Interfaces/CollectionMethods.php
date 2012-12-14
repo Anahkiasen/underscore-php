@@ -142,6 +142,17 @@ abstract class CollectionMethods extends Methods
   }
 
   /**
+   * Replace a key with a new key/value pair
+   */
+  public static function replace($collection, $replace, $key, $value)
+  {
+    $collection = static::remove($collection, $replace);
+    $collection = static::set($collection, $key, $value);
+
+    return $collection;
+  }
+
+  /**
    * Sort values from a collection according to the results of a closure
    * A property name to sort by can also be passed
    * Also the sorter can be null and the array will be sorted naturally
@@ -220,7 +231,9 @@ abstract class CollectionMethods extends Methods
     }
 
     // Bind final tree on the collection
-    $collection[array_shift($keys)] = $value;
+    $key = array_shift($keys);
+    if (is_array($collection)) $collection[$key] = $value;
+    else $collection->$key = $value;
   }
 
   /**
