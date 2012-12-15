@@ -20,6 +20,7 @@ abstract class Methods
    */
   public static $defer = array(
     'trim' => 'trim',
+    'count' => 'count',
   );
 
   /**
@@ -34,7 +35,7 @@ abstract class Methods
    * @var array
    */
   private static $breakers = array(
-    'get', 'sum',
+    'get', 'sum', 'count',
   );
 
   /**
