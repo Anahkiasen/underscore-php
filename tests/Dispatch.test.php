@@ -11,7 +11,7 @@ class DispatchTest extends UnderscoreWrapper
       array('string', '\Underscore\String'),
       array(array(), '\Underscore\Arrays'),
       array(new stdClass, '\Underscore\Object'),
-      array(512, false),
+      array(512, '\Underscore\Number'),
     );
   }
 

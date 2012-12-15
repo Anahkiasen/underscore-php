@@ -23,6 +23,10 @@ class Dispatch
         $class = 'Arrays';
         break;
 
+      case 'integer':
+        $class = 'Number';
+        break;
+
       case 'object':
       case 'resource':
         $class = 'Object';

@@ -34,7 +34,7 @@ abstract class Methods
    * @var array
    */
   private static $breakers = array(
-    'get',
+    'get', 'sum',
   );
 
   /**
