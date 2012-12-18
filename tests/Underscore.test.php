@@ -63,4 +63,13 @@ class UnderscoreTest extends UnderscoreWrapper
     });
     $this->assertEquals('bar', String::unfooer('foo'));
   }
+
+  public function testBreakersCantAlterTheOriginalValue()
+  {
+    $object = Arrays::from(array(1, 2, 3));
+    $sum = $object->sum();
+
+    $this->assertEquals(6, $sum);
+    $this->assertEquals(array(1, 2, 3), $object->obtain());
+  }
 }
