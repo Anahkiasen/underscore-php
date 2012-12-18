@@ -92,9 +92,13 @@ class Underscore extends Interfaces\Methods
 
     // Prepend subject to arguments and call the method
     array_unshift($arguments, $this->subject);
-    $this->subject = call_user_func_array($class.'::'.$method, $arguments);
+    $result = call_user_func_array($class.'::'.$method, $arguments);
 
-    return Methods::isBreaker($method) ? $this->subject : $this;
+    // If the method is a breaker, return just the result
+    if (Methods::isBreaker($method)) return $result;
+    else $this->subject = $result;
+
+    return $this;
   }
 
   /**
