@@ -8,5 +8,4 @@
     'select'   => 'filter',
     'contains' => 'find',
   ),
-
 );

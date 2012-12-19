@@ -450,4 +450,20 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals($matcher, $array);
   }
+
+  public function testCanPrependValuesToArrays()
+  {
+    $array = Arrays::prepend($this->array, 'foo');
+    $matcher = array(0 => 'foo', 'foo' => 'bar', 'bis' => 'ter');
+
+    $this->assertEquals($matcher, $array);
+  }
+
+  public function testCanAppendValuesToArrays()
+  {
+    $array = Arrays::append($this->array, 'foo');
+    $matcher = array('foo' => 'bar', 'bis' => 'ter', 0 => 'foo');
+
+    $this->assertEquals($matcher, $array);
+  }
 }

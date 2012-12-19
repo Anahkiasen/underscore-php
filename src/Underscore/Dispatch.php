@@ -6,6 +6,8 @@ use \Underscore\Interfaces\Methods;
 
 class Dispatch
 {
+  const TYPES = 'Underscore\Types\\';
+
   /**
    * Compute the right class to call according to something's type
    *
@@ -24,6 +26,7 @@ class Dispatch
         break;
 
       case 'integer':
+      case 'float':
         $class = 'Number';
         break;
 
@@ -39,9 +42,11 @@ class Dispatch
     }
 
     // Return false for unsupported types
-    if (!isset($class)) throw new InvalidArgumentException('The type ' .gettype($subject). ' is not supported');
+    if (!isset($class)) {
+      throw new InvalidArgumentException('The type ' .gettype($subject). ' is not supported');
+    }
 
-    return '\\'.__NAMESPACE__.'\Types\\'.$class;
+    return '\\'.static::TYPES.$class;
   }
 
   /**
@@ -52,7 +57,6 @@ class Dispatch
    *
    * @return string The correct function to call
    */
-
   public static function toNative($class, $method)
   {
     // Aliased native function
@@ -60,10 +64,11 @@ class Dispatch
 
     // Transform class to php function prefix
     switch($class) {
-      case 'Underscore\Arrays':
+      case static::TYPES.'Arrays':
         $prefix = 'array_';
         break;
-      case 'Underscore\String':
+
+      case static::TYPES.'String':
         $prefix = 'str_';
         break;
     }

@@ -6,7 +6,7 @@
  */
 namespace Underscore;
 
-use \Exception;
+use \BadMethodCallException;
 use \Underscore\Traits\Type;
 use \Underscore\Types\Arrays;
 
@@ -41,7 +41,7 @@ class Underscore extends Type
   }
 
   /**
-   * Alias for new Underscore
+   * Static alias for constructor
    */
   public static function chain($subject)
   {
@@ -88,7 +88,7 @@ class Underscore extends Type
 
     // Check for unchainable methods
     if (Method::isUnchainable($class, $method)) {
-      throw new Exception('The method '.$class.'::'.$method. ' can\'t be chained');
+      throw new BadMethodCallException('The method '.$class.'::'.$method. ' can\'t be chained');
     }
 
     // Prepend subject to arguments and call the method
