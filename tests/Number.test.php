@@ -24,4 +24,16 @@ class NumberTest extends UnderscoreWrapper
 
     $this->assertEquals('500', $number);
   }
+
+  public function testCanUsePhpRoundingMethods()
+  {
+    $number = Number::round(5.33);
+    $this->assertEquals(5, $number);
+
+    $number = Number::ceil(5.33);
+    $this->assertEquals(6, $number);
+
+    $number = Number::floor(5.33);
+    $this->assertEquals(5, $number);
+  }
 }

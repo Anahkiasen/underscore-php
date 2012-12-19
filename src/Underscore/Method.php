@@ -13,8 +13,7 @@ class Method
    * @var array
    */
   public static $defer = array(
-    'trim'  => 'trim',
-    'count' => 'count',
+    'trim', 'count', 'round', 'ceil', 'floor',
   );
 
   /**
@@ -63,5 +62,23 @@ class Method
   public static function isBreaker($method)
   {
     return in_array($method, static::$breakers);
+  }
+
+  /**
+   * Get the native function corresponding to a method
+   *
+   * @param string $method The method to look for
+   * @return string The native function
+   */
+  public static function getNative($method)
+  {
+    // If a defered method exist
+    if (in_array($method, static::$defer)) {
+      $native = array_search($method, static::$defer);
+
+      return is_int($native) ? $method : $native;
+    }
+
+    return false;
   }
 }

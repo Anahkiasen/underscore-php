@@ -60,7 +60,8 @@ class Dispatch
   public static function toNative($class, $method)
   {
     // Aliased native function
-    if (isset(Method::$defer[$method])) return Method::$defer[$method];
+    $native = Method::getNative($method);
+    if ($native) return $native;
 
     // Transform class to php function prefix
     switch($class) {
