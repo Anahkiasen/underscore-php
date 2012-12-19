@@ -8,6 +8,7 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
     array('foo' => 'bar', 'bis' => 'ter'),
     array('bar' => 'foo', 'bis' => 'ter'),
   );
+  public $object;
 
   /**
    * Starts the bundle
@@ -20,9 +21,11 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
     }
   }
 
+  /**
+   * Restore data just in case
+   */
   public function setUp()
   {
-    // Create some dummy data
     $this->object = (object) $this->array;
     $this->objectMulti = (object) array(
       (object) $this->arrayMulti[0],

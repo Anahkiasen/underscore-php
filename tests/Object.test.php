@@ -1,6 +1,5 @@
 <?php
 use Underscore\Types\Object;
-use Underscore\Underscore;
 
 class ObjectTest extends UnderscoreWrapper
 {

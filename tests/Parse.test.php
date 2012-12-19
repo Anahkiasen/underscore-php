@@ -3,6 +3,32 @@ use Underscore\Parse;
 
 class ParseTest extends UnderscoreWrapper
 {
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////// DATA PROVIDERS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  public function provideSwitchers()
+  {
+    return array(
+      array('toArray', NULL, array()),
+      array('toArray', 15, array(15)),
+      array('toArray', 'foobar', array('foobar')),
+      array('toArray', (object) $this->array, $this->array),
+
+      array('toString', 15, '15'),
+
+      array('toBoolean', '', false),
+      array('toBoolean', 'foo', true),
+      array('toBoolean', 15, true),
+      array('toBoolean', 0, false),
+      array('toBoolean', array(), false),
+    );
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// TESTS ///////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
   public function testCanCreateCsvFiles()
   {
     $csv = Parse::toCSV($this->arrayMulti);
@@ -43,15 +69,25 @@ class ParseTest extends UnderscoreWrapper
     $this->assertEquals($this->arrayMulti, $array);
   }
 
-  public function testCanConvertToArray()
+  public function testCanParseXML()
   {
-    $string = Parse::toArray('foobar');
-    $number = Parse::toArray(15);
-    $object = Parse::toArray($this->object);
+    $array = Parse::fromXML('<article><name>foo</name><content>bar</content></article>');
+    $matcher = array('name' => 'foo', 'content' => 'bar');
 
-    $this->assertEquals($this->array, $object);
-    $this->assertEquals(array(15), $number);
-    $this->assertEquals(array('foobar'), $string);
+    $this->assertEquals($matcher, $array);
   }
 
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////// TYPES SWITCHERS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * @dataProvider provideSwitchers
+   */
+  public function testCanSwitchTypes($method, $from, $to)
+  {
+    $from = Parse::$method($from);
+
+    $this->assertEquals($to, $from);
+  }
 }

@@ -71,22 +71,9 @@ class Parse
     return $xml;
   }
 
-
   ////////////////////////////////////////////////////////////////////
   //////////////////////////////// TO ////////////////////////////////
   ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Converts data to an array
-   *
-   * @param mixed $data The data to convert
-   *
-   * @return array Converted data
-   */
-  public static function toArray($data)
-  {
-    return (array) $data;
-  }
 
   /**
    * Converts data to JSON
@@ -139,5 +126,41 @@ class Parse
     }
 
     return implode(PHP_EOL, $csv);
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////// TYPES SWITCHERS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Converts data to an array
+   */
+  public static function toArray($data)
+  {
+    return (array) $data;
+  }
+
+  /**
+   * Converts data to a string
+   */
+  public static function toString($data)
+  {
+    return (string) $data;
+  }
+
+  /**
+   * Converts data to an integer
+   */
+  public static function toInteger($data)
+  {
+    return (int) $data;
+  }
+
+  /**
+   * Converts data to a boolean
+   */
+  public static function toBoolean($data)
+  {
+    return (bool) $data;
   }
 }
