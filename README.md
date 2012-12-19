@@ -80,7 +80,8 @@ You can also give custom aliases to all of Underscore's methods, in said config 
 
 You can find a detailed summary of all classes and methods in the [repo's wiki][]
 
-Note that as Underscore natively extends PHP, it can automatically reference original PHP functions when the context matches. Per example the following will go call the origin `array_intersect` function. The advantage is obviously that it allows chaining on a lot of otherwise one-off functions or that only work by reference/
+Note that as Underscore natively extends PHP, it can automatically reference original PHP functions when the context matches. Per example the following will go call the original `array_diff` and `array_merge` functions.
+The advantage is obviously that it allows chaining on a lot of otherwise one-off functions or that only work by reference.
 
 ```php
 Arrays::diff($array, $array2, $array3)
