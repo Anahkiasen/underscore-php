@@ -16,6 +16,15 @@ class ParseTest extends UnderscoreWrapper
       array('toArray', (object) $this->array, $this->array),
 
       array('toString', 15, '15'),
+      array('toString', array('foo', 'bar'), '["foo","bar"]'),
+
+      array('toInteger', 'foo', 0),
+      array('toInteger', '', 0),
+      array('toInteger', '15', 15),
+      array('toInteger', array(1, 2, 3), 3),
+      array('toInteger', array(), 0),
+
+      array('toObject', $this->array, (object) $this->array),
 
       array('toBoolean', '', false),
       array('toBoolean', 'foo', true),

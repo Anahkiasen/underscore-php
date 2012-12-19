@@ -145,6 +145,9 @@ class Parse
    */
   public static function toString($data)
   {
+    // Avoid Array to String conversion exception
+    if (is_array($data)) return static::toJSON($data);
+
     return (string) $data;
   }
 
@@ -153,6 +156,9 @@ class Parse
    */
   public static function toInteger($data)
   {
+    // Returns size of array instead of 1
+    if (is_array($data)) return sizeof($data);
+
     return (int) $data;
   }
 
@@ -162,5 +168,13 @@ class Parse
   public static function toBoolean($data)
   {
     return (bool) $data;
+  }
+
+  /**
+   * Converts data to an object
+   */
+  public static function toObject($data)
+  {
+    return (object) $data;
   }
 }
