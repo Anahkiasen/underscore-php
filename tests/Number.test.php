@@ -4,23 +4,30 @@ use Underscore\Underscore;
 
 class NumberTest extends UnderscoreWrapper
 {
+  public function testCanAccessStrPad()
+  {
+    $number = Number::pad(5, 3, 1, STR_PAD_BOTH);
+
+    $this->assertEquals('151', $number);
+  }
+
   public function testCanPadANumber()
   {
-    $number = Number::pad(5, 3);
+    $number = Number::padding(5, 3);
 
     $this->assertEquals('050', $number);
   }
 
   public function testCanPadANumberOnTheLeft()
   {
-    $number = Number::padLeft(5, 3);
+    $number = Number::paddingLeft(5, 3);
 
     $this->assertEquals('005', $number);
   }
 
   public function testCanPadANumberOnTheRight()
   {
-    $number = Number::padRight(5, 3);
+    $number = Number::paddingRight(5, 3);
 
     $this->assertEquals('500', $number);
   }
