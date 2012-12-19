@@ -1,6 +1,6 @@
 <?php
-use Underscore\Arrays;
-use Underscore\String;
+use Underscore\Types\Arrays;
+use Underscore\Types\String;
 use Underscore\Underscore;
 
 class UnderscoreTest extends UnderscoreWrapper

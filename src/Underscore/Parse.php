@@ -7,6 +7,8 @@
  */
 namespace Underscore;
 
+use \Underscore\Types\Arrays;
+
 class Parse
 {
 

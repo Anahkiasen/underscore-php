@@ -1,5 +1,5 @@
 <?php
-use Underscore\Number;
+use Underscore\Types\Number;
 use Underscore\Underscore;
 
 class NumberTest extends UnderscoreWrapper

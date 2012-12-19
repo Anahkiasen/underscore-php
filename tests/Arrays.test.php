@@ -1,7 +1,7 @@
 <?php
 include '_startTest.php';
 
-use Underscore\Arrays;
+use Underscore\Types\Arrays;
 use Underscore\Underscore;
 
 class ArraysTest extends UnderscoreWrapper

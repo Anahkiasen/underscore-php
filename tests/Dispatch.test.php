@@ -8,10 +8,10 @@ class DispatchTest extends UnderscoreWrapper
   public function provideTypes()
   {
     return array(
-      array('string', '\Underscore\String'),
-      array(array(), '\Underscore\Arrays'),
-      array(new stdClass, '\Underscore\Object'),
-      array(512, '\Underscore\Number'),
+      array('string', 'String'),
+      array(array(), 'Arrays'),
+      array(new stdClass, 'Object'),
+      array(512, 'Number'),
     );
   }
 
@@ -24,6 +24,6 @@ class DispatchTest extends UnderscoreWrapper
 
     $dispatch = Dispatch::toClass($subject);
 
-    $this->assertEquals($expected, $dispatch);
+    $this->assertEquals('\Underscore\Types\\'.$expected, $dispatch);
   }
 }

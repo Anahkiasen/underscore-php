@@ -41,7 +41,7 @@ class Dispatch
     // Return false for unsupported types
     if (!isset($class)) throw new InvalidArgumentException('The type ' .gettype($subject). ' is not supported');
 
-    return '\\'.__NAMESPACE__.'\\'.$class;
+    return '\\'.__NAMESPACE__.'\Types\\'.$class;
   }
 
   /**
@@ -56,7 +56,7 @@ class Dispatch
   public static function toNative($class, $method)
   {
     // Aliased native function
-    if (isset(Methods::$defer[$method])) return Methods::$defer[$method];
+    if (isset(Method::$defer[$method])) return Method::$defer[$method];
 
     // Transform class to php function prefix
     switch($class) {

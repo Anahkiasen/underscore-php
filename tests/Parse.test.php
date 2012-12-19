@@ -1,5 +1,5 @@
 <?php
-use Underscore\Arrays;
+use Underscore\Types\Arrays;
 
 class ParseTest extends UnderscoreWrapper
 {

@@ -7,9 +7,10 @@
 namespace Underscore;
 
 use \Exception;
-use \Underscore\Interfaces\Methods;
+use \Underscore\Traits\Type;
+use \Underscore\Types\Arrays;
 
-class Underscore extends Interfaces\Methods
+class Underscore extends Type
 {
   /**
    * The subject of methods
@@ -86,7 +87,7 @@ class Underscore extends Interfaces\Methods
     $class = Dispatch::toClass($this->subject);
 
     // Check for unchainable methods
-    if (Methods::isUnchainable($class, $method)) {
+    if (Method::isUnchainable($class, $method)) {
       throw new Exception('The method '.$class.'::'.$method. ' can\'t be chained');
     }
 
@@ -95,7 +96,7 @@ class Underscore extends Interfaces\Methods
     $result = call_user_func_array($class.'::'.$method, $arguments);
 
     // If the method is a breaker, return just the result
-    if (Methods::isBreaker($method)) return $result;
+    if (Method::isBreaker($method)) return $result;
     else $this->subject = $result;
 
     return $this;

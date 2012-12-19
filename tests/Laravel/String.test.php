@@ -1,5 +1,5 @@
 <?php
-use Underscore\String;
+use Underscore\Types\String;
 
 class LaravelStringTest extends UnderscoreWrapper
 {
