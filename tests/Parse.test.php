@@ -1,50 +1,57 @@
 <?php
-use Underscore\Types\Arrays;
+use Underscore\Parse;
 
 class ParseTest extends UnderscoreWrapper
 {
-  public $array = array(
-    array('foo1' => 'bar1', 'foo2' => 'bar2'),
-    array('foo1' => 'kal1', 'foo2' => 'kal2'),
-  );
-
   public function testCanCreateCsvFiles()
   {
-    $csv = Arrays::toCSV($this->array);
-    $matcher = '"bar1";"bar2"' . PHP_EOL . '"kal1";"kal2"';
+    $csv = Parse::toCSV($this->arrayMulti);
+    $matcher = '"bar";"ter"' . PHP_EOL . '"bar";"ter"' .PHP_EOL. '"foo";"ter"';
 
     $this->assertEquals($matcher, $csv);
   }
 
   public function testCanUseCustomCsvDelimiter()
   {
-    $csv = Arrays::toCSV($this->array, ',');
-    $matcher = '"bar1","bar2"' . PHP_EOL . '"kal1","kal2"';
+    $csv = Parse::toCSV($this->arrayMulti, ',');
+    $matcher = '"bar","ter"' . PHP_EOL . '"bar","ter"' .PHP_EOL. '"foo","ter"';
 
     $this->assertEquals($matcher, $csv);
   }
 
   public function testCanOutputCsvHeaders()
   {
-    $csv = Arrays::toCSV($this->array, ',', true);
-    $matcher = 'foo1,foo2' . PHP_EOL . '"bar1","bar2"' . PHP_EOL . '"kal1","kal2"';
+    $csv = Parse::toCSV($this->arrayMulti, ',', true);
+    $matcher = 'foo,bis' . PHP_EOL . '"bar","ter"' . PHP_EOL . '"bar","ter"' .PHP_EOL. '"foo","ter"';
 
     $this->assertEquals($matcher, $csv);
   }
 
   public function testCanConvertToJson()
   {
-    $json = Arrays::toJSON($this->array);
-    $matcher = '[{"foo1":"bar1","foo2":"bar2"},{"foo1":"kal1","foo2":"kal2"}]';
+    $json = Parse::toJSON($this->arrayMulti);
+    $matcher = '[{"foo":"bar","bis":"ter"},{"foo":"bar","bis":"ter"},{"bar":"foo","bis":"ter"}]';
 
     $this->assertEquals($matcher, $json);
   }
 
   public function testCanParseJson()
   {
-    $json = Arrays::toJSON($this->array);
-    $array = Arrays::fromJSON($json);
+    $json = Parse::toJSON($this->arrayMulti);
+    $array = Parse::fromJSON($json);
 
-    $this->assertEquals($this->array, $array);
+    $this->assertEquals($this->arrayMulti, $array);
   }
+
+  public function testCanConvertToArray()
+  {
+    $string = Parse::toArray('foobar');
+    $number = Parse::toArray(15);
+    $object = Parse::toArray($this->object);
+
+    $this->assertEquals($this->array, $object);
+    $this->assertEquals(array(15), $number);
+    $this->assertEquals(array('foobar'), $string);
+  }
+
 }

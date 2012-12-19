@@ -1,6 +1,7 @@
 <?php
 namespace Underscore\Types;
 
+use \stdClass;
 use \Underscore\Traits\Collection;
 
 class Object extends Collection
@@ -10,7 +11,7 @@ class Object extends Collection
    */
   public static function create()
   {
-    return static::from(new \stdClass);
+    return static::from(new stdClass);
   }
 
   /**
@@ -32,13 +33,5 @@ class Object extends Collection
       : Arrays::first($object);
 
     return (object) $object;
-  }
-
-  /**
-   * Converts an object to an array
-   */
-  public static function toArray($object)
-  {
-    return (array) $object;
   }
 }
