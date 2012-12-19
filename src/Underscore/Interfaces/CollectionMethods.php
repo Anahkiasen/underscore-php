@@ -134,14 +134,6 @@ abstract class CollectionMethods extends Methods
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Convert a collection to JSON
-   */
-  public static function toJSON($collection)
-  {
-    return json_encode((array) $collection);
-  }
-
-  /**
    * Replace a key with a new key/value pair
    */
   public static function replace($collection, $replace, $key, $value)

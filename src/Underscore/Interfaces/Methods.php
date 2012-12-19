@@ -75,6 +75,11 @@ abstract class Methods
    */
   public static function __callStatic($method, $parameters)
   {
+    // Check for parsers
+    if (method_exists('\Underscore\Parse', $method)) {
+      return call_user_func_array('\Underscore\Parse::'.$method, $parameters);
+    }
+
     // Defered methods
     $defered = Dispatch::toNative(get_called_class(), $method);
     if ($defered) {
