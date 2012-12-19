@@ -27,6 +27,8 @@ class Dispatch
 
       case 'integer':
       case 'float':
+      case 'double':
+      case 'real':
         $class = 'Number';
         break;
 

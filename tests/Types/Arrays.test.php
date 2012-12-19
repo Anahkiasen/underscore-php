@@ -1,6 +1,4 @@
 <?php
-include '_startTest.php';
-
 use Underscore\Types\Arrays;
 use Underscore\Underscore;
 
