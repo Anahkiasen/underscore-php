@@ -19,7 +19,7 @@ abstract class Methods
    * @var array
    */
   public static $defer = array(
-    'trim' => 'trim',
+    'trim'  => 'trim',
     'count' => 'count',
   );
 
@@ -36,6 +36,9 @@ abstract class Methods
    */
   private static $breakers = array(
     'get', 'sum', 'count',
+    'fromJSON', 'toJSON',
+    'fromXML',
+    'fromCSV', 'toCSV',
   );
 
   /**
