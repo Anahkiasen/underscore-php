@@ -315,6 +315,15 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals(-3, $under);
   }
 
+  public function testCanSortKeys()
+  {
+    $under = Arrays::sortKeys(array('z' => 0, 'b' => 1, 'r' => 2));
+    $this->assertEquals(array('b' => 1, 'r' => 2, 'z' => 0), $under);
+
+    $under = Arrays::sortKeys(array('z' => 0, 'b' => 1, 'r' => 2), 'desc');
+    $this->assertEquals(array('z' => 0, 'r' => 2, 'b' => 1), $under);
+  }
+
   public function testCanSortValues()
   {
     $under = Arrays::sort(array(5, 3, 1, 2, 4), null, 'desc');

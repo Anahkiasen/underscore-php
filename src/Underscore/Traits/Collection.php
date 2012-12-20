@@ -146,9 +146,8 @@ abstract class Collection extends Type
   }
 
   /**
-   * Sort values from a collection according to the results of a closure
-   * A property name to sort by can also be passed
-   * Also the sorter can be null and the array will be sorted naturally
+   * Sort a collection by value, by a closure or by a property
+   * If the sorter is null, the collection is sorted naturally
    */
   public static function sort($collection, $sorter = null, $direction = 'asc')
   {
@@ -159,9 +158,9 @@ abstract class Collection extends Type
 
     // Transform all values into their results
     if ($sorter) {
-      foreach ($collection as $key => $value) {
-        $results[$key] = is_callable($sorter) ? $sorter($value) : Arrays::get($value, $sorter);
-      }
+      $results = Arrays::each($collection, function($value) use ($sorter) {
+        return is_callable($sorter) ? $sorter($value) : Arrays::get($value, $sorter);
+      });
     } else $results = $collection;
 
     // Sort by the results and replace by original values

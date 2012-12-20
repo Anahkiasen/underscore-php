@@ -281,6 +281,18 @@ class Arrays extends Collection
   }
 
   /**
+   * Sort an array by key
+   */
+  public static function sortKeys($array, $direction = 'ASC')
+  {
+    $direction = (strtolower($direction) == 'desc') ? SORT_DESC : SORT_ASC;
+    if ($direction == SORT_ASC) ksort($array);
+    else krsort($array);
+
+    return $array;
+  }
+
+  /**
    * Implodes an array
    *
    * @param array  $array The array
