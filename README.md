@@ -1,7 +1,14 @@
 # Underscore.php [![Build Status](https://secure.travis-ci.org/Anahkiasen/underscore-php.png?branch=master)](https://travis-ci.org/Anahkiasen/underscore-php)
-## A redacted port of Underscore.js
+## The PHP manipulation toolbet
 
-Underscore.php is a _redacted_ PHP port of Underscore.js. Its goal is to ease the working and manipulation of arrays, strings and such in PHP development. When I say redacted I mean that all methods were not just imported and converted blatantly — a lot of thought was put into removing methods that were unuseful to PHP developers, changing terms to make them less confusing in a PHP world, and add a lot of new methods and helpers on top of a new elegant syntax.
+First off : Underscore.php is **not** a PHP port of [Underscore.js][] (well ok I mean it was at first).
+It's doesn't aim to blatantly port its methods, but more port its philosophy. 
+
+It's a full-on PHP manipulation toolbet sugar-coated by an elegant syntax directly inspired by the [Laravel framework][]. Out through the window went the infamous `__()`, replaced by methods and class names that are meant to be read like sentences _à la_ Rails : `Arrays::from($article)->sortBy('author')->toJSON()`.
+
+It features a good hundred of methods for all kinds of types : strings, objects, arrays, integers, and provides a parsing class that help switching from one type to the other mid-course. Oh also it's growing all the time. 
+
+It works both as a stand-alone via *Composer* or as a bundle for the Laravel framework. So you know, you don't really have any excuse.
 
 ### Install Underscore
 
@@ -26,14 +33,12 @@ $array = array(1, 2, 3);
 
 // One-off calls to helpers
 Underscore::each($array, function($value) { return $value * 2; })
-underscore($array)->each(function($value) { return $value * 2; })
 
 // Or chain calls
-underscore($array)->filter(...)->sort(...)->get(2)
 Underscore::chain($array)->filter(...)->sort(...)->get(2)
 ```
 
-You can also alias Underscore's core classes and call them at any time, this mostly provides syntaxic elegance :
+You can also (and it's the recommended syntax) use Underscore's core classes and call them at any time, this mostly provides syntaxic elegance :
 
 ```php
 // One-off calls
@@ -73,12 +78,12 @@ String::extend('summary', function($string) {
 String::from($article->content)->summary()->title()
 ```
 
-It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore` and the most common probably being `__` (which is already taken in **Laravel** by the translation helper).
+It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore`.
 You can also give custom aliases to all of Underscore's methods, in said config file. Just add entries to the `aliases` option, the key being the alias, and the value the method to point to.
 
 ## Documentation
 
-You can find a detailed summary of all classes and methods in the [repo's wiki][]
+You can find a detailed summary of all classes and methods in the [repo's wiki][] or the [official page][].
 
 Note that as Underscore natively extends PHP, it can automatically reference original PHP functions when the context matches. Per example the following will go call the original `array_diff` and `array_merge` functions.
 The advantage is obviously that it allows chaining on a lot of otherwise one-off functions or that only work by reference.
@@ -88,10 +93,13 @@ Arrays::diff($array, $array2, $array3)
 Arrays::from($array)->diff($array2, $array3)->merge($array4)
 ```
 
-## About underscore.php
+## About Underscore.php
 
 There is technically another port of Underscore.js to PHP available [on Github][] — I first discovered it when I saw it was for a time used on Laravel 4. I quickly grew disapoint of what a mess the code was, the lack of updates, and the 1:1 mentality that went behind it.
-This revamped Underscore.php doesn't aim to be a direct port of Underscore.js. It sometimes omits methods that aren't relevant to PHP developers, rename others to match terms that are more common to them, provides a richer syntax and leaves room for future methods to be added all the time — whereas the previous port quickly recoded all JS methods to PHP and left it at that.
+This revamped Underscore.php doesn't aim to be a direct port of Underscore.js. It sometimes omits methods that aren't relevant to PHP developers, rename others to match terms that are more common to them, provides a richer syntax, adds a whole lot of methods, and leaves room for future ones to be added all the time — whereas the previous port quickly recoded all JS methods to PHP and left it at that.
 
+[official page]: http://anahkiasen.github.com/underscore-php/
+[Laravel framework]: http://laravel.com/
+[Underscore.js]: https://github.com/documentcloud/underscore
 [repo's wiki]: https://github.com/Anahkiasen/underscore-php/wiki/_pages
 [on Github]: https://github.com/brianhaveri/Underscore.php
