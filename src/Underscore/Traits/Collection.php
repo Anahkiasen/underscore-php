@@ -11,11 +11,8 @@ use \Underscore\Types\Arrays;
 use \Underscore\Methods;
 use \Underscore\Traits\Type;
 
-define('UNFOUND', false);
-
 abstract class Collection extends Type
 {
-
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ANALYZE //////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -25,7 +22,10 @@ abstract class Collection extends Type
    */
   public static function has($array, $key)
   {
-    return static::get($array, $key, UNFOUND) !== UNFOUND;
+    // Generate unique string to use as marker
+    $unfound = String::random(5);
+
+    return static::get($array, $key, $unfound) !== $unfound;
   }
 
   ////////////////////////////////////////////////////////////////////
