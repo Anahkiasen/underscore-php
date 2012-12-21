@@ -196,6 +196,8 @@ class String extends StringType
    */
   public static function explode($string, $with, $limit = null)
   {
+    if (!$limit) return explode($with, $string);
+
     return explode($with, $string, $limit);
   }
 }
