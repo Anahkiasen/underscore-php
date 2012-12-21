@@ -1,6 +1,9 @@
 <?php namespace Laravel;
 
-define('MB_STRING', (int) function_exists('mb_get_info'));
+if (!defined('MB_STRING'))
+{
+  define('MB_STRING', (int) function_exists('mb_get_info'));
+}
 
 class Str {
 
