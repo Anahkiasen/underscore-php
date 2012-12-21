@@ -190,4 +190,12 @@ class String extends StringType
 
     return static::slug($string, $separator);
   }
+
+  /**
+   * Explode a string into an array
+   */
+  public static function explode($string, $with, $limit = null)
+  {
+    return explode($with, $string, $limit);
+  }
 }
