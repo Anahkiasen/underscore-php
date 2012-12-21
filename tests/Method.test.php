@@ -19,8 +19,8 @@ class MethodTest extends UnderscoreWrapper
 
     $this->assertEquals(array('foo' => 'bar'), $array->obtain());
 
-    $string = String::replace('foo', 'bar', 'foo');
-    $this->assertEquals('bar', $string);
+    $string = String::repeat('foo', 2);
+    $this->assertEquals('foofoo', $string);
 
     $string = String::from('   foo  ')->trim();
     $this->assertEquals('foo', $string->obtain());

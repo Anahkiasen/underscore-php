@@ -160,4 +160,11 @@ class StringTest extends UnderscoreWrapper
 
     return $this->assertEquals(array('ab', 'cdef'), $string);
   }
+
+  public function testCanUseCorrectOrderForStrReplace()
+  {
+    $string = String::replace('foo', 'foo', 'bar');
+
+    $this->assertEquals('bar', $string);
+  }
 }

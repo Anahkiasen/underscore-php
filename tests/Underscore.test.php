@@ -59,7 +59,7 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals('bar', Arrays::fooify(array('foo')));
 
     String::extend('unfooer', function($string) {
-      return String::replace('foo', 'bar', $string);
+      return String::replace($string, 'foo', 'bar');
     });
     $this->assertEquals('bar', String::unfooer('foo'));
   }

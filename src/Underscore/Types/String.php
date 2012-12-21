@@ -155,6 +155,14 @@ class String extends StringType
   }
 
   /**
+   * Correct arguments order for str_replace
+   */
+  public static function replace($string, $replace, $with)
+  {
+    return str_replace($replace, $with, $string);
+  }
+
+  /**
    * Toggles a string between two states
    *
    * @param  string  $string The string to toggle
