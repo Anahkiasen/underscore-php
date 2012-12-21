@@ -7,5 +7,6 @@
   'aliases' => array(
     'select'   => 'filter',
     'contains' => 'find',
+    'split'    => 'explode',
   ),
 );
