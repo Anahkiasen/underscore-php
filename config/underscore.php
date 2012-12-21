@@ -9,6 +9,5 @@
     'getLast'  => 'last',
     'select'   => 'filter',
     'sortBy'   => 'sort',
-    'split'    => 'explode',
   ),
 );

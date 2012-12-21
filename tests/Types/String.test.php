@@ -167,4 +167,13 @@ class StringTest extends UnderscoreWrapper
 
     $this->assertEquals('bar', $string);
   }
+
+  public function testCanExplodeString()
+  {
+    $string = String::explode('foo bar foo', ' ');
+    $this->assertEquals(array('foo', 'bar', 'foo'), $string);
+
+    $string = String::explode('foo bar foo', ' ' , -1);
+    $this->assertEquals(array('foo', 'bar'), $string);
+  }
 }
