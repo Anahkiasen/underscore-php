@@ -2,11 +2,12 @@
 ## The PHP manipulation toolbet
 
 First off : Underscore.php is **not** a PHP port of [Underscore.js][] (well ok I mean it was at first).
-It's doesn't aim to blatantly port its methods, but more port its philosophy. 
+It's doesn't aim to blatantly port its methods, but more port its philosophy.
 
 It's a full-on PHP manipulation toolbet sugar-coated by an elegant syntax directly inspired by the [Laravel framework][]. Out through the window went the infamous `__()`, replaced by methods and class names that are meant to be read like sentences _à la_ Rails : `Arrays::from($article)->sortBy('author')->toJSON()`.
 
-It features a good hundred of methods for all kinds of types : strings, objects, arrays, integers, and provides a parsing class that help switching from one type to the other mid-course. Oh also it's growing all the time. 
+It features a good hundred of methods for all kinds of types : strings, objects, arrays, integers, and provides a parsing class that help switching from one type to the other mid-course. Oh also it's growing all the time.
+The cherry on top ? It wraps nicely around native PHP functions meaning `String::replace` is actually a dynamic call to `str_replace` but with the benefit of allowed chaining and a **finally** consistant argument order (all functions in _Underscore_ put the subject as the first argument).
 
 It works both as a stand-alone via *Composer* or as a bundle for the Laravel framework. So you know, you don't really have any excuse.
 
