@@ -14,6 +14,8 @@
   <testsuites>
     <testsuite name="Underscore Test Suite">
       <directory suffix=".test.php">tests</directory>
+      <directory suffix=".test.php">tests/Laravel</directory>
+      <directory suffix=".test.php">tests/Types</directory>
     </testsuite>
   </testsuites>
 

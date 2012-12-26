@@ -209,10 +209,26 @@ class ArraysTest extends UnderscoreWrapper
 
   public function testCanInvokeFunctionsOnValues()
   {
-    $array = array('   foo', '   bar');
+    $array = array('   foo  ', '   bar   ');
     $array = Arrays::invoke($array, 'trim');
 
     $this->assertEquals(array('foo', 'bar'), $array);
+  }
+
+  public function testCanInvokeFunctionsOnValuesWithSingleArgument()
+  {
+    $array = array('_____foo', '____bar   ');
+    $array = Arrays::invoke($array, 'trim', ' _');
+
+    $this->assertEquals(array('foo', 'bar'), $array);
+  }
+
+  public function testCanInvokeFunctionsWithDifferentArguments()
+  {
+    $array = array('_____foo  ', '__bar   ');
+    $array = Arrays::invoke($array, 'trim', array('_', ' '));
+
+    $this->assertEquals(array('foo  ', '__bar'), $array);
   }
 
   public function testCanPluckColumns()

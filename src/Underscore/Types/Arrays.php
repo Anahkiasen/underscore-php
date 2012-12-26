@@ -349,8 +349,11 @@ class Arrays extends Collection
    */
   public static function invoke($array, $callable, $arguments = array())
   {
+    // If one argument given for each iteration, create an array for it
+    if (!is_array($arguments)) $arguments = Arrays::repeat($arguments, sizeof($array));
+
     // If the callable has arguments, pass them
-    if ($arguments) return array_map($callable, $array, $callable);
+    if ($arguments) return array_map($callable, $array, $arguments);
 
     return array_map($callable, $array);
   }
