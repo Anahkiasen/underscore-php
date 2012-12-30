@@ -47,13 +47,13 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = static::generateUnique($unique, $function, $arguments);
+      $unique = Functions::generateUnique($unique, $function, $arguments);
 
       // Get counter
-      $called = static::hasBeenCalledTimes($unique);
+      $called = Functions::hasBeenCalledTimes($unique);
 
       if ($called >= $times) return false;
-      else static::$times[$unique] += 1;
+      else Functions::$times[$unique] += 1;
 
       return call_user_func_array($function, $arguments);
     };
@@ -71,14 +71,14 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = static::generateUnique($unique, $function, $arguments);
+      $unique = Functions::generateUnique($unique, $function, $arguments);
 
       // Get counter
-      $called = static::hasBeenCalledTimes($unique);
+      $called = Functions::hasBeenCalledTimes($unique);
 
       // Prevent calling before a certain number
       if ($called < $times) {
-        static::$times[$unique] += 1;
+        Functions::$times[$unique] += 1;
         return false;
       }
 
@@ -97,12 +97,12 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = static::generateUnique($unique, $function, $arguments);
+      $unique = Functions::generateUnique($unique, $function, $arguments);
 
-      if (isset(static::$cache[$unique])) return static::$cache[$unique];
+      if (isset(Functions::$cache[$unique])) return Functions::$cache[$unique];
 
       $result = call_user_func_array($function, $arguments);
-      static::$cache[$unique] = $result;
+      Functions::$cache[$unique] = $result;
 
       return $result;
     };
@@ -119,15 +119,15 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = static::generateUnique($unique, $function, $arguments);
+      $unique = Functions::generateUnique($unique, $function, $arguments);
 
       // Check last called time and update it if necessary
-      $last = static::getLastCalledTime($unique);
+      $last = Functions::getLastCalledTime($unique);
       $difference = time() - $last;
 
       // Execute the function if the conditions are here
       if ($last == time() or $difference > $ms) {
-        static::$throttle[$unique] = time();
+        Functions::$throttle[$unique] = time();
 
         return call_user_func_array($function, $arguments);
       }
