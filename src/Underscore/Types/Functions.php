@@ -9,19 +9,19 @@ class Functions extends Type
    * An array of functions to be called X times
    * @var array
    */
-  private static $times = array();
+  public static $times = array();
 
   /**
    * An array of cached function results
    * @var array
    */
-  private static $cache = array();
+  public static $cache = array();
 
   /**
    * An array tracking the last time a function was called
    * @var array
    */
-  private static $throttle = array();
+  public static $throttle = array();
 
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// LIMITERS ////////////////////////////
