@@ -146,7 +146,7 @@ class Functions extends Type
    * @param string $unique The function unique ID
    * @return integer
    */
-  private static function getLastCalledTime($unique)
+  public static function getLastCalledTime($unique)
   {
     // If no entry, create one
     if (!isset(static::$times[$unique])) {
@@ -162,7 +162,7 @@ class Functions extends Type
    * @param string $unique The function unique ID
    * @return integer
    */
-  private static function hasBeenCalledTimes($unique)
+  public static function hasBeenCalledTimes($unique)
   {
     // If no entry, create one
     if (!isset(static::$times[$unique])) {
@@ -179,7 +179,7 @@ class Functions extends Type
    * @param  array   $arguments Its arguments
    * @return string  The unique id
    */
-  private static function generateUnique($unique, $function, $arguments)
+  public static function generateUnique($unique, $function, $arguments)
   {
     $function  = var_export($function, true);
     $arguments = var_export($arguments, true);
