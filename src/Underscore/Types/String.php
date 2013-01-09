@@ -36,6 +36,7 @@ class String extends StringType
     if($count == 1) $output = $one;
     else if($count == 0 and !empty($zero)) $output = $zero;
     else $output = $many;
+
     return sprintf($output, $count);
   }
 

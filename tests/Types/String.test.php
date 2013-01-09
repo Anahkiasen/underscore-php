@@ -135,7 +135,7 @@ class StringTest extends UnderscoreWrapper
    */
   public function testCanAccordAStringToItsNumeral($number, $expect)
   {
-    $result = String::accord($number, $number. ' things', 'one thing', 'nothing');
+    $result = String::accord($number, '%d things', 'one thing', 'nothing');
 
     $this->assertEquals($expect, $result);
   }
