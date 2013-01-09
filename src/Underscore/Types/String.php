@@ -33,9 +33,10 @@ class String extends StringType
    */
   public static function accord($count, $many, $one, $zero = null)
   {
-    if($count == 1) return $one;
-    else if($count == 0 and !empty($zero)) return $zero;
-    else return $many;
+    if($count == 1) $output = $one;
+    else if($count == 0 and !empty($zero)) $output = $zero;
+    else $output = $many;
+    return sprintf($output, $count);
   }
 
   ////////////////////////////////////////////////////////////////////
