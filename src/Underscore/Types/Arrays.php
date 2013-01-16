@@ -25,6 +25,12 @@ class Arrays extends Collection
 
   /**
    * Generate an array from a range
+   *
+   * @param integer $_base The base number
+   * @param integer $stop  The stopping point
+   * @param integer $step  How many to increment of
+   *
+   * @return array
    */
   public static function range($_base, $stop = null, $step = 1)
   {
@@ -41,6 +47,11 @@ class Arrays extends Collection
 
   /**
    * Fill an array with $times times some $data
+   *
+   * @param mixed   $data
+   * @param integer $times
+   *
+   * @return array
    */
   public static function repeat($data, $times)
   {

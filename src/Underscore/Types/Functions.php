@@ -9,13 +9,13 @@ class Functions extends Type
    * An array of functions to be called X times
    * @var array
    */
-  public static $times = array();
+  public static $canBeCalledTimes = array();
 
   /**
    * An array of cached function results
    * @var array
    */
-  public static $cache = array();
+  public static $cached = array();
 
   /**
    * An array tracking the last time a function was called
@@ -29,6 +29,9 @@ class Functions extends Type
 
   /**
    * Create a function that can only be called once
+   *
+   * @param  Callable $function The function
+   * @return Closure
    */
   public static function once($function)
   {
@@ -37,23 +40,29 @@ class Functions extends Type
 
   /**
    * Create a function that can only be called $times times
+   *
+   * @param  Callable $function
+   * @param  integer  $times    The number of times
+   * @return Closure
    */
-  public static function only($function, $times)
+  public static function only($function, $canBeCalledTimes)
   {
     $unique = mt_rand();
 
     // Create a closure that check if the function was already called
-    return function() use ($function, $times, $unique) {
+    return function() use ($function, $canBeCalledTimes, $unique) {
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = Functions::generateUnique($unique, $function, $arguments);
+      $signature = Functions::getSignature($unique, $function, $arguments);
 
       // Get counter
-      $called = Functions::hasBeenCalledTimes($unique);
+      $numberOfTimesCalled = Functions::hasBeenCalledTimes($signature);
 
-      if ($called >= $times) return false;
-      else Functions::$times[$unique] += 1;
+      // If the function has been called too many times, cancel
+      // Else, increment the count
+      if ($numberOfTimesCalled >= $canBeCalledTimes) return false;
+      else Functions::$canBeCalledTimes[$signature]++;
 
       return call_user_func_array($function, $arguments);
     };
@@ -61,6 +70,10 @@ class Functions extends Type
 
   /**
    * Create a function that can only be called after $times times
+   *
+   * @param  Callable $function
+   * @param  integer  $times
+   * @return Closure
    */
   public static function after($function, $times)
   {
@@ -71,14 +84,14 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = Functions::generateUnique($unique, $function, $arguments);
+      $signature = Functions::getSignature($unique, $function, $arguments);
 
       // Get counter
-      $called = Functions::hasBeenCalledTimes($unique);
+      $called = Functions::hasBeenCalledTimes($signature);
 
       // Prevent calling before a certain number
       if ($called < $times) {
-        Functions::$times[$unique] += 1;
+        Functions::$canBeCalledTimes[$signature] += 1;
         return false;
       }
 
@@ -88,6 +101,9 @@ class Functions extends Type
 
   /**
    * Caches the result of a function and refer to it ever after
+   *
+   * @param  Callable $function
+   * @return Closure
    */
   public static function cache($function)
   {
@@ -97,12 +113,12 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = Functions::generateUnique($unique, $function, $arguments);
+      $signature = Functions::getSignature($unique, $function, $arguments);
 
-      if (isset(Functions::$cache[$unique])) return Functions::$cache[$unique];
+      if (isset(Functions::$cached[$signature])) return Functions::$cached[$signature];
 
       $result = call_user_func_array($function, $arguments);
-      Functions::$cache[$unique] = $result;
+      Functions::$cached[$signature] = $result;
 
       return $result;
     };
@@ -110,6 +126,11 @@ class Functions extends Type
 
   /**
    * Only allow a function to be called every X ms
+   *
+   * @param Callable $function
+   * @param integer  $ms
+   *
+   * @return Closure
    */
   public static function throttle($function, $ms)
   {
@@ -119,15 +140,15 @@ class Functions extends Type
 
       // Generate unique hash of the function
       $arguments = func_get_args();
-      $unique = Functions::generateUnique($unique, $function, $arguments);
+      $signature = Functions::getSignature($unique, $function, $arguments);
 
       // Check last called time and update it if necessary
-      $last = Functions::getLastCalledTime($unique);
+      $last = Functions::getLastCalledTime($signature);
       $difference = time() - $last;
 
       // Execute the function if the conditions are here
       if ($last == time() or $difference > $ms) {
-        Functions::$throttle[$unique] = time();
+        Functions::$throttle[$signature] = time();
 
         return call_user_func_array($function, $arguments);
       }
@@ -143,17 +164,12 @@ class Functions extends Type
   /**
    * Get the last time a function was called
    *
-   * @param string $unique The function unique ID
+   * @param  string $unique The function unique ID
    * @return integer
    */
   public static function getLastCalledTime($unique)
   {
-    // If no entry, create one
-    if (!isset(static::$times[$unique])) {
-      static::$times[$unique] = time();
-    }
-
-    return static::$times[$unique];
+    return Arrays::setAndGet(static::$canBeCalledTimes, $unique, time());
   }
 
   /**
@@ -164,24 +180,19 @@ class Functions extends Type
    */
   public static function hasBeenCalledTimes($unique)
   {
-    // If no entry, create one
-    if (!isset(static::$times[$unique])) {
-      static::$times[$unique] = 0;
-    }
-
-    return static::$times[$unique];
+    return Arrays::setAndGet(static::$canBeCalledTimes, $unique, 0);
   }
 
   /**
-   * Generate an unique id for a function
+   * Get a function's signature
    *
    * @param  Closure $function The function
    * @param  array   $arguments Its arguments
    * @return string  The unique id
    */
-  public static function generateUnique($unique, $function, $arguments)
+  public static function getSignature($unique, $function, $arguments)
   {
-    $function  = var_export($function, true);
+    $function  = var_export($function,  true);
     $arguments = var_export($arguments, true);
 
     return md5($unique. '_' .$function.'_'.$arguments);
