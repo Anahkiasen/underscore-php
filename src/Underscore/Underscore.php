@@ -127,7 +127,7 @@ class Underscore extends Type
   {
     // Get config file
     if (!static::$options) {
-      static::$options = include __DIR__.'/../../config/underscore.php';
+      static::$options = include __DIR__.'/../../config/config.php';
     }
 
     return Arrays::get(static::$options, $option);
