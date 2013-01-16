@@ -6,12 +6,10 @@
  */
 namespace Underscore\Traits;
 
-use \Config;
 use \BadMethodCallException;
 use \Underscore\Types\Arrays;
 use \Underscore\Dispatch;
 use \Underscore\Underscore;
-use \Underscore\Methods;
 
 abstract class Type
 {
