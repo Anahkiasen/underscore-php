@@ -116,4 +116,14 @@ class ObjectTest extends UnderscoreWrapper
 
     $this->assertEquals($matcher, $object);
   }
+
+  public function testCanSetAnGetValues()
+  {
+    $object  = $this->object;
+    $getset = Object::setAndGet($object, 'set', 'get');
+    $get    = Object::get($object, 'set');
+
+    $this->assertEquals($getset, 'get');
+    $this->assertEquals($get, $getset);
+  }
 }

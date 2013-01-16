@@ -2,7 +2,8 @@
 /**
  * Collection
  *
- * Abstract Collection type, applies to both objects and arrays
+ * Abstract Collection type
+ * Methods that appliy to both objects and arrays
  */
 namespace Underscore\Traits;
 
@@ -64,17 +65,38 @@ abstract class Collection extends Type
   }
 
   /**
-   * Set a value in an array using dot notation
+   * Set a value in a collection using dot notation
    *
    * @param mixed  $collection The collection
    * @param string $key        The key to set
    * @param mixed  $value      Its value
+   *
+   * @return mixed
    */
   public static function set($collection, $key, $value)
   {
     static::_set($collection, $key, $value);
 
     return $collection;
+  }
+
+  /**
+   * Get a value from a collection and set it if it wasn't
+   *
+   * @param mixed  $collection The collection
+   * @param string $key        The key
+   * @param mixed  $default    The default value to set if it isn't
+   *
+   * @return mixed
+   */
+  public static function setAndGet(&$collection, $key, $default = null)
+  {
+    // If the key doesn't exist, set it
+    if (!static::has($collection, $key)) {
+      $collection = static::set($collection, $key, $default);
+    }
+
+    return static::get($collection, $key);
   }
 
   /**

@@ -489,4 +489,14 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals($matcher, $array);
   }
+
+  public function testCanSetAnGetValues()
+  {
+    $array  = $this->array;
+    $getset = Arrays::setAndGet($array, 'set', 'get');
+    $get    = Arrays::get($array, 'set');
+
+    $this->assertEquals($getset, 'get');
+    $this->assertEquals($get, $getset);
+  }
 }
