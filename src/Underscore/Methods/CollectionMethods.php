@@ -125,6 +125,7 @@ abstract class CollectionMethods
 
     // Convert back to object if necessary
     if (is_object($collection)) $plucked = (object) $plucked;
+
     return $plucked;
   }
 

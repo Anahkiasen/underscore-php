@@ -49,6 +49,7 @@ class ArraysMethods extends CollectionMethods
   {
     $times = abs($times);
     if ($times == 0) return array();
+
     return array_fill(0, $times, $data);
   }
 
@@ -182,6 +183,7 @@ class ArraysMethods extends CollectionMethods
   public static function random($array, $take = null)
   {
     if (!$take) return $array[array_rand($array)];
+
     return Arrays::from($array)->shuffle()->first($take)->obtain();
   }
 
@@ -208,6 +210,7 @@ class ArraysMethods extends CollectionMethods
   public static function first($array, $take = null)
   {
     if (!$take) return array_shift($array);
+
     return array_splice($array, 0, $take, true);
   }
 
@@ -217,6 +220,7 @@ class ArraysMethods extends CollectionMethods
   public static function last($array, $take = null)
   {
     if (!$take) return array_pop($array);
+
     return ArraysMethods::rest($array, -$take);
   }
 
@@ -288,6 +292,7 @@ class ArraysMethods extends CollectionMethods
     $direction = (strtolower($direction) == 'desc') ? SORT_DESC : SORT_ASC;
     if ($direction == SORT_ASC) ksort($array);
     else krsort($array);
+
     return $array;
   }
 
@@ -310,6 +315,7 @@ class ArraysMethods extends CollectionMethods
   public static function filter($array, $closure = null)
   {
     if (!$closure) return ArraysMethods::clean($array);
+
     return array_filter($array, $closure);
   }
 
@@ -352,6 +358,7 @@ class ArraysMethods extends CollectionMethods
 
     // If the callable has arguments, pass them
     if ($arguments) return array_map($callable, $array, $arguments);
+
     return array_map($callable, $array);
   }
 

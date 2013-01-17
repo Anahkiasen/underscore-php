@@ -87,6 +87,7 @@ class Dispatch
     // Native function
     $function = $prefix.$method;
     if (function_exists($function)) return $function;
+
     return false;
   }
 
