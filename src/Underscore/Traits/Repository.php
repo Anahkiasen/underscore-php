@@ -105,11 +105,7 @@ abstract class Repository
   public static function __callStatic($method, $parameters)
   {
     // Get base class and methods class
-    $callingClass = get_called_class();
-    if (!StringMethods::find($callingClass, 'Underscore\Types')) {
-      if (isset($parameters[0])) $callingClass = Dispatch::toClass($parameters[0]);
-      else $callingClass = Method::findInClasses($callingClass, $method);
-    }
+    $callingClass = static::computeClassToCall(get_called_class(), $method, $parameters);
     $methodsClass = Method::getMethodsFromType($callingClass);
 
     // Defer to Methods class
@@ -117,7 +113,7 @@ abstract class Repository
       return Repository::callMethod($methodsClass, $method, $parameters);
     }
 
-    // Get alias from config
+    // Check for an alias
     $alias = Method::getAliasOf($method);
     if ($alias) {
       return Repository::callMethod($methodsClass, $alias, $parameters);
@@ -171,6 +167,32 @@ abstract class Repository
   ///////////////////////////// HELPERS //////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
+  /**
+   * Tries to find the right class to call
+   *
+   * @param string $callingClass The original class
+   * @param string $method       The method
+   * @param array  $arguments    The arguments
+   *
+   * @return string The correct class
+   */
+  private static function computeClassToCall($callingClass, $method, $arguments)
+  {
+    if (!StringMethods::find($callingClass, 'Underscore\Types')) {
+      if (isset($parameters[0])) $callingClass = Dispatch::toClass($parameters[0]);
+      else $callingClass = Method::findInClasses($callingClass, $method);
+    }
+
+    return $callingClass;
+  }
+
+  /**
+   * Simpler version of call_user_func_array (for performances)
+   *
+   * @param string $class      The class
+   * @param string $method     The method
+   * @param array  $parameters The arguments
+   */
   private static function callMethod($class, $method, $parameters)
   {
     switch (sizeof($parameters)) {
