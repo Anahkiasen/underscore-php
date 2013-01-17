@@ -104,6 +104,7 @@ abstract class CollectionMethods
     // Recursive call
     if (is_array($key)) {
       foreach($key as $k) static::_remove($collection, $k);
+
       return $collection;
     }
 
@@ -117,15 +118,13 @@ abstract class CollectionMethods
    */
   public static function pluck($collection, $property)
   {
-    $plucked = array_map(function($value) use ($property)
-    {
+    $plucked = array_map(function($value) use ($property) {
       return ArraysMethods::get($value, $property);
 
     }, (array) $collection);
 
     // Convert back to object if necessary
     if (is_object($collection)) $plucked = (object) $plucked;
-
     return $plucked;
   }
 
@@ -256,8 +255,7 @@ abstract class CollectionMethods
     $keys = explode('.', $key);
 
     // Crawl though the keys
-    while (count($keys) > 1)
-    {
+    while (count($keys) > 1) {
       $key = array_shift($keys);
 
       // If we're dealing with an object

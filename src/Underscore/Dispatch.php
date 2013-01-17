@@ -71,7 +71,7 @@ class Dispatch
     if ($native) return $native;
 
     // Transform class to php function prefix
-    switch($class) {
+    switch ($class) {
       case static::TYPES.'Arrays':
         $prefix = 'array_';
         break;
@@ -87,7 +87,6 @@ class Dispatch
     // Native function
     $function = $prefix.$method;
     if (function_exists($function)) return $function;
-
     return false;
   }
 

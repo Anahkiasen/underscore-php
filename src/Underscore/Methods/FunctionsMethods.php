@@ -66,7 +66,6 @@ class FunctionsMethods
       // Else, increment the count
       if ($numberOfTimesCalled >= $canBeCalledTimes) return false;
       else FunctionsMethods::$canBeCalledTimes[$signature]++;
-
       return call_user_func_array($function, $arguments);
     };
   }
@@ -95,6 +94,7 @@ class FunctionsMethods
       // Prevent calling before a certain number
       if ($called < $times) {
         FunctionsMethods::$canBeCalledTimes[$signature] += 1;
+
         return false;
       }
 

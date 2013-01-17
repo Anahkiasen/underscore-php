@@ -159,7 +159,6 @@ abstract class Repository
     // If the method is a breaker, return just the result
     if (Method::isBreaker($method)) return $result;
     else $this->subject = $result;
-
     return $this;
   }
 
@@ -171,6 +170,7 @@ abstract class Repository
   {
     switch (sizeof($parameters)) {
       case 0;
+
         return $class::$method();
       case 1:
         return $class::$method($parameters[0]);

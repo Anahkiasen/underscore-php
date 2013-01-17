@@ -146,7 +146,6 @@ class Parse
   {
     // Avoid Array to String conversion exception
     if (is_array($data)) return static::toJSON($data);
-
     return (string) $data;
   }
 
@@ -157,7 +156,6 @@ class Parse
   {
     // Returns size of array instead of 1
     if (is_array($data)) return sizeof($data);
-
     return (int) $data;
   }
 
