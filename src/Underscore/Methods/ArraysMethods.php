@@ -273,12 +273,9 @@ class ArraysMethods extends CollectionMethods
    */
   public static function replaceValue($array, $replace, $with)
   {
-    return array_replace($array,
-      array_fill_keys(
-        array_keys($array, $replace),
-        $with
-      )
-    );
+    return ArraysMethods::each($array, function($value) use ($replace, $with) {
+      return str_replace($replace, $with, $value);
+    });
   }
 
   /**
