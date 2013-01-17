@@ -12,13 +12,13 @@ class UnderscoreTest extends UnderscoreWrapper
     $under1 = new Underscore($this->array);
     $under2 = Underscore::chain($this->array);
 
-    $this->assertInstanceOf('Underscore\Types\Arrays', $under1);
+    $this->assertInstanceOf('Underscore\Underscore', $under1);
     $this->assertInstanceOf('Underscore\Types\Arrays', $under2);
   }
 
   public function testCanRedirectToCorrectClass()
   {
-    $under = Underscore::search(array(1, 2, 3), 3);
+    $under = Underscore::contains(array(1, 2, 3), 3);
 
     $this->assertEquals(2, $under);
   }

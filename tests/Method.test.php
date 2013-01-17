@@ -1,4 +1,5 @@
 <?php
+use Underscore\Method;
 use Underscore\Types\Arrays;
 use Underscore\Types\String;
 use Underscore\Underscore;
@@ -24,5 +25,33 @@ class MethodTest extends UnderscoreWrapper
 
     $string = String::from('   foo  ')->trim();
     $this->assertEquals('foo', $string->obtain());
+  }
+
+  public function testCantChainCertainMethods()
+  {
+    $method = Method::isUnchainable('\Underscore\Types\Arrays', 'range');
+
+    $this->assertTrue($method);
+  }
+
+  public function testCanGetMethodsFromType()
+  {
+    $method = Method::getMethodsFromType('\Underscore\Types\Arrays');
+
+    $this->assertEquals('\Underscore\Methods\ArraysMethods', $method);
+  }
+
+  public function testCanGetAliasesOfFunctions()
+  {
+    $method = Method::getAliasOf('select');
+
+    $this->assertEquals('filter', $method);
+  }
+
+  public function testCanFindMethodsInClasses()
+  {
+    $method = Method::findInClasses('range');
+
+    $this->assertEquals('\Underscore\Types\\Arrays', $method);
   }
 }

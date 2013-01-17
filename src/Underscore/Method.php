@@ -98,4 +98,20 @@ class Method
 
     return false;
   }
+
+  /**
+   * Find a method in the type classes
+   *
+   * @param string $method The method
+   * @return string The class name
+   */
+  public static function findInClasses($method)
+  {
+    $classes = array('Arrays', 'Collection', 'Functions', 'Number', 'Object', 'String');
+    foreach ($classes as $class) {
+      if (method_exists('\Underscore\Methods\\'.$class.'Methods', $method)) {
+        return '\Underscore\Types\\'.$class;
+      }
+    }
+  }
 }

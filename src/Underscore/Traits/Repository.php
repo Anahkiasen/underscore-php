@@ -103,6 +103,7 @@ abstract class Repository
   public static function __callStatic($method, $parameters)
   {
     $callingClass = get_called_class();
+    if ($callingClass == 'Underscore\Underscore') $callingClass = Method::findInClasses($method);
     $methodsClass = Method::getMethodsFromType($callingClass);
 
     // Get alias from config
@@ -111,12 +112,12 @@ abstract class Repository
 
     // Defer to Methods class
     if (method_exists($methodsClass, $method)) {
-      return call_user_func_array(array($methodsClass, $method), $parameters);
+      return Repository::callMethod($methodsClass, $method, $parameters);
     }
 
     // Check for parsers
     if (method_exists('\Underscore\Parse', $method)) {
-      return call_user_func_array('\Underscore\Parse::'.$method, $parameters);
+      return Repository::callMethod('\Underscore\Parse', $method, $parameters);
     }
 
     // Defered methods
@@ -161,6 +162,24 @@ abstract class Repository
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// HELPERS //////////////////////////////
   ////////////////////////////////////////////////////////////////////
+
+  private static function callMethod($class, $method, $parameters)
+  {
+    switch (sizeof($parameters)) {
+      case 0;
+        return $class::$method();
+      case 1:
+        return $class::$method($parameters[0]);
+      case 2:
+        return $class::$method($parameters[0], $parameters[1]);
+      case 3:
+        return $class::$method($parameters[0], $parameters[1], $parameters[2]);
+      case 4:
+        return $class::$method($parameters[0], $parameters[1], $parameters[2], $parameters[3]);
+      case 5:
+        return $class::$method($parameters[0], $parameters[1], $parameters[2], $parameters[3], $parameters[4]);
+    }
+  }
 
   /**
    * Get a default value for a new repository
