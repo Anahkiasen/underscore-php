@@ -63,4 +63,18 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals(6, $sum);
     $this->assertEquals(array(1, 2, 3), $object->obtain());
   }
+
+  public function testClassesCanExtendCoreTypes()
+  {
+    $class = new DummyClass();
+    $class->set('foo', 'bar');
+
+    $this->assertEquals('{"foo":"bar"}', $class->toJSON());
+  }
 }
+
+//////////////////////////////////////////////////////////////////////
+///////////////////////////// DUMMY CLASSES //////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+class DummyClass extends Arrays {}
