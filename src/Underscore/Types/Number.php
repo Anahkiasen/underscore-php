@@ -1,4 +1,9 @@
 <?php
+/**
+ * Number
+ *
+ * Number repository
+ */
 namespace Underscore\Types;
 
 use \Underscore\Traits\Repository;

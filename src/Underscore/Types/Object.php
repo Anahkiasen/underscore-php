@@ -1,4 +1,9 @@
 <?php
+/**
+ * Object
+ *
+ * Object repository
+ */
 namespace Underscore\Types;
 
 use \stdClass;

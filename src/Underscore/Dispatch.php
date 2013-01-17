@@ -1,4 +1,9 @@
 <?php
+/**
+ * Dispatch
+ *
+ * Dispatches methods and classes to various places
+ */
 namespace Underscore;
 
 use \InvalidArgumentException;

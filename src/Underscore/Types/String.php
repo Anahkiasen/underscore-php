@@ -2,7 +2,7 @@
 /**
  * String
  *
- * Helpers and functions for strings
+ * String repository
  */
 namespace Underscore\Types;
 

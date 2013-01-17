@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Parse
  *
  * Parse from various formats to various formats

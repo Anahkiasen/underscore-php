@@ -2,11 +2,10 @@
 /**
  * Arrays
  *
- * Helpers and functions for arrays
+ * Arrays repository
  */
 namespace Underscore\Types;
 
-use \Closure;
 use \Underscore\Traits\Repository;
 
 class Arrays extends Repository

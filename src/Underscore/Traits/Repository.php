@@ -1,8 +1,8 @@
 <?php
 /**
- * Methods
+ * Repository
  *
- * Base abstract class for helpers
+ * Base abstract class for repositories
  */
 namespace Underscore\Traits;
 
