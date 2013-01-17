@@ -263,6 +263,25 @@ class ArraysMethods extends CollectionMethods
   ////////////////////////////////////////////////////////////////////
 
   /**
+   * Replace a value in an array
+   *
+   * @param array  $array   The array
+   * @param string $replace The string to replace
+   * @param string $with    What to replace it with
+   *
+   * @return array
+   */
+  public static function replaceValue($array, $replace, $with)
+  {
+    return array_replace($array,
+      array_fill_keys(
+        array_keys($array, $replace),
+        $with
+      )
+    );
+  }
+
+  /**
    * Iterate over an array and modify the array's value
    */
   public static function each($array, Closure $closure)
