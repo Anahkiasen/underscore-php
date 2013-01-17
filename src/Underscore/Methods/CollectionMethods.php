@@ -1,18 +1,15 @@
 <?php
 /**
- * Collection
+ * CollectionMethods
  *
  * Abstract Collection type
- * Methods that appliy to both objects and arrays
+ * Methods that apply to both objects and arrays
  */
-namespace Underscore\Traits;
+namespace Underscore\Methods;
 
 use \Closure;
-use \Underscore\Types\Arrays;
-use \Underscore\Methods;
-use \Underscore\Traits\Type;
 
-abstract class Collection extends Type
+abstract class CollectionMethods
 {
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ANALYZE //////////////////////////////
@@ -24,7 +21,7 @@ abstract class Collection extends Type
   public static function has($array, $key)
   {
     // Generate unique string to use as marker
-    $unfound = String::random(5);
+    $unfound = StringMethods::random(5);
 
     return static::get($array, $key, $unfound) !== $unfound;
   }
@@ -122,7 +119,7 @@ abstract class Collection extends Type
   {
     $plucked = array_map(function($value) use ($property)
     {
-      return Arrays::get($value, $property);
+      return ArraysMethods::get($value, $property);
 
     }, (array) $collection);
 
@@ -180,8 +177,8 @@ abstract class Collection extends Type
 
     // Transform all values into their results
     if ($sorter) {
-      $results = Arrays::each($collection, function($value) use ($sorter) {
-        return is_callable($sorter) ? $sorter($value) : Arrays::get($value, $sorter);
+      $results = ArraysMethods::each($collection, function($value) use ($sorter) {
+        return is_callable($sorter) ? $sorter($value) : ArraysMethods::get($value, $sorter);
       });
     } else $results = $collection;
 
@@ -200,7 +197,7 @@ abstract class Collection extends Type
 
     // Iterate over values, group by property/results from closure
     foreach ($collection as $key => $value) {
-      $key = is_callable($grouper) ? $grouper($value, $key) : Arrays::get($value, $grouper);
+      $key = is_callable($grouper) ? $grouper($value, $key) : ArraysMethods::get($value, $grouper);
       if (!isset($result[$key])) $result[$key] = array();
 
       // Add to results

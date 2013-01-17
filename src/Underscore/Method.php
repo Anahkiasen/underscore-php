@@ -41,6 +41,11 @@ class Method
   ////////////////////////////// HELPERS /////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
+  public static function getMethodsFromType($array)
+  {
+    return str_replace('Types', 'Methods', $array.'Methods');
+  }
+
   /**
    * Whether a method should not be chained
    *
@@ -63,6 +68,17 @@ class Method
   public static function isBreaker($method)
   {
     return in_array($method, static::$breakers);
+  }
+
+  /**
+   * Get a method name by its alias
+   *
+   * @param  string $method The method
+   * @return string The real method name
+   */
+  public static function getAliasOf($method)
+  {
+    return Underscore::option('aliases.'.$method);
   }
 
   /**

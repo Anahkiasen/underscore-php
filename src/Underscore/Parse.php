@@ -7,7 +7,7 @@
  */
 namespace Underscore;
 
-use \Underscore\Types\Arrays;
+use \Underscore\Methods\ArraysMethods;
 
 class Parse
 {
@@ -104,7 +104,7 @@ class Parse
 
     // Fetch headers if requested
     if ($exportHeaders) {
-      $headers = array_keys(Arrays::first($data));
+      $headers = array_keys(ArraysMethods::first($data));
       $csv[] = implode($delimiter, $headers);
     }
 

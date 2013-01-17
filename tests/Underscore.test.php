@@ -12,8 +12,8 @@ class UnderscoreTest extends UnderscoreWrapper
     $under1 = new Underscore($this->array);
     $under2 = Underscore::chain($this->array);
 
-    $this->assertInstanceOf('Underscore\Underscore', $under1);
-    $this->assertInstanceOf('Underscore\Underscore', $under2);
+    $this->assertInstanceOf('Underscore\Types\Arrays', $under1);
+    $this->assertInstanceOf('Underscore\Types\Arrays', $under2);
   }
 
   public function testCanRedirectToCorrectClass()
@@ -23,15 +23,6 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals(2, $under);
   }
 
-  public function testCanWrapWithSubclasses()
-  {
-    $under = Arrays::from($this->array);
-    $chain = $under->get('foo');
-
-    $this->assertInstanceOf('Underscore\Underscore', $under);
-    $this->assertEquals('bar', $chain);
-  }
-
   public function testCanWrapWithShortcutFunction()
   {
     // Skip if base function not present
@@ -39,7 +30,7 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $under = underscore($this->array);
 
-    $this->assertInstanceOf('Underscore\Underscore', $under);
+    $this->assertInstanceOf('Underscore\Types\Arrays', $under);
   }
 
   public function testCanHaveAliasesForMethods()

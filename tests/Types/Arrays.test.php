@@ -94,7 +94,7 @@ class ArraysTest extends UnderscoreWrapper
 
   public function testCanSeeIfArrayContainsValue()
   {
-    $true = Arrays::contains(array(1, 2, 3), 2);
+    $true  = Arrays::contains(array(1, 2, 3), 2);
     $false = Arrays::contains(array(1, 2, 3), 5);
 
     $this->assertTrue($true);
