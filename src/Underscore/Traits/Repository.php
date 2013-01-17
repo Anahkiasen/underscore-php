@@ -107,17 +107,20 @@ abstract class Repository
     // Get base class and methods class
     $callingClass = get_called_class();
     if (!StringMethods::find($callingClass, 'Underscore\Types')) {
-      $callingClass = Method::findInClasses($callingClass, $method);
+      if (isset($parameters[0])) $callingClass = Dispatch::toClass($parameters[0]);
+      else $callingClass = Method::findInClasses($callingClass, $method);
     }
     $methodsClass = Method::getMethodsFromType($callingClass);
-
-    // Get alias from config
-    $alias = Method::getAliasOf($method);
-    if ($alias) $method = $alias;
 
     // Defer to Methods class
     if (method_exists($methodsClass, $method)) {
       return Repository::callMethod($methodsClass, $method, $parameters);
+    }
+
+    // Get alias from config
+    $alias = Method::getAliasOf($method);
+    if ($alias) {
+      return Repository::callMethod($methodsClass, $alias, $parameters);
     }
 
     // Check for parsers
