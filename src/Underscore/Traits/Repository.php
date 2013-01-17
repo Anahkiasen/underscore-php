@@ -91,7 +91,8 @@ abstract class Repository
    */
   public static function extend($method, $closure)
   {
-    static::$macros[$method] = $closure;
+    $class = get_called_class();
+    static::$macros[$class][$method] = $closure;
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -106,7 +107,7 @@ abstract class Repository
     // Get base class and methods class
     $callingClass = get_called_class();
     if (!StringMethods::find($callingClass, 'Underscore\Types')) {
-      $callingClass = Method::findInClasses($method);
+      $callingClass = Method::findInClasses($callingClass, $method);
     }
     $methodsClass = Method::getMethodsFromType($callingClass);
 
@@ -131,7 +132,7 @@ abstract class Repository
     }
 
     // Look in the macros
-    $macro = ArraysMethods::get(static::$macros, $method);
+    $macro = ArraysMethods::get(static::$macros, $callingClass.'.'.$method);
     if ($macro) {
       return call_user_func_array($macro, $parameters);
     }

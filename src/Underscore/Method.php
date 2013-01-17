@@ -111,7 +111,7 @@ class Method
    * @param string $method The method
    * @return string The class name
    */
-  public static function findInClasses($method)
+  public static function findInClasses($originalClass, $method)
   {
     $classes = array('Arrays', 'Collection', 'Functions', 'Number', 'Object', 'String');
     foreach ($classes as $class) {
@@ -119,5 +119,7 @@ class Method
         return '\Underscore\Types\\'.$class;
       }
     }
+
+    return $originalClass;
   }
 }

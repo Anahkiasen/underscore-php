@@ -50,7 +50,7 @@ class MethodTest extends UnderscoreWrapper
 
   public function testCanFindMethodsInClasses()
   {
-    $method = Method::findInClasses('range');
+    $method = Method::findInClasses('\Underscore\Underscore', 'range');
 
     $this->assertEquals('\Underscore\Types\\Arrays', $method);
   }

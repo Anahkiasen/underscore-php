@@ -5,3 +5,5 @@ Underscore.php
 -----
 
 - Intial release of Underscore.php
+- Type classes are now extendable
+- Macros can't conflict between types

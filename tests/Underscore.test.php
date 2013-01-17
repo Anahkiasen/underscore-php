@@ -71,6 +71,15 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $this->assertEquals('{"foo":"bar"}', $class->toJSON());
   }
+
+  public function testMacrosCantConflictBetweenTypes()
+  {
+    String::extend('foobar', function() { return 'string'; });
+    Arrays::extend('foobar', function() { return 'arrays'; });
+
+    $this->assertEquals('string', String::foobar());
+    $this->assertEquals('arrays', Arrays::foobar());
+  }
 }
 
 //////////////////////////////////////////////////////////////////////
