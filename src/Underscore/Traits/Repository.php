@@ -7,6 +7,7 @@
 namespace Underscore\Traits;
 
 use \Underscore\Methods\ArraysMethods;
+use \Underscore\Methods\StringMethods;
 use \BadMethodCallException;
 use \Underscore\Types\Arrays;
 use \Underscore\Dispatch;
@@ -38,7 +39,7 @@ abstract class Repository
    */
   public function __construct($subject = null)
   {
-    $this->subject = $subject ?: $this->getDefault();
+    $this->subject  = $subject ?: $this->getDefault();
 
     return $this;
   }
@@ -102,8 +103,11 @@ abstract class Repository
    */
   public static function __callStatic($method, $parameters)
   {
+    // Get base class and methods class
     $callingClass = get_called_class();
-    if ($callingClass == 'Underscore\Underscore') $callingClass = Method::findInClasses($method);
+    if (!StringMethods::find($callingClass, 'Underscore\Types')) {
+      $callingClass = Method::findInClasses($method);
+    }
     $methodsClass = Method::getMethodsFromType($callingClass);
 
     // Get alias from config
