@@ -23,6 +23,13 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals(2, $under);
   }
 
+  public function testCanSwitchTypesMidCourse()
+  {
+    $stringToArray = String::from('FOO.BAR')->lower()->explode('.')->last()->title();
+
+    $this->assertEquals('Bar', $stringToArray->obtain());
+  }
+
   public function testCanWrapWithShortcutFunction()
   {
     // Skip if base function not present

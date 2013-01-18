@@ -166,7 +166,7 @@ abstract class Repository
 
     // Prepend subject to arguments and call the method
     array_unshift($arguments, $this->subject);
-    $result = static::__callStatic($method, $arguments);
+    $result = $class::__callStatic($method, $arguments);
 
     // If the method is a breaker, return just the result
     if (Method::isBreaker($method)) return $result;

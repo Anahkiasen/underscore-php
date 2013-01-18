@@ -1,6 +1,11 @@
 Underscore.php
 =====
 
+1.0.1
+-----
+
+- Fix bug with type routing
+
 1.0.0
 -----
 
