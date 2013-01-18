@@ -77,6 +77,18 @@ abstract class Repository
   }
 
   /**
+   * Replace the Subject while maintaining chain
+   *
+   * @param mixed $value
+   */
+  public function setSubject($value)
+  {
+    $this->subject = ArraysMethods::set($this->subject, $key, $value);
+
+    return $this;
+  }
+
+  /**
    * Get the subject from the object
    *
    * @return mixed

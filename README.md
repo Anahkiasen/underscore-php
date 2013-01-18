@@ -6,12 +6,12 @@ It's doesn't aim to blatantly port its methods, but more port its philosophy.
 
 It's a full-on PHP manipulation toolbet sugar-coated by an elegant syntax directly inspired by the [Laravel framework][]. Out through the window went the infamous `__()`, replaced by methods and class names that are meant to be read like sentences _à la_ Rails : `Arrays::from($article)->sortBy('author')->toJSON()`.
 
-It features a good hundred of methods for all kinds of types : strings, objects, arrays, integers, and provides a parsing class that help switching from one type to the other mid-course. Oh also it's growing all the time.
-The cherry on top ? It wraps nicely around native PHP functions meaning `String::replace` is actually a dynamic call to `str_replace` but with the benefit of allowed chaining and a **finally** consistant argument order (all functions in _Underscore_ put the subject as the first argument).
+It features a good hundred of methods for all kinds of types : strings, objects, arrays, functions, integers, etc., and provides a parsing class that help switching from one type to the other mid-course. Oh also it's growing all the time.
+The cherry on top ? It wraps nicely around native PHP functions meaning `String::replace` is actually a dynamic call to `str_replace` but with the benefit of allowed chaining and a **finally** consistant argument order (**all** functions in _Underscore_ put the subject as the first argument, NO MATTER WHAT).
 
 It works both as a stand-alone via *Composer* or as a bundle for the Laravel framework. So you know, you don't really have any excuse.
 
-### Install Underscore
+## Install Underscore
 
 To install Underscore.php you can either add it via Composer :
 
@@ -25,7 +25,7 @@ And then adding the following to your bundles files :
 
     'underscore' => array('auto' => true),
 
-### Using Underscore
+## Using Underscore
 
 It can be used both as a static class, and an Object-Oriented class, so both the following are valid :
 
@@ -33,33 +33,29 @@ It can be used both as a static class, and an Object-Oriented class, so both the
 $array = array(1, 2, 3);
 
 // One-off calls to helpers
-Underscore::each($array, function($value) { return $value * 2; })
+Arrays::each($array, function($value) { return $value * $value; }) // Square root the array
+Function::once($myFunction) // Only allow the function to be called once
+Number::paddingLeft(5, 5) // Returns '00005'
+Object::methods($myObject) // Return the object's methods
+String::length('foobar') // Returns 6
 
-// Or chain calls
-Underscore::chain($array)->filter(...)->sort(...)->get(2)
+// Or chain calls with the 'from' method
+Arrays::from($array)->filter(...)->sort(...)->get(2)
+
+// Which does this in the background
+$array = new Arrays($array);
+$array->filter(...)->sort(...)->get(2)
 ```
 
-You can also (and it's the recommended syntax) use Underscore's core classes and call them at any time, this mostly provides syntaxic elegance :
-
-```php
-// One-off calls
-Arrays::first()
-Object::methods()
-String::escape()
-
-// Chained calls
-Arrays::create()->set('foo', 'bar')
-Arrays::from($array)->sort()->toJSON()
-```
+For those nostalgic of ye old `__()` a generic `Underscore` class is provided that is able to go and fetch methods in all of Underscore.php's methods. For this it looks into the methods it knows and analyzes the subject of the method (meaning if you do `Underscore::contains('foobar', 'foo')` it knows you're not looking for `Arrays::contains`).
 
 The core concept is this : static calls return values from their methods, while chained calls update the value of the object they're working on. Which means that an Underscore object don't return its value until you call the `->obtain` method on it — until then you can chain as long as you want, it will remain an object.
 The exception are certains properties that are considered _breakers_ and that will return the object's value. An example is `Arrays->get`.
 
-Note that since all data passed to Underscore is transformed into an object, you can do this sort of things, plus the power of chained methods, it all makes the manipulation of arrays and objects a breeze.
+Note that since all data passed to Underscore is transformed into an object, you can do this sort of things, plus the power of chained methods, it all makes the manipulation of data a breeze.
 
 ```php
-$array = array('foo' => 'bar');
-$array = Arrays::from($array);
+$array = new Arrays(['foo' => 'bar']);
 
 echo $array->foo // Returns 'bar'
 
@@ -67,9 +63,10 @@ $array->bis = 'ter'
 $array->obtain() // Returns array('foo' => 'bar', 'bis' => 'ter')
 ```
 
-## Customizing Underscore
+### Customizing Underscore
 
-Underscore.php provides the ability to extend any class with custom functions so go crazy. Don't forget that if you think you have a function anybody could enjoy, do a pull request, let everyone enjoy it !
+Underscore.php provides the ability to extend any class with custom functions so go crazy.
+Don't forget that if you think you have a function anybody could enjoy, do a pull request, let everyone enjoy it !
 
 ```php
 String::extend('summary', function($string) {
@@ -79,26 +76,52 @@ String::extend('summary', function($string) {
 String::from($article->content)->summary()->title()
 ```
 
-It comes with a config file that allows you to alias the main class to whatever you want, the default being `Underscore`.
-You can also give custom aliases to all of Underscore's methods, in said config file. Just add entries to the `aliases` option, the key being the alias, and the value the method to point to.
+You can also give custom aliases to all of Underscore's methods, in the provided config file. Just add entries to the `aliases` option, the key being the alias, and the value being the method to point to.
+
+### Extendability
+
+Underscore.php's classes are extendable as well in an OOP sense. You can update an Underscore repository with the `setSubject` method (or directly via `$this->subject =` granted you return `$this` at the end) :
+
+```
+class Users extends Arrays
+{
+  public function getUsers()
+  {
+    // Fetch data from anywhere
+
+    return $this->setSubject($myArrayOfUsers);
+  }
+}
+
+$users = new Users;
+$users->getUsers()->sort('name')->clean()->toCSV()
+```
+
+### Call to native methods
+
+Underscore natively extends PHP, so it can automatically reference original PHP functions when the context matches. Now, PHP by itself doesn't have a lot of conventions so `Arrays::` look for `array_` functions, `String::` look for `str_` plus a handful of other hardcoded redirect, but that's it.
+The advantage is obviously that it allows chaining on a lot of otherwise one-off functions or that only work by reference.
+
+```php
+Arrays::diff($array, $array2, $array3) // Calls `array_diff`
+Arrays::from($array)->diff($array2, $array3)->merge($array4) // Calls `array_diff` then `array_merge` on the result
+```
 
 ## Documentation
 
 You can find a detailed summary of all classes and methods in the [repo's wiki][] or the [official page][].
-
-Note that as Underscore natively extends PHP, it can automatically reference original PHP functions when the context matches. Per example the following will go call the original `array_diff` and `array_merge` functions.
-The advantage is obviously that it allows chaining on a lot of otherwise one-off functions or that only work by reference.
-
-```php
-Arrays::diff($array, $array2, $array3)
-Arrays::from($array)->diff($array2, $array3)->merge($array4)
-```
+The changelog is available in the [CHANGELOG][] file.
 
 ## About Underscore.php
 
 There is technically another port of Underscore.js to PHP available [on Github][] — I first discovered it when I saw it was for a time used on Laravel 4. I quickly grew disapoint of what a mess the code was, the lack of updates, and the 1:1 mentality that went behind it.
+
 This revamped Underscore.php doesn't aim to be a direct port of Underscore.js. It sometimes omits methods that aren't relevant to PHP developers, rename others to match terms that are more common to them, provides a richer syntax, adds a whole lot of methods, and leaves room for future ones to be added all the time — whereas the previous port quickly recoded all JS methods to PHP and left it at that.
 
+If you come from Javascript and are confused by some of the changes, don't put all the blame on me for trying to mess everything up. A basic example is the `map` function : in PHP it has a completely different sense because there exists an `array_map` function that basically does what `__::invoke` does in JS. So `map` is now `Arrays::each`.
+Always keep in mind this was made for _PHP_ developpers first, and differences **do** exist between the two to accomdate the common terms in PHP.
+
+[CHANGELOG]: https://github.com/Anahkiasen/underscore-php/blob/master/CHANGELOG.md
 [official page]: http://anahkiasen.github.com/underscore-php/
 [Laravel framework]: http://laravel.com/
 [Underscore.js]: https://github.com/documentcloud/underscore
