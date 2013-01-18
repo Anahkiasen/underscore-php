@@ -83,7 +83,7 @@ abstract class Repository
    */
   public function setSubject($value)
   {
-    $this->subject = ArraysMethods::set($this->subject, $key, $value);
+    $this->subject = $value;
 
     return $this;
   }

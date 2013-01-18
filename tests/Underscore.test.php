@@ -72,6 +72,14 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals('{"foo":"bar"}', $class->toJSON());
   }
 
+  public function testClassesCanUpdateSubject()
+  {
+    $class = new DummyClass();
+    $class = $class->getUsers()->toJSON();
+
+    $this->assertEquals('[{"foo":"bar"},{"bar":"foo"}]', $class);
+  }
+
   public function testMacrosCantConflictBetweenTypes()
   {
     String::extend('foobar', function() { return 'string'; });
@@ -86,4 +94,15 @@ class UnderscoreTest extends UnderscoreWrapper
 ///////////////////////////// DUMMY CLASSES //////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-class DummyClass extends Arrays {}
+class DummyClass extends Arrays
+{
+  public function getUsers()
+  {
+    $users = array(
+      array('foo' => 'bar'),
+      array('bar' => 'foo'),
+    );
+
+    return $this->setSubject($users);
+  }
+}
