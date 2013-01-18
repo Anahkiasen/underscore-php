@@ -69,6 +69,7 @@ class UnderscoreTest extends UnderscoreWrapper
     $class = new DummyClass();
     $class->set('foo', 'bar');
 
+    $this->assertEquals('foobar', DummyDefault::create()->obtain());
     $this->assertEquals('{"foo":"bar"}', $class->toJSON());
   }
 
@@ -76,8 +77,10 @@ class UnderscoreTest extends UnderscoreWrapper
   {
     $class = new DummyClass();
     $class = $class->getUsers()->toJSON();
+    $class2 = DummyClass::create()->getUsers()->toJSON();
 
     $this->assertEquals('[{"foo":"bar"},{"bar":"foo"}]', $class);
+    $this->assertEquals($class, $class2);
   }
 
   public function testClassesCanOverwriteUnderscore()
@@ -101,6 +104,14 @@ class UnderscoreTest extends UnderscoreWrapper
 //////////////////////////////////////////////////////////////////////
 ///////////////////////////// DUMMY CLASSES //////////////////////////
 //////////////////////////////////////////////////////////////////////
+
+class DummyDefault extends String
+{
+  public function getDefault()
+  {
+    return 'foobar';
+  }
+}
 
 class DummyClass extends Arrays
 {

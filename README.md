@@ -86,11 +86,17 @@ You can also give custom aliases to all of Underscore's methods, in the provided
 
 ### Extendability
 
-Underscore.php's classes are extendable as well in an OOP sense. You can update an Underscore repository with the `setSubject` method (or directly via `$this->subject =` granted you return `$this` at the end) :
+Underscore.php's classes are extendable as well in an OOP sense. You can update an Underscore repository with the `setSubject` method (or directly via `$this->subject =` granted you return `$this` at the end).
+When creating an Underscore repository, by default it's subject is an empty string, you can change that by returning whatever you want in the `getDefault` method.
 
 ```
 class Users extends Arrays
 {
+  public function getDefault()
+  {
+    return 'foobar';
+  }
+
   public function getUsers()
   {
     // Fetch data from anywhere
@@ -99,11 +105,16 @@ class Users extends Arrays
   }
 }
 
-$users = new Users;
+$users = new Users; // Users holds 'foobar'
 $users->getUsers()->sort('name')->clean()->toCSV()
+
+// Same as above
+Users::create()->getUsers()->sort('name')->clean()->toCSV()
 ```
 
 It is important to not panic about the mass of methods present in Underscore and the dangers extending one of the Types would cause : the methods aren't contained in the classes themselves but in methods repositories. So if you extend the `String` class and want to have a `length` method on your class that has a completely different meaning than `String::length`, it won't cause any signature conflict or anything.
+
+Also note that Underscore method router is dynamic so if your subject is an array and mid course becomes a string, Underscore will always find the right class to call, no matter what you extended in the first place. Try to keep track of your subject though : if your subject becomes a string, calling per example `->map` will return an error.
 
 ### Call to native methods
 
