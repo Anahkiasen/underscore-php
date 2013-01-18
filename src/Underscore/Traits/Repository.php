@@ -39,7 +39,7 @@ abstract class Repository
    */
   public function __construct($subject = null)
   {
-    $this->subject  = $subject ?: $this->getDefault();
+    $this->subject = $subject ?: $this->getDefault();
 
     return $this;
   }

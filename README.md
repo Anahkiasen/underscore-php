@@ -103,6 +103,8 @@ $users = new Users;
 $users->getUsers()->sort('name')->clean()->toCSV()
 ```
 
+It is important to not panic about the mass of methods present in Underscore and the dangers extending one of the Types would cause : the methods aren't contained in the classes themselves but in methods repositories. So if you extend the `String` class and want to have a `length` method on your class that has a completely different meaning than `String::length`, it won't cause any signature conflict or anything.
+
 ### Call to native methods
 
 Underscore natively extends PHP, so it can automatically reference original PHP functions when the context matches. Now, PHP by itself doesn't have a lot of conventions so `Arrays::` look for `array_` functions, `String::` look for `str_` plus a handful of other hardcoded redirect, but that's it.
