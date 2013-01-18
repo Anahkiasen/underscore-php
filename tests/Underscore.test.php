@@ -80,6 +80,14 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals('[{"foo":"bar"},{"bar":"foo"}]', $class);
   }
 
+  public function testClassesCanOverwriteUnderscore()
+  {
+    $class = new DummyClass();
+    $class = $class->map(3)->paddingLeft(3)->toJSON();
+
+    $this->assertEquals('"009"', $class);
+  }
+
   public function testMacrosCantConflictBetweenTypes()
   {
     String::extend('foobar', function() { return 'string'; });
@@ -104,5 +112,12 @@ class DummyClass extends Arrays
     );
 
     return $this->setSubject($users);
+  }
+
+  public function map($whatever)
+  {
+    $this->subject = $whatever * 3;
+
+    return $this;
   }
 }

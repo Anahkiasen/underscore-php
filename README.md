@@ -25,6 +25,12 @@ And then adding the following to your bundles files :
 
     'underscore' => array('auto' => true),
 
+Note that Underscore's type classes (Arrays/String/etc) are by default namespaced in the `Types` folder, so to use Arrays, you would do the following :
+
+```php
+use Underscore\Types\Arrays;
+```
+
 ## Using Underscore
 
 It can be used both as a static class, and an Object-Oriented class, so both the following are valid :

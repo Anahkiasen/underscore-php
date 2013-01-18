@@ -26,7 +26,7 @@ abstract class Repository
    * Custom functions
    * @var array
    */
-  public static $macros = array();
+  protected static $macros = array();
 
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// PUBLIC METHODS /////////////////////////
