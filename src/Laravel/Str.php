@@ -1,4 +1,7 @@
-<?php namespace Laravel;
+<?php
+namespace Laravel;
+
+use \Illuminate\Support\Pluralizer;
 
 if (!defined('MB_STRING'))
 {
@@ -163,28 +166,21 @@ class Str {
   );
 
   /**
-   * The pluralizer instance.
+   * Cache application encoding locally to save expensive calls to Config::get().
    *
-   * @var Pluralizer
+   * @var string
    */
-  public static $pluralizer;
+  public static $encoding = null;
 
-    /**
-     * Cache application encoding locally to save expensive calls to Config::get().
-     *
-     * @var string
-     */
-    public static $encoding = null;
-
-    /**
-     * Get the appliction.encoding without needing to request it from Config::get() each time.
-     *
-     * @return string
-     */
-    protected static function encoding()
-    {
-        return static::$encoding ?: static::$encoding = 'UTF-8';
-    }
+  /**
+   * Get the appliction.encoding without needing to request it from Config::get() each time.
+   *
+   * @return string
+   */
+  protected static function encoding()
+  {
+      return static::$encoding ?: static::$encoding = 'UTF-8';
+  }
 
   /**
    * Get the length of a string.
@@ -358,7 +354,7 @@ class Str {
    */
   public static function singular($value)
   {
-    return static::pluralizer()->singular($value);
+    return Pluralizer::singular($value);
   }
 
   /**
@@ -378,7 +374,7 @@ class Str {
    */
   public static function plural($value, $count = 2)
   {
-    return static::pluralizer()->plural($value, $count);
+    return Pluralizer::plural($value, $count);
   }
 
   /**
