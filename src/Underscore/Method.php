@@ -13,7 +13,7 @@ class Method
    * @var array
    */
   public static $defer = array(
-    'trim', 'count', 'round', 'ceil', 'floor',
+    'trim', 'count', 'round', 'ceil', 'floor', 'substr',
     'str_pad' => 'pad',
   );
 
