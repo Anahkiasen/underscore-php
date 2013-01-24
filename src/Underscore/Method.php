@@ -18,6 +18,15 @@ class Method
   );
 
   /**
+   * A list of methods where the subject
+   * isn't to be added to the arguments
+   * @var array
+   */
+  private static $subjectless = array(
+    'fill',
+  );
+
+  /**
    * A list of methods that are allowed
    * to break the chain
    * @var array
@@ -50,6 +59,18 @@ class Method
   public static function getMethodsFromType($array)
   {
     return str_replace('Types', 'Methods', $array.'Methods');
+  }
+
+  /**
+   * Whether a native method requires a subject or not
+   *
+   * @param string $method The function
+   *
+   * @return boolean
+   */
+  public static function isSubjectless($method)
+  {
+    return in_array($method, static::$subjectless);
   }
 
   /**
