@@ -320,7 +320,7 @@ class ArraysMethods extends CollectionMethods
    *
    * @return String
    */
-  public static function implode($array, $with)
+  public static function implode($array, $with = '')
   {
     return implode($with, $array);
   }
