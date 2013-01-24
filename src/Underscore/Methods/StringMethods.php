@@ -7,6 +7,7 @@
 namespace Underscore\Methods;
 
 use \Laravel\Str;
+use \Underscore\Types\String;
 
 class StringMethods extends Str
 {
@@ -30,6 +31,24 @@ class StringMethods extends Str
     else $output = $many;
 
     return sprintf($output, $count);
+  }
+
+  /**
+   * Generates a random suite of words
+   *
+   * @param integer  $words  The number of words
+   * @param integer  $length The length of each word
+   *
+   * @return string
+   */
+  public static function randomStrings($words, $length = 10)
+  {
+    return String::from('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+      ->shuffle()
+      ->split($length)
+      ->slice(0, $words)
+      ->implode(' ')
+      ->obtain();
   }
 
   ////////////////////////////////////////////////////////////////////

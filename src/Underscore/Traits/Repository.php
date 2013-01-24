@@ -165,7 +165,7 @@ abstract class Repository
     }
 
     // Prepend subject to arguments and call the method
-    array_unshift($arguments, $this->subject);
+    if (!Method::isSubjectless($method)) array_unshift($arguments, $this->subject);
     $result = $class::__callStatic($method, $arguments);
 
     // If the method is a breaker, return just the result

@@ -176,4 +176,13 @@ class StringTest extends UnderscoreWrapper
     $string = String::explode('foo bar foo', ' ' , -1);
     $this->assertEquals(array('foo', 'bar'), $string);
   }
+
+  public function testCanGenerateRandomWords()
+  {
+    $string = String::randomStrings($words = 5, $size = 5);
+    $spaces = sizeof(explode(' ', $string)) - 1;
+
+    $result = ($words * $size) + ($words * 1) - 1;
+    $this->assertEquals($result, strlen($string));
+  }
 }
