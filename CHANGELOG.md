@@ -4,6 +4,8 @@ Underscore.php
 1.0.1
 -----
 
+- Add String::randomStrings
+- Fix bug with some native PHP functions when chaining
 - Fix bug with type routing
 
 1.0.0
