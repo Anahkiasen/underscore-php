@@ -19,7 +19,7 @@ class ObjectTest extends UnderscoreWrapper
     $object->bis = 'ter';
     $this->assertEquals('ter', $object->bis);
 
-    $this->assertEquals(array('foo' => 'bar', 'bis' => 'ter'), $object->obtain());
+    $this->assertEquals(array('foo' => 'bar', 'bis' => 'ter'), (array) $object->obtain());
   }
 
   public function testCanGetKeys()

@@ -1,10 +1,12 @@
 Underscore.php
 =====
 
-1.0.1
+1.1.0
 -----
 
 - Add String::randomStrings
+- Repositories can now call the `->isEmpty` method to check if the subject is empty
+- Type classes now convert their subjects, meaning an object passed to an `Arrays::from` will convert the object to array
 - Fix bug with some native PHP functions when chaining
 - Fix bug with type routing
 

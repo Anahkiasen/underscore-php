@@ -28,6 +28,13 @@ abstract class Repository
    */
   protected static $macros = array();
 
+  /**
+   * The method used to convert new subjects
+   * @var string
+   */
+  protected $typecaster;
+
+
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// PUBLIC METHODS /////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -39,7 +46,12 @@ abstract class Repository
    */
   public function __construct($subject = null)
   {
+    // Assign subject
     $this->subject = $subject ?: $this->getDefault();
+
+    // Convert it if necessary
+    $typecaster = $this->typecaster;
+    if ($typecaster) $this->$typecaster();
 
     return $this;
   }
