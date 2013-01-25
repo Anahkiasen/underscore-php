@@ -157,6 +157,7 @@ class Parse
   {
     // Returns size of array instead of 1
     if (is_array($data)) return sizeof($data);
+    elseif (is_string($data) and !preg_match('/[0-9. ,]+/', $data)) return strlen($data);
 
     return (int) $data;
   }

@@ -7,6 +7,7 @@ Underscore.php
 - Add String::randomStrings
 - Repositories can now call the `->isEmpty` method to check if the subject is empty
 - Type classes now convert their subjects, meaning an object passed to an `Arrays::from` will convert the object to array
+- Parse::toInteger($string) now returns the length of the string
 - Fix bug with some native PHP functions when chaining
 - Fix bug with type routing
 

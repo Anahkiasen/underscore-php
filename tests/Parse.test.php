@@ -18,7 +18,7 @@ class ParseTest extends UnderscoreWrapper
       array('toString', 15, '15'),
       array('toString', array('foo', 'bar'), '["foo","bar"]'),
 
-      array('toInteger', 'foo', 0),
+      array('toInteger', 'foo', 3),
       array('toInteger', '', 0),
       array('toInteger', '15', 15),
       array('toInteger', array(1, 2, 3), 3),
