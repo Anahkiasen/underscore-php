@@ -106,6 +106,13 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals('string', String::foobar());
     $this->assertEquals('arrays', Arrays::foobar());
   }
+
+  public function testCanCheckIfSubjectIsEmpty()
+  {
+    $array = Arrays::create();
+
+    $this->assertTrue($array->isEmpty());
+  }
 }
 
 //////////////////////////////////////////////////////////////////////

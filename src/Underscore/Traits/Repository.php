@@ -77,6 +77,16 @@ abstract class Repository
   }
 
   /**
+   * Check if the subject is empty
+   *
+   * @return boolean
+   */
+  public function isEmpty()
+  {
+    return empty($this->subject);
+  }
+
+  /**
    * Replace the Subject while maintaining chain
    *
    * @param mixed $value
