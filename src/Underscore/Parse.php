@@ -136,6 +136,11 @@ class Parse
    */
   public static function toArray($data)
   {
+    // Look for common array conversion patterns in objects
+    if (is_object($data) and method_exists($data, 'toArray')) {
+      $data = $data->toArray();
+    }
+
     return (array) $data;
   }
 
@@ -155,9 +160,15 @@ class Parse
    */
   public static function toInteger($data)
   {
-    // Returns size of array instead of 1
-    if (is_array($data)) return sizeof($data);
-    elseif (is_string($data) and !preg_match('/[0-9. ,]+/', $data)) return strlen($data);
+    // Returns size of arrays
+    if (is_array($data)) {
+      return sizeof($data);
+    }
+
+    // Returns size of strings
+    if (is_string($data) and !preg_match('/[0-9. ,]+/', $data)) {
+      return strlen($data);
+    }
 
     return (int) $data;
   }
