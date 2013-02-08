@@ -15,6 +15,7 @@ class Method
   public static $defer = array(
     'trim', 'count', 'round', 'ceil', 'floor', 'substr',
     'str_pad' => 'pad',
+    'ucfirst', 'lcfirst', 'ucwords', 'strtolower', 'strtoupper',
   );
 
   /**
