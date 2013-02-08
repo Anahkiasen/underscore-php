@@ -185,4 +185,25 @@ class StringTest extends UnderscoreWrapper
     $result = ($words * $size) + ($words * 1) - 1;
     $this->assertEquals($result, strlen($string));
   }
+
+  public function testCanConvertToSnakeCase()
+  {
+    $string = String::toSnakeCase('thisIsAString');
+
+    $this->assertEquals('this_is_a_string', $string);
+  }
+
+  public function testCanConvertToCamelCase()
+  {
+    $string = String::toCamelCase('this_is_a_string');
+
+    $this->assertEquals('thisIsAString', $string);
+  }
+
+  public function testCanConvertToPascalCase()
+  {
+    $string = String::toPascalCase('this_is_a_string');
+
+    $this->assertEquals('ThisIsAString', $string);
+  }
 }

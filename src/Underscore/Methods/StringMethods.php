@@ -213,4 +213,47 @@ class StringMethods extends Str
 
     return explode($with, $string, $limit);
   }
+
+  /**
+   * Convert a string to PascalCase
+   *
+   * @param string  $string
+   * @param integer $limit  Maximum number of occurences to convert
+   *
+   * @return string
+   */
+  public static function toPascalCase($string, $limit = -1)
+  {
+    return ucfirst(static::toCamelCase($string, $limit));
+  }
+
+  /**
+   * Convert a string to snake_case
+   *
+   * @param string  $string
+   * @param integer $limit  Maximum number of occurences to convert
+   *
+   * @return string
+   */
+  public static function toSnakeCase($string, $limit = -1)
+  {
+    return preg_replace_callback('/([A-Z])/', function($match) {
+      return '_'.strtolower($match[1]);
+    }, $string, $limit);
+  }
+
+  /**
+   * Convert a string to camelCase
+   *
+   * @param string  $string
+   * @param integer $limit  Maximum number of occurences to convert
+   *
+   * @return string
+   */
+  public static function toCamelCase($string, $limit = -1)
+  {
+    return preg_replace_callback('/_([a-z])/', function($match) {
+      return strtoupper($match[1]);
+    }, $string, $limit);
+  }
 }
