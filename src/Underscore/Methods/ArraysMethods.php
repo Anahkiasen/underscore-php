@@ -279,6 +279,21 @@ class ArraysMethods extends CollectionMethods
   }
 
   /**
+   * Replace the keys in an array with another set
+   *
+   * @param array $array The array
+   * @param array $keys  An array of keys matching the array's size
+   *
+   * @return array
+   */
+  public static function replaceKeys($array, $keys)
+  {
+    $values = array_values($array);
+
+    return array_combine($keys, $values);
+  }
+
+  /**
    * Iterate over an array and modify the array's value
    */
   public static function each($array, Closure $closure)
