@@ -113,6 +113,13 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $this->assertTrue($array->isEmpty());
   }
+
+  public function testCanParseToStringOnToString()
+  {
+    $array = Arrays::from($this->array);
+
+    $this->assertEquals('{"foo":"bar","bis":"ter"}', $array->__toString());
+  }
 }
 
 //////////////////////////////////////////////////////////////////////

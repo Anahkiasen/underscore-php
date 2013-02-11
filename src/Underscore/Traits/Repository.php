@@ -6,13 +6,14 @@
  */
 namespace Underscore\Traits;
 
-use \Underscore\Methods\ArraysMethods;
-use \Underscore\Methods\StringMethods;
-use \BadMethodCallException;
-use \Underscore\Types\Arrays;
-use \Underscore\Dispatch;
-use \Underscore\Underscore;
-use \Underscore\Method;
+use BadMethodCallException;
+use Underscore\Dispatch;
+use Underscore\Method;
+use Underscore\Methods\ArraysMethods;
+use Underscore\Methods\StringMethods;
+use Underscore\Parse;
+use Underscore\Types\Arrays;
+use Underscore\Underscore;
 
 abstract class Repository
 {
@@ -54,6 +55,16 @@ abstract class Repository
     if ($typecaster) $this->$typecaster();
 
     return $this;
+  }
+
+  /**
+   * Transform subject to String on toString
+   *
+   * @return string
+   */
+  public function __toString()
+  {
+    return Parse::toString($this->subject);
   }
 
   /**

@@ -466,6 +466,27 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals($flatten, $flattened);
   }
 
+  public function testCanFlattenArraysToCustomNotation()
+  {
+    $array = array(
+      'foo' => 'bar',
+      'kal' => array(
+        'foo' => array(
+          'bar', 'ter',
+        ),
+      ),
+    );
+    $flattened = array(
+      'foo' => 'bar',
+      'kal/foo/0' => 'bar',
+      'kal/foo/1' => 'ter',
+    );
+
+    $flatten = Arrays::flatten($array, '/');
+
+    $this->assertEquals($flatten, $flattened);
+  }
+
   public function testCanReplaceValues()
   {
     $array = Arrays::replace($this->array, 'foo', 'notfoo', 'notbar');
