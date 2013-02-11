@@ -353,11 +353,12 @@ class ArraysMethods extends CollectionMethods
   /**
    * Flattens an array to dot notation
    *
-   * @param  array  $array  An array
-   * @param  string $parent The parent passed to the child (private)
-   * @return array          Flattened array to one level
+   * @param  array  $array     An array
+   * @param  string $separator The characater to flatten with
+   * @param  string $parent    The parent passed to the child (private)
+   * @return array             Flattened array to one level
    */
-  public static function flatten($array, $parent = null)
+  public static function flatten($array, $separator = '.', $parent = null)
   {
     if(!is_array($array)) return $array;
 
@@ -365,8 +366,8 @@ class ArraysMethods extends CollectionMethods
 
     // Rewrite keys
     foreach ($array as $key => $value) {
-      if($parent) $key = $parent.'.'.$key;
-      $_flattened[$key] = ArraysMethods::flatten($value, $key);
+      if($parent) $key = $parent.$separator.$key;
+      $_flattened[$key] = ArraysMethods::flatten($value, $separator, $key);
     }
 
     // Flatten
