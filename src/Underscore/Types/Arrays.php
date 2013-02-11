@@ -6,7 +6,7 @@
  */
 namespace Underscore\Types;
 
-use \Underscore\Traits\Repository;
+use Underscore\Traits\Repository;
 
 class Arrays extends Repository
 {

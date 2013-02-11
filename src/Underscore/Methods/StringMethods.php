@@ -6,8 +6,8 @@
  */
 namespace Underscore\Methods;
 
-use \Laravel\Str;
-use \Underscore\Types\String;
+use Laravel\Str;
+use Underscore\Types\String;
 
 class StringMethods extends Str
 {

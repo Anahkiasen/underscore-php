@@ -6,7 +6,7 @@
  */
 namespace Underscore;
 
-use \Underscore\Methods\ArraysMethods;
+use Underscore\Methods\ArraysMethods;
 
 class Parse
 {

@@ -6,8 +6,8 @@
  */
 namespace Underscore\Types;
 
-use \stdClass;
-use \Underscore\Traits\Repository;
+use stdClass;
+use Underscore\Traits\Repository;
 
 class Object extends Repository
 {

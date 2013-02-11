@@ -6,8 +6,8 @@
  */
 namespace Underscore;
 
-use \Underscore\Traits\Repository;
-use \Underscore\Methods\ArraysMethods;
+use Underscore\Traits\Repository;
+use Underscore\Methods\ArraysMethods;
 
 class Underscore extends Repository
 {

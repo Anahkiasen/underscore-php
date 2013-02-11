@@ -7,7 +7,7 @@
  */
 namespace Underscore\Methods;
 
-use \Closure;
+use Closure;
 
 abstract class CollectionMethods
 {

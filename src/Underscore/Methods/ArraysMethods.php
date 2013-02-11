@@ -6,8 +6,8 @@
  */
 namespace Underscore\Methods;
 
-use \Closure;
-use \Underscore\Types\Arrays;
+use Closure;
+use Underscore\Types\Arrays;
 
 class ArraysMethods extends CollectionMethods
 {
