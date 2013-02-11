@@ -1,6 +1,15 @@
 Underscore.php
 =====
 
+1.1.1
+-----
+
+- Parse::toArray will now use existing `toArray` method on objects if existing
+- Add various case switchers (`toPascalCase`, `toSnakeCase`, `toCamelCase`)
+- Add `Arrays::replaceKeys` to swap all the keys of an array
+- Add possibility to change which character `Arrays::flatten` uses to flatten arrays
+- Make Repositories use `Parse::toString` on `__toString`
+
 1.1.0
 -----
 
