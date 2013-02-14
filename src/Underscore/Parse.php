@@ -12,7 +12,7 @@ class Parse
 {
 
   ////////////////////////////////////////////////////////////////////
-  /////////////////////////////// FROM ///////////////////////////////
+  /////////////////////////////// JSON ///////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
   /**
@@ -26,6 +26,42 @@ class Parse
   {
     return json_decode($data, true);
   }
+
+  /**
+   * Converts data to JSON
+   *
+   * @param string $data The data to convert
+   *
+   * @return string Converted data
+   */
+  public static function toJSON($data)
+  {
+    return json_encode($data);
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////////////// XML ///////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Converts data from XML
+   *
+   * @param string $xml The data to parse
+   *
+   * @return array
+   */
+  public static function fromXML($xml)
+  {
+    $xml = simplexml_load_string($xml);
+    $xml = json_encode($xml);
+    $xml = json_decode($xml, true);
+
+    return $xml;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////////////// CSV ///////////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Converts data from CSV
@@ -52,38 +88,6 @@ class Parse
     }
 
     return $array;
-  }
-
-  /**
-   * Converts data from XML
-   *
-   * @param string $xml The data to parse
-   *
-   * @return array
-   */
-  public static function fromXML($xml)
-  {
-    $xml = simplexml_load_string($xml);
-    $xml = json_encode($xml);
-    $xml = json_decode($xml, true);
-
-    return $xml;
-  }
-
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////////////// TO ////////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Converts data to JSON
-   *
-   * @param string $data The data to convert
-   *
-   * @return string Converted data
-   */
-  public static function toJSON($data)
-  {
-    return json_encode($data);
   }
 
   /**
