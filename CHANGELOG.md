@@ -5,7 +5,7 @@ Underscore.php
 -----
 
 - Underscore.php now uses Illuminate's String class instead of Laravel 3's
-- The `Underscore::chain` as an alias to `Underscore::from` was removed
+- The `Underscore::chain` method was renamed to `Underscore::from` to match Repositories behavior
 
 1.1.1
 -----
