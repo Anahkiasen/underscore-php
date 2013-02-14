@@ -29,7 +29,7 @@ class MethodTest extends UnderscoreWrapper
 
   public function testCantChainCertainMethods()
   {
-    $method = Method::isUnchainable('\Underscore\Types\Arrays', 'range');
+    $method = Method::isUnchainable('Arrays', 'range');
 
     $this->assertTrue($method);
   }

@@ -23,9 +23,10 @@ class Underscore extends Repository
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Alias for from as Underscore::from doesn't have much meaning
+   * Dispatch to the correct Repository class
    *
-   * @param mixed $subject The subject
+   * @param  mixed $subject The subject
+   *
    * @return Repository
    */
   public static function from($subject)

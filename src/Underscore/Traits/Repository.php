@@ -75,7 +75,7 @@ abstract class Repository
   }
 
   /**
-   * Alias for Underscore::chain
+   * Alias for Underscore::from
    */
   public static function from($subject)
   {

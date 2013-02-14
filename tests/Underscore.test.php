@@ -10,7 +10,7 @@ class UnderscoreTest extends UnderscoreWrapper
   public function testCanWrapObject()
   {
     $under1 = new Underscore($this->array);
-    $under2 = Underscore::chain($this->array);
+    $under2 = Underscore::from($this->array);
 
     $this->assertInstanceOf('Underscore\Underscore', $under1);
     $this->assertInstanceOf('Underscore\Types\Arrays', $under2);

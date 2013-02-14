@@ -44,7 +44,7 @@ class Method
    * @var array
    */
   private static $unchainable = array(
-    '\Underscore\Types\Arrays::range', '\Underscore\Types\Arrays::repeat',
+    'Arrays::range', 'Arrays::repeat',
   );
 
   /**
@@ -84,6 +84,8 @@ class Method
    */
   public static function isUnchainable($class, $method)
   {
+    $class = str_replace('\Underscore\Types\\', null, $class);
+
     return in_array($class.'::'.$method, static::$unchainable);
   }
 

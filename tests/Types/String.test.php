@@ -52,7 +52,7 @@ class StringTest extends UnderscoreWrapper
   public function testHasAccessToStrMethods()
   {
     $string1 = String::limit('foo', 1);
-    $string2 = Underscore::chain('foo')->limit(1)->obtain();
+    $string2 = Underscore::from('foo')->limit(1)->obtain();
 
     $this->assertEquals('f...', $string1);
     $this->assertEquals('f...', $string2);
