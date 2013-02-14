@@ -90,19 +90,19 @@ class StringMethods extends Str
     if (is_array($needle) or is_array($string)) {
 
       if (is_array($needle)) {
-        $from = $needle;
-        $to   = $string;
+        $sliceFrom = $needle;
+        $sliceTo   = $string;
       } else {
-        $from = $string;
-        $to   = $needle;
+        $sliceFrom = $string;
+        $sliceTo   = $needle;
       }
 
       $found = 0;
-      foreach ($from as $need) {
-        if(static::find($to, $need, $absolute, $caseSensitive)) $found++;
+      foreach ($sliceFrom as $need) {
+        if(static::find($sliceTo, $need, $absolute, $caseSensitive)) $found++;
       }
 
-      return ($absolute) ? count($from) == $found : $found > 0;
+      return ($absolute) ? count($sliceFrom) == $found : $found > 0;
     }
 
     // If not case sensitive
@@ -122,10 +122,10 @@ class StringMethods extends Str
    */
   public static function slice($string, $slice)
   {
-    $to   = static::sliceTo($string, $slice);
-    $from = static::sliceFrom($string, $slice);
+    $sliceTo   = static::sliceTo($string, $slice);
+    $sliceFrom = static::sliceFrom($string, $slice);
 
-    return array($to, $from);
+    return array($sliceTo, $sliceFrom);
   }
 
   /**
