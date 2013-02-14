@@ -11,28 +11,12 @@ use Underscore\Methods\ArraysMethods;
 
 class Underscore extends Repository
 {
+
   /**
    * The current config
    * @var array
    */
   private static $options;
-
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////////// INTERFACE /////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Alias for from as Underscore::from doesn't have much meaning
-   *
-   * @param mixed $subject The subject
-   * @return Repository
-   */
-  public static function chain($subject)
-  {
-    $class = Dispatch::toClass($subject);
-
-    return $class::from($subject);
-  }
 
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// HELPERS //////////////////////////////
@@ -53,4 +37,5 @@ class Underscore extends Repository
 
     return ArraysMethods::get(static::$options, $option);
   }
+
 }

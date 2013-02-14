@@ -1,6 +1,12 @@
 Underscore.php
 =====
 
+1.2.0
+-----
+
+- Underscore.php now uses Illuminate's String class instead of Laravel 3's
+- The `Underscore::chain` as an alias to `Underscore::from` was removed
+
 1.1.1
 -----
 
