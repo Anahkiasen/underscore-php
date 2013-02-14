@@ -14,8 +14,7 @@
   },
   "autoload": {
     "psr-0": {
-      "Underscore": "src/",
-      "Laravel": "src/"
+      "Underscore": "src/"
     }
   },
   "minimum-stability": "dev"

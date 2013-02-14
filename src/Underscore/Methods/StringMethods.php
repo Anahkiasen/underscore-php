@@ -6,8 +6,9 @@
  */
 namespace Underscore\Methods;
 
-use Laravel\Str;
+use Illuminate\Support\Str;
 use Underscore\Types\String;
+use Patchwork\Utf8 as Utf;
 
 class StringMethods extends Str
 {
@@ -54,6 +55,18 @@ class StringMethods extends Str
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// ANALYZE /////////////////////////////
   ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Get a String's length
+   *
+   * @param string $string
+   *
+   * @return integer
+   */
+  public static function length($string)
+  {
+    return Utf::strlen($string);
+  }
 
   /**
    * Whether a string starts with another string
@@ -115,6 +128,28 @@ class StringMethods extends Str
     $pos = strpos($string, $needle);
 
     return !($pos === false);
+  }
+
+  /**
+   * Limit the number of words in a string
+   *
+   * @param string  $string
+   * @param integer $words Number of words
+   * @param string  $end   Something to append to the sliced string
+   *
+   * @return string
+   */
+  public static function words($string, $words = 100, $end = '...')
+  {
+    if (trim($string) == '') return null;
+
+    preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $string, $matches);
+
+    if (static::length($string) == static::length($matches[0])) {
+      $end = null;
+    }
+
+    return rtrim($matches[0]).$end;
   }
 
   /**
@@ -213,6 +248,46 @@ class StringMethods extends Str
 
     return explode($with, $string, $limit);
   }
+
+  /**
+   * Lowercase a string
+   *
+   * @param string $string
+   *
+   * @return string
+   */
+  public static function lower($string)
+  {
+    return Utf::strtolower($string);
+  }
+
+  /**
+   * Lowercase a string
+   *
+   * @param string $string
+   *
+   * @return string
+   */
+  public static function upper($string)
+  {
+    return Utf::strtoupper($string);
+  }
+
+  /**
+   * Convert a string to title case
+   *
+   * @param string $string
+   *
+   * @return string
+   */
+  public static function title($string)
+  {
+    return Utf::ucwords($string);
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////// CASE SWITCHERS /////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Convert a string to PascalCase

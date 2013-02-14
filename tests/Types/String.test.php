@@ -180,7 +180,6 @@ class StringTest extends UnderscoreWrapper
   public function testCanGenerateRandomWords()
   {
     $string = String::randomStrings($words = 5, $size = 5);
-    $spaces = sizeof(explode(' ', $string)) - 1;
 
     $result = ($words * $size) + ($words * 1) - 1;
     $this->assertEquals($result, strlen($string));
@@ -205,5 +204,43 @@ class StringTest extends UnderscoreWrapper
     $string = String::toPascalCase('this_is_a_string');
 
     $this->assertEquals('ThisIsAString', $string);
+  }
+
+  public function testCanGetStringLength()
+  {
+    $this->assertEquals(6, String::length('Taylor'));
+    $this->assertEquals(5, String::length('ラドクリフ'));
+  }
+
+  public function testCanConvertToLowercase()
+  {
+    $this->assertEquals('taylor', String::lower('TAYLOR'));
+    $this->assertEquals('άχιστη', String::lower('ΆΧΙΣΤΗ'));
+  }
+
+  public function testCanConvertToUppercase()
+  {
+    $this->assertEquals('TAYLOR', String::upper('taylor'));
+    $this->assertEquals('ΆΧΙΣΤΗ', String::upper('άχιστη'));
+  }
+
+  public function testCanConvertToTitleCase()
+  {
+    $this->assertEquals('Taylor', String::title('taylor'));
+    $this->assertEquals('Άχιστη', String::title('άχιστη'));
+  }
+
+  public function testCanLimitStringsByCharacters()
+  {
+    $this->assertEquals('Tay...', String::limit('Taylor', 3));
+    $this->assertEquals('Taylor', String::limit('Taylor', 6));
+    $this->assertEquals('Tay___', String::limit('Taylor', 3, '___'));
+  }
+
+  public function testCanLimitByWords()
+  {
+    $this->assertEquals('Taylor...', String::words('Taylor Otwell', 1));
+    $this->assertEquals('Taylor___', String::words('Taylor Otwell', 1, '___'));
+    $this->assertEquals('Taylor Otwell', String::words('Taylor Otwell', 3));
   }
 }
