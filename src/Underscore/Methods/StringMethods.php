@@ -8,7 +8,6 @@ namespace Underscore\Methods;
 
 use Illuminate\Support\Str;
 use Underscore\Types\String;
-use Patchwork\Utf8 as Utf;
 
 class StringMethods extends Str
 {
@@ -65,7 +64,7 @@ class StringMethods extends Str
    */
   public static function length($string)
   {
-    return Utf::strlen($string);
+    return mb_strlen($string);
   }
 
   /**
@@ -121,7 +120,7 @@ class StringMethods extends Str
     // If not case sensitive
     if (!$caseSensitive) {
       $string = strtolower($string);
-      $needle   = strtolower($needle);
+      $needle = strtolower($needle);
     }
 
     // If string found
@@ -258,7 +257,7 @@ class StringMethods extends Str
    */
   public static function lower($string)
   {
-    return Utf::strtolower($string);
+    return mb_strtolower($string);
   }
 
   /**
@@ -270,7 +269,7 @@ class StringMethods extends Str
    */
   public static function upper($string)
   {
-    return Utf::strtoupper($string);
+    return mb_strtoupper($string);
   }
 
   /**
@@ -282,7 +281,7 @@ class StringMethods extends Str
    */
   public static function title($string)
   {
-    return Utf::ucwords($string);
+    return mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
   }
 
   ////////////////////////////////////////////////////////////////////
