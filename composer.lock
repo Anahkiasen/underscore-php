@@ -1,0 +1,111 @@
+{
+    "hash": "97312942d566a6fa6f63db6debd26f38",
+    "packages": [
+        {
+            "name": "illuminate/support",
+            "version": "dev-master",
+            "target-dir": "Illuminate/Support",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "7c35ef7d7fd90355f0e4e406a70258ad75e9ff0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/7c35ef7d7fd90355f0e4e406a70258ad75e9ff0d",
+                "reference": "7c35ef7d7fd90355f0e4e406a70258ad75e9ff0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.2",
+                "patchwork/utf8": "1.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Illuminate\\Support": ""
+                },
+                "files": [
+                    "Illuminate/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "Various utilities and support functions.",
+            "time": "2013-03-01 02:03:02"
+        },
+        {
+            "name": "patchwork/utf8",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
+                "reference": "v1.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/nicolas-grekas/Patchwork-UTF8/archive/v1.0.4.zip",
+                "reference": "v1.0.4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootup.utf8.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(Apache-2.0 or GPL-2.0)"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "UTF-8 strings handling for PHP 5.3: portable, performant and extended",
+            "homepage": "https://github.com/nicolas-grekas/Patchwork-UTF8",
+            "keywords": [
+                "i18n",
+                "unicode",
+                "utf-8",
+                "utf8"
+            ],
+            "time": "2012-12-13 08:48:39"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "illuminate/support": 20
+    },
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": [
+
+    ]
+}
