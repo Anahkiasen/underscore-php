@@ -512,18 +512,6 @@ class ArraysTest extends UnderscoreWrapper
     $this->assertEquals($matcher, $array);
   }
 
-  public function testCanSetAnGetValues()
-  {
-    $this->markTestSkipped('Temporarily not working');
-
-    $array  = $this->array;
-    $getset = Arrays::setAndGet($array, 'set', 'get');
-    $get    = Arrays::get($array, 'set');
-
-    $this->assertEquals($getset, 'get');
-    $this->assertEquals($get, $getset);
-  }
-
   public function testCanReplaceValuesInArrays()
   {
     $array = $this->array;
