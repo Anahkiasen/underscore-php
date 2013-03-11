@@ -7,7 +7,6 @@
 namespace Underscore;
 
 use InvalidArgumentException;
-use Underscore\Interfaces\Methods;
 
 class Dispatch
 {

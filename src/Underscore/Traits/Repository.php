@@ -226,7 +226,7 @@ abstract class Repository
   protected static function computeClassToCall($callingClass, $method, $arguments)
   {
     if (!StringMethods::find($callingClass, 'Underscore\Types')) {
-      if (isset($parameters[0])) $callingClass = Dispatch::toClass($parameters[0]);
+      if (isset($arguments[0])) $callingClass = Dispatch::toClass($arguments[0]);
       else $callingClass = Method::findInClasses($callingClass, $method);
     }
 

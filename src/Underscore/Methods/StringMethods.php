@@ -90,11 +90,11 @@ class StringMethods extends Str
   /**
    * Find one or more needles in one or more haystacks
    *
-   * @param  mixed   $string        The haystack(s) to search in
-   * @param  mixed   $needle        The needle(s) to search for
-   * @param  boolean $caseSensitive Whether the function is case sensitive or not
-   * @param  boolean $absolute      Whether all needle need to be found or whether one is enough
-   * @return boolean Found or not
+   * @param  array|string $string        The haystack(s) to search in
+   * @param  array|string $needle        The needle(s) to search for
+   * @param  boolean      $caseSensitive Whether the function is case sensitive or not
+   * @param  boolean      $absolute      Whether all needle need to be found or whether one is enough
+   * @return boolean      Found or not
    */
   public static function find($string, $needle, $caseSensitive = false, $absolute = false)
   {
