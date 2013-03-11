@@ -400,6 +400,8 @@ class ArraysMethods extends CollectionMethods
    */
   public static function reject($array, Closure $closure)
   {
+    $filtered = array();
+
     foreach ($array as $key => $value) {
       if (!$closure($value, $key)) $filtered[$key] = $value;
     }

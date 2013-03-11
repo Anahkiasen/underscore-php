@@ -99,6 +99,8 @@ class Parse
    */
   public static function toCSV($data, $delimiter = ';', $exportHeaders = false)
   {
+    $csv = array();
+
     // Convert objects to arrays
     if(is_object($data)) $data = (array) $data;
 
@@ -137,6 +139,8 @@ class Parse
 
   /**
    * Converts data to an array
+   *
+   * @param string|object $data
    */
   public static function toArray($data)
   {
@@ -150,6 +154,8 @@ class Parse
 
   /**
    * Converts data to a string
+   *
+   * @param array|object $data
    */
   public static function toString($data)
   {
@@ -161,6 +167,8 @@ class Parse
 
   /**
    * Converts data to an integer
+   *
+   * @param array|string|object $data
    */
   public static function toInteger($data)
   {
@@ -179,6 +187,8 @@ class Parse
 
   /**
    * Converts data to a boolean
+   *
+   * @param array|sring|object $data
    */
   public static function toBoolean($data)
   {
@@ -187,6 +197,8 @@ class Parse
 
   /**
    * Converts data to an object
+   *
+   * @param array|string $data
    */
   public static function toObject($data)
   {

@@ -19,18 +19,21 @@ abstract class Repository
 {
   /**
    * The subject of the repository
+   *
    * @var mixed
    */
   protected $subject;
 
   /**
    * Custom functions
+   *
    * @var array
    */
   protected static $macros = array();
 
   /**
    * The method used to convert new subjects
+   *
    * @var string
    */
   protected $typecaster;
@@ -220,7 +223,7 @@ abstract class Repository
    *
    * @return string The correct class
    */
-  private static function computeClassToCall($callingClass, $method, $arguments)
+  protected static function computeClassToCall($callingClass, $method, $arguments)
   {
     if (!StringMethods::find($callingClass, 'Underscore\Types')) {
       if (isset($parameters[0])) $callingClass = Dispatch::toClass($parameters[0]);
@@ -237,7 +240,7 @@ abstract class Repository
    * @param string $method     The method
    * @param array  $parameters The arguments
    */
-  private static function callMethod($class, $method, $parameters)
+  protected static function callMethod($class, $method, $parameters)
   {
     switch (sizeof($parameters)) {
       case 0;

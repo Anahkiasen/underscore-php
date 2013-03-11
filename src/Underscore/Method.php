@@ -23,7 +23,7 @@ class Method
    * isn't to be added to the arguments
    * @var array
    */
-  private static $subjectless = array(
+  protected static $subjectless = array(
     'fill',
   );
 
@@ -32,7 +32,7 @@ class Method
    * to break the chain
    * @var array
    */
-  private static $breakers = array(
+  protected static $breakers = array(
     'get', 'sum', 'count',
     'fromJSON', 'toJSON',
     'fromXML',
@@ -43,7 +43,7 @@ class Method
    * Unchainable methods
    * @var array
    */
-  private static $unchainable = array(
+  protected static $unchainable = array(
     'Arrays::range', 'Arrays::repeat',
   );
 
@@ -51,7 +51,7 @@ class Method
    * A cache for better findInClasses performances
    * @var array
    */
-  private static $findCache = array();
+  protected static $findCache = array();
 
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// HELPERS /////////////////////////////

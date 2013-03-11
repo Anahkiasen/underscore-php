@@ -72,7 +72,7 @@ abstract class CollectionMethods
    */
   public static function set($collection, $key, $value)
   {
-    static::_set($collection, $key, $value);
+    static::internalSet($collection, $key, $value);
 
     return $collection;
   }
@@ -103,12 +103,12 @@ abstract class CollectionMethods
   {
     // Recursive call
     if (is_array($key)) {
-      foreach($key as $k) static::_remove($collection, $k);
+      foreach($key as $k) static::internalRemove($collection, $k);
 
       return $collection;
     }
 
-    static::_remove($collection, $key);
+    static::internalRemove($collection, $key);
 
     return $collection;
   }
@@ -194,6 +194,7 @@ abstract class CollectionMethods
   public static function group($collection, $grouper)
   {
     $collection = (array) $collection;
+    $result = array();
 
     // Iterate over values, group by property/results from closure
     foreach ($collection as $key => $value) {
@@ -214,7 +215,7 @@ abstract class CollectionMethods
   /**
    * Internal mechanic of set method
    */
-  private static function _set(&$collection, $key, $value)
+  protected static function internalSet(&$collection, $key, $value)
   {
     if (is_null($key)) return $collection = $value;
 
@@ -250,7 +251,7 @@ abstract class CollectionMethods
   /**
    * Internal mechanics of remove method
    */
-  private static function _remove(&$collection, $key)
+  protected static function internalRemove(&$collection, $key)
   {
     // Explode keys
     $keys = explode('.', $key);
