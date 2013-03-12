@@ -1,15 +1,14 @@
 <?php
-/**
- * Method
- *
- * Various helpers relatives to methods
- */
 namespace Underscore;
 
+/**
+ * Various helpers relatives to methods
+ */
 class Method
 {
   /**
    * A list of methods to automatically defer to PHP
+   *
    * @var array
    */
   public static $defer = array(
@@ -21,6 +20,7 @@ class Method
   /**
    * A list of methods where the subject
    * isn't to be added to the arguments
+   *
    * @var array
    */
   protected static $subjectless = array(
@@ -30,6 +30,7 @@ class Method
   /**
    * A list of methods that are allowed
    * to break the chain
+   *
    * @var array
    */
   protected static $breakers = array(
@@ -41,6 +42,7 @@ class Method
 
   /**
    * Unchainable methods
+   *
    * @var array
    */
   protected static $unchainable = array(
@@ -49,6 +51,7 @@ class Method
 
   /**
    * A cache for better findInClasses performances
+   *
    * @var array
    */
   protected static $findCache = array();
@@ -57,15 +60,22 @@ class Method
   ////////////////////////////// HELPERS /////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
-  public static function getMethodsFromType($array)
+  /**
+   * Get the Methods class from the Type class
+   *
+   * @param  string $class The Type class
+   *
+   * @return string The Methods class
+   */
+  public static function getMethodsFromType($class)
   {
-    return str_replace('Types', 'Methods', $array.'Methods');
+    return str_replace('Types', 'Methods', $class.'Methods');
   }
 
   /**
    * Whether a native method requires a subject or not
    *
-   * @param string $method The function
+   * @param  string $method The function
    *
    * @return boolean
    */
@@ -77,8 +87,9 @@ class Method
   /**
    * Whether a method should not be chained
    *
-   * @param string $class  The class
-   * @param string $method The method
+   * @param  string $class  The class
+   *
+   * @param  string $method The method
    *
    * @return boolean
    */
@@ -92,7 +103,8 @@ class Method
   /**
    * Whether a method is a breaker
    *
-   * @param string $method The method
+   * @param  string $method The method
+   *
    * @return boolean
    */
   public static function isBreaker($method)
@@ -104,6 +116,7 @@ class Method
    * Get a method name by its alias
    *
    * @param  string $method The method
+   *
    * @return string The real method name
    */
   public static function getAliasOf($method)
@@ -114,7 +127,8 @@ class Method
   /**
    * Get the native function corresponding to a method
    *
-   * @param string $method The method to look for
+   * @param  string $method The method to look for
+   *
    * @return string The native function
    */
   public static function getNative($method)
@@ -132,7 +146,8 @@ class Method
   /**
    * Find a method in the type classes
    *
-   * @param string $method The method
+   * @param  string $method The method
+   *
    * @return string The class name
    */
   public static function findInClasses($originalClass, $method)

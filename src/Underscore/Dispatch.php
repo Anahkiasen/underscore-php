@@ -1,16 +1,34 @@
 <?php
-/**
- * Dispatch
- *
- * Dispatches methods and classes to various places
- */
 namespace Underscore;
 
 use InvalidArgumentException;
 
+/**
+ * Dispatches methods and classes to various places
+ */
 class Dispatch
 {
+  /**
+   * The namespace containing the Type classes
+   */
   const TYPES = 'Underscore\Types\\';
+
+  /**
+   * An array of PHP types and what classes they map to
+   *
+   * @var array
+   */
+  protected static $classmap = array(
+    'array'    => 'Arrays',
+    'double'   => 'Number',
+    'float'    => 'Number',
+    'integer'  => 'Number',
+    'NULL'     => 'String',
+    'object'   => 'Object',
+    'real'     => 'Number',
+    'resource' => 'Object',
+    'string'   => 'String',
+  );
 
   /**
    * Compute the right class to call according to something's type
@@ -20,39 +38,18 @@ class Dispatch
    */
   public static function toClass($subject)
   {
-    switch (gettype($subject)) {
-      case 'string':
-        $class = 'String';
-        break;
+    $subjectType = gettype($subject);
 
-      case 'array':
-        $class = 'Arrays';
-        break;
-
-      case 'integer':
-      case 'float':
-      case 'double':
-      case 'real':
-        $class = 'Number';
-        break;
-
-      case 'object':
-      case 'resource':
-        $class = 'Object';
-        break;
-
-      case 'NULL':
-        $subject = '';
-        $class = 'String';
-        break;
-    }
+    // Get correct class to use
+    if ($subjectType == 'NULL') $subject = '';
+    $class = static::$classmap[$subjectType];
 
     // Return false for unsupported types
-    if (!isset($class)) {
-      throw new InvalidArgumentException('The type ' .gettype($subject). ' is not supported');
+    if (array_key_exists($subjectType, static::$classmap)) {
+      return '\\'.static::TYPES.static::$classmap[$subjectType];
+    } else {
+      throw new InvalidArgumentException('The type ' .$subjectType. ' is not supported');
     }
-
-    return '\\'.static::TYPES.$class;
   }
 
   /**
