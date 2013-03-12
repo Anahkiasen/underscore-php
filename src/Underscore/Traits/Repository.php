@@ -12,7 +12,6 @@ use Underscore\Method;
 use Underscore\Methods\ArraysMethods;
 use Underscore\Methods\StringMethods;
 use Underscore\Parse;
-use Underscore\Types\Arrays;
 use Underscore\Underscore;
 
 abstract class Repository
@@ -161,8 +160,7 @@ abstract class Repository
     }
 
     // Check for an alias
-    $alias = Method::getAliasOf($method);
-    if ($alias) {
+    if ($alias = Method::getAliasOf($method)) {
       return Repository::callMethod($methodsClass, $alias, $parameters);
     }
 
@@ -172,14 +170,12 @@ abstract class Repository
     }
 
     // Defered methods
-    $defered = Dispatch::toNative($callingClass, $method);
-    if ($defered) {
+    if ($defered = Dispatch::toNative($callingClass, $method)) {
       return call_user_func_array($defered, $parameters);
     }
 
     // Look in the macros
-    $macro = ArraysMethods::get(static::$macros, $callingClass.'.'.$method);
-    if ($macro) {
+    if ($macro = ArraysMethods::get(static::$macros, $callingClass.'.'.$method)) {
       return call_user_func_array($macro, $parameters);
     }
 
@@ -243,8 +239,7 @@ abstract class Repository
   protected static function callMethod($class, $method, $parameters)
   {
     switch (sizeof($parameters)) {
-      case 0;
-
+      case 0:
         return $class::$method();
       case 1:
         return $class::$method($parameters[0]);
