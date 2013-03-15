@@ -1,6 +1,5 @@
 <?php
 use Underscore\Types\Number;
-use Underscore\Underscore;
 
 class NumberTest extends UnderscoreWrapper
 {

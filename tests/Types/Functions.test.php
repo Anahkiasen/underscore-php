@@ -1,6 +1,5 @@
 <?php
 use Underscore\Types\Functions;
-use Underscore\Underscore;
 
 class FunctionsTest extends UnderscoreWrapper
 {
