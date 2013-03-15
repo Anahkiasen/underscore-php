@@ -146,7 +146,8 @@ class Method
   /**
    * Find a method in the type classes
    *
-   * @param  string $method The method
+   * @param  string $originalClass The class calling the method
+   * @param  string $method        The method
    *
    * @return string The class name
    */

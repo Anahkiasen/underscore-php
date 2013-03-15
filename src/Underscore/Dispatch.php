@@ -1,6 +1,7 @@
 <?php
 namespace Underscore;
 
+use Closure;
 use InvalidArgumentException;
 
 /**
@@ -21,12 +22,12 @@ class Dispatch
   protected static $classmap = array(
     'array'    => 'Arrays',
     'double'   => 'Number',
+    'closure'  => 'Functions',
     'float'    => 'Number',
     'integer'  => 'Number',
     'NULL'     => 'String',
     'object'   => 'Object',
     'real'     => 'Number',
-    'resource' => 'Object',
     'string'   => 'String',
   );
 
@@ -39,17 +40,14 @@ class Dispatch
   public static function toClass($subject)
   {
     $subjectType = gettype($subject);
+    if ($subject instanceof Closure) $subjectType = 'closure';
 
-    // Get correct class to use
-    if ($subjectType == 'NULL') $subject = '';
-    $class = static::$classmap[$subjectType];
-
-    // Return false for unsupported types
+    // Return correct class
     if (array_key_exists($subjectType, static::$classmap)) {
       return '\\'.static::TYPES.static::$classmap[$subjectType];
-    } else {
-      throw new InvalidArgumentException('The type ' .$subjectType. ' is not supported');
     }
+
+    throw new InvalidArgumentException('The type ' .$subjectType. ' is not supported');
   }
 
   /**

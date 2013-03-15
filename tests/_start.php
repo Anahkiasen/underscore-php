@@ -1,4 +1,7 @@
 <?php
+use Underscore\Types\Arrays;
+use Underscore\Types\String;
+
 abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
 {
   public $array = array('foo' => 'bar', 'bis' => 'ter');
@@ -32,5 +35,37 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
       (object) $this->arrayMulti[1],
       (object) $this->arrayMulti[2],
     );
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+///////////////////////////// DUMMY CLASSES //////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+class DummyDefault extends String
+{
+  public function getDefault()
+  {
+    return 'foobar';
+  }
+}
+
+class DummyClass extends Arrays
+{
+  public function getUsers()
+  {
+    $users = array(
+      array('foo' => 'bar'),
+      array('bar' => 'foo'),
+    );
+
+    return $this->setSubject($users);
+  }
+
+  public function map($whatever)
+  {
+    $this->subject = $whatever * 3;
+
+    return $this;
   }
 }

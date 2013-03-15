@@ -121,35 +121,3 @@ class UnderscoreTest extends UnderscoreWrapper
     $this->assertEquals('{"foo":"bar","bis":"ter"}', $array->__toString());
   }
 }
-
-//////////////////////////////////////////////////////////////////////
-///////////////////////////// DUMMY CLASSES //////////////////////////
-//////////////////////////////////////////////////////////////////////
-
-class DummyDefault extends String
-{
-  public function getDefault()
-  {
-    return 'foobar';
-  }
-}
-
-class DummyClass extends Arrays
-{
-  public function getUsers()
-  {
-    $users = array(
-      array('foo' => 'bar'),
-      array('bar' => 'foo'),
-    );
-
-    return $this->setSubject($users);
-  }
-
-  public function map($whatever)
-  {
-    $this->subject = $whatever * 3;
-
-    return $this;
-  }
-}

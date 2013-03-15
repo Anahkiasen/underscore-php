@@ -8,12 +8,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "dfa68cb87ae5ebf7ebc006ca2d0ff549a5b15f59"
+                "reference": "170e5dfe6b35c42a2c20009b4c0a317684fa831f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/dfa68cb87ae5ebf7ebc006ca2d0ff549a5b15f59",
-                "reference": "dfa68cb87ae5ebf7ebc006ca2d0ff549a5b15f59",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/170e5dfe6b35c42a2c20009b4c0a317684fa831f",
+                "reference": "170e5dfe6b35c42a2c20009b4c0a317684fa831f",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 }
             ],
             "description": "Various utilities and support functions.",
-            "time": "2013-03-09 04:26:45"
+            "time": "2013-03-14 01:17:08"
         },
         {
             "name": "patchwork/utf8",

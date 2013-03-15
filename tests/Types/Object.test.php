@@ -36,6 +36,27 @@ class ObjectTest extends UnderscoreWrapper
     $this->assertEquals(array('bar', 'ter'), $object);
   }
 
+  public function testCanGetMethods()
+  {
+    $methods = array(
+      'getDefault',
+      '__construct',
+      '__toString',
+      'create',
+      'from',
+      '__get',
+      '__set',
+      'isEmpty',
+      'setSubject',
+      'obtain',
+      'extend',
+      '__callStatic',
+      '__call',
+    );
+
+    $this->assertEquals($methods, Object::methods(new DummyDefault));
+  }
+
   public function testCanPluckColumns()
   {
     $object = Object::pluck($this->objectMulti, 'foo');

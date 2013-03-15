@@ -23,6 +23,6 @@ class Number extends Repository
    */
   protected function getDefault()
   {
-    return array();
+    return 0;
   }
 }

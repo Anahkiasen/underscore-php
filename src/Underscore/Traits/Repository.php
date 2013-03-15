@@ -134,11 +134,13 @@ abstract class Repository
 
   /**
    * Extend the class with a custom function
+   *
+   * @param string   $method  The macro's name
+   * @param Callable $closure The macro
    */
   public static function extend($method, $closure)
   {
-    $class = get_called_class();
-    static::$macros[$class][$method] = $closure;
+    static::$macros[get_called_class()][$method] = $closure;
   }
 
   ////////////////////////////////////////////////////////////////////

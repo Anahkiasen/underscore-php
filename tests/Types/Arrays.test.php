@@ -519,4 +519,12 @@ class ArraysTest extends UnderscoreWrapper
 
     $this->assertEquals('replaced', $array['foo']);
   }
+
+  public function testCanReplaceKeysInArray()
+  {
+    $array = $this->array;
+    $array = Arrays::replaceKeys($array, array('bar', 'ter'));
+
+    $this->assertEquals(array('bar' => 'bar', 'ter' => 'ter'), $array);
+  }
 }

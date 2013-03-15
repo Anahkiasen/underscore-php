@@ -54,4 +54,11 @@ class MethodTest extends UnderscoreWrapper
 
     $this->assertEquals('\Underscore\Types\\Arrays', $method);
   }
+
+  public function testCanThrowExceptionAtUnknownMethods()
+  {
+    $this->setExpectedException('BadMethodCallException', 'The method Underscore\Types\Arrays::fuck does not exist');
+
+    $test = Arrays::fuck($this);
+  }
 }

@@ -17,6 +17,8 @@ class DispatchTest extends UnderscoreWrapper
       array(7E-10, 'Number'),
       array(array(), 'Arrays'),
       array(new stdClass, 'Object'),
+      array(function() { return; }, 'Functions'),
+      array(NULL, 'String')
     );
   }
 
@@ -25,10 +27,16 @@ class DispatchTest extends UnderscoreWrapper
    */
   public function testCanGetClassFromType($subject, $expected)
   {
-    if (!$expected) $this->setExpectedException('InvalidArgumentException');
-
     $dispatch = Dispatch::toClass($subject);
 
     $this->assertEquals('\Underscore\Types\\'.$expected, $dispatch);
+  }
+
+  public function testCanThrowExceptionAtUnknownTypes()
+  {
+    $this->setExpectedException('InvalidArgumentException');
+
+    $file = fopen('../.travis.yml', 'w+');
+    $dispatch = Dispatch::toClass($file);
   }
 }
