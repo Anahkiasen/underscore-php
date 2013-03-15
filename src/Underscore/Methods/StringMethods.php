@@ -67,22 +67,6 @@ class StringMethods extends Str
     return mb_strlen($string);
   }
 
-  /**
-   * Whether a string starts with another string
-   */
-  public static function startsWith($string, $with)
-  {
-    return strpos($string, $with) === 0;
-  }
-
-  /**
-   * Whether a string ends with another string
-   */
-  public static function endsWith($string, $with)
-  {
-    return $with == substr($string, strlen($string) - strlen($with));
-  }
-
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// FETCH FROM ///////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -211,7 +195,7 @@ class StringMethods extends Str
    */
   public static function slugify($string, $separator = '-')
   {
-    $string = preg_replace('/[\.&=_]/', ' ', $string);
+    $string = preg_replace('/[_]/', ' ', $string);
 
     return static::slug($string, $separator);
   }
@@ -270,42 +254,37 @@ class StringMethods extends Str
    * Convert a string to PascalCase
    *
    * @param string  $string
-   * @param integer $limit  Maximum number of occurences to convert
    *
    * @return string
    */
-  public static function toPascalCase($string, $limit = -1)
+  public static function toPascalCase($string)
   {
-    return ucfirst(static::toCamelCase($string, $limit));
+    return static::studly($string);
   }
 
   /**
    * Convert a string to snake_case
    *
    * @param string  $string
-   * @param integer $limit  Maximum number of occurences to convert
    *
    * @return string
    */
-  public static function toSnakeCase($string, $limit = -1)
+  public static function toSnakeCase($string)
   {
     return preg_replace_callback('/([A-Z])/', function($match) {
       return '_'.strtolower($match[1]);
-    }, $string, $limit);
+    }, $string);
   }
 
   /**
    * Convert a string to camelCase
    *
    * @param string  $string
-   * @param integer $limit  Maximum number of occurences to convert
    *
    * @return string
    */
-  public static function toCamelCase($string, $limit = -1)
+  public static function toCamelCase($string)
   {
-    return preg_replace_callback('/_([a-z])/', function($match) {
-      return strtoupper($match[1]);
-    }, $string, $limit);
+    return static::camel($string);
   }
 }

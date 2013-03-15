@@ -121,7 +121,7 @@ class StringTest extends UnderscoreWrapper
 
   public function testStringsCanBeSlugged()
   {
-    $this->assertEquals('my-new-post', String::slugify('My_nEw  @ post!!!'));
+    $this->assertEquals('my-new-post', String::slugify('My_nEw\\\/  @ post!!!'));
     $this->assertEquals('my_new_post', String::slugify('My nEw post!!!', '_'));
   }
 
