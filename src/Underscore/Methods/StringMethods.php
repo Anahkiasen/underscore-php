@@ -130,28 +130,6 @@ class StringMethods extends Str
   }
 
   /**
-   * Limit the number of words in a string
-   *
-   * @param string  $string
-   * @param integer $words Number of words
-   * @param string  $end   Something to append to the sliced string
-   *
-   * @return string
-   */
-  public static function words($string, $words = 100, $end = '...')
-  {
-    if (trim($string) == '') return null;
-
-    preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $string, $matches);
-
-    if (static::length($string) == static::length($matches[0])) {
-      $end = null;
-    }
-
-    return rtrim($matches[0]).$end;
-  }
-
-  /**
    * Slice a string with another string
    */
   public static function slice($string, $slice)
