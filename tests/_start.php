@@ -48,6 +48,11 @@ class DummyDefault extends String
   {
     return 'foobar';
   }
+
+  public function toArray()
+  {
+    return array('foo', 'bar');
+  }
 }
 
 class DummyClass extends Arrays

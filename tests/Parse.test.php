@@ -14,6 +14,7 @@ class ParseTest extends UnderscoreWrapper
       array('toArray', 15, array(15)),
       array('toArray', 'foobar', array('foobar')),
       array('toArray', (object) $this->array, $this->array),
+      array('toArray', new DummyDefault, array('foo', 'bar')),
 
       array('toString', 15, '15'),
       array('toString', array('foo', 'bar'), '["foo","bar"]'),
@@ -84,6 +85,22 @@ class ParseTest extends UnderscoreWrapper
     $matcher = array('name' => 'foo', 'content' => 'bar');
 
     $this->assertEquals($matcher, $array);
+  }
+
+  public function testCanParseCSV()
+  {
+    $array = Parse::fromCSV("foo;bar;bis\nbar\tfoo\tter");
+    $results = array(array('foo', 'bar', 'bis'), array('bar', 'foo', 'ter'));
+
+    $this->assertEquals($results, $array);
+  }
+
+  public function testCanParseCSVWithHeaders($value='')
+  {
+    $array = Parse::fromCSV("foo;bar;bis" .PHP_EOL. "bar\tfoo\tter", true);
+    $results = array(array('foo' => 'bar', 'bar' => 'foo', 'bis' => 'ter'));
+
+    $this->assertEquals($results, $array);
   }
 
   ////////////////////////////////////////////////////////////////////

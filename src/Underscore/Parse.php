@@ -64,25 +64,28 @@ class Parse
   /**
    * Converts data from CSV
    *
-   * @param  string $data The data to parse
+   * @param  string  $data    The data to parse
+   * @param  boolean $hasHeaders Whether the CSV has headers
    *
    * @return mixed
    */
-  public static function fromCSV($data)
+  public static function fromCSV($data, $hasHeaders = false)
   {
     // Explodes rows
-    $array = explode(PHP_EOL, $data);
-    if (sizeof($array) == 1) $array = explode("\r", $data);
-    if (sizeof($array) == 1) $array = explode("\n", $data);
+    $data = static::explodeWith($data, array(PHP_EOL, "\r", "\n"));
+    $data = array_map(function($row) {
+      return Parse::explodeWith($row, array(";", "\t"));
+    }, $data);
+
+    // Get headers
+    $headers = $hasHeaders ? $data[0] : array_keys($data[0]);
+    if ($hasHeaders) array_shift($data);
 
     // Parse the columns in each row
-    foreach ($array as $row => $rawColumns) {
-
-      // Prepare for the various separators
-      $columns = explode("\t", $rawColumns);
-      if(sizeof($columns) == 1) $columns = explode(';', $rawColumns);
-
-      $array[$row] = $columns;
+    foreach ($data as $row => $columns) {
+      foreach ($columns as $columnNumber => $column) {
+        $array[$row][$headers[$columnNumber]] = $column;
+      }
     }
 
     return $array;
@@ -201,5 +204,30 @@ class Parse
   public static function toObject($data)
   {
     return (object) $data;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////////// HELPERS //////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Tries to explode a string with an array of delimiters
+   *
+   * @param string $string     The string
+   * @param array  $delimiters An array of delimiters
+   *
+   * @return array
+   */
+  public static function explodeWith($string, array $delimiters)
+  {
+    $array = $string;
+
+    foreach ($delimiters as $delimiter) {
+      $array = explode($delimiter, $string);
+      if (sizeof($array) == 1) continue;
+      else return $array;
+    }
+
+    return $array;
   }
 }

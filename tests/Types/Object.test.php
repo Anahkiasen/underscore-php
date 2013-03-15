@@ -40,6 +40,7 @@ class ObjectTest extends UnderscoreWrapper
   {
     $methods = array(
       'getDefault',
+      'toArray',
       '__construct',
       '__toString',
       'create',
