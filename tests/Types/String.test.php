@@ -243,4 +243,22 @@ class StringTest extends UnderscoreWrapper
     $this->assertEquals('Taylor___', String::words('Taylor Otwell', 1, '___'));
     $this->assertEquals('Taylor Otwell', String::words('Taylor Otwell', 3));
   }
+
+  public function testCanCheckIfIsIp()
+  {
+    $this->assertTrue(String::isIp('192.168.1.1'));
+    $this->assertFalse(String::isIp('foobar'));
+  }
+
+  public function testCanCheckIfIsEmail()
+  {
+    $this->assertTrue(String::isEmail('foo@bar.com'));
+    $this->assertFalse(String::isEmail('foobar'));
+  }
+
+  public function testCanCheckIfIsUrl()
+  {
+    $this->assertTrue(String::isUrl('http://www.foo.com/'));
+    $this->assertFalse(String::isUrl('foobar'));
+  }
 }

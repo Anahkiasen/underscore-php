@@ -67,6 +67,36 @@ class StringMethods extends Str
     return mb_strlen($string);
   }
 
+  /**
+   * Check if a string is an IP
+   *
+   * @return boolean
+   */
+  public static function isIp($string)
+  {
+    return filter_var($string, FILTER_VALIDATE_IP) !== false;
+  }
+
+  /**
+   * Check if a string is an email
+   *
+   * @return boolean
+   */
+  public static function isEmail($string)
+  {
+    return filter_var($string, FILTER_VALIDATE_EMAIL) !== false;
+  }
+
+  /**
+   * Check if a string is an url
+   *
+   * @return boolean
+   */
+  public static function isUrl($string)
+  {
+    return filter_var($string, FILTER_VALIDATE_URL) !== false;
+  }
+
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// FETCH FROM ///////////////////////////
   ////////////////////////////////////////////////////////////////////

@@ -1,6 +1,11 @@
 Underscore.php
 =====
 
+1.2.1
+-----
+
+- Added `String::isIp`, `String::isEmail` and `String::isUrl` from @robclancy Str class
+
 1.2.0
 -----
 
