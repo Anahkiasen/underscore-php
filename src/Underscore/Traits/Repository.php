@@ -1,9 +1,4 @@
 <?php
-/**
- * Repository
- *
- * Base abstract class for repositories
- */
 namespace Underscore\Traits;
 
 use BadMethodCallException;
@@ -14,6 +9,9 @@ use Underscore\Methods\StringMethods;
 use Underscore\Parse;
 use Underscore\Underscore;
 
+/**
+ * Base abstract class for repositories
+ */
 abstract class Repository
 {
   /**
@@ -69,7 +67,7 @@ abstract class Repository
   }
 
   /**
-   * Create a new Arrays instance
+   * Create a new Repository
    */
   public static function create()
   {
@@ -77,7 +75,7 @@ abstract class Repository
   }
 
   /**
-   * Alias for Underscore::from
+   * Create a new Repository from a subject
    */
   public static function from($subject)
   {

@@ -1,13 +1,11 @@
 <?php
-/**
- * ArraysMethods
- *
- * Methods to manage arrays
- */
 namespace Underscore\Methods;
 
 use Closure;
 
+/**
+ * Methods to manage arrays
+ */
 class ArraysMethods extends CollectionMethods
 {
 

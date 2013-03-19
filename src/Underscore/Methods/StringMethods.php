@@ -1,14 +1,12 @@
 <?php
-/**
- * StringMethods
- *
- * Methods to manage strings
- */
 namespace Underscore\Methods;
 
 use Illuminate\Support\Str;
 use Underscore\Types\String;
 
+/**
+ * Methods to manage strings
+ */
 class StringMethods extends Str
 {
   ////////////////////////////////////////////////////////////////////

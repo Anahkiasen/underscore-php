@@ -1,11 +1,9 @@
 <?php
-/**
- * FunctionsMethods
- *
- * Methods to manage functions
- */
 namespace Underscore\Methods;
 
+/**
+ * Methods to manage functions
+ */
 class FunctionsMethods
 {
   /**

@@ -1,14 +1,12 @@
 <?php
-/**
- * CollectionMethods
- *
- * Abstract Collection type
- * Methods that apply to both objects and arrays
- */
 namespace Underscore\Methods;
 
 use Closure;
 
+/**
+ * Abstract Collection type
+ * Methods that apply to both objects and arrays
+ */
 abstract class CollectionMethods
 {
   ////////////////////////////////////////////////////////////////////

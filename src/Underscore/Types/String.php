@@ -1,13 +1,11 @@
 <?php
-/**
- * String
- *
- * String repository
- */
 namespace Underscore\Types;
 
 use Underscore\Traits\Repository;
 
+/**
+ * String repository
+ */
 class String extends Repository
 {
   /**
@@ -15,5 +13,4 @@ class String extends Repository
    * @var string
    */
   protected $typecaster = 'toString';
-
 }

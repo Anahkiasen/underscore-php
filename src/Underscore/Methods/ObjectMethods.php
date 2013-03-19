@@ -1,11 +1,9 @@
 <?php
-/**
- * ObjectMethods
- *
- * Methods to manage objects
- */
 namespace Underscore\Methods;
 
+/**
+ * Methods to manage objects
+ */
 class ObjectMethods extends CollectionMethods
 {
   /**

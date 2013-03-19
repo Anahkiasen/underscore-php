@@ -1,13 +1,11 @@
 <?php
-/**
- * Number
- *
- * Number repository
- */
 namespace Underscore\Types;
 
 use Underscore\Traits\Repository;
 
+/**
+ * Number repository
+ */
 class Number extends Repository
 {
   /**

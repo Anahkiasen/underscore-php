@@ -1,14 +1,12 @@
 <?php
-/**
- * Object
- *
- * Object repository
- */
 namespace Underscore\Types;
 
 use stdClass;
 use Underscore\Traits\Repository;
 
+/**
+ * Object repository
+ */
 class Object extends Repository
 {
   /**

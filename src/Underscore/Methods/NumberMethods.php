@@ -1,11 +1,9 @@
 <?php
-/**
- * NumberMethods
- *
- * Methods to manage numbers
- */
 namespace Underscore\Methods;
 
+/**
+ * Methods to manage numbers
+ */
 class NumberMethods
 {
   /**

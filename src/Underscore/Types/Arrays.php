@@ -1,13 +1,11 @@
 <?php
-/**
- * Arrays
- *
- * Arrays repository
- */
 namespace Underscore\Types;
 
 use Underscore\Traits\Repository;
 
+/**
+ * Arrays repository
+ */
 class Arrays extends Repository
 {
   /**
