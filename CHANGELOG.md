@@ -5,6 +5,7 @@ Underscore.php
 -----
 
 - Added `String::isIp`, `String::isEmail` and `String::isUrl` from @robclancy Str class
+- Added `String::prepend` and `String::append`
 
 1.2.0
 -----

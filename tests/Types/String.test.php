@@ -261,4 +261,14 @@ class StringTest extends UnderscoreWrapper
     $this->assertTrue(String::isUrl('http://www.foo.com/'));
     $this->assertFalse(String::isUrl('foobar'));
   }
+
+  public function testCanPrependString()
+  {
+    $this->assertEquals('foobar', String::prepend('bar', 'foo'));
+  }
+
+  public function testCanAppendString()
+  {
+    $this->assertEquals('foobar', String::append('foo', 'bar'));
+  }
 }

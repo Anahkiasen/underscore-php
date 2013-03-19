@@ -179,6 +179,32 @@ class StringMethods extends Str
   ////////////////////////////////////////////////////////////////////
 
   /**
+   * Prepend a string with another
+   *
+   * @param string $string The string
+   * @param string $with   What to prepend with
+   *
+   * @return string
+   */
+  public static function prepend($string, $with)
+  {
+    return $with.$string;
+  }
+
+  /**
+   * Append a string to another
+   *
+   * @param string $string The string
+   * @param string $with   What to append with
+   *
+   * @return string
+   */
+  public static function append($string, $with)
+  {
+    return $string.$with;
+  }
+
+  /**
    * Remove part of a string
    */
   public static function remove($string, $remove)
@@ -225,7 +251,7 @@ class StringMethods extends Str
    */
   public static function slugify($string, $separator = '-')
   {
-    $string = preg_replace('/[_]/', ' ', $string);
+    $string = str_replace('_', ' ', $string);
 
     return static::slug($string, $separator);
   }
