@@ -1,0 +1,25 @@
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////// HEADER //////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+header
+  @extend %block-hero
+  @extend %is-in-front
+  @extend %transition
+  text-shadow: 0 0.3em 0 fade(black, 25)
+  +double-shadow(0.5rem)
+
+  &:hover
+    background-color: lighten($color-base, 10)
+
+  h1
+    font-family: $font-condensed
+    font-size: 5rem
+    font-weight: 300
+    margin: 0
+
+  // Responsive ---------------------------------------------------- /
+
+  +to($tablet)
+    h1
+      font-size: 4rem

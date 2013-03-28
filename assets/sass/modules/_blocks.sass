@@ -1,0 +1,32 @@
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////// BLOCKS //////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+%block
+  padding: 1rem
+
+%block-dark
+  @extend %block
+  background-color: darken(#403C3A, 5)
+
+%block-noise
+  background-color: grey(95)
+  background-image: inline-image('noise.png')
+
+%block-accent
+  background-color: $color-base
+  color: white
+
+%block-hero
+  @extend %block-accent
+  @extend %block-noise
+  @extend %is-relief
+  clear: both
+  margin: 0
+  padding: 2rem 0
+  text-align: center
+  text-transform: uppercase
+
+%lips
+  border-bottom: 1px solid lighten($color-base, 25)
+  border-top: 1px solid $color-base

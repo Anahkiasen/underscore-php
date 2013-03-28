@@ -1,0 +1,6 @@
+[submodule "underscore"]
+	path = underscore
+	url = https://github.com/Anahkiasen/underscore-php.git
+[submodule "docs"]
+	path = docs
+	url = https://github.com/Anahkiasen/underscore-php.wiki.git

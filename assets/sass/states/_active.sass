@@ -1,0 +1,13 @@
+%block-accent%is-active
+  background-color: lighten($color-base, 15)
+  color: white
+
+%block-accent%is-hover
+  background-color: mix(white, $color-base, 50)
+  color: white
+
+%block-accent%is-relief
+  +double-shadow(2px)
+  text-shadow: 0 0.15em 0 fade(black, 25)
+  a
+    text-shadow: 0 0.15em 0 fade(black, 25)

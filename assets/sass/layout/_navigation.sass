@@ -1,0 +1,62 @@
+//////////////////////////////////////////////////////////////////////
+///////////////////////////// NAVIGATION /////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+// Remove top border radius
+.nav-stacked, .nav-stacked li:first-child a
+  +border-top-radius(0)
+
+.nav-stacked
+  @extend %nav-nav
+  background: white
+  +span-columns(2)
+  margin-bottom: 2rem
+
+  // Affixed block
+  &.affix
+    top: 0
+
+  .btn-group
+    @extend %border-box
+    text-align: center
+    padding: 1rem
+    width: 100%
+    .btn
+      padding-left: 0
+      padding-right: 0
+      width: 50%
+    .btn-primary
+      +box-shadow(none)
+      background: $pink
+
+  // Responsive ---------------------------------------------------- /
+
+  +to($tablet)
+    display: none
+
+  +from-to($tablet, $wide)
+    +span-columns(4)
+
+// Subnavigations -------------------------------------------------- /
+
+.nav-sub
+  @extend %nav-sub
+  @extend %container-wide
+  @extend %hide
+  margin: 0
+  li
+    width: 50%
+    float: left
+    margin-right: 0
+    +to($wide)
+      width: 100%
+
+.breadcrumb
+  @extend %block-accent
+  @extend %is-relief
+  margin: 0.5rem 0
+  li:after
+    content: ' / '
+  a
+    font-size: 0.9rem
+    color: white

@@ -1,0 +1,11 @@
+{
+  "name": "underscore-docs",
+  "dependencies": {
+    "bootstrap": "latest",
+    "jquery": "~1.9.1",
+    "marked": "latest",
+    "cerberus": "https://github.com/Anahkiasen/cerberus.git",
+    "rainbow": "https://github.com/ccampbell/rainbow.git#~1.1.9",
+    "requirejs": "latest"
+  }
+}

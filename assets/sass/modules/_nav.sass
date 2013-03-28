@@ -1,0 +1,29 @@
+//////////////////////////////////////////////////////////////////////
+////////////////////////////// NAVIGATION ////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+// Main navigation ------------------------------------------------- /
+
+%nav-nav
+  li a
+    @extend %transition
+    color: $color-base
+
+  & > li > a:hover,
+  & > li.active > a,
+  & > li.active > a:hover
+    @extend %block-accent
+    @extend %is-relief
+
+// Subnavigations -------------------------------------------------- /
+
+%nav-sub
+  li a
+    @extend %block-accent
+    @extend %is-hover
+    padding: 0.3rem 0.5rem
+    border: none
+
+  li.active a,
+  li a:hover
+    background-color: mix(white, $color-base, 70)
