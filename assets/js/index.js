@@ -39,18 +39,25 @@
       title = _ref1[_j];
       method = $(title).attr('name');
       typeClass = $(title).parents('article').attr('id');
-      namespacedMethod = typeClass + '-' + method;
-      $('a[href=#' + method + ']').attr('href', '#' + namespacedMethod);
-      $(title).attr('name', namespacedMethod).attr('id', namespacedMethod);
-      $('.' + typeClass).append("<li><a href='#" + namespacedMethod + "'>" + method + "</a></li>");
+      namespacedMethod = "" + typeClass + "-" + method;
+      $("a[href=#" + method + "]").attr('href', "#" + namespacedMethod);
+      $("." + typeClass).append("<li><a href='#" + namespacedMethod + "'>" + method + "</a></li>");
+      $(title).attr({
+        id: namespacedMethod,
+        name: namespacedMethod
+      });
     }
     return $('.nav-stacked > li').on('activate', function(li) {
+      var hasSubnav, isIntroduction;
+
       li = $(li.target);
-      if (li.has('.nav-sub').length || li.text() === 'Introduction') {
+      hasSubnav = li.has('.nav-sub').length;
+      isIntroduction = li.text() === 'Introduction';
+      if (hasSubnav || isIntroduction) {
         $('.nav-sub').hide();
         return $('.nav-sub', li).slideDown();
       } else {
-        return li.parent().parent().addClass('active');
+        return li.closest('li').addClass('active');
       }
     });
   });

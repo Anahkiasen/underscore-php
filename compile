@@ -1,4 +1,5 @@
 #!/bin/sh
+coffee -o assets/js -c assets/coffee
 r.js -o build.js
 r.js -o cssIn=assets/css/styles.css out=assets/css/main.css
 cleancss -o assets/css/main.css assets/css/main.css

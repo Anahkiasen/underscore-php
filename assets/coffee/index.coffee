@@ -48,8 +48,7 @@ require ['jquery', 'marked', 'rainbow', 'rainbow-generic', 'rainbow-php', 'scrol
           .fadeIn()
 
         # Format code blocks
-        $('pre code', article)
-          .addClass('lang-php')
+        $('pre code', article).addClass('lang-php')
 
         # Format internal navigations
         $('ul', article)
@@ -62,18 +61,23 @@ require ['jquery', 'marked', 'rainbow', 'rainbow-generic', 'rainbow-php', 'scrol
   for title in $('a[name]')
 
     # Get function and class
-    method = $(title).attr('name')
-    typeClass = $(title).parents('article').attr('id')
-    namespacedMethod = typeClass + '-' +method
+    method           = $(title).attr('name')
+    typeClass        = $(title).parents('article').attr('id')
+    namespacedMethod = "#{typeClass}-#{method}"
 
     # Namespace function and add navigation element
-    $('a[href=#'+method+']').attr('href', '#'+namespacedMethod)
-    $(title).attr('name', namespacedMethod).attr('id', namespacedMethod)
-    $('.'+typeClass).append("<li><a href='##{namespacedMethod}'>#{method}</a></li>")
+    $("a[href=##{method}]").attr('href', "##{namespacedMethod}")
+    $(".#{typeClass}").append("<li><a href='##{namespacedMethod}'>#{method}</a></li>")
+    $(title).attr
+      id: namespacedMethod
+      name: namespacedMethod
 
   $('.nav-stacked > li').on 'activate', (li) ->
     li = $(li.target)
-    if li.has('.nav-sub').length or li.text() is 'Introduction'
+    hasSubnav = li.has('.nav-sub').length
+    isIntroduction = li.text() is 'Introduction'
+
+    if hasSubnav or isIntroduction
       $('.nav-sub').hide()
       $('.nav-sub', li).slideDown()
-    else li.parent().parent().addClass('active')
+    else li.closest('li').addClass('active')
