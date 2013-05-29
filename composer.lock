@@ -1,5 +1,9 @@
 {
-    "hash": "97312942d566a6fa6f63db6debd26f38",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "05b3a9d1bdbea37702a877f8ddbf08e2",
     "packages": [
         {
             "name": "illuminate/support",
@@ -8,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "b46d591dd8fe100603777ea84ace34a5314c48a3"
+                "reference": "35b0bc88eee750f7eecf03d9b4c19837e4ec72e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/b46d591dd8fe100603777ea84ace34a5314c48a3",
-                "reference": "b46d591dd8fe100603777ea84ace34a5314c48a3",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/35b0bc88eee750f7eecf03d9b4c19837e4ec72e9",
+                "reference": "35b0bc88eee750f7eecf03d9b4c19837e4ec72e9",
                 "shasum": ""
             },
             "require": {
@@ -21,12 +25,13 @@
             },
             "require-dev": {
                 "mockery/mockery": "0.7.2",
-                "patchwork/utf8": "1.0.*"
+                "patchwork/utf8": "1.1.*",
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -38,27 +43,29 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Taylor Otwell",
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "description": "Various utilities and support functions.",
-            "time": "2013-03-15 03:55:30"
+            "time": "2013-05-28 18:31:39"
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.0.4",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "v1.0.4"
+                "reference": "v1.1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/nicolas-grekas/Patchwork-UTF8/archive/v1.0.4.zip",
-                "reference": "v1.0.4",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/v1.1.8",
+                "reference": "v1.1.8",
                 "shasum": ""
             },
             "require": {
@@ -66,9 +73,10 @@
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "bootup.utf8.php"
-                ]
+                "psr-0": {
+                    "Patchwork": "class/",
+                    "Normalizer": "class/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -89,7 +97,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2012-12-13 08:48:39"
+            "time": "2013-05-24 12:11:22"
         }
     ],
     "packages-dev": [
@@ -99,9 +107,9 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "illuminate/support": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.3.0"
     },
