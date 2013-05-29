@@ -273,7 +273,7 @@ class StringMethods extends Str
    */
   public static function lower($string)
   {
-    return mb_strtolower($string);
+    return mb_strtolower($string, 'UTF-8');
   }
 
   /**
@@ -285,7 +285,7 @@ class StringMethods extends Str
    */
   public static function upper($string)
   {
-    return mb_strtoupper($string);
+    return mb_strtoupper($string, 'UTF-8');
   }
 
   /**
