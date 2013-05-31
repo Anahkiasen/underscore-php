@@ -71,10 +71,12 @@ class Parse
    */
   public static function fromCSV($data, $hasHeaders = false)
   {
+    $data = trim($data);
+
     // Explodes rows
     $data = static::explodeWith($data, array(PHP_EOL, "\r", "\n"));
     $data = array_map(function($row) {
-      return Parse::explodeWith($row, array(";", "\t"));
+      return Parse::explodeWith($row, array(";", "\t", ","));
     }, $data);
 
     // Get headers
