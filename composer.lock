@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "35b0bc88eee750f7eecf03d9b4c19837e4ec72e9"
+                "reference": "defcbd6cddfe092edde7a1015a220158c4a2ca22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/35b0bc88eee750f7eecf03d9b4c19837e4ec72e9",
-                "reference": "35b0bc88eee750f7eecf03d9b4c19837e4ec72e9",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/defcbd6cddfe092edde7a1015a220158c4a2ca22",
+                "reference": "defcbd6cddfe092edde7a1015a220158c4a2ca22",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "time": "2013-05-28 18:31:39"
+            "time": "2013-06-04 18:18:47"
         },
         {
             "name": "patchwork/utf8",

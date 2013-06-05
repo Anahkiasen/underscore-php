@@ -271,4 +271,9 @@ class StringTest extends UnderscoreWrapper
   {
     $this->assertEquals('foobar', String::append('foo', 'bar'));
   }
+
+  public function testCanGetBaseClass()
+  {
+    $this->assertEquals('Baz', String::baseClass('Foo\Bar\Baz'));
+  }
 }

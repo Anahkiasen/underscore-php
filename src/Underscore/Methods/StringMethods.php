@@ -172,6 +172,20 @@ class StringMethods extends Str
     return substr($string, 0, $slice);
   }
 
+  /**
+   * Get the base class in a namespace
+   *
+   * @param  string $string
+   *
+   * @return string
+   */
+  public static function baseClass($string)
+  {
+    $string = static::replace($string, '\\', '/');
+
+    return basename($string);
+  }
+
   ////////////////////////////////////////////////////////////////////
   /////////////////////////////// ALTER //////////////////////////////
   ////////////////////////////////////////////////////////////////////
