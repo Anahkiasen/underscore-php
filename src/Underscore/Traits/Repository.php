@@ -14,6 +14,7 @@ use Underscore\Underscore;
  */
 abstract class Repository
 {
+
   /**
    * The subject of the repository
    *
@@ -263,4 +264,5 @@ abstract class Repository
   {
     return '';
   }
+
 }

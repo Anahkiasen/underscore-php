@@ -447,4 +447,5 @@ class ArraysMethods extends CollectionMethods
 
     return $array;
   }
+
 }

@@ -6,6 +6,7 @@ namespace Underscore\Methods;
  */
 class NumberMethods
 {
+
   /**
    * Add 0 padding to an integer
    */
@@ -29,4 +30,5 @@ class NumberMethods
   {
     return static::padding($number, $padding, STR_PAD_RIGHT);
   }
+
 }

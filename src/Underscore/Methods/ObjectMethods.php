@@ -6,6 +6,7 @@ namespace Underscore\Methods;
  */
 class ObjectMethods extends CollectionMethods
 {
+
   /**
    * Get all methods from an object
    */
@@ -26,4 +27,5 @@ class ObjectMethods extends CollectionMethods
 
     return (object) $object;
   }
+
 }

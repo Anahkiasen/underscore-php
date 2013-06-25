@@ -9,6 +9,7 @@ use Underscore\Traits\Repository;
  */
 class Object extends Repository
 {
+
   /**
    * The method used to convert new subjects
    * @var string
@@ -24,4 +25,5 @@ class Object extends Repository
   {
     return new stdClass;
   }
+
 }

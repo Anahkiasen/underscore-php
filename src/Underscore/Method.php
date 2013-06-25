@@ -6,6 +6,7 @@ namespace Underscore;
  */
 class Method
 {
+
   /**
    * A list of methods to automatically defer to PHP
    *
@@ -162,4 +163,5 @@ class Method
 
     return $originalClass;
   }
+
 }

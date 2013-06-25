@@ -9,6 +9,7 @@ use InvalidArgumentException;
  */
 class Dispatch
 {
+
   /**
    * The namespace containing the Type classes
    */

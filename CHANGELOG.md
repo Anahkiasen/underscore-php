@@ -6,6 +6,7 @@ Underscore.php
 
 - Added `String::isIp`, `String::isEmail` and `String::isUrl` from @robclancy Str class
 - Added `String::prepend` and `String::append`
+- Added `String::baseClass` to get the class out of a namespace (ie `Class` from `Namespace\My\Class`)
 
 1.2.0
 -----

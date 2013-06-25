@@ -6,6 +6,7 @@ namespace Underscore\Methods;
  */
 class FunctionsMethods
 {
+
   /**
    * An array of functions to be called X times
    * @var array
@@ -198,4 +199,5 @@ class FunctionsMethods
 
     return md5($unique. '_' .$function.'_'.$arguments);
   }
+
 }

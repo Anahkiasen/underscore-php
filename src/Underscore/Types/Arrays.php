@@ -8,6 +8,7 @@ use Underscore\Traits\Repository;
  */
 class Arrays extends Repository
 {
+
   /**
    * The method used to convert new subjects
    * @var string
@@ -23,4 +24,5 @@ class Arrays extends Repository
   {
     return array();
   }
+
 }
