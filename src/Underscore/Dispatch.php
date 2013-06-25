@@ -45,7 +45,7 @@ class Dispatch
 
     // Return correct class
     if (array_key_exists($subjectType, static::$classmap)) {
-      return '\\'.static::TYPES.static::$classmap[$subjectType];
+      return static::TYPES.static::$classmap[$subjectType];
     }
 
     throw new InvalidArgumentException('The type ' .$subjectType. ' is not supported');

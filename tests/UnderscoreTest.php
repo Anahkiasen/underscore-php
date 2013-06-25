@@ -120,4 +120,14 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $this->assertEquals('{"foo":"bar","bis":"ter"}', $array->__toString());
   }
+
+  public function testUnderscoreFindsRightClassToCall()
+  {
+    $numbers = array(3, 4, 5);
+    $product = Underscore::reduce($numbers, function($w, $v) {
+        return $w * $v;
+    }, 1);
+
+    $this->assertEquals(60, $product);
+  }
 }

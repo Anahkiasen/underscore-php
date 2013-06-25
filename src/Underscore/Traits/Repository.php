@@ -166,8 +166,8 @@ abstract class Repository
     }
 
     // Check for parsers
-    if (method_exists('\Underscore\Parse', $method)) {
-      return Repository::callMethod('\Underscore\Parse', $method, $parameters);
+    if (method_exists('Underscore\Parse', $method)) {
+      return Repository::callMethod('Underscore\Parse', $method, $parameters);
     }
 
     // Defered methods

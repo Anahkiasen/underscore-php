@@ -29,7 +29,7 @@ class DispatchTest extends UnderscoreWrapper
   {
     $dispatch = Dispatch::toClass($subject);
 
-    $this->assertEquals('\Underscore\Types\\'.$expected, $dispatch);
+    $this->assertEquals('Underscore\Types\\'.$expected, $dispatch);
   }
 
   public function testCanThrowExceptionAtUnknownTypes()
