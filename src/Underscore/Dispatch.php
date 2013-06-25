@@ -66,11 +66,11 @@ class Dispatch
 
     // Transform class to php function prefix
     switch ($class) {
-      case static::TYPES.'Arrays':
+      case '\\'.static::TYPES.'Arrays':
         $prefix = 'array_';
         break;
 
-      case static::TYPES.'String':
+      case '\\'.static::TYPES.'String':
         $prefix = 'str_';
         break;
     }
