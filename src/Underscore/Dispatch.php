@@ -44,7 +44,7 @@ class Dispatch
 
     // Return correct class
     if (array_key_exists($subjectType, static::$classmap)) {
-      return '\\'.static::TYPES.static::$classmap[$subjectType];
+      return static::TYPES.static::$classmap[$subjectType];
     }
 
     throw new InvalidArgumentException('The type ' .$subjectType. ' is not supported');
@@ -66,11 +66,11 @@ class Dispatch
 
     // Transform class to php function prefix
     switch ($class) {
-      case '\\'.static::TYPES.'Arrays':
+      case static::TYPES.'Arrays':
         $prefix = 'array_';
         break;
 
-      case '\\'.static::TYPES.'String':
+      case static::TYPES.'String':
         $prefix = 'str_';
         break;
     }
