@@ -42,6 +42,10 @@ abstract class CollectionMethods
   {
     if (is_null($key)) return $collection;
 
+    if (!is_object($collection) && isset($collection[$key])) {
+      return $collection[$key];
+    }
+
     // Crawl through collection, get key according to object or not
     foreach (explode('.', $key) as $segment) {
 
