@@ -2,6 +2,11 @@
   "name": "anahkiasen/underscore-php",
   "description": "A redacted port of Underscore.js for PHP",
   "license": "MIT",
+  "keywords": [
+    "toolkit",
+    "internals",
+    "laravel"
+  ],
   "authors": [
     {
       "name": "Maxime Fabre",
