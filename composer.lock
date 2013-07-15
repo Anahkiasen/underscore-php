@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "05b3a9d1bdbea37702a877f8ddbf08e2",
+    "hash": "00d9725e03432ffbdd5ff2ccb0b35082",
     "packages": [
         {
             "name": "illuminate/support",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "46002c0c74b461b4f159e8e23d2536cf115e10db"
+                "reference": "c5175eabb5e992096d8853d438aed072fca1e7bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/46002c0c74b461b4f159e8e23d2536cf115e10db",
-                "reference": "46002c0c74b461b4f159e8e23d2536cf115e10db",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/c5175eabb5e992096d8853d438aed072fca1e7bb",
+                "reference": "c5175eabb5e992096d8853d438aed072fca1e7bb",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "time": "2013-06-20 20:50:44"
+            "time": "2013-07-09 13:05:22"
         },
         {
             "name": "patchwork/utf8",
