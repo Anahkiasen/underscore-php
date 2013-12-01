@@ -1,10 +1,12 @@
 <?php
 namespace Underscore\Types;
 
+use Underscore\Methods\StringMethods;
 use Underscore\Traits\Repository;
 
 /**
  * String repository
+ * @mixin StringMethods
  */
 class String extends Repository
 {
