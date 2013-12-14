@@ -1,10 +1,12 @@
 <?php
 namespace Underscore\Types;
 
+use Underscore\Methods\ArraysMethods;
 use Underscore\Traits\Repository;
 
 /**
  * Arrays repository
+ * @mixin ArraysMethods
  */
 class Arrays extends Repository
 {

@@ -1,10 +1,12 @@
 <?php
 namespace Underscore\Types;
 
+use Underscore\Methods\NumberMethods;
 use Underscore\Traits\Repository;
 
 /**
  * Number repository
+ * @mixin NumberMethods
  */
 class Number extends Repository
 {

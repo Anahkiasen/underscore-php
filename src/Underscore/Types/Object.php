@@ -2,10 +2,12 @@
 namespace Underscore\Types;
 
 use stdClass;
+use Underscore\Methods\ObjectMethods;
 use Underscore\Traits\Repository;
 
 /**
  * Object repository
+ * @mixin ObjectMethods
  */
 class Object extends Repository
 {
