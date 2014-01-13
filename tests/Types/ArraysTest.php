@@ -168,7 +168,7 @@ class ArraysTest extends UnderscoreWrapper
     $unfound = Arrays::find($this->arrayNumbers, function($value) {
       return $value == 5;
     });
-    $this->assertEquals($this->arrayNumbers, $unfound);
+    $this->assertNull($unfound);
   }
 
   public function testCanFilterValuesFromAnArray()
