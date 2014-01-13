@@ -162,7 +162,7 @@ class ArraysMethods extends CollectionMethods
       if ($closure($value, $key)) return $value;
     }
 
-    return $array;
+    return null;
   }
 
   /**
