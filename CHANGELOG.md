@@ -1,6 +1,12 @@
 Underscore.php
 =====
 
+1.2.2
+-----
+
+- Fixed `Arrays::find` not returning null on failed find
+- Fixed bug in `Arrays::contains`
+
 1.2.1
 -----
 

@@ -17,14 +17,6 @@ To install Underscore.php you can either add it via Composer :
 
     "anahkiasen/underscore-php" : "dev-master"
 
-Or if you're using the Laravel framework, via the Artisan CLI :
-
-    artisan bundle:install underscore
-
-And then adding the following to your bundles files :
-
-    'underscore' => array('auto' => true),
-
 Note that Underscore's type classes (Arrays/String/etc) are by default namespaced in the `Types` folder, so to use Arrays, you would do the following :
 
 ```php
