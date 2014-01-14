@@ -3,25 +3,25 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "00d9725e03432ffbdd5ff2ccb0b35082",
+    "hash": "23e338e91a929672bbb4e0d1791e920d",
     "packages": [
         {
             "name": "illuminate/support",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "c7dfd1bad63f9ac5c3491112c21c14475b1c331e"
+                "reference": "ccc9a5dc4b79926407b5904dde419a5641c2880f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/c7dfd1bad63f9ac5c3491112c21c14475b1c331e",
-                "reference": "c7dfd1bad63f9ac5c3491112c21c14475b1c331e",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/ccc9a5dc4b79926407b5904dde419a5641c2880f",
+                "reference": "ccc9a5dc4b79926407b5904dde419a5641c2880f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.3.0"
             },
             "require-dev": {
                 "mockery/mockery": "0.7.2",
@@ -31,7 +31,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -54,7 +54,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-01-14 01:36:14"
+            "time": "2014-01-13 19:39:13"
         },
         {
             "name": "patchwork/utf8",
