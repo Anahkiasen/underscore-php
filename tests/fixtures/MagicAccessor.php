@@ -9,6 +9,6 @@ class MagicAccessor
   }
 
   public function __get($key) {
-    return $this->values[$key];
+    return isset($this->values[$key]) ? $this->values[$key] : null;
   }
 }
