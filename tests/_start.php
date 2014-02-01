@@ -12,6 +12,8 @@ abstract class UnderscoreWrapper extends PHPUnit_Framework_TestCase
     array('bar' => 'foo', 'bis' => 'ter'),
   );
   public $object;
+	/** @var stdClass */
+	protected $objectMulti;
 
   /**
    * Starts the bundle
