@@ -3,6 +3,16 @@ use Underscore\Types\Object;
 
 class ObjectTest extends UnderscoreWrapper
 {
+  protected $objectMagicMulti;
+
+  public function setUp() {
+    parent::setUp();
+    $this->objectMagicMulti = (object) array(
+      new \fixtures\MagicAccessor($this->arrayMulti[0]),
+      new \fixtures\MagicAccessor($this->arrayMulti[1]),
+      new \fixtures\MagicAccessor($this->arrayMulti[2]),
+    );
+  }
 
   public function testCanCreateObject()
   {
@@ -61,9 +71,11 @@ class ObjectTest extends UnderscoreWrapper
   public function testCanPluckColumns()
   {
     $object = Object::pluck($this->objectMulti, 'foo');
+    $objectMagic = Object::pluck($this->objectMagicMulti, 'foo');
     $matcher = (object) array('bar', 'bar', null);
 
     $this->assertEquals($matcher, $object);
+    $this->assertEquals($matcher, $objectMagic);
   }
 
   public function testCanSetValues()
