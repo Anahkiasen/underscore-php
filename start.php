@@ -17,7 +17,7 @@ Autoloader::alias('Underscore\Underscore', $alias);
  * Shortcut alias to creating an Underscore object
  *
  * @param array $array An array to wrap
- * @return Underscore
+ * @return \Underscore\Underscore
  */
 function underscore($array)
 {
