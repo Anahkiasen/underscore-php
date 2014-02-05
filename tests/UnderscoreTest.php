@@ -37,7 +37,7 @@ class UnderscoreTest extends UnderscoreWrapper
 
     $under = underscore($this->array);
 
-    $this->assertInstanceOf('Underscore\Types\Arrays', $under);
+    $this->assertInstanceOf('Underscore\Underscore', $under);
   }
 
   public function testCanHaveAliasesForMethods()
