@@ -1,7 +1,10 @@
 <?php
-use Underscore\Parse;
+namespace Underscore;
 
-class ParseTest extends UnderscoreWrapper
+use Underscore\Parse;
+use Underscore\Dummies\DummyDefault;
+
+class ParseTest extends UnderscoreTestCase
 {
   ////////////////////////////////////////////////////////////////////
   ////////////////////////// DATA PROVIDERS //////////////////////////

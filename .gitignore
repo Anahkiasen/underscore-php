@@ -1,5 +1,5 @@
 # Tests
-tests/coverage
+tests/.coverage
 
 # Dependencies
 vendor

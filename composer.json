@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Underscore\\": "src/Underscore"
+      "Underscore\\": ["src", "tests"]
     },
     "files": ["helpers.php"]
   }

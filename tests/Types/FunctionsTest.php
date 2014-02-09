@@ -1,7 +1,10 @@
 <?php
-use Underscore\Types\Functions;
+namespace Underscore\Types;
 
-class FunctionsTest extends UnderscoreWrapper
+use Underscore\Types\Functions;
+use Underscore\UnderscoreTestCase;
+
+class FunctionsTest extends UnderscoreTestCase
 {
   public function testCanCallFunctionOnlyOnce()
   {

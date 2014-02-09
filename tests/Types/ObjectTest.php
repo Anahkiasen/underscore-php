@@ -1,7 +1,11 @@
 <?php
-use Underscore\Types\Object;
+namespace Underscore\Types;
 
-class ObjectTest extends UnderscoreWrapper
+use Underscore\Types\Object;
+use Underscore\Dummies\DummyDefault;
+use Underscore\UnderscoreTestCase;
+
+class ObjectTest extends UnderscoreTestCase
 {
 
   public function testCanCreateObject()

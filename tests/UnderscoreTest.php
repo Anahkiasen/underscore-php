@@ -1,9 +1,13 @@
 <?php
+namespace Underscore;
+
 use Underscore\Types\Arrays;
 use Underscore\Types\String;
 use Underscore\Underscore;
+use Underscore\Dummies\DummyClass;
+use Underscore\Dummies\DummyDefault;
 
-class UnderscoreTest extends UnderscoreWrapper
+class UnderscoreTest extends UnderscoreTestCase
 {
   // Tests --------------------------------------------------------- /
 

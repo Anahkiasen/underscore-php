@@ -1,7 +1,10 @@
 <?php
-use Underscore\Types\Number;
+namespace Underscore\Types;
 
-class NumberTest extends UnderscoreWrapper
+use Underscore\Types\Number;
+use Underscore\UnderscoreTestCase;
+
+class NumberTest extends UnderscoreTestCase
 {
   public function testCanCreateNewNumber()
   {

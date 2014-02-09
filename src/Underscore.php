@@ -49,7 +49,7 @@ class Underscore extends Repository
   {
     // Get config file
     if (!static::$options) {
-      static::$options = include __DIR__.'/../../config/config.php';
+      static::$options = include __DIR__.'/../config/config.php';
     }
 
     return ArraysMethods::get(static::$options, $option);

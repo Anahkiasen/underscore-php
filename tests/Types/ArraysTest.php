@@ -1,8 +1,11 @@
 <?php
+namespace Underscore\Types;
+
 use Underscore\Types\Arrays;
 use Underscore\Underscore;
+use Underscore\UnderscoreTestCase;
 
-class ArraysTest extends UnderscoreWrapper
+class ArraysTest extends UnderscoreTestCase
 {
   // Tests --------------------------------------------------------- /
 
