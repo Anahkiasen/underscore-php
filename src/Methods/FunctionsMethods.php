@@ -52,7 +52,7 @@ class FunctionsMethods
     $unique = mt_rand();
 
     // Create a closure that check if the function was already called
-    return function() use ($function, $canBeCalledTimes, $unique) {
+    return function () use ($function, $canBeCalledTimes, $unique) {
 
       // Generate unique hash of the function
       $arguments = func_get_args();
@@ -81,7 +81,7 @@ class FunctionsMethods
     $unique = mt_rand();
 
     // Create a closure that check if the function was already called
-    return function() use ($function, $times, $unique) {
+    return function () use ($function, $times, $unique) {
 
       // Generate unique hash of the function
       $arguments = func_get_args();
@@ -111,7 +111,7 @@ class FunctionsMethods
   {
     $unique = mt_rand();
 
-    return function() use ($function, $unique) {
+    return function () use ($function, $unique) {
 
       // Generate unique hash of the function
       $arguments = func_get_args();
@@ -138,7 +138,7 @@ class FunctionsMethods
   {
     $unique = mt_rand();
 
-    return function() use ($function, $ms, $unique) {
+    return function () use ($function, $ms, $unique) {
 
       // Generate unique hash of the function
       $arguments = func_get_args();

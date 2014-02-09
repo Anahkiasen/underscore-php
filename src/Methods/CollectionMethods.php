@@ -121,14 +121,13 @@ abstract class CollectionMethods
    */
   public static function pluck($collection, $property)
   {
-    $plucked = array_map(function($value) use ($property) {
+    $plucked = array_map(function ($value) use ($property) {
       return ArraysMethods::get($value, $property);
 
     }, (array) $collection);
 
     // Convert back to object if necessary
     if (is_object($collection)) $plucked = (object) $plucked;
-
     return $plucked;
   }
 
@@ -180,7 +179,7 @@ abstract class CollectionMethods
 
     // Transform all values into their results
     if ($sorter) {
-      $results = ArraysMethods::each($collection, function($value) use ($sorter) {
+      $results = ArraysMethods::each($collection, function ($value) use ($sorter) {
         return is_callable($sorter) ? $sorter($value) : ArraysMethods::get($value, $sorter);
       });
     } else $results = $collection;

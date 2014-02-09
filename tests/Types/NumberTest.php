@@ -1,7 +1,6 @@
 <?php
 namespace Underscore\Types;
 
-use Underscore\Types\Number;
 use Underscore\UnderscoreTestCase;
 
 class NumberTest extends UnderscoreTestCase

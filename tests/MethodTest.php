@@ -1,10 +1,8 @@
 <?php
 namespace Underscore;
 
-use Underscore\Method;
 use Underscore\Types\Arrays;
 use Underscore\Types\String;
-use Underscore\Underscore;
 
 class MethodTest extends UnderscoreTestCase
 {

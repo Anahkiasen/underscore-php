@@ -28,7 +28,6 @@ class StringMethods extends Str
     if($count == 1) $output = $one;
     else if($count == 0 and !empty($zero)) $output = $zero;
     else $output = $many;
-
     return sprintf($output, $count);
   }
 
@@ -275,7 +274,6 @@ class StringMethods extends Str
   public static function explode($string, $with, $limit = null)
   {
     if (!$limit) return explode($with, $string);
-
     return explode($with, $string, $limit);
   }
 
@@ -340,7 +338,7 @@ class StringMethods extends Str
    */
   public static function toSnakeCase($string)
   {
-    return preg_replace_callback('/([A-Z])/', function($match) {
+    return preg_replace_callback('/([A-Z])/', function ($match) {
       return '_'.strtolower($match[1]);
     }, $string);
   }

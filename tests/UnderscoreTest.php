@@ -3,7 +3,6 @@ namespace Underscore;
 
 use Underscore\Types\Arrays;
 use Underscore\Types\String;
-use Underscore\Underscore;
 use Underscore\Dummies\DummyClass;
 use Underscore\Dummies\DummyDefault;
 
@@ -46,7 +45,7 @@ class UnderscoreTest extends UnderscoreTestCase
 
   public function testCanHaveAliasesForMethods()
   {
-    $under = Arrays::select($this->arrayNumbers, function($value) {
+    $under = Arrays::select($this->arrayNumbers, function ($value) {
       return $value == 1;
     });
 
@@ -55,12 +54,12 @@ class UnderscoreTest extends UnderscoreTestCase
 
   public function testUserCanExtendWithCustomFunctions()
   {
-    Arrays::extend('fooify', function($array) {
+    Arrays::extend('fooify', function ($array) {
       return 'bar';
     });
     $this->assertEquals('bar', Arrays::fooify(array('foo')));
 
-    String::extend('unfooer', function($string) {
+    String::extend('unfooer', function ($string) {
       return String::replace($string, 'foo', 'bar');
     });
     $this->assertEquals('bar', String::unfooer('foo'));
@@ -104,8 +103,8 @@ class UnderscoreTest extends UnderscoreTestCase
 
   public function testMacrosCantConflictBetweenTypes()
   {
-    String::extend('foobar', function() { return 'string'; });
-    Arrays::extend('foobar', function() { return 'arrays'; });
+    String::extend('foobar', function () { return 'string'; });
+    Arrays::extend('foobar', function () { return 'arrays'; });
 
     $this->assertEquals('string', String::foobar());
     $this->assertEquals('arrays', Arrays::foobar());
@@ -128,7 +127,7 @@ class UnderscoreTest extends UnderscoreTestCase
   public function testUnderscoreFindsRightClassToCall()
   {
     $numbers = array(3, 4, 5);
-    $product = Underscore::reduce($numbers, function($w, $v) {
+    $product = Underscore::reduce($numbers, function ($w, $v) {
         return $w * $v;
     }, 1);
 

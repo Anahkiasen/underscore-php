@@ -1,7 +1,6 @@
 <?php
 namespace Underscore\Types;
 
-use Underscore\Types\Object;
 use Underscore\Dummies\DummyDefault;
 use Underscore\UnderscoreTestCase;
 
@@ -109,7 +108,7 @@ class ObjectTest extends UnderscoreTestCase
     $under = Object::sort($collection, 'child.sort', 'desc');
     $this->assertEquals(array($object_alt, $object), $under);
 
-    $under = Object::sort($collection, function($value) {
+    $under = Object::sort($collection, function ($value) {
       return $value->child->sort;
     }, 'desc');
     $this->assertEquals(array($object_alt, $object), $under);

@@ -1,8 +1,6 @@
 <?php
 namespace Underscore;
 
-use Underscore\Types\Arrays;
-use Underscore\Types\String;
 use PHPUnit_Framework_TestCase;
 
 abstract class UnderscoreTestCase extends PHPUnit_Framework_TestCase

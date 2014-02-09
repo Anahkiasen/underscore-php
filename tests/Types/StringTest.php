@@ -1,7 +1,6 @@
 <?php
 namespace Underscore\Types;
 
-use Underscore\Types\String;
 use Underscore\Underscore;
 use Underscore\UnderscoreTestCase;
 

@@ -1,7 +1,6 @@
 <?php
 namespace Underscore;
 
-use Underscore\Dispatch;
 use StdClass;
 
 class DispatchTest extends UnderscoreTestCase
@@ -18,7 +17,7 @@ class DispatchTest extends UnderscoreTestCase
       array(7E-10, 'Number'),
       array(array(), 'Arrays'),
       array(new StdClass, 'Object'),
-      array(function() { return; }, 'Functions'),
+      array(function () { return; }, 'Functions'),
       array(NULL, 'String')
     );
   }

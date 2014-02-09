@@ -53,7 +53,6 @@ abstract class Repository
     // Convert it if necessary
     $typecaster = $this->typecaster;
     if ($typecaster) $this->$typecaster();
-
     return $this;
   }
 
@@ -203,7 +202,6 @@ abstract class Repository
     // If the method is a breaker, return just the result
     if (Method::isBreaker($method)) return $result;
     else $this->subject = $result;
-
     return $this;
   }
 

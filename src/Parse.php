@@ -75,7 +75,7 @@ class Parse
 
     // Explodes rows
     $data = static::explodeWith($data, array(PHP_EOL, "\r", "\n"));
-    $data = array_map(function($row) {
+    $data = array_map(function ($row) {
       return Parse::explodeWith($row, array(";", "\t", ","));
     }, $data);
 
@@ -164,7 +164,6 @@ class Parse
   {
     // Avoid Array to String conversion exception
     if (is_array($data)) return static::toJSON($data);
-
     return (string) $data;
   }
 

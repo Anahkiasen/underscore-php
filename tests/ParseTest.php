@@ -1,7 +1,6 @@
 <?php
 namespace Underscore;
 
-use Underscore\Parse;
 use Underscore\Dummies\DummyDefault;
 
 class ParseTest extends UnderscoreTestCase
