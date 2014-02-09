@@ -1,6 +1,4 @@
 <?php
-include '_start.php';
-
 use Underscore\Dispatch;
 
 class DispatchTest extends UnderscoreWrapper
