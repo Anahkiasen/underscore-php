@@ -1,5 +1,5 @@
 # Underscore.php [![Build Status](https://secure.travis-ci.org/Anahkiasen/underscore-php.png?branch=master)](https://travis-ci.org/Anahkiasen/underscore-php)
-## The PHP manipulation toolbet
+## The PHP manipulation toolbelt
 
 First off : Underscore.php is **not** a PHP port of [Underscore.js][] (well ok I mean it was at first).
 It's doesn't aim to blatantly port its methods, but more port its philosophy.
