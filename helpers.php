@@ -18,6 +18,8 @@ function underscore($type) {
  *
  * @return \Underscore\Underscore
  */
-function __($type) {
-	return underscore($type);
+if (!function_exists('__')) {
+	function __($type) {
+		return underscore($type);
+	}
 }
