@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 1.2.3
+
+- Don't overwrite already defined `__` functions
+
 ### 1.2.2
 
 - Fixed `Arrays::find` not returning null on failed find
