@@ -52,7 +52,10 @@ abstract class Repository
 
     // Convert it if necessary
     $typecaster = $this->typecaster;
-    if ($typecaster) $this->$typecaster();
+    if ($typecaster) {
+      $this->$typecaster();
+    }
+
     return $this;
   }
 
