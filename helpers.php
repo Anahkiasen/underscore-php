@@ -7,8 +7,10 @@
  *
  * @return \Underscore\Underscore
  */
-function underscore($type) {
-  return new Underscore\Underscore($type);
+if ( ! function_exists('underscore')) {
+  function underscore($type) {
+    return new Underscore\Underscore($type);
+  }
 }
 
 /**
