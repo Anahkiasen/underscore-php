@@ -239,6 +239,14 @@ class ArraysMethods extends CollectionMethods
     return array_splice($array, $from);
   }
 
+  /**
+   * Split into multiple arrays with defined size
+   */
+  public static function chunk($array, $chunkSize, $preserveKeys = null)
+  {
+    return array_chunk($array, $chunkSize, $preserveKeys);
+  }
+
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ACT UPON /////////////////////////////
   ////////////////////////////////////////////////////////////////////

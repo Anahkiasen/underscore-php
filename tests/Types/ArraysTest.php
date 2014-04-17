@@ -529,4 +529,16 @@ class ArraysTest extends UnderscoreTestCase
 
     $this->assertEquals(array('bar' => 'bar', 'ter' => 'ter'), $array);
   }
+
+  public function testCanChunkArray()
+  {
+    $array = $this->array;
+    $array = Arrays::chunk($array, 1, true);
+
+    $this->assertCount(2, $array);
+    $this->assertTrue(is_array($array[0]));
+    $this->assertTrue(is_array($array[1]));
+    $this->assertArrayHasKey('foo', $array[0]);
+    $this->assertArrayHasKey('bis', $array[1]);
+  }
 }
