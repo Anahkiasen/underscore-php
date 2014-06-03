@@ -214,7 +214,7 @@ class ArraysMethods extends CollectionMethods
   public static function intersects($a, $b) {
 	  if (!is_array($a)) $a = array($a);
 	  if (!is_array($b)) $b = array($b);
-	  return (count(ArrayMethods::intersection($a,$b)) > 0);
+	  return (count(self::intersection($a,$b)) > 0);
   }
 
   ////////////////////////////////////////////////////////////////////

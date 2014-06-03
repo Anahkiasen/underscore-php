@@ -529,4 +529,28 @@ class ArraysTest extends UnderscoreTestCase
 
     $this->assertEquals(array('bar' => 'bar', 'ter' => 'ter'), $array);
   }
+  
+  public function testCanGetIntersectionOfTwoArrays()
+  {
+	  $a = array('foo','bar');
+	  $b = array('bar','baz');
+	  $array = Arrays::intersection($a, $b);
+
+	  $this->assertEquals(array('bar'), $array);
+  }
+
+  public function testIntersectsBooleanFlag()
+  {
+	  $a = array('foo','bar');
+	  $b = array('bar','baz');
+
+	  $this->assertTrue( Arrays::intersects($a,$b) );
+	  
+	  $a = 'bar'; 
+	  $this->assertTrue( Arrays::intersects($a,$b) );
+	  $a = 'foo'; 
+	  $this->assertFalse( Arrays::intersects($a,$b) );
+	  
+  }
+  
 }
