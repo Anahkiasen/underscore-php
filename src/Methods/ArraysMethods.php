@@ -202,14 +202,18 @@ class ArraysMethods extends CollectionMethods
   /**
    * Return an array with all elements found in both input arrays
    */ 
-  public static function intersection(array $a,array $b) {
+  public static function intersection($a,$b) {
+	  if (!is_array($a)) $a = array($a);
+	  if (!is_array($b)) $b = array($b);
 	  return array_values(array_intersect($a,$b));
   }
   
   /**
    * Return a boolean flag which indicates whether the two input arrays have any common elements
    */ 
-  public static function intersects(array $a, array $b) {
+  public static function intersects($a, $b) {
+	  if (!is_array($a)) $a = array($a);
+	  if (!is_array($b)) $b = array($b);
 	  return (count(ArrayMethods::intersection($a,$b)) > 0);
   }
 
