@@ -198,6 +198,26 @@ class ArraysMethods extends CollectionMethods
       return !in_array($value, $arguments);
     });
   }
+  
+  /**
+   * Return an array with all elements found in both input arrays
+   */ 
+  public static function intersection($a,$b) {
+	  $a = (array) $a;
+	  $b = (array) $b;
+	  
+	  return array_values(array_intersect($a,$b));
+  }
+  
+  /**
+   * Return a boolean flag which indicates whether the two input arrays have any common elements
+   */ 
+  public static function intersects($a, $b) {
+	  $a = (array) $a;
+	  $b = (array) $b;
+	  
+	  return count(self::intersection($a,$b)) > 0;
+  }
 
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// SLICERS //////////////////////////////
