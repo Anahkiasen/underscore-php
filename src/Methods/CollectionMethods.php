@@ -130,6 +130,36 @@ abstract class CollectionMethods
     if (is_object($collection)) $plucked = (object) $plucked;
     return $plucked;
   }
+  
+  /**
+   * Filters an array of objects (or a numeric array of associative arrays) based on the value of a particular property within that 
+   *
+   * @param string $property 
+   * @param string $value 
+   * @param string $comparisonOp 
+   * @return void
+   */
+  public static function filterBy($collection,$property,$value,$comparisonOp="eq") {
+	  $ops = array(
+		  'eq' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] === $value : false; },
+		  'gt' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] > $value : false; },
+		  'gte' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] >= $value : false; },
+		  'lt' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] < $value : false; },
+		  'lte' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] <= $value : false; },
+		  'ne' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] !== $value : false; }
+	  );
+	  $result = array_values(array_filter($collection, function($item) use ($property,$value,$ops,$comparisonOp) {
+		  return $ops[$comparisonOp]($item,$property,$value);
+	  }));
+	  if (is_object($collection)) $result = (object) $result;
+
+	  return $result;
+  }
+  
+  public static function findBy($collection,$property,$value,$comparisonOp="eq") {
+	  return \Underscore\Methods\ArraysMethods::first(static::filterBy($collection,$property,$value,$comparisonOp));
+  }
+  
 
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// ANALYZE //////////////////////////////
