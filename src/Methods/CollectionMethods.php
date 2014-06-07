@@ -141,23 +141,32 @@ abstract class CollectionMethods
    */
   public static function filterBy($collection,$property,$value,$comparisonOp="eq") {
 	  $ops = array(
-		  'eq' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] === $value : false; },
-		  'gt' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] > $value : false; },
-		  'gte' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] >= $value : false; },
-		  'lt' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] < $value : false; },
-		  'lte' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] <= $value : false; },
-		  'ne' => function($item,$prop,$value) { $item = (array) $item; return isset($item[$prop]) ? $item[$prop] !== $value : false; }
+		  'eq' => function($item,$prop,$value) { return $item[$prop] === $value; },
+		  'gt' => function($item,$prop,$value) { return $item[$prop] > $value; },
+		  'gte' => function($item,$prop,$value) { return $item[$prop] >= $value; },
+		  'lt' => function($item,$prop,$value) { return $item[$prop] < $value; },
+		  'lte' => function($item,$prop,$value) { return $item[$prop] <= $value; },
+		  'ne' => function($item,$prop,$value) { return $item[$prop] !== $value; }
 	  );
-	  $result = array_values(array_filter($collection, function($item) use ($property,$value,$ops,$comparisonOp) {
-		  return $ops[$comparisonOp]($item,$property,$value);
+	  $result = array_values(array_filter($collection, function($item) use ($property, $value, $ops, $comparisonOp) {
+		  $item = (array) $item;
+		  if (!isset($item[$property])) {
+			  return false;
+		  }
+		  return $ops[$comparisonOp]($item, $property, $value);
 	  }));
-	  if (is_object($collection)) $result = (object) $result;
+	  if (is_object($collection)) {
+	  	$result = (object) $result;
+	  }
+		  
 
 	  return $result;
   }
   
-  public static function findBy($collection,$property,$value,$comparisonOp="eq") {
-	  return \Underscore\Methods\ArraysMethods::first(static::filterBy($collection,$property,$value,$comparisonOp));
+  public static function findBy($collection, $property, $value, $comparisonOp="eq") {
+	  $filtered = static::filterBy($collection, $property, $value, $comparisonOp);
+	  
+	  return \Underscore\Methods\ArraysMethods::first($filtered);
   }
   
 
