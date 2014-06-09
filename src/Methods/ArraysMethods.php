@@ -453,11 +453,16 @@ class ArraysMethods extends CollectionMethods
    */
   public static function removeValue($array,$value)
   {
+	  $isNumericArray = true;
       foreach ($array as $key => $item) {
           if ($item === $value) {
+			  if(!is_integer($key))
+				  $isNumericArray = false;
               unset($array[$key]);
           }
       }
+	  if ($isNumericArray)
+		  $array = array_values($array);
 
       return $array;
   }
