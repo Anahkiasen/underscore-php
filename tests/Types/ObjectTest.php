@@ -151,4 +151,57 @@ class ObjectTest extends UnderscoreTestCase
     $this->assertEquals($getset, 'get');
     $this->assertEquals($get, $getset);
   }
+  
+  public function testFilterBy() {
+	  $a = array(
+		  (object) array('id'=>123,'name'=>'foo','group'=>'primary','value'=>123456),
+		  (object) array('id'=>456,'name'=>'bar','group'=>'primary','value'=>1468),
+		  (object) array('id'=>499,'name'=>'baz','group'=>'secondary','value'=>2365),
+		  (object) array('id'=>789,'name'=>'ter','group'=>'primary','value'=>2468),
+	  );
+	  
+	  $b = Object::filterBy($a,'name','baz');
+	  $this->assertCount(1,$b);
+	  $this->assertEquals(2365,$b[0]->value);
+	  
+	  $c = Object::filterBy($a,'value',2468);
+	  $this->assertCount(1,$c);
+	  $this->assertEquals("primary",$c[0]->group);
+	  
+	  $d = Object::filterBy($a,'group','primary');
+	  $this->assertCount(3,$d);
+	  
+	  $e = Object::filterBy($a,'value',2000,'lt');
+	  $this->assertCount(1,$e);
+	  $this->assertEquals(1468,$e[0]->value);
+  }
+  
+  public function testFindBy() {
+	  $a = array(
+		  (object) array('id'=>123,'name'=>'foo','group'=>'primary','value'=>123456),
+		  (object) array('id'=>456,'name'=>'bar','group'=>'primary','value'=>1468),
+		  (object) array('id'=>499,'name'=>'baz','group'=>'secondary','value'=>2365),
+		  (object) array('id'=>789,'name'=>'ter','group'=>'primary','value'=>2468),
+	  );
+	  
+	  $b = Object::findBy($a,'name','baz');
+	  $this->assertInstanceOf('\stdClass',$b);
+	  $this->assertEquals(2365,$b->value);
+	  $this->assertObjectHasAttribute("name",$b);
+	  $this->assertObjectHasAttribute("group",$b);
+	  $this->assertObjectHasAttribute("value",$b);
+	  
+	  $c = Object::findBy($a,'value',2468);
+	  $this->assertInstanceOf('\stdClass',$c);
+	  $this->assertEquals("primary",$c->group);
+	  
+	  $d = Object::findBy($a,'group','primary');
+	  $this->assertInstanceOf('\stdClass',$d);
+	  $this->assertEquals("foo",$d->name);
+	  
+	  $e = Object::findBy($a,'value',2000,'lt');
+	  $this->assertInstanceOf('\stdClass',$e);
+	  $this->assertEquals(1468,$e->value);
+  }
+  
 }

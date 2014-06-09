@@ -198,25 +198,27 @@ class ArraysMethods extends CollectionMethods
       return !in_array($value, $arguments);
     });
   }
-  
+
   /**
    * Return an array with all elements found in both input arrays
-   */ 
-  public static function intersection($a,$b) {
-	  $a = (array) $a;
-	  $b = (array) $b;
-	  
-	  return array_values(array_intersect($a,$b));
+   */
+  public static function intersection($a,$b)
+  {
+      $a = (array) $a;
+      $b = (array) $b;
+
+      return array_values(array_intersect($a,$b));
   }
-  
+
   /**
    * Return a boolean flag which indicates whether the two input arrays have any common elements
-   */ 
-  public static function intersects($a, $b) {
-	  $a = (array) $a;
-	  $b = (array) $b;
-	  
-	  return count(self::intersection($a,$b)) > 0;
+   */
+  public static function intersects($a, $b)
+  {
+      $a = (array) $a;
+      $b = (array) $b;
+
+      return count(self::intersection($a,$b)) > 0;
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -440,6 +442,29 @@ class ArraysMethods extends CollectionMethods
     array_pop($array);
 
     return $array;
+  }
+
+  /**
+   * Removes a particular value from an array (numeric or associative)
+   *
+   * @param string $array
+   * @param string $value
+   * @return array
+   */
+  public static function removeValue($array,$value)
+  {
+	  $isNumericArray = true;
+      foreach ($array as $key => $item) {
+          if ($item === $value) {
+			  if(!is_integer($key))
+				  $isNumericArray = false;
+              unset($array[$key]);
+          }
+      }
+	  if ($isNumericArray)
+		  $array = array_values($array);
+
+      return $array;
   }
 
   /**

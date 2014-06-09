@@ -552,4 +552,79 @@ class ArraysTest extends UnderscoreTestCase
 	  $this->assertFalse( Arrays::intersects($a,$b) );
   }
   
+  public function testFilterBy() {
+	  $a = array(
+		  array('id'=>123,'name'=>'foo','group'=>'primary','value'=>123456),
+		  array('id'=>456,'name'=>'bar','group'=>'primary','value'=>1468),
+		  array('id'=>499,'name'=>'baz','group'=>'secondary','value'=>2365),
+		  array('id'=>789,'name'=>'ter','group'=>'primary','value'=>2468),
+	  );
+	  
+	  $b = Arrays::filterBy($a,'name','baz');
+	  $this->assertCount(1,$b);
+	  $this->assertEquals(2365,$b[0]['value']);
+	  
+	  $c = Arrays::filterBy($a,'value',2468);
+	  $this->assertCount(1,$c);
+	  $this->assertEquals("primary",$c[0]['group']);
+	  
+	  $d = Arrays::filterBy($a,'group','primary');
+	  $this->assertCount(3,$d);
+	  
+	  $e = Arrays::filterBy($a,'value',2000,'lt');
+	  $this->assertCount(1,$e);
+	  $this->assertEquals(1468,$e[0]['value']);
+  }
+  
+  public function testFindBy() {
+	  $a = array(
+		  array('id'=>123,'name'=>'foo','group'=>'primary','value'=>123456),
+		  array('id'=>456,'name'=>'bar','group'=>'primary','value'=>1468),
+		  array('id'=>499,'name'=>'baz','group'=>'secondary','value'=>2365),
+		  array('id'=>789,'name'=>'ter','group'=>'primary','value'=>2468)
+	  );
+	  
+	  $b = Arrays::findBy($a,'name','baz');
+	  $this->assertTrue(is_array($b));
+	  $this->assertCount(4,$b); // this is counting the number of keys in the array (id,name,group,value)
+	  $this->assertEquals(2365,$b['value']);
+	  $this->assertArrayHasKey("name",$b);
+	  $this->assertArrayHasKey("group",$b);
+	  $this->assertArrayHasKey("value",$b);
+	  
+	  $c = Arrays::findBy($a,'value',2468);
+	  $this->assertTrue(is_array($c));
+	  $this->assertCount(4,$c); 
+	  $this->assertEquals("primary",$c['group']);
+	  
+	  $d = Arrays::findBy($a,'group','primary');
+	  $this->assertTrue(is_array($d));
+	  $this->assertCount(4,$d); 
+	  $this->assertEquals("foo",$d['name']);
+	  
+	  $e = Arrays::findBy($a,'value',2000,'lt');
+	  $this->assertTrue(is_array($e));
+	  $this->assertCount(4,$e); 
+	  $this->assertEquals(1468,$e['value']);
+  }
+  
+  public function testRemoveValue() {
+	  // numeric array
+	  $a = array("foo","bar","baz");
+	  $this->assertCount(2,Arrays::removeValue($a,'bar'));
+	  $this->assertNotContains('bar',Arrays::removeValue($a,'bar'));
+	  $this->assertContains('foo',Arrays::removeValue($a,'bar'));
+	  $this->assertContains('baz',Arrays::removeValue($a,'bar'));
+	  // associative array
+	  $a = array(
+		  "foo" => "bar",
+		  "faz" => "ter",
+		  "one" => "two"
+	  );
+	  $this->assertCount(2,Arrays::removeValue($a,'bar'));
+	  $this->assertNotContains('bar',array_values(Arrays::removeValue($a,'bar')));
+	  $this->assertContains('ter',array_values(Arrays::removeValue($a,'bar')));
+	  $this->assertContains('two',array_values(Arrays::removeValue($a,'bar')));
+	  
+  }
 }
