@@ -607,4 +607,24 @@ class ArraysTest extends UnderscoreTestCase
 	  $this->assertCount(4,$e); 
 	  $this->assertEquals(1468,$e['value']);
   }
+  
+  public function testRemoveValue() {
+	  // numeric array
+	  $a = array("foo","bar","baz");
+	  $this->assertCount(2,Arrays::removeValue($a,'bar'));
+	  $this->assertNotContains('bar',Arrays::removeValue($a,'bar'));
+	  $this->assertContains('foo',Arrays::removeValue($a,'bar'));
+	  $this->assertContains('baz',Arrays::removeValue($a,'bar'));
+	  // associative array
+	  $a = array(
+		  "foo" => "bar",
+		  "faz" => "ter",
+		  "one" => "two"
+	  );
+	  $this->assertCount(2,Arrays::removeValue($a,'bar'));
+	  $this->assertNotContains('bar',array_values(Arrays::removeValue($a,'bar')));
+	  $this->assertContains('ter',array_values(Arrays::removeValue($a,'bar')));
+	  $this->assertContains('two',array_values(Arrays::removeValue($a,'bar')));
+	  
+  }
 }

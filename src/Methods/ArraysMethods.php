@@ -445,6 +445,24 @@ class ArraysMethods extends CollectionMethods
   }
 
   /**
+   * Removes a particular value from an array (numeric or associative)
+   *
+   * @param string $array
+   * @param string $value
+   * @return array
+   */
+  public static function removeValue($array,$value)
+  {
+      foreach ($array as $key => $item) {
+          if ($item === $value) {
+              unset($array[$key]);
+          }
+      }
+
+      return $array;
+  }
+
+  /**
    * Prepend a value to an array
    */
   public static function prepend($array, $value)
