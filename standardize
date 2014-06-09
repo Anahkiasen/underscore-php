@@ -1,0 +1,35 @@
+#!/bin/bash
+
+iscmd() {
+    command -v >&- "$@"
+}
+
+usage() {
+	echo "The following files are not standardized:"
+	`php-cs-fixer fix ./src --dry-run`
+	echo ""
+	echo "to have this script automatically FIX these inconsistencies add the 'fix' to the end of this command"
+	echo ""
+} 
+
+
+iscmd "php-cs-fixer" || {
+	echo "Install php-cs-fixer to check your code's conformance to PSR2 standards."
+	echo "Installation details can be found here: https://github.com/fabpot/PHP-CS-Fixer"
+	echo ""
+	exit 1
+}
+if [ $# -lt 1 ]; then
+	usage
+else
+	case "$1" in
+		-fix|fix)
+			echo "Auto fixing the following files:"
+			`php-cs-fixer fix ./src`
+			echo ""
+			exit 0;
+		;;
+	esac
+fi
+
+
