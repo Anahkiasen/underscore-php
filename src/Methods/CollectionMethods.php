@@ -51,7 +51,7 @@ abstract class CollectionMethods
 
       // If object
       if (is_object($collection)) {
-        if (!property_exists($collection, $segment)) return $default instanceof Closure ? $default() : $default;
+        if (!isset($collection->{$segment})) return $default instanceof Closure ? $default() : $default;
         else $collection = $collection->$segment;
 
       // If array
