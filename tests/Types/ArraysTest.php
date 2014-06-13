@@ -580,6 +580,11 @@ class ArraysTest extends UnderscoreTestCase
 	  $e = Arrays::filterBy($a,'value',2000,'lt');
 	  $this->assertCount(1,$e);
 	  $this->assertEquals(1468,$e[0]['value']);
+	  
+	  $e = Arrays::filterBy($a,'value',array(2468,2365),'contains');
+	  $this->assertCount(2,$e);
+	  $this->assertContains(2468,Arrays::pluck($e,'value')); 
+	  $this->assertNotContains(1468,Arrays::pluck($e,'value'));
   }
   
   public function testFindBy() {
