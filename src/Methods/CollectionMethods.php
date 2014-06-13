@@ -149,7 +149,7 @@ abstract class CollectionMethods
           'lte' => function ($item,$prop,$value) { return $item[$prop] <= $value; },
           'ne' => function ($item,$prop,$value) { return $item[$prop] !== $value; }
       );
-      $result = array_values(array_filter((array)$collection, function ($item) use ($property, $value, $ops, $comparisonOp) {
+      $result = array_values(array_filter((array) $collection, function ($item) use ($property, $value, $ops, $comparisonOp) {
           $item = (array) $item;
           if (!isset($item[$property])) {
               return false;

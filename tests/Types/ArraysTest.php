@@ -78,6 +78,12 @@ class ArraysTest extends UnderscoreTestCase
     $array = Arrays::without($array, 'foo', 'bar');
 
     $this->assertEquals(array(3 => 'bis', 5 => 'bis', 6 => 'ter'), $array);
+	$this->assertNotContains('foo', Arrays::without($array, 'foo', 'bar'));
+	$this->assertNotContains('bar', Arrays::without($array, 'foo', 'bar'));
+	// new use case
+	$exclusion = array('foo','bar');
+	$this->assertNotContains('foo', Arrays::without($array, $exclusion));
+	$this->assertNotContains('bar', Arrays::without($array, $exclusion));
   }
 
   public function testCanGetSumOfArray()
