@@ -193,6 +193,10 @@ class ArraysMethods extends CollectionMethods
   {
     $arguments = func_get_args();
     $array = array_shift($arguments);
+    // if singular argument and is an array treat this AS the array to run without agains
+    if (is_array($arguments[0]) && count($arguments) === 1) {
+        $arguments = $arguments[0];
+    }
 
     return ArraysMethods::filter($array, function ($value) use ($arguments) {
       return !in_array($value, $arguments);
@@ -453,16 +457,16 @@ class ArraysMethods extends CollectionMethods
    */
   public static function removeValue($array,$value)
   {
-	  $isNumericArray = true;
+      $isNumericArray = true;
       foreach ($array as $key => $item) {
           if ($item === $value) {
-			  if(!is_integer($key))
-				  $isNumericArray = false;
+              if(!is_integer($key))
+                  $isNumericArray = false;
               unset($array[$key]);
           }
       }
-	  if ($isNumericArray)
-		  $array = array_values($array);
+      if ($isNumericArray)
+          $array = array_values($array);
 
       return $array;
   }

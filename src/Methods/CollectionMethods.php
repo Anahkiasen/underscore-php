@@ -147,9 +147,11 @@ abstract class CollectionMethods
           'gte' => function ($item,$prop,$value) { return $item[$prop] >= $value; },
           'lt' => function ($item,$prop,$value) { return $item[$prop] < $value; },
           'lte' => function ($item,$prop,$value) { return $item[$prop] <= $value; },
-          'ne' => function ($item,$prop,$value) { return $item[$prop] !== $value; }
+          'ne' => function ($item,$prop,$value) { return $item[$prop] !== $value; },
+          'contains' => function ($item,$prop,$value) { return in_array($item[$prop], (array) $value); },
+          'notContains' => function ($item,$prop,$value) { return !in_array($item[$prop], (array) $value); },
       );
-      $result = array_values(array_filter($collection, function ($item) use ($property, $value, $ops, $comparisonOp) {
+      $result = array_values(array_filter((array) $collection, function ($item) use ($property, $value, $ops, $comparisonOp) {
           $item = (array) $item;
           if (!isset($item[$property])) {
               return false;
