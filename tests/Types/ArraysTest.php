@@ -560,10 +560,10 @@ class ArraysTest extends UnderscoreTestCase
   
   public function testFilterBy() {
 	  $a = array(
-		  array('id'=>123,'name'=>'foo','group'=>'primary','value'=>123456),
-		  array('id'=>456,'name'=>'bar','group'=>'primary','value'=>1468),
-		  array('id'=>499,'name'=>'baz','group'=>'secondary','value'=>2365),
-		  array('id'=>789,'name'=>'ter','group'=>'primary','value'=>2468),
+		  array('id'=>123,'name'=>'foo','group'=>'primary','value'=>123456,'when'=>'2014-01-01'),
+		  array('id'=>456,'name'=>'bar','group'=>'primary','value'=>1468,'when'=>'2014-07-15'),
+		  array('id'=>499,'name'=>'baz','group'=>'secondary','value'=>2365,'when'=>'2014-08-23'),
+		  array('id'=>789,'name'=>'ter','group'=>'primary','value'=>2468,'when'=>'2010-03-01'),
 	  );
 	  
 	  $b = Arrays::filterBy($a,'name','baz');
@@ -585,6 +585,12 @@ class ArraysTest extends UnderscoreTestCase
 	  $this->assertCount(2,$e);
 	  $this->assertContains(2468,Arrays::pluck($e,'value')); 
 	  $this->assertNotContains(1468,Arrays::pluck($e,'value'));
+	  
+	  $e = Arrays::filterBy($a,'when','2014-02-01','older');
+	  $this->assertCount(2,$e);
+	  $this->assertContains('2014-01-01',Arrays::pluck($e,'when'));
+	  $this->assertContains('2010-03-01',Arrays::pluck($e,'when'));
+	  $this->assertNotContains('2014-08-23',Arrays::pluck($e,'when'));
   }
   
   public function testFindBy() {

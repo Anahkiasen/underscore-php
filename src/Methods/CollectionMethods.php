@@ -150,6 +150,8 @@ abstract class CollectionMethods
           'ne' => function ($item,$prop,$value) { return $item[$prop] !== $value; },
           'contains' => function ($item,$prop,$value) { return in_array($item[$prop], (array) $value); },
           'notContains' => function ($item,$prop,$value) { return !in_array($item[$prop], (array) $value); },
+          'newer' => function ($item,$prop,$value) { return strtotime($item[$prop]) > strtotime($value); },
+          'older' => function ($item,$prop,$value) { return strtotime($item[$prop]) < strtotime($value); },
       );
       $result = array_values(array_filter((array) $collection, function ($item) use ($property, $value, $ops, $comparisonOp) {
           $item = (array) $item;
