@@ -31,7 +31,7 @@ It can be used both as a static class, and an Object-Oriented class, so both the
 $array = array(1, 2, 3);
 
 // One-off calls to helpers
-Arrays::each($array, function($value) { return $value * $value; }) // Square root the array
+Arrays::each($array, function($value) { return $value * $value; }) // Square the array
 Function::once($myFunction) // Only allow the function to be called once
 Number::paddingLeft(5, 5) // Returns '00005'
 Object::methods($myObject) // Return the object's methods
