@@ -569,6 +569,10 @@ class ArraysTest extends UnderscoreTestCase
 	  $b = Arrays::filterBy($a,'name','baz');
 	  $this->assertCount(1,$b);
 	  $this->assertEquals(2365,$b[0]['value']);
+
+	  $b = Arrays::filterBy($a,'name', array('baz'));
+	  $this->assertCount(1,$b);
+	  $this->assertEquals(2365,$b[0]['value']);
 	  
 	  $c = Arrays::filterBy($a,'value',2468);
 	  $this->assertCount(1,$c);

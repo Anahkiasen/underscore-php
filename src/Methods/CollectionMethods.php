@@ -139,8 +139,11 @@ abstract class CollectionMethods
    * @param string $comparisonOp
    * @return void
    */
-  public static function filterBy($collection,$property,$value,$comparisonOp="eq")
+  public static function filterBy($collection,$property,$value,$comparisonOp=null)
   {
+	  if(!$comparisonOp) {
+		  $comparisonOp = is_array($value) ? 'contains' : 'eq';
+	  }
       $ops = array(
           'eq' => function ($item,$prop,$value) { return $item[$prop] === $value; },
           'gt' => function ($item,$prop,$value) { return $item[$prop] > $value; },
