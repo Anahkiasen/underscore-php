@@ -10,20 +10,20 @@ class DispatchTest extends UnderscoreTestCase
     public function provideTypes()
     {
         return array(
-          array('string', 'String'),
-          array(5.14, 'Number'),
-          array(512, 'Number'),
-          array(1.2e3, 'Number'),
-          array(7E-10, 'Number'),
-          array(array(), 'Arrays'),
-          array(new StdClass, 'Object'),
-          array(
-            function () {
-                return;
-            },
-            'Functions'
-          ),
-          array(null, 'String')
+            array('string', 'String'),
+            array(5.14, 'Number'),
+            array(512, 'Number'),
+            array(1.2e3, 'Number'),
+            array(7E-10, 'Number'),
+            array(array(), 'Arrays'),
+            array(new StdClass, 'Object'),
+            array(
+                function () {
+                    return;
+                },
+                'Functions'
+            ),
+            array(null, 'String')
         );
     }
 

@@ -365,8 +365,8 @@ class ArraysTest extends UnderscoreTestCase
             return $value % 2 == 0;
         });
         $matcher = array(
-          array(1, 3, 5),
-          array(2, 4),
+            array(1, 3, 5),
+            array(2, 4),
         );
 
         $this->assertEquals($matcher, $under);
@@ -460,18 +460,18 @@ class ArraysTest extends UnderscoreTestCase
     public function testCanFlattenArraysToDotNotation()
     {
         $array     = array(
-          'foo' => 'bar',
-          'kal' => array(
-            'foo' => array(
-              'bar',
-              'ter',
+            'foo' => 'bar',
+            'kal' => array(
+                'foo' => array(
+                    'bar',
+                    'ter',
+                ),
             ),
-          ),
         );
         $flattened = array(
-          'foo'       => 'bar',
-          'kal.foo.0' => 'bar',
-          'kal.foo.1' => 'ter',
+            'foo'       => 'bar',
+            'kal.foo.0' => 'bar',
+            'kal.foo.1' => 'ter',
         );
 
         $flatten = Arrays::flatten($array);
@@ -482,18 +482,18 @@ class ArraysTest extends UnderscoreTestCase
     public function testCanFlattenArraysToCustomNotation()
     {
         $array     = array(
-          'foo' => 'bar',
-          'kal' => array(
-            'foo' => array(
-              'bar',
-              'ter',
+            'foo' => 'bar',
+            'kal' => array(
+                'foo' => array(
+                    'bar',
+                    'ter',
+                ),
             ),
-          ),
         );
         $flattened = array(
-          'foo'       => 'bar',
-          'kal/foo/0' => 'bar',
-          'kal/foo/1' => 'ter',
+            'foo'       => 'bar',
+            'kal/foo/0' => 'bar',
+            'kal/foo/1' => 'ter',
         );
 
         $flatten = Arrays::flatten($array, '/');
@@ -566,10 +566,10 @@ class ArraysTest extends UnderscoreTestCase
     public function testFilterBy()
     {
         $a = array(
-          array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456, 'when' => '2014-01-01'),
-          array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468, 'when' => '2014-07-15'),
-          array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365, 'when' => '2014-08-23'),
-          array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468, 'when' => '2010-03-01'),
+            array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456, 'when' => '2014-01-01'),
+            array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468, 'when' => '2014-07-15'),
+            array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365, 'when' => '2014-08-23'),
+            array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468, 'when' => '2010-03-01'),
         );
 
         $b = Arrays::filterBy($a, 'name', 'baz');
@@ -606,10 +606,10 @@ class ArraysTest extends UnderscoreTestCase
     public function testFindBy()
     {
         $a = array(
-          array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
-          array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
-          array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
-          array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468)
+            array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
+            array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
+            array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
+            array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468)
         );
 
         $b = Arrays::findBy($a, 'name', 'baz');
@@ -646,9 +646,9 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertContains('baz', Arrays::removeValue($a, 'bar'));
         // associative array
         $a = array(
-          "foo" => "bar",
-          "faz" => "ter",
-          "one" => "two"
+            "foo" => "bar",
+            "faz" => "ter",
+            "one" => "two"
         );
         $this->assertCount(2, Arrays::removeValue($a, 'bar'));
         $this->assertNotContains('bar', array_values(Arrays::removeValue($a, 'bar')));

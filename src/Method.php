@@ -12,18 +12,18 @@ class Method
      * @var array
      */
     public static $defer = array(
-      'trim',
-      'count',
-      'round',
-      'ceil',
-      'floor',
-      'substr',
-      'str_pad' => 'pad',
-      'ucfirst',
-      'lcfirst',
-      'ucwords',
-      'strtolower',
-      'strtoupper',
+        'trim',
+        'count',
+        'round',
+        'ceil',
+        'floor',
+        'substr',
+        'str_pad' => 'pad',
+        'ucfirst',
+        'lcfirst',
+        'ucwords',
+        'strtolower',
+        'strtoupper',
     );
 
     /**
@@ -33,7 +33,7 @@ class Method
      * @var array
      */
     protected static $subjectless = array(
-      'fill',
+        'fill',
     );
 
     /**
@@ -43,14 +43,14 @@ class Method
      * @var array
      */
     protected static $breakers = array(
-      'get',
-      'sum',
-      'count',
-      'fromJSON',
-      'toJSON',
-      'fromXML',
-      'fromCSV',
-      'toCSV',
+        'get',
+        'sum',
+        'count',
+        'fromJSON',
+        'toJSON',
+        'fromXML',
+        'fromCSV',
+        'toCSV',
     );
 
     /**
@@ -59,8 +59,8 @@ class Method
      * @var array
      */
     protected static $unchainable = array(
-      'Arrays::range',
-      'Arrays::repeat',
+        'Arrays::range',
+        'Arrays::repeat',
     );
 
     /**

@@ -13,8 +13,8 @@ class DummyClass extends Arrays
     public function getUsers()
     {
         $users = array(
-          array('foo' => 'bar'),
-          array('bar' => 'foo'),
+            array('foo' => 'bar'),
+            array('bar' => 'foo'),
         );
 
         return $this->setSubject($users);

@@ -20,15 +20,15 @@ class Dispatch
      * @var array
      */
     protected static $classmap = array(
-      'array'   => 'Arrays',
-      'double'  => 'Number',
-      'closure' => 'Functions',
-      'float'   => 'Number',
-      'integer' => 'Number',
-      'NULL'    => 'String',
-      'object'  => 'Object',
-      'real'    => 'Number',
-      'string'  => 'String',
+        'array'   => 'Arrays',
+        'double'  => 'Number',
+        'closure' => 'Functions',
+        'float'   => 'Number',
+        'integer' => 'Number',
+        'NULL'    => 'String',
+        'object'  => 'Object',
+        'real'    => 'Number',
+        'string'  => 'String',
     );
 
     /**

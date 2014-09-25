@@ -21,8 +21,8 @@ class ObjectMethods extends CollectionMethods
     {
         $object = (array) $object;
         $object = $attribute
-          ? ArraysMethods::get($object, $attribute)
-          : ArraysMethods::first($object);
+            ? ArraysMethods::get($object, $attribute)
+            : ArraysMethods::first($object);
 
         return (object) $object;
     }

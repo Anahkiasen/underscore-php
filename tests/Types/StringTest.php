@@ -11,9 +11,9 @@ class StringTest extends UnderscoreTestCase
     public function provideAccord()
     {
         return array(
-          array(10, '10 things'),
-          array(1, 'one thing'),
-          array(0, 'nothing'),
+            array(10, '10 things'),
+            array(1, 'one thing'),
+            array(0, 'nothing'),
         );
     }
 
@@ -22,21 +22,21 @@ class StringTest extends UnderscoreTestCase
         return array(
 
             // Simple cases
-          array(false, 'foo', 'bar'),
-          array(true, 'foo', 'foo'),
-          array(true, 'FOO', 'foo', false),
-          array(false, 'FOO', 'foo', true),
+            array(false, 'foo', 'bar'),
+            array(true, 'foo', 'foo'),
+            array(true, 'FOO', 'foo', false),
+            array(false, 'FOO', 'foo', true),
             // Many needles, one haystack
-          array(true, array('foo', 'bar'), $this->remove),
-          array(false, array('vlu', 'bla'), $this->remove),
-          array(true, array('foo', 'vlu'), $this->remove, false, false),
-          array(false, array('foo', 'vlu'), $this->remove, false, true),
+            array(true, array('foo', 'bar'), $this->remove),
+            array(false, array('vlu', 'bla'), $this->remove),
+            array(true, array('foo', 'vlu'), $this->remove, false, false),
+            array(false, array('foo', 'vlu'), $this->remove, false, true),
             // Many haystacks, one needle
-          array(true, 'foo', array('foo', 'bar')),
-          array(true, 'bar', array('foo', 'bar')),
-          array(false, 'foo', array('bar', 'kal')),
-          array(true, 'foo', array('foo', 'foo'), false, false),
-          array(false, 'foo', array('foo', 'bar'), false, true),
+            array(true, 'foo', array('foo', 'bar')),
+            array(true, 'bar', array('foo', 'bar')),
+            array(false, 'foo', array('bar', 'kal')),
+            array(true, 'foo', array('foo', 'foo'), false, false),
+            array(false, 'foo', array('foo', 'bar'), false, true),
         );
     }
 
@@ -101,11 +101,11 @@ class StringTest extends UnderscoreTestCase
      * @dataProvider provideFind
      */
     public function testCanFindStringsInStrings(
-      $expect,
-      $needle,
-      $haystack,
-      $caseSensitive = false,
-      $absoluteFinding = false
+        $expect,
+        $needle,
+        $haystack,
+        $caseSensitive = false,
+        $absoluteFinding = false
     ) {
         $result = String::find($haystack, $needle, $caseSensitive, $absoluteFinding);
 

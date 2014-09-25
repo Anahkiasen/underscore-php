@@ -155,42 +155,42 @@ abstract class CollectionMethods
             $comparisonOp = is_array($value) ? 'contains' : 'eq';
         }
         $ops    = array(
-          'eq'          => function ($item, $prop, $value) {
-              return $item[$prop] === $value;
-          },
-          'gt'          => function ($item, $prop, $value) {
-              return $item[$prop] > $value;
-          },
-          'gte'         => function ($item, $prop, $value) {
-              return $item[$prop] >= $value;
-          },
-          'lt'          => function ($item, $prop, $value) {
-              return $item[$prop] < $value;
-          },
-          'lte'         => function ($item, $prop, $value) {
-              return $item[$prop] <= $value;
-          },
-          'ne'          => function ($item, $prop, $value) {
-              return $item[$prop] !== $value;
-          },
-          'contains'    => function ($item, $prop, $value) {
-              return in_array($item[$prop], (array) $value);
-          },
-          'notContains' => function ($item, $prop, $value) {
-              return !in_array($item[$prop], (array) $value);
-          },
-          'newer'       => function ($item, $prop, $value) {
-              return strtotime($item[$prop]) > strtotime($value);
-          },
-          'older'       => function ($item, $prop, $value) {
-              return strtotime($item[$prop]) < strtotime($value);
-          },
+            'eq'          => function ($item, $prop, $value) {
+                return $item[$prop] === $value;
+            },
+            'gt'          => function ($item, $prop, $value) {
+                return $item[$prop] > $value;
+            },
+            'gte'         => function ($item, $prop, $value) {
+                return $item[$prop] >= $value;
+            },
+            'lt'          => function ($item, $prop, $value) {
+                return $item[$prop] < $value;
+            },
+            'lte'         => function ($item, $prop, $value) {
+                return $item[$prop] <= $value;
+            },
+            'ne'          => function ($item, $prop, $value) {
+                return $item[$prop] !== $value;
+            },
+            'contains'    => function ($item, $prop, $value) {
+                return in_array($item[$prop], (array) $value);
+            },
+            'notContains' => function ($item, $prop, $value) {
+                return !in_array($item[$prop], (array) $value);
+            },
+            'newer'       => function ($item, $prop, $value) {
+                return strtotime($item[$prop]) > strtotime($value);
+            },
+            'older'       => function ($item, $prop, $value) {
+                return strtotime($item[$prop]) < strtotime($value);
+            },
         );
         $result = array_values(array_filter((array) $collection, function ($item) use (
-          $property,
-          $value,
-          $ops,
-          $comparisonOp
+            $property,
+            $value,
+            $ops,
+            $comparisonOp
         ) {
             $item = (array) $item;
             if (!isset($item[$property])) {

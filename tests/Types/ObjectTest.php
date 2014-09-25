@@ -42,20 +42,20 @@ class ObjectTest extends UnderscoreTestCase
     public function testCanGetMethods()
     {
         $methods = array(
-          'getDefault',
-          'toArray',
-          '__construct',
-          '__toString',
-          'create',
-          'from',
-          '__get',
-          '__set',
-          'isEmpty',
-          'setSubject',
-          'obtain',
-          'extend',
-          '__callStatic',
-          '__call',
+            'getDefault',
+            'toArray',
+            '__construct',
+            '__toString',
+            'create',
+            'from',
+            '__get',
+            '__set',
+            'isEmpty',
+            'setSubject',
+            'obtain',
+            'extend',
+            '__callStatic',
+            '__call',
         );
 
         $this->assertEquals($methods, Object::methods(new DummyDefault));
@@ -155,10 +155,10 @@ class ObjectTest extends UnderscoreTestCase
     public function testFilterBy()
     {
         $a = array(
-          (object) array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
-          (object) array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
-          (object) array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
-          (object) array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468),
+            (object) array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
+            (object) array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
+            (object) array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
+            (object) array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468),
         );
 
         $b = Object::filterBy($a, 'name', 'baz');
@@ -180,10 +180,10 @@ class ObjectTest extends UnderscoreTestCase
     public function testFindBy()
     {
         $a = array(
-          (object) array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
-          (object) array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
-          (object) array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
-          (object) array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468),
+            (object) array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
+            (object) array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
+            (object) array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
+            (object) array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468),
         );
 
         $b = Object::findBy($a, 'name', 'baz');
