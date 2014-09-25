@@ -1,5 +1,12 @@
 ## CHANGELOG
 
+### 1.3.0
+
+- Make helpers file opt-in
+- Added `Arrays::interescts` and `Arrays::interesctions`
+- Added `Collection::findBy` and `Collection::filterBy`
+- Added `Arrays::removeValue`
+
 ### 1.2.3
 
 - Don't overwrite already defined `__` functions
