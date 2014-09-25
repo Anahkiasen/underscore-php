@@ -6,59 +6,60 @@ use Underscore\Types\String;
 
 class MethodTest extends UnderscoreTestCase
 {
-  public function testThrowsErrorIfIncorrectMethod()
-  {
-    $this->setExpectedException('BadMethodCallException');
+    public function testThrowsErrorIfIncorrectMethod()
+    {
+        $this->setExpectedException('BadMethodCallException');
 
-    Underscore::invalid('foo');
-  }
+        Underscore::invalid('foo');
+    }
 
-  public function testHasAccessToOriginalPhpFunctions()
-  {
-    $array = Arrays::from($this->array);
-    $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
+    public function testHasAccessToOriginalPhpFunctions()
+    {
+        $array = Arrays::from($this->array);
+        $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
 
-    $this->assertEquals(array('foo' => 'bar'), $array->obtain());
+        $this->assertEquals(array('foo' => 'bar'), $array->obtain());
 
-    $string = String::repeat('foo', 2);
-    $this->assertEquals('foofoo', $string);
+        $string = String::repeat('foo', 2);
+        $this->assertEquals('foofoo', $string);
 
-    $string = String::from('   foo  ')->trim();
-    $this->assertEquals('foo', $string->obtain());
-  }
+        $string = String::from('   foo  ')->trim();
+        $this->assertEquals('foo', $string->obtain());
+    }
 
-  public function testCantChainCertainMethods()
-  {
-    $method = Method::isUnchainable('Arrays', 'range');
+    public function testCantChainCertainMethods()
+    {
+        $method = Method::isUnchainable('Arrays', 'range');
 
-    $this->assertTrue($method);
-  }
+        $this->assertTrue($method);
+    }
 
-  public function testCanGetMethodsFromType()
-  {
-    $method = Method::getMethodsFromType('\Underscore\Types\Arrays');
+    public function testCanGetMethodsFromType()
+    {
+        $method = Method::getMethodsFromType('\Underscore\Types\Arrays');
 
-    $this->assertEquals('\Underscore\Methods\ArraysMethods', $method);
-  }
+        $this->assertEquals('\Underscore\Methods\ArraysMethods', $method);
+    }
 
-  public function testCanGetAliasesOfFunctions()
-  {
-    $method = Method::getAliasOf('select');
+    public function testCanGetAliasesOfFunctions()
+    {
+        $method = Method::getAliasOf('select');
 
-    $this->assertEquals('filter', $method);
-  }
+        $this->assertEquals('filter', $method);
+    }
 
-  public function testCanFindMethodsInClasses()
-  {
-    $method = Method::findInClasses('\Underscore\Underscore', 'range');
+    public function testCanFindMethodsInClasses()
+    {
+        $method = Method::findInClasses('\Underscore\Underscore', 'range');
 
-    $this->assertEquals('\Underscore\Types\\Arrays', $method);
-  }
+        $this->assertEquals('\Underscore\Types\\Arrays', $method);
+    }
 
-  public function testCanThrowExceptionAtUnknownMethods()
-  {
-    $this->setExpectedException('BadMethodCallException', 'The method Underscore\Types\Arrays::fuck does not exist');
+    public function testCanThrowExceptionAtUnknownMethods()
+    {
+        $this->setExpectedException('BadMethodCallException',
+          'The method Underscore\Types\Arrays::fuck does not exist');
 
-    $test = Arrays::fuck($this);
-  }
+        $test = Arrays::fuck($this);
+    }
 }
