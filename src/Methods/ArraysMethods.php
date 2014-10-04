@@ -137,7 +137,7 @@ class ArraysMethods extends CollectionMethods
             $array = ArraysMethods::each($array, $closure);
         }
 
-		return max($array);
+        return max($array);
     }
 
     /**
