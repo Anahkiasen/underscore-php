@@ -137,10 +137,7 @@ class ArraysMethods extends CollectionMethods
             $array = ArraysMethods::each($array, $closure);
         }
 
-        // Sort from max to min
-        arsort($array);
-
-        return ArraysMethods::first($array);
+        return max($array);
     }
 
     /**
@@ -153,10 +150,7 @@ class ArraysMethods extends CollectionMethods
             $array = ArraysMethods::each($array, $closure);
         }
 
-        // Sort from max to min
-        asort($array);
-
-        return ArraysMethods::first($array);
+        return min($array);
     }
 
     ////////////////////////////////////////////////////////////////////
