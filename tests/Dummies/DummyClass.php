@@ -5,32 +5,32 @@ use Underscore\Types\Arrays;
 
 class DummyClass extends Arrays
 {
-	/**
-	 * Get the core data
-	 *
-	 * @return self
-	 */
-  public function getUsers()
-  {
-    $users = array(
-      array('foo' => 'bar'),
-      array('bar' => 'foo'),
-    );
+    /**
+     * Get the core data
+     *
+     * @return self
+     */
+    public function getUsers()
+    {
+        $users = array(
+            array('foo' => 'bar'),
+            array('bar' => 'foo'),
+        );
 
-    return $this->setSubject($users);
-  }
+        return $this->setSubject($users);
+    }
 
-  /**
-   * Overwrite of the map method
-   *
-   * @param mixed $whatever
-   *
-   * @return self
-   */
-  public function map($whatever)
-  {
-    $this->subject = $whatever * 3;
+    /**
+     * Overwrite of the map method
+     *
+     * @param mixed $whatever
+     *
+     * @return self
+     */
+    public function map($whatever)
+    {
+        $this->subject = $whatever * 3;
 
-    return $this;
-  }
+        return $this;
+    }
 }
