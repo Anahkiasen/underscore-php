@@ -159,7 +159,7 @@ abstract class CollectionMethods
       $result = array_values(array_filter((array) $collection, function ($item) use ($property, $value, $ops, $comparisonOp) {
           $item = (array) $item;
           if (!isset($item[$property])) {
-              return false;
+              $item[$property] = null;
           }
 
           return $ops[$comparisonOp]($item, $property, $value);
