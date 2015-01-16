@@ -609,7 +609,7 @@ class ArraysTest extends UnderscoreTestCase
             array('id' => 123, 'name' => 'foo', 'group' => 'primary', 'value' => 123456),
             array('id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468),
             array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365),
-            array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468)
+            array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468),
         );
 
         $b = Arrays::findBy($a, 'name', 'baz');
@@ -648,7 +648,7 @@ class ArraysTest extends UnderscoreTestCase
         $a = array(
             "foo" => "bar",
             "faz" => "ter",
-            "one" => "two"
+            "one" => "two",
         );
         $this->assertCount(2, Arrays::removeValue($a, 'bar'));
         $this->assertNotContains('bar', array_values(Arrays::removeValue($a, 'bar')));

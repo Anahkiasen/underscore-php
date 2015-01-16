@@ -16,14 +16,14 @@ class DispatchTest extends UnderscoreTestCase
             array(1.2e3, 'Number'),
             array(7E-10, 'Number'),
             array(array(), 'Arrays'),
-            array(new StdClass, 'Object'),
+            array(new StdClass(), 'Object'),
             array(
                 function () {
                     return;
                 },
-                'Functions'
+                'Functions',
             ),
-            array(null, 'String')
+            array(null, 'String'),
         );
     }
 

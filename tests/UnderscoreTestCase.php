@@ -5,9 +5,9 @@ use PHPUnit_Framework_TestCase;
 
 abstract class UnderscoreTestCase extends PHPUnit_Framework_TestCase
 {
-    public $array = array('foo' => 'bar', 'bis' => 'ter');
+    public $array        = array('foo' => 'bar', 'bis' => 'ter');
     public $arrayNumbers = array(1, 2, 3);
-    public $arrayMulti = array(
+    public $arrayMulti   = array(
         array('foo' => 'bar', 'bis' => 'ter'),
         array('foo' => 'bar', 'bis' => 'ter'),
         array('bar' => 'foo', 'bis' => 'ter'),

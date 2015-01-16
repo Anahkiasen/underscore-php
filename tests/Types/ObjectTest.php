@@ -6,7 +6,6 @@ use Underscore\UnderscoreTestCase;
 
 class ObjectTest extends UnderscoreTestCase
 {
-
     public function testCanCreateObject()
     {
         $object = Object::create();
@@ -58,7 +57,7 @@ class ObjectTest extends UnderscoreTestCase
             '__call',
         );
 
-        $this->assertEquals($methods, Object::methods(new DummyDefault));
+        $this->assertEquals($methods, Object::methods(new DummyDefault()));
     }
 
     public function testCanPluckColumns()

@@ -16,7 +16,7 @@ class ParseTest extends UnderscoreTestCase
             array('toArray', 15, array(15)),
             array('toArray', 'foobar', array('foobar')),
             array('toArray', (object) $this->array, $this->array),
-            array('toArray', new DummyDefault, array('foo', 'bar')),
+            array('toArray', new DummyDefault(), array('foo', 'bar')),
             array('toString', 15, '15'),
             array('toString', array('foo', 'bar'), '["foo","bar"]'),
             array('toInteger', 'foo', 3),
