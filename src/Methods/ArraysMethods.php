@@ -80,7 +80,7 @@ class ArraysMethods extends CollectionMethods
     public static function matches($array, Closure $closure)
     {
         // Reduce the array to only booleans
-        $array = (array) ArraysMethods::each($array, $closure);
+        $array = (array) static::each($array, $closure);
 
         // Check the results
         if (count($array) === 0) {
@@ -102,7 +102,7 @@ class ArraysMethods extends CollectionMethods
     public static function matchesAny($array, Closure $closure)
     {
         // Reduce the array to only booleans
-        $array = (array) ArraysMethods::each($array, $closure);
+        $array = (array) static::each($array, $closure);
 
         // Check the results
         if (count($array) === 0) {
@@ -154,7 +154,7 @@ class ArraysMethods extends CollectionMethods
     {
         // If we have a closure, apply it to the array
         if ($closure) {
-            $array = ArraysMethods::each($array, $closure);
+            $array = static::each($array, $closure);
         }
 
         return max($array);
@@ -172,7 +172,7 @@ class ArraysMethods extends CollectionMethods
     {
         // If we have a closure, apply it to the array
         if ($closure) {
-            $array = ArraysMethods::each($array, $closure);
+            $array = static::each($array, $closure);
         }
 
         return min($array);
@@ -201,7 +201,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function clean($array)
     {
-        return ArraysMethods::filter($array, function ($value) {
+        return static::filter($array, function ($value) {
             return (bool) $value;
         });
     }
@@ -217,7 +217,7 @@ class ArraysMethods extends CollectionMethods
 
         shuffle($array);
 
-        return ArraysMethods::first($array, $take);
+        return static::first($array, $take);
     }
 
     /**
@@ -232,7 +232,7 @@ class ArraysMethods extends CollectionMethods
             $arguments = $arguments[0];
         }
 
-        return ArraysMethods::filter($array, function ($value) use ($arguments) {
+        return static::filter($array, function ($value) use ($arguments) {
             return !in_array($value, $arguments);
         });
     }
@@ -284,7 +284,7 @@ class ArraysMethods extends CollectionMethods
             return array_pop($array);
         }
 
-        return ArraysMethods::rest($array, -$take);
+        return static::rest($array, -$take);
     }
 
     /**
@@ -294,7 +294,7 @@ class ArraysMethods extends CollectionMethods
     {
         $slice = count($array) - $to;
 
-        return ArraysMethods::first($array, $slice);
+        return static::first($array, $slice);
     }
 
     /**
@@ -336,7 +336,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function replaceValue($array, $replace, $with)
     {
-        return ArraysMethods::each($array, function ($value) use ($replace, $with) {
+        return static::each($array, function ($value) use ($replace, $with) {
             return str_replace($replace, $with, $value);
         });
     }
@@ -412,7 +412,7 @@ class ArraysMethods extends CollectionMethods
     public static function filter($array, $closure = null)
     {
         if (!$closure) {
-            return ArraysMethods::clean($array);
+            return static::clean($array);
         }
 
         return array_filter($array, $closure);
@@ -440,7 +440,7 @@ class ArraysMethods extends CollectionMethods
             if ($parent) {
                 $key = $parent.$separator.$key;
             }
-            $_flattened[$key] = ArraysMethods::flatten($value, $separator, $key);
+            $_flattened[$key] = static::flatten($value, $separator, $key);
         }
 
         // Flatten
@@ -463,7 +463,7 @@ class ArraysMethods extends CollectionMethods
     {
         // If one argument given for each iteration, create an array for it
         if (!is_array($arguments)) {
-            $arguments = ArraysMethods::repeat($arguments, count($array));
+            $arguments = static::repeat($arguments, count($array));
         }
 
         // If the callable has arguments, pass them

@@ -210,7 +210,7 @@ abstract class CollectionMethods
     {
         $filtered = static::filterBy($collection, $property, $value, $comparisonOp);
 
-        return \Underscore\Methods\ArraysMethods::first($filtered);
+        return ArraysMethods::first($filtered);
     }
 
     ////////////////////////////////////////////////////////////////////
