@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.3.1
+
+### Changed
+- Minimum PHP version bumped to 5.4
+- Allow non existant properties to be part of comparison instead of filtered out
+
 ## 1.3.0
 
 ### Added
