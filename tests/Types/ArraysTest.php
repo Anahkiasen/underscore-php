@@ -93,7 +93,7 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertEquals(6, $array);
     }
 
-    public function testCanGetSizeOfArray()
+    public function testCanGetcountArray()
     {
         $array = Arrays::size(array(1, 2, 3));
 
@@ -571,7 +571,7 @@ class ArraysTest extends UnderscoreTestCase
             array('id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365, 'when' => '2014-08-23'),
             array('id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468, 'when' => '2010-03-01'),
 			array('id'=>888,'name'=>'qux','value'=>6868,'when'=>'2015-01-01'),
-			array('id'=>999,'name'=>'flux','group'=>null,'value'=>6868,'when'=>'2015-01-01')			
+			array('id'=>999,'name'=>'flux','group'=>null,'value'=>6868,'when'=>'2015-01-01')
         );
 
         $b = Arrays::filterBy($a, 'name', 'baz');
@@ -603,11 +603,11 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertContains('2014-01-01', Arrays::pluck($e, 'when'));
         $this->assertContains('2010-03-01', Arrays::pluck($e, 'when'));
         $this->assertNotContains('2014-08-23', Arrays::pluck($e, 'when'));
-		
+
 		$f = Arrays::filterBy($a,'group','primary','ne');
 		$this->assertCount(3,$f, 'Count should pick up groups which are explicitly set as null AND those which don\'t have the property at all');
 		$this->assertContains('qux',Arrays::pluck($f,'name'));
-		$this->assertContains('flux',Arrays::pluck($f,'name'));		
+		$this->assertContains('flux',Arrays::pluck($f,'name'));
     }
 
     public function testFindBy()

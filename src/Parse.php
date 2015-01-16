@@ -183,7 +183,7 @@ class Parse
     {
         // Returns size of arrays
         if (is_array($data)) {
-            return sizeof($data);
+            return count($data);
         }
 
         // Returns size of strings
@@ -232,7 +232,7 @@ class Parse
 
         foreach ($delimiters as $delimiter) {
             $array = explode($delimiter, $string);
-            if (sizeof($array) == 1) {
+            if (count($array) == 1) {
                 continue;
             } else {
                 return $array;

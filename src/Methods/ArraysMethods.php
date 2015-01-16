@@ -58,6 +58,11 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Search for the index of a value in an array
+     *
+     * @param array  $array
+     * @param string $value
+     *
+     * @return mixed
      */
     public static function search($array, $value)
     {
@@ -66,6 +71,11 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Check if all items in an array match a truth test
+     *
+     * @param array    $array
+     * @param callable $closure
+     *
+     * @return bool
      */
     public static function matches($array, Closure $closure)
     {
@@ -73,7 +83,7 @@ class ArraysMethods extends CollectionMethods
         $array = (array) ArraysMethods::each($array, $closure);
 
         // Check the results
-        if (sizeof($array) === 0) {
+        if (count($array) === 0) {
             return true;
         }
         $array = array_search(false, $array, false);
@@ -83,6 +93,11 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Check if any item in an array matches a truth test
+     *
+     * @param array    $array
+     * @param callable $closure
+     *
+     * @return bool
      */
     public static function matchesAny($array, Closure $closure)
     {
@@ -90,7 +105,7 @@ class ArraysMethods extends CollectionMethods
         $array = (array) ArraysMethods::each($array, $closure);
 
         // Check the results
-        if (sizeof($array) === 0) {
+        if (count($array) === 0) {
             return true;
         }
         $array = array_search(true, $array, false);
@@ -116,7 +131,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function average($array, $decimals = 0)
     {
-        return round((array_sum($array) / sizeof($array)), $decimals);
+        return round((array_sum($array) / count($array)), $decimals);
     }
 
     /**
@@ -124,11 +139,16 @@ class ArraysMethods extends CollectionMethods
      */
     public static function size($array)
     {
-        return sizeof($array);
+        return count($array);
     }
 
     /**
      * Get the max value from an array
+     *
+     * @param array        $array
+     * @param Closure|null $closure
+     *
+     * @return mixed
      */
     public static function max($array, $closure = null)
     {
@@ -142,6 +162,11 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get the min value from an array
+     *
+     * @param array        $array
+     * @param Closure|null $closure
+     *
+     * @return mixed
      */
     public static function min($array, $closure = null)
     {
@@ -267,7 +292,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function initial($array, $to = 1)
     {
-        $slice = sizeof($array) - $to;
+        $slice = count($array) - $to;
 
         return ArraysMethods::first($array, $slice);
     }
@@ -438,7 +463,7 @@ class ArraysMethods extends CollectionMethods
     {
         // If one argument given for each iteration, create an array for it
         if (!is_array($arguments)) {
-            $arguments = ArraysMethods::repeat($arguments, sizeof($array));
+            $arguments = ArraysMethods::repeat($arguments, count($array));
         }
 
         // If the callable has arguments, pass them

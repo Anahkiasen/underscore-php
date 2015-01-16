@@ -247,7 +247,7 @@ abstract class Repository
      */
     protected static function callMethod($class, $method, $parameters)
     {
-        switch (sizeof($parameters)) {
+        switch (count($parameters)) {
             case 0:
                 return $class::$method();
             case 1:
