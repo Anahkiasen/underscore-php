@@ -1,4 +1,12 @@
-# Underscore.php [![Build Status](https://secure.travis-ci.org/Anahkiasen/underscore-php.png?branch=master)](https://travis-ci.org/Anahkiasen/underscore-php)
+# Underscore.php
+
+[![Build Status](http://img.shields.io/travis/Anahkiasen/underscore-php.svg?style=flat)](https://travis-ci.org/Anahkiasen/underscore-php)
+[![Latest Stable Version](http://img.shields.io/packagist/v/anahkiasen/underscore-php.svg?style=flat)](https://packagist.org/packages/anahkiasen/underscore-php)
+[![Total Downloads](http://img.shields.io/packagist/dt/anahkiasen/underscore-php.svg?style=flat)](https://packagist.org/packages/anahkiasen/underscore-php)
+[![Scrutinizer Quality Score](http://img.shields.io/scrutinizer/g/Anahkiasen/underscore-php.svg?style=flat)](https://scrutinizer-ci.com/g/Anahkiasen/underscore-php/)
+[![Code Coverage](http://img.shields.io/scrutinizer/coverage/g/Anahkiasen/underscore-php.svg?style=flat)](https://scrutinizer-ci.com/g/Anahkiasen/underscore-php/)
+[![Support via Gittip](http://img.shields.io/gittip/Anahkiasen.svg?style=flat)](https://www.gittip.com/Anahkiasen/)
+
 ## The PHP manipulation toolbelt
 
 First off : Underscore.php is **not** a PHP port of [Underscore.js][] (well ok I mean it was at first).
