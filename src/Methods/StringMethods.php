@@ -61,18 +61,6 @@ class StringMethods extends Str
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Get a String's length
-     *
-     * @param string $string
-     *
-     * @return integer
-     */
-    public static function length($string)
-    {
-        return mb_strlen($string);
-    }
-
-    /**
      * Check if a string is an IP
      *
      * @return boolean

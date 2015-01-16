@@ -219,12 +219,6 @@ class StringTest extends UnderscoreTestCase
         $this->assertEquals('ThisIsAString', $string);
     }
 
-    public function testCanGetStringLength()
-    {
-        $this->assertEquals(6, String::length('Taylor'));
-        $this->assertEquals(15, String::length('ラドクリフ'));
-    }
-
     public function testCanConvertToLowercase()
     {
         $this->assertEquals('taylor', String::lower('TAYLOR'));
