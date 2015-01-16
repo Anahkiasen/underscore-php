@@ -21,10 +21,7 @@ It works both as a stand-alone via *Composer* or as a bundle for the Laravel fra
 
 ## Install Underscore
 
-To install Underscore.php you can either add it via Composer :
-
-    "anahkiasen/underscore-php" : "dev-master"
-
+To install Underscore.php simply run `composer require anahkiasen/underscore-php`.
 Note that Underscore's type classes (Arrays/String/etc) are by default namespaced in the `Types` folder, so to use Arrays, you would do the following :
 
 ```php
