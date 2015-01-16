@@ -49,6 +49,14 @@ class StringTest extends UnderscoreTestCase
         $this->assertEquals('', $string->obtain());
     }
 
+    public function testDoesntPluralizeTwice()
+    {
+        $string = new String('person');
+
+        $this->assertEquals('people', $string->plural());
+        $this->assertEquals('people', $string->plural());
+    }
+
     public function testHasAccessToStrMethods()
     {
         $string1 = String::limit('foo', 1);
