@@ -16,12 +16,12 @@ class StringMethods extends Str
     /**
      * Create a string from a number
      *
-     * @param  integer $count A number
-     * @param  string  $many  If many
-     * @param  string  $one   If one
-     * @param  string  $zero  If one
+     * @param integer $count A number
+     * @param string  $many  If many
+     * @param string  $one   If one
+     * @param string  $zero  If one
      *
-     * @return string         A string
+     * @return string A string
      */
     public static function accord($count, $many, $one, $zero = null)
     {
@@ -109,12 +109,12 @@ class StringMethods extends Str
     /**
      * Find one or more needles in one or more haystacks
      *
-     * @param  array|string $string        The haystack(s) to search in
-     * @param  array|string $needle        The needle(s) to search for
-     * @param  boolean      $caseSensitive Whether the function is case sensitive or not
-     * @param  boolean      $absolute      Whether all needle need to be found or whether one is enough
+     * @param array|string $string        The haystack(s) to search in
+     * @param array|string $needle        The needle(s) to search for
+     * @param boolean      $caseSensitive Whether the function is case sensitive or not
+     * @param boolean      $absolute      Whether all needle need to be found or whether one is enough
      *
-     * @return boolean      Found or not
+     * @return boolean Found or not
      */
     public static function find($string, $needle, $caseSensitive = false, $absolute = false)
     {
@@ -184,7 +184,7 @@ class StringMethods extends Str
     /**
      * Get the base class in a namespace
      *
-     * @param  string $string
+     * @param string $string
      *
      * @return string
      */
@@ -253,12 +253,12 @@ class StringMethods extends Str
     /**
      * Toggles a string between two states
      *
-     * @param  string  $string The string to toggle
-     * @param  string  $first  First value
-     * @param  string  $second Second value
-     * @param  boolean $loose  Whether a string neither matching 1 or 2 should be changed
+     * @param string  $string The string to toggle
+     * @param string  $first  First value
+     * @param string  $second Second value
+     * @param boolean $loose  Whether a string neither matching 1 or 2 should be changed
      *
-     * @return string          The toggled string
+     * @return string The toggled string
      */
     public static function toggle($string, $first, $second, $loose = false)
     {

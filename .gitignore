@@ -1,4 +1,5 @@
 # Tests
+.php_cs.cache
 tests/.coverage
 
 # Dependencies

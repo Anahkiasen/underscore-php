@@ -34,7 +34,7 @@ class FunctionsMethods
     /**
      * Create a function that can only be called once
      *
-     * @param  Callable $function The function
+     * @param Callable $function The function
      *
      * @return Closure
      */
@@ -46,8 +46,8 @@ class FunctionsMethods
     /**
      * Create a function that can only be called $times times
      *
-     * @param  Callable $function
-     * @param  integer  $times The number of times
+     * @param Callable $function
+     * @param integer  $times    The number of times
      *
      * @return Closure
      */
@@ -80,8 +80,8 @@ class FunctionsMethods
     /**
      * Create a function that can only be called after $times times
      *
-     * @param  Callable $function
-     * @param  integer  $times
+     * @param Callable $function
+     * @param integer  $times
      *
      * @return Closure
      */
@@ -113,7 +113,7 @@ class FunctionsMethods
     /**
      * Caches the result of a function and refer to it ever after
      *
-     * @param  Callable $function
+     * @param Callable $function
      *
      * @return Closure
      */
@@ -178,7 +178,7 @@ class FunctionsMethods
     /**
      * Get the last time a function was called
      *
-     * @param  string $unique The function unique ID
+     * @param string $unique The function unique ID
      *
      * @return integer
      */
@@ -202,10 +202,10 @@ class FunctionsMethods
     /**
      * Get a function's signature
      *
-     * @param  Closure $function  The function
-     * @param  array   $arguments Its arguments
+     * @param Closure $function  The function
+     * @param array   $arguments Its arguments
      *
-     * @return string  The unique id
+     * @return string The unique id
      */
     public static function getSignature($unique, $function, $arguments)
     {

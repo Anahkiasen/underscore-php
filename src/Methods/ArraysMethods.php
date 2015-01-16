@@ -109,10 +109,10 @@ class ArraysMethods extends CollectionMethods
     /**
      * Returns the average value of an array
      *
-     * @param  array   $array    The source array
-     * @param  integer $decimals The number of decimals to return
+     * @param array   $array    The source array
+     * @param integer $decimals The number of decimals to return
      *
-     * @return integer           The average value
+     * @return integer The average value
      */
     public static function average($array, $decimals = 0)
     {
@@ -174,7 +174,7 @@ class ArraysMethods extends CollectionMethods
             }
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -402,11 +402,11 @@ class ArraysMethods extends CollectionMethods
     /**
      * Flattens an array to dot notation
      *
-     * @param  array  $array     An array
-     * @param  string $separator The characater to flatten with
-     * @param  string $parent    The parent passed to the child (private)
+     * @param array  $array     An array
+     * @param string $separator The characater to flatten with
+     * @param string $parent    The parent passed to the child (private)
      *
-     * @return array             Flattened array to one level
+     * @return array Flattened array to one level
      */
     public static function flatten($array, $separator = '.', $parent = null)
     {

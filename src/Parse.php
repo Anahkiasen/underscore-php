@@ -15,7 +15,7 @@ class Parse
     /**
      * Converts data from JSON
      *
-     * @param  string $data The data to parse
+     * @param string $data The data to parse
      *
      * @return mixed
      */
@@ -27,7 +27,7 @@ class Parse
     /**
      * Converts data to JSON
      *
-     * @param  array|object $data The data to convert
+     * @param array|object $data The data to convert
      *
      * @return string Converted data
      */
@@ -43,7 +43,7 @@ class Parse
     /**
      * Converts data from XML
      *
-     * @param  string $xml The data to parse
+     * @param string $xml The data to parse
      *
      * @return array
      */
@@ -63,8 +63,8 @@ class Parse
     /**
      * Converts data from CSV
      *
-     * @param  string  $data       The data to parse
-     * @param  boolean $hasHeaders Whether the CSV has headers
+     * @param string  $data       The data to parse
+     * @param boolean $hasHeaders Whether the CSV has headers
      *
      * @return mixed
      */
@@ -97,7 +97,7 @@ class Parse
     /**
      * Converts data to CSV
      *
-     * @param  mixed $data The data to convert
+     * @param mixed $data The data to convert
      *
      * @return string Converted data
      */

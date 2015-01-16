@@ -77,7 +77,7 @@ class Method
     /**
      * Get the Methods class from the Type class
      *
-     * @param  string $class The Type class
+     * @param string $class The Type class
      *
      * @return string The Methods class
      */
@@ -89,7 +89,7 @@ class Method
     /**
      * Whether a native method requires a subject or not
      *
-     * @param  string $method The function
+     * @param string $method The function
      *
      * @return boolean
      */
@@ -101,8 +101,8 @@ class Method
     /**
      * Whether a method should not be chained
      *
-     * @param  string $class  The class
-     * @param  string $method The method
+     * @param string $class  The class
+     * @param string $method The method
      *
      * @return boolean
      */
@@ -116,7 +116,7 @@ class Method
     /**
      * Whether a method is a breaker
      *
-     * @param  string $method The method
+     * @param string $method The method
      *
      * @return boolean
      */
@@ -128,7 +128,7 @@ class Method
     /**
      * Get a method name by its alias
      *
-     * @param  string $method The method
+     * @param string $method The method
      *
      * @return string The real method name
      */
@@ -140,7 +140,7 @@ class Method
     /**
      * Get the native function corresponding to a method
      *
-     * @param  string $method The method to look for
+     * @param string $method The method to look for
      *
      * @return string The native function
      */
@@ -159,8 +159,8 @@ class Method
     /**
      * Find a method in the type classes
      *
-     * @param  string $originalClass The class calling the method
-     * @param  string $method        The method
+     * @param string $originalClass The class calling the method
+     * @param string $method        The method
      *
      * @return string The class name
      */
