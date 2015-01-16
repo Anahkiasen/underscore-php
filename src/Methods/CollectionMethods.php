@@ -194,7 +194,7 @@ abstract class CollectionMethods
         ) {
             $item = (array) $item;
             if (!isset($item[$property])) {
-                return false;
+                $item[$property] = null;
             }
 
             return $ops[$comparisonOp]($item, $property, $value);
