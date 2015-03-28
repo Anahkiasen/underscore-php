@@ -171,6 +171,31 @@ class FunctionsMethods
         };
     }
 
+    /**
+     * Prefill function arguments.
+     *
+     * @param Callable $func
+     *
+     * @return Closure
+     * @author Jeremy Ashkenas
+     */
+    public static function partial(callable $func)
+    {
+        $boundArgs = array_slice(func_get_args(), 1);
+
+        return function () use ($boundArgs, $func) {
+            $args = [];
+            $calledArgs = func_get_args();
+            $position = 0;
+
+            for ($i = 0, $len = count($boundArgs); $i < $len; $i++) {
+                $args[] = $boundArgs[$i] === null ? $calledArgs[$position++] : $boundArgs[$i];
+            }
+
+            return call_user_func_array($func, array_merge($args, array_slice($calledArgs, $position)));
+        };
+    }
+
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// HELPERS /////////////////////////////
     ////////////////////////////////////////////////////////////////////
