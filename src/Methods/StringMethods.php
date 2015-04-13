@@ -1,13 +1,15 @@
 <?php
 namespace Underscore\Methods;
 
-use Illuminate\Support\Str;
+use Doctrine\Common\Inflector\Inflector;
+use Patchwork\Utf8;
 use Underscore\Types\String;
+use RuntimeException;
 
 /**
  * Methods to manage strings
  */
-class StringMethods extends Str
+class StringMethods
 {
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// CREATE  /////////////////////////////
@@ -39,6 +41,45 @@ class StringMethods extends Str
     }
 
     /**
+     * Generate a more truly "random" alpha-numeric string.
+     *
+     * @param  int  $length
+     * @return string
+     * @throws \RuntimeException
+     * @author Taylor Otwell
+     */
+    public static function random($length = 16)
+    {
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $bytes = openssl_random_pseudo_bytes($length * 2);
+
+            if ($bytes === false) {
+                throw new RuntimeException('Unable to generate random string.');
+            }
+
+            return substr(str_replace(array('/', '+', '='), '', base64_encode($bytes)), 0, $length);
+        }
+
+        return static::quickRandom($length);
+    }
+
+    /**
+     * Generate a "random" alpha-numeric string.
+     *
+     * Should not be considered sufficient for cryptography, etc.
+     *
+     * @param  int  $length
+     * @return string
+     * @author Taylor Otwell
+     */
+    public static function quickRandom($length = 16)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+    }
+
+    /**
      * Generates a random suite of words
      *
      * @param integer $words  The number of words
@@ -59,6 +100,25 @@ class StringMethods extends Str
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// ANALYZE /////////////////////////////
     ////////////////////////////////////////////////////////////////////
+
+    /**
+     * Determine if a given string ends with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     * @author Taylor Otwell
+     */
+    public static function endsWith($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ((string) $needle === substr($haystack, -strlen($needle))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /**
      * Check if a string is an IP
@@ -88,6 +148,25 @@ class StringMethods extends Str
     public static function isUrl($string)
     {
         return filter_var($string, FILTER_VALIDATE_URL) !== false;
+    }
+
+    /**
+     * Determine if a given string starts with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     * @author Taylor Otwell
+     */
+    public static function startsWith($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle != '' && strpos($haystack, $needle) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -212,6 +291,25 @@ class StringMethods extends Str
     {
         return $string.$with;
     }
+    
+    /**
+     * Limit the number of characters in a string.
+     *
+     * @param  string  $value
+     * @param  int     $limit
+     * @param  string  $end
+     * 
+     * @return string
+     * @author Taylor Otwell
+     */
+    public static function limit($value, $limit = 100, $end = '...')
+    {
+        if (mb_strlen($value) <= $limit) {
+            return $value;
+        }
+        
+        return rtrim(mb_substr($value, 0, $limit, 'UTF-8')).$end;
+    }
 
     /**
      * Remove part of a string
@@ -259,6 +357,32 @@ class StringMethods extends Str
     }
 
     /**
+     * Generate a URL friendly "slug" from a given string.
+     *
+     * @param  string  $title
+     * @param  string  $separator
+     * @return string
+     * @author Taylor Otwell
+     */
+    protected static function slug($title, $separator = '-')
+    {
+        $title = Utf8::toAscii($title);
+
+        // Convert all dashes/underscores into separator
+        $flip = $separator == '-' ? '_' : '-';
+
+        $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
+
+        // Remove all characters that are not the separator, letters, numbers, or whitespace.
+        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
+
+        // Replace all separator characters and whitespace by a single separator
+        $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
+
+        return trim($title, $separator);
+    }
+
+    /**
      * Slugifies a string
      */
     public static function slugify($string, $separator = '-')
@@ -293,6 +417,29 @@ class StringMethods extends Str
     }
 
     /**
+     * Get the plural form of an English word.
+     *
+     * @param  string  $value
+     * @param  int     $count
+     * @return string
+     */
+    public static function plural($value)
+    {
+        return Inflector::pluralize($value);
+    }
+
+    /**
+     * Get the singular form of an English word.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function singular($value)
+    {
+        return Inflector::singularize($value);
+    }
+
+    /**
      * Lowercase a string
      *
      * @param string $string
@@ -316,6 +463,26 @@ class StringMethods extends Str
         return mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
     }
 
+    /**
+     * Limit the number of words in a string.
+     *
+     * @param  string  $value
+     * @param  int     $words
+     * @param  string  $end
+     * @return string
+     * @author Taylor Otwell
+     */
+    public static function words($value, $words = 100, $end = '...')
+    {
+        preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $value, $matches);
+
+        if (!isset($matches[0]) || strlen($value) === strlen($matches[0])) {
+            return $value;
+        }
+
+        return rtrim($matches[0]).$end;
+    }
+
     ////////////////////////////////////////////////////////////////////
     /////////////////////////// CASE SWITCHERS /////////////////////////
     ////////////////////////////////////////////////////////////////////
@@ -329,7 +496,7 @@ class StringMethods extends Str
      */
     public static function toPascalCase($string)
     {
-        return static::studly($string);
+        return Inflector::classify($string);
     }
 
     /**
@@ -355,6 +522,6 @@ class StringMethods extends Str
      */
     public static function toCamelCase($string)
     {
-        return static::camel($string);
+        return Inflector::camelize($string);
     }
 }

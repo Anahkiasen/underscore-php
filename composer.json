@@ -15,7 +15,7 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "illuminate/support": "^4.2.16",
+    "doctrine/inflector": "~1.0.1",
     "patchwork/utf8": "~1.2"
   },
   "autoload": {
