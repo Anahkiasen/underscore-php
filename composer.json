@@ -19,7 +19,8 @@
     "patchwork/utf8": "^1.2"
   },
   "require-dev": {
-    "fabpot/php-cs-fixer": "2.0.*@dev"
+    "fabpot/php-cs-fixer": "2.0.*@dev",
+    "phpunit/phpunit": "^4.6"
   },
   "autoload": {
     "psr-4": {

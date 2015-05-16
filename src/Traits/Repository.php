@@ -5,7 +5,7 @@ use BadMethodCallException;
 use Underscore\Dispatch;
 use Underscore\Method;
 use Underscore\Methods\ArraysMethods;
-use Underscore\Methods\StringMethods;
+use Underscore\Methods\StringsMethods;
 use Underscore\Parse;
 
 /**
@@ -227,7 +227,7 @@ abstract class Repository
      */
     protected static function computeClassToCall($callingClass, $method, $arguments)
     {
-        if (!StringMethods::find($callingClass, 'Underscore\Types')) {
+        if (!StringsMethods::find($callingClass, 'Underscore\Types')) {
             if (isset($arguments[0])) {
                 $callingClass = Dispatch::toClass($arguments[0]);
             } else {

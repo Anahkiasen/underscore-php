@@ -19,7 +19,7 @@ abstract class CollectionMethods
     public static function has($array, $key)
     {
         // Generate unique string to use as marker
-        $unfound = StringMethods::random(5);
+        $unfound = StringsMethods::random(5);
 
         return static::get($array, $key, $unfound) !== $unfound;
     }
