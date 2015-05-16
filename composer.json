@@ -15,8 +15,8 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "doctrine/inflector": "~1.0.1",
-    "patchwork/utf8": "~1.2"
+    "doctrine/inflector": "^1.0",
+    "patchwork/utf8": "^1.2"
   },
   "autoload": {
     "psr-4": {
