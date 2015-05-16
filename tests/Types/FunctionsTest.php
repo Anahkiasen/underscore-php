@@ -7,7 +7,7 @@ class FunctionsTest extends UnderscoreTestCase
 {
     public function testCanCallFunctionOnlyOnce()
     {
-        $number   = 0;
+        $number = 0;
         $function = Functions::once(function () use (&$number) {
             $number++;
         });
@@ -20,7 +20,7 @@ class FunctionsTest extends UnderscoreTestCase
 
     public function testCanCallFunctionOnlyXTimes()
     {
-        $number   = 0;
+        $number = 0;
         $function = Functions::only(function () use (&$number) {
             $number++;
         }, 3);
@@ -36,7 +36,7 @@ class FunctionsTest extends UnderscoreTestCase
 
     public function testCanCallFunctionAfterXTimes()
     {
-        $number   = 0;
+        $number = 0;
         $function = Functions::after(function () use (&$number) {
             $number++;
         }, 3);
@@ -64,7 +64,7 @@ class FunctionsTest extends UnderscoreTestCase
 
     public function testCanThrottleFunctions()
     {
-        $number   = 0;
+        $number = 0;
         $function = Functions::throttle(function () use (&$number) {
             $number++;
         }, 1);

@@ -5,34 +5,34 @@ use Closure;
 use InvalidArgumentException;
 
 /**
- * Dispatches methods and classes to various places
+ * Dispatches methods and classes to various places.
  */
 class Dispatch
 {
     /**
-     * The namespace containing the Type classes
+     * The namespace containing the Type classes.
      */
     const TYPES = 'Underscore\Types\\';
 
     /**
-     * An array of PHP types and what classes they map to
+     * An array of PHP types and what classes they map to.
      *
-     * @var array
+     * @type array
      */
-    protected static $classmap = array(
-        'array'   => 'Arrays',
-        'double'  => 'Number',
+    protected static $classmap = [
+        'array' => 'Arrays',
+        'double' => 'Number',
         'closure' => 'Functions',
-        'float'   => 'Number',
+        'float' => 'Number',
         'integer' => 'Number',
-        'NULL'    => 'String',
-        'object'  => 'Object',
-        'real'    => 'Number',
-        'string'  => 'String',
-    );
+        'NULL' => 'String',
+        'object' => 'Object',
+        'real' => 'Number',
+        'string' => 'String',
+    ];
 
     /**
-     * Compute the right class to call according to something's type
+     * Compute the right class to call according to something's type.
      *
      * @param mixed $subject The subject of a class
      *
@@ -54,7 +54,7 @@ class Dispatch
     }
 
     /**
-     * Defer a method to native PHP
+     * Defer a method to native PHP.
      *
      * @param string $class  The class
      * @param string $method The method

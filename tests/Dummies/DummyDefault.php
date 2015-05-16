@@ -6,7 +6,7 @@ use Underscore\Types\String;
 class DummyDefault extends String
 {
     /**
-     * Get the default value
+     * Get the default value.
      *
      * @return string
      */
@@ -16,12 +16,12 @@ class DummyDefault extends String
     }
 
     /**
-     * How the repository is to be cast to array
+     * How the repository is to be cast to array.
      *
      * @return array
      */
     public function toArray()
     {
-        return array('foo', 'bar');
+        return ['foo', 'bar'];
     }
 }

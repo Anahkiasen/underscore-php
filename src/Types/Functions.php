@@ -5,7 +5,7 @@ use Underscore\Methods\FunctionsMethods;
 use Underscore\Traits\Repository;
 
 /**
- * Functions repository
+ * Functions repository.
  *
  * @mixin FunctionsMethods
  */

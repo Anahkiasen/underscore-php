@@ -21,7 +21,7 @@ class UnderscoreTest extends UnderscoreTestCase
 
     public function testCanRedirectToCorrectClass()
     {
-        $under = Underscore::contains(array(1, 2, 3), 3);
+        $under = Underscore::contains([1, 2, 3], 3);
 
         $this->assertEquals(2, $under);
     }
@@ -48,10 +48,10 @@ class UnderscoreTest extends UnderscoreTestCase
     public function testCanHaveAliasesForMethods()
     {
         $under = Arrays::select($this->arrayNumbers, function ($value) {
-            return $value == 1;
+            return $value === 1;
         });
 
-        $this->assertEquals(array(1), $under);
+        $this->assertEquals([1], $under);
     }
 
     public function testUserCanExtendWithCustomFunctions()
@@ -59,7 +59,7 @@ class UnderscoreTest extends UnderscoreTestCase
         Arrays::extend('fooify', function ($array) {
             return 'bar';
         });
-        $this->assertEquals('bar', Arrays::fooify(array('foo')));
+        $this->assertEquals('bar', Arrays::fooify(['foo']));
 
         String::extend('unfooer', function ($string) {
             return String::replace($string, 'foo', 'bar');
@@ -69,11 +69,11 @@ class UnderscoreTest extends UnderscoreTestCase
 
     public function testBreakersCantAlterTheOriginalValue()
     {
-        $object = Arrays::from(array(1, 2, 3));
-        $sum    = $object->sum();
+        $object = Arrays::from([1, 2, 3]);
+        $sum = $object->sum();
 
         $this->assertEquals(6, $sum);
-        $this->assertEquals(array(1, 2, 3), $object->obtain());
+        $this->assertEquals([1, 2, 3], $object->obtain());
     }
 
     public function testClassesCanExtendCoreTypes()
@@ -87,8 +87,8 @@ class UnderscoreTest extends UnderscoreTestCase
 
     public function testClassesCanUpdateSubject()
     {
-        $class  = new DummyClass();
-        $class  = $class->getUsers()->toJSON();
+        $class = new DummyClass();
+        $class = $class->getUsers()->toJSON();
         $class2 = DummyClass::create()->getUsers()->toJSON();
 
         $this->assertEquals('[{"foo":"bar"},{"bar":"foo"}]', $class);
@@ -132,7 +132,7 @@ class UnderscoreTest extends UnderscoreTestCase
 
     public function testUnderscoreFindsRightClassToCall()
     {
-        $numbers = array(3, 4, 5);
+        $numbers = [3, 4, 5];
         $product = Underscore::reduce($numbers, function ($w, $v) {
             return $w * $v;
         }, 1);

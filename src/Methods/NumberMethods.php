@@ -2,12 +2,12 @@
 namespace Underscore\Methods;
 
 /**
- * Methods to manage numbers
+ * Methods to manage numbers.
  */
 class NumberMethods
 {
     /**
-     * Add 0 padding to an integer
+     * Add 0 padding to an integer.
      */
     public static function padding($number, $padding = 1, $direction = STR_PAD_BOTH)
     {
@@ -15,7 +15,7 @@ class NumberMethods
     }
 
     /**
-     * Add 0 padding on the left of an integer
+     * Add 0 padding on the left of an integer.
      */
     public static function paddingLeft($number, $padding = 1)
     {
@@ -23,7 +23,7 @@ class NumberMethods
     }
 
     /**
-     * Add 0 padding on the right of an integer
+     * Add 0 padding on the right of an integer.
      */
     public static function paddingRight($number, $padding = 1)
     {

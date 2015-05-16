@@ -6,22 +6,22 @@ use Underscore\Types\Arrays;
 class DummyClass extends Arrays
 {
     /**
-     * Get the core data
+     * Get the core data.
      *
      * @return self
      */
     public function getUsers()
     {
-        $users = array(
-            array('foo' => 'bar'),
-            array('bar' => 'foo'),
-        );
+        $users = [
+            ['foo' => 'bar'],
+            ['bar' => 'foo'],
+        ];
 
         return $this->setSubject($users);
     }
 
     /**
-     * Overwrite of the map method
+     * Overwrite of the map method.
      *
      * @param mixed $whatever
      *

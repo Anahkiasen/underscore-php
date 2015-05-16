@@ -5,14 +5,14 @@ use Underscore\Methods\ArraysMethods;
 use Underscore\Traits\Repository;
 
 /**
- * The base class and wrapper around all other classes
+ * The base class and wrapper around all other classes.
  */
 class Underscore extends Repository
 {
     /**
-     * The current config
+     * The current config.
      *
-     * @var array
+     * @type array
      */
     protected static $options;
 
@@ -21,7 +21,7 @@ class Underscore extends Repository
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Dispatch to the correct Repository class
+     * Dispatch to the correct Repository class.
      *
      * @param mixed $subject The subject
      *
@@ -39,7 +39,7 @@ class Underscore extends Repository
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Get an option from the config file
+     * Get an option from the config file.
      *
      * @param string $option The key of the option
      *

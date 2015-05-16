@@ -16,9 +16,9 @@ class MethodTest extends UnderscoreTestCase
     public function testHasAccessToOriginalPhpFunctions()
     {
         $array = Arrays::from($this->array);
-        $array = $array->intersect(array('foo' => 'bar', 'kal' => 'mon'));
+        $array = $array->intersect(['foo' => 'bar', 'kal' => 'mon']);
 
-        $this->assertEquals(array('foo' => 'bar'), $array->obtain());
+        $this->assertEquals(['foo' => 'bar'], $array->obtain());
 
         $string = String::repeat('foo', 2);
         $this->assertEquals('foofoo', $string);

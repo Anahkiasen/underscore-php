@@ -2,16 +2,16 @@
 namespace Underscore;
 
 /**
- * Various helpers relatives to methods
+ * Various helpers relatives to methods.
  */
 class Method
 {
     /**
-     * A list of methods to automatically defer to PHP
+     * A list of methods to automatically defer to PHP.
      *
-     * @var array
+     * @type array
      */
-    public static $defer = array(
+    public static $defer = [
         'trim',
         'count',
         'round',
@@ -24,25 +24,25 @@ class Method
         'ucwords',
         'strtolower',
         'strtoupper',
-    );
+    ];
 
     /**
      * A list of methods where the subject
-     * isn't to be added to the arguments
+     * isn't to be added to the arguments.
      *
-     * @var array
+     * @type array
      */
-    protected static $subjectless = array(
+    protected static $subjectless = [
         'fill',
-    );
+    ];
 
     /**
      * A list of methods that are allowed
-     * to break the chain
+     * to break the chain.
      *
-     * @var array
+     * @type array
      */
-    protected static $breakers = array(
+    protected static $breakers = [
         'get',
         'sum',
         'count',
@@ -51,31 +51,31 @@ class Method
         'fromXML',
         'fromCSV',
         'toCSV',
-    );
+    ];
 
     /**
-     * Unchainable methods
+     * Unchainable methods.
      *
-     * @var array
+     * @type array
      */
-    protected static $unchainable = array(
+    protected static $unchainable = [
         'Arrays::range',
         'Arrays::repeat',
-    );
+    ];
 
     /**
-     * A cache for better findInClasses performances
+     * A cache for better findInClasses performances.
      *
-     * @var array
+     * @type array
      */
-    protected static $findCache = array();
+    protected static $findCache = [];
 
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// HELPERS /////////////////////////////
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Get the Methods class from the Type class
+     * Get the Methods class from the Type class.
      *
      * @param string $class The Type class
      *
@@ -87,46 +87,46 @@ class Method
     }
 
     /**
-     * Whether a native method requires a subject or not
+     * Whether a native method requires a subject or not.
      *
      * @param string $method The function
      *
-     * @return boolean
+     * @return bool
      */
     public static function isSubjectless($method)
     {
-        return in_array($method, static::$subjectless);
+        return in_array($method, static::$subjectless, true);
     }
 
     /**
-     * Whether a method should not be chained
+     * Whether a method should not be chained.
      *
      * @param string $class  The class
      * @param string $method The method
      *
-     * @return boolean
+     * @return bool
      */
     public static function isUnchainable($class, $method)
     {
         $class = str_replace('Underscore\Types\\', null, $class);
 
-        return in_array($class.'::'.$method, static::$unchainable);
+        return in_array($class.'::'.$method, static::$unchainable, true);
     }
 
     /**
-     * Whether a method is a breaker
+     * Whether a method is a breaker.
      *
      * @param string $method The method
      *
-     * @return boolean
+     * @return bool
      */
     public static function isBreaker($method)
     {
-        return in_array($method, static::$breakers);
+        return in_array($method, static::$breakers, true);
     }
 
     /**
-     * Get a method name by its alias
+     * Get a method name by its alias.
      *
      * @param string $method The method
      *
@@ -138,7 +138,7 @@ class Method
     }
 
     /**
-     * Get the native function corresponding to a method
+     * Get the native function corresponding to a method.
      *
      * @param string $method The method to look for
      *
@@ -147,8 +147,8 @@ class Method
     public static function getNative($method)
     {
         // If a defered method exist
-        if (in_array($method, static::$defer)) {
-            $native = array_search($method, static::$defer);
+        if (in_array($method, static::$defer, true)) {
+            $native = array_search($method, static::$defer, true);
 
             return is_int($native) ? $method : $native;
         }
@@ -157,7 +157,7 @@ class Method
     }
 
     /**
-     * Find a method in the type classes
+     * Find a method in the type classes.
      *
      * @param string $originalClass The class calling the method
      * @param string $method        The method
@@ -166,7 +166,7 @@ class Method
      */
     public static function findInClasses($originalClass, $method)
     {
-        $classes = array('Arrays', 'Collection', 'Functions', 'Number', 'Object', 'String');
+        $classes = ['Arrays', 'Collection', 'Functions', 'Number', 'Object', 'String'];
         foreach ($classes as $class) {
             if (method_exists('\Underscore\Methods\\'.$class.'Methods', $method)) {
                 return '\Underscore\Types\\'.$class;

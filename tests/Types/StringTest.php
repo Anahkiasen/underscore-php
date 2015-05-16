@@ -10,34 +10,34 @@ class StringTest extends UnderscoreTestCase
 
     public function provideAccord()
     {
-        return array(
-            array(10, '10 things'),
-            array(1, 'one thing'),
-            array(0, 'nothing'),
-        );
+        return [
+            [10, '10 things'],
+            [1, 'one thing'],
+            [0, 'nothing'],
+        ];
     }
 
     public function provideFind()
     {
-        return array(
+        return [
 
             // Simple cases
-            array(false, 'foo', 'bar'),
-            array(true, 'foo', 'foo'),
-            array(true, 'FOO', 'foo', false),
-            array(false, 'FOO', 'foo', true),
+            [false, 'foo', 'bar'],
+            [true, 'foo', 'foo'],
+            [true, 'FOO', 'foo', false],
+            [false, 'FOO', 'foo', true],
             // Many needles, one haystack
-            array(true, array('foo', 'bar'), $this->remove),
-            array(false, array('vlu', 'bla'), $this->remove),
-            array(true, array('foo', 'vlu'), $this->remove, false, false),
-            array(false, array('foo', 'vlu'), $this->remove, false, true),
+            [true, ['foo', 'bar'], $this->remove],
+            [false, ['vlu', 'bla'], $this->remove],
+            [true, ['foo', 'vlu'], $this->remove, false, false],
+            [false, ['foo', 'vlu'], $this->remove, false, true],
             // Many haystacks, one needle
-            array(true, 'foo', array('foo', 'bar')),
-            array(true, 'bar', array('foo', 'bar')),
-            array(false, 'foo', array('bar', 'kal')),
-            array(true, 'foo', array('foo', 'foo'), false, false),
-            array(false, 'foo', array('foo', 'bar'), false, true),
-        );
+            [true, 'foo', ['foo', 'bar']],
+            [true, 'bar', ['foo', 'bar']],
+            [false, 'foo', ['bar', 'kal']],
+            [true, 'foo', ['foo', 'foo'], false, false],
+            [false, 'foo', ['foo', 'bar'], false, true],
+        ];
     }
 
     // Tests --------------------------------------------------------- /
@@ -75,7 +75,7 @@ class StringTest extends UnderscoreTestCase
 
     public function testCanRemoveMultipleTextsFromString()
     {
-        $return = String::remove($this->remove, array('foo', 'son'));
+        $return = String::remove($this->remove, ['foo', 'son']);
 
         $this->assertEquals('bar  kal ter', $return);
     }
@@ -171,7 +171,7 @@ class StringTest extends UnderscoreTestCase
     {
         $string = String::slice('abcdef', 'c');
 
-        return $this->assertEquals(array('ab', 'cdef'), $string);
+        return $this->assertEquals(['ab', 'cdef'], $string);
     }
 
     public function testCanUseCorrectOrderForStrReplace()
@@ -184,10 +184,10 @@ class StringTest extends UnderscoreTestCase
     public function testCanExplodeString()
     {
         $string = String::explode('foo bar foo', ' ');
-        $this->assertEquals(array('foo', 'bar', 'foo'), $string);
+        $this->assertEquals(['foo', 'bar', 'foo'], $string);
 
         $string = String::explode('foo bar foo', ' ', -1);
-        $this->assertEquals(array('foo', 'bar'), $string);
+        $this->assertEquals(['foo', 'bar'], $string);
     }
 
     public function testCanGenerateRandomWords()

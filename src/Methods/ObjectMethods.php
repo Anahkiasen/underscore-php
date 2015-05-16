@@ -2,12 +2,12 @@
 namespace Underscore\Methods;
 
 /**
- * Methods to manage objects
+ * Methods to manage objects.
  */
 class ObjectMethods extends CollectionMethods
 {
     /**
-     * Get all methods from an object
+     * Get all methods from an object.
      */
     public static function methods($object)
     {
@@ -15,7 +15,7 @@ class ObjectMethods extends CollectionMethods
     }
 
     /**
-     * Unpack an object's properties
+     * Unpack an object's properties.
      */
     public static function unpack($object, $attribute = null)
     {

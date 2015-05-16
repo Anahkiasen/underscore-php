@@ -5,21 +5,21 @@ use Underscore\Methods\NumberMethods;
 use Underscore\Traits\Repository;
 
 /**
- * Number repository
+ * Number repository.
  *
  * @mixin NumberMethods
  */
 class Number extends Repository
 {
     /**
-     * The method used to convert new subjects
+     * The method used to convert new subjects.
      *
-     * @var string
+     * @type string
      */
     protected $typecaster = 'toInteger';
 
     /**
-     * Get a default value for a new repository
+     * Get a default value for a new repository.
      *
      * @return mixed
      */

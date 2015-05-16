@@ -4,7 +4,7 @@ namespace Underscore;
 use Underscore\Methods\ArraysMethods;
 
 /**
- * Parse from various formats to various formats
+ * Parse from various formats to various formats.
  */
 class Parse
 {
@@ -13,7 +13,7 @@ class Parse
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Converts data from JSON
+     * Converts data from JSON.
      *
      * @param string $data The data to parse
      *
@@ -25,7 +25,7 @@ class Parse
     }
 
     /**
-     * Converts data to JSON
+     * Converts data to JSON.
      *
      * @param array|object $data The data to convert
      *
@@ -41,7 +41,7 @@ class Parse
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Converts data from XML
+     * Converts data from XML.
      *
      * @param string $xml The data to parse
      *
@@ -61,10 +61,10 @@ class Parse
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Converts data from CSV
+     * Converts data from CSV.
      *
-     * @param string  $data       The data to parse
-     * @param boolean $hasHeaders Whether the CSV has headers
+     * @param string $data       The data to parse
+     * @param bool   $hasHeaders Whether the CSV has headers
      *
      * @return mixed
      */
@@ -73,9 +73,9 @@ class Parse
         $data = trim($data);
 
         // Explodes rows
-        $data = static::explodeWith($data, array(PHP_EOL, "\r", "\n"));
+        $data = static::explodeWith($data, [PHP_EOL, "\r", "\n"]);
         $data = array_map(function ($row) {
-            return Parse::explodeWith($row, array(";", "\t", ","));
+            return Parse::explodeWith($row, [';', "\t", ',']);
         }, $data);
 
         // Get headers
@@ -95,7 +95,7 @@ class Parse
     }
 
     /**
-     * Converts data to CSV
+     * Converts data to CSV.
      *
      * @param mixed $data The data to convert
      *
@@ -103,7 +103,7 @@ class Parse
      */
     public static function toCSV($data, $delimiter = ';', $exportHeaders = false)
     {
-        $csv = array();
+        $csv = [];
 
         // Convert objects to arrays
         if (is_object($data)) {
@@ -118,7 +118,7 @@ class Parse
         // Fetch headers if requested
         if ($exportHeaders) {
             $headers = array_keys(ArraysMethods::first($data));
-            $csv[]   = implode($delimiter, $headers);
+            $csv[] = implode($delimiter, $headers);
         }
 
         // Quote values and create row
@@ -145,7 +145,7 @@ class Parse
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Converts data to an array
+     * Converts data to an array.
      *
      * @param string|object $data
      */
@@ -160,7 +160,7 @@ class Parse
     }
 
     /**
-     * Converts data to a string
+     * Converts data to a string.
      *
      * @param array|object $data
      */
@@ -175,7 +175,7 @@ class Parse
     }
 
     /**
-     * Converts data to an integer
+     * Converts data to an integer.
      *
      * @param array|string|object $data
      */
@@ -195,7 +195,7 @@ class Parse
     }
 
     /**
-     * Converts data to a boolean
+     * Converts data to a boolean.
      *
      * @param array|sring|object $data
      */
@@ -205,7 +205,7 @@ class Parse
     }
 
     /**
-     * Converts data to an object
+     * Converts data to an object.
      *
      * @param array|string $data
      */
@@ -219,7 +219,7 @@ class Parse
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Tries to explode a string with an array of delimiters
+     * Tries to explode a string with an array of delimiters.
      *
      * @param string $string     The string
      * @param array  $delimiters An array of delimiters
@@ -232,7 +232,7 @@ class Parse
 
         foreach ($delimiters as $delimiter) {
             $array = explode($delimiter, $string);
-            if (count($array) == 1) {
+            if (count($array) === 1) {
                 continue;
             } else {
                 return $array;

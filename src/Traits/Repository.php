@@ -9,28 +9,28 @@ use Underscore\Methods\StringMethods;
 use Underscore\Parse;
 
 /**
- * Base abstract class for repositories
+ * Base abstract class for repositories.
  */
 abstract class Repository
 {
     /**
-     * The subject of the repository
+     * The subject of the repository.
      *
-     * @var mixed
+     * @type mixed
      */
     protected $subject;
 
     /**
-     * Custom functions
+     * Custom functions.
      *
-     * @var array
+     * @type array
      */
-    protected static $macros = array();
+    protected static $macros = [];
 
     /**
-     * The method used to convert new subjects
+     * The method used to convert new subjects.
      *
-     * @var string
+     * @type string
      */
     protected $typecaster;
 
@@ -39,7 +39,7 @@ abstract class Repository
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a new instance of the repository
+     * Create a new instance of the repository.
      *
      * @param mixed $subject The repository subject
      */
@@ -58,7 +58,7 @@ abstract class Repository
     }
 
     /**
-     * Transform subject to String on toString
+     * Transform subject to String on toString.
      *
      * @return string
      */
@@ -68,7 +68,7 @@ abstract class Repository
     }
 
     /**
-     * Create a new Repository
+     * Create a new Repository.
      */
     public static function create()
     {
@@ -76,7 +76,7 @@ abstract class Repository
     }
 
     /**
-     * Create a new Repository from a subject
+     * Create a new Repository from a subject.
      */
     public static function from($subject)
     {
@@ -84,7 +84,7 @@ abstract class Repository
     }
 
     /**
-     * Get a key from the subject
+     * Get a key from the subject.
      */
     public function __get($key)
     {
@@ -92,7 +92,7 @@ abstract class Repository
     }
 
     /**
-     * Set a value on the subject
+     * Set a value on the subject.
      */
     public function __set($key, $value)
     {
@@ -100,9 +100,9 @@ abstract class Repository
     }
 
     /**
-     * Check if the subject is empty
+     * Check if the subject is empty.
      *
-     * @return boolean
+     * @return bool
      */
     public function isEmpty()
     {
@@ -110,7 +110,7 @@ abstract class Repository
     }
 
     /**
-     * Replace the Subject while maintaining chain
+     * Replace the Subject while maintaining chain.
      *
      * @param mixed $value
      */
@@ -122,7 +122,7 @@ abstract class Repository
     }
 
     /**
-     * Get the subject from the object
+     * Get the subject from the object.
      *
      * @return mixed
      */
@@ -132,7 +132,7 @@ abstract class Repository
     }
 
     /**
-     * Extend the class with a custom function
+     * Extend the class with a custom function.
      *
      * @param string   $method  The macro's name
      * @param Callable $closure The macro
@@ -147,7 +147,7 @@ abstract class Repository
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Catch aliases and reroute them to the right methods
+     * Catch aliases and reroute them to the right methods.
      */
     public static function __callStatic($method, $parameters)
     {
@@ -157,17 +157,17 @@ abstract class Repository
 
         // Defer to Methods class
         if (method_exists($methodsClass, $method)) {
-            return Repository::callMethod($methodsClass, $method, $parameters);
+            return self::callMethod($methodsClass, $method, $parameters);
         }
 
         // Check for an alias
         if ($alias = Method::getAliasOf($method)) {
-            return Repository::callMethod($methodsClass, $alias, $parameters);
+            return self::callMethod($methodsClass, $alias, $parameters);
         }
 
         // Check for parsers
         if (method_exists('Underscore\Parse', $method)) {
-            return Repository::callMethod('Underscore\Parse', $method, $parameters);
+            return self::callMethod('Underscore\Parse', $method, $parameters);
         }
 
         // Defered methods
@@ -184,7 +184,7 @@ abstract class Repository
     }
 
     /**
-     * Allow the chained calling of methods
+     * Allow the chained calling of methods.
      */
     public function __call($method, $arguments)
     {
@@ -217,7 +217,7 @@ abstract class Repository
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Tries to find the right class to call
+     * Tries to find the right class to call.
      *
      * @param string $callingClass The original class
      * @param string $method       The method
@@ -239,7 +239,7 @@ abstract class Repository
     }
 
     /**
-     * Simpler version of call_user_func_array (for performances)
+     * Simpler version of call_user_func_array (for performances).
      *
      * @param string $class      The class
      * @param string $method     The method
@@ -264,7 +264,7 @@ abstract class Repository
     }
 
     /**
-     * Get a default value for a new repository
+     * Get a default value for a new repository.
      *
      * @return mixed
      */

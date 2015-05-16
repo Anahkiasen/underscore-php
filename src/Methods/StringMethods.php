@@ -3,11 +3,11 @@ namespace Underscore\Methods;
 
 use Doctrine\Common\Inflector\Inflector;
 use Patchwork\Utf8;
-use Underscore\Types\String;
 use RuntimeException;
+use Underscore\Types\String;
 
 /**
- * Methods to manage strings
+ * Methods to manage strings.
  */
 class StringMethods
 {
@@ -16,21 +16,21 @@ class StringMethods
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a string from a number
+     * Create a string from a number.
      *
-     * @param integer $count A number
-     * @param string  $many  If many
-     * @param string  $one   If one
-     * @param string  $zero  If one
+     * @param int    $count A number
+     * @param string $many  If many
+     * @param string $one   If one
+     * @param string $zero  If one
      *
      * @return string A string
      */
     public static function accord($count, $many, $one, $zero = null)
     {
-        if ($count == 1) {
+        if ($count === 1) {
             $output = $one;
         } else {
-            if ($count == 0 and !empty($zero)) {
+            if ($count === 0 and !empty($zero)) {
                 $output = $zero;
             } else {
                 $output = $many;
@@ -43,9 +43,12 @@ class StringMethods
     /**
      * Generate a more truly "random" alpha-numeric string.
      *
-     * @param  int  $length
-     * @return string
+     * @param int $length
+     *
      * @throws \RuntimeException
+     * @return string
+     *
+     *
      * @author Taylor Otwell
      */
     public static function random($length = 16)
@@ -57,7 +60,7 @@ class StringMethods
                 throw new RuntimeException('Unable to generate random string.');
             }
 
-            return substr(str_replace(array('/', '+', '='), '', base64_encode($bytes)), 0, $length);
+            return substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $length);
         }
 
         return static::quickRandom($length);
@@ -68,8 +71,10 @@ class StringMethods
      *
      * Should not be considered sufficient for cryptography, etc.
      *
-     * @param  int  $length
+     * @param int $length
+     *
      * @return string
+     *
      * @author Taylor Otwell
      */
     public static function quickRandom($length = 16)
@@ -80,10 +85,10 @@ class StringMethods
     }
 
     /**
-     * Generates a random suite of words
+     * Generates a random suite of words.
      *
-     * @param integer $words  The number of words
-     * @param integer $length The length of each word
+     * @param int $words  The number of words
+     * @param int $length The length of each word
      *
      * @return string
      */
@@ -104,9 +109,11 @@ class StringMethods
     /**
      * Determine if a given string ends with a given substring.
      *
-     * @param  string  $haystack
-     * @param  string|array  $needles
+     * @param string       $haystack
+     * @param string|array $needles
+     *
      * @return bool
+     *
      * @author Taylor Otwell
      */
     public static function endsWith($haystack, $needles)
@@ -121,9 +128,9 @@ class StringMethods
     }
 
     /**
-     * Check if a string is an IP
+     * Check if a string is an IP.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isIp($string)
     {
@@ -131,9 +138,9 @@ class StringMethods
     }
 
     /**
-     * Check if a string is an email
+     * Check if a string is an email.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isEmail($string)
     {
@@ -141,9 +148,9 @@ class StringMethods
     }
 
     /**
-     * Check if a string is an url
+     * Check if a string is an url.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isUrl($string)
     {
@@ -153,15 +160,17 @@ class StringMethods
     /**
      * Determine if a given string starts with a given substring.
      *
-     * @param  string  $haystack
-     * @param  string|array  $needles
+     * @param string       $haystack
+     * @param string|array $needles
+     *
      * @return bool
+     *
      * @author Taylor Otwell
      */
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle != '' && strpos($haystack, $needle) === 0) {
+            if ($needle !== '' && strpos($haystack, $needle) === 0) {
                 return true;
             }
         }
@@ -174,14 +183,14 @@ class StringMethods
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Find one or more needles in one or more haystacks
+     * Find one or more needles in one or more haystacks.
      *
      * @param array|string $string        The haystack(s) to search in
      * @param array|string $needle        The needle(s) to search for
-     * @param boolean      $caseSensitive Whether the function is case sensitive or not
-     * @param boolean      $absolute      Whether all needle need to be found or whether one is enough
+     * @param bool         $caseSensitive Whether the function is case sensitive or not
+     * @param bool         $absolute      Whether all needle need to be found or whether one is enough
      *
-     * @return boolean Found or not
+     * @return bool Found or not
      */
     public static function find($string, $needle, $caseSensitive = false, $absolute = false)
     {
@@ -189,10 +198,10 @@ class StringMethods
         if (is_array($needle) or is_array($string)) {
             if (is_array($needle)) {
                 $sliceFrom = $needle;
-                $sliceTo   = $string;
+                $sliceTo = $string;
             } else {
                 $sliceFrom = $string;
-                $sliceTo   = $needle;
+                $sliceTo = $needle;
             }
 
             $found = 0;
@@ -202,7 +211,7 @@ class StringMethods
                 }
             }
 
-            return ($absolute) ? count($sliceFrom) == $found : $found > 0;
+            return ($absolute) ? count($sliceFrom) === $found : $found > 0;
         }
 
         // If not case sensitive
@@ -218,18 +227,18 @@ class StringMethods
     }
 
     /**
-     * Slice a string with another string
+     * Slice a string with another string.
      */
     public static function slice($string, $slice)
     {
-        $sliceTo   = static::sliceTo($string, $slice);
+        $sliceTo = static::sliceTo($string, $slice);
         $sliceFrom = static::sliceFrom($string, $slice);
 
-        return array($sliceTo, $sliceFrom);
+        return [$sliceTo, $sliceFrom];
     }
 
     /**
-     * Slice a string from a certain point
+     * Slice a string from a certain point.
      */
     public static function sliceFrom($string, $slice)
     {
@@ -239,7 +248,7 @@ class StringMethods
     }
 
     /**
-     * Slice a string up to a certain point
+     * Slice a string up to a certain point.
      */
     public static function sliceTo($string, $slice)
     {
@@ -249,7 +258,7 @@ class StringMethods
     }
 
     /**
-     * Get the base class in a namespace
+     * Get the base class in a namespace.
      *
      * @param string $string
      *
@@ -267,7 +276,7 @@ class StringMethods
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Prepend a string with another
+     * Prepend a string with another.
      *
      * @param string $string The string
      * @param string $with   What to prepend with
@@ -280,7 +289,7 @@ class StringMethods
     }
 
     /**
-     * Append a string to another
+     * Append a string to another.
      *
      * @param string $string The string
      * @param string $with   What to append with
@@ -291,15 +300,16 @@ class StringMethods
     {
         return $string.$with;
     }
-    
+
     /**
      * Limit the number of characters in a string.
      *
-     * @param  string  $value
-     * @param  int     $limit
-     * @param  string  $end
-     * 
+     * @param string $value
+     * @param int    $limit
+     * @param string $end
+     *
      * @return string
+     *
      * @author Taylor Otwell
      */
     public static function limit($value, $limit = 100, $end = '...')
@@ -307,12 +317,12 @@ class StringMethods
         if (mb_strlen($value) <= $limit) {
             return $value;
         }
-        
+
         return rtrim(mb_substr($value, 0, $limit, 'UTF-8')).$end;
     }
 
     /**
-     * Remove part of a string
+     * Remove part of a string.
      */
     public static function remove($string, $remove)
     {
@@ -329,7 +339,7 @@ class StringMethods
     }
 
     /**
-     * Correct arguments order for str_replace
+     * Correct arguments order for str_replace.
      */
     public static function replace($string, $replace, $with)
     {
@@ -337,31 +347,33 @@ class StringMethods
     }
 
     /**
-     * Toggles a string between two states
+     * Toggles a string between two states.
      *
-     * @param string  $string The string to toggle
-     * @param string  $first  First value
-     * @param string  $second Second value
-     * @param boolean $loose  Whether a string neither matching 1 or 2 should be changed
+     * @param string $string The string to toggle
+     * @param string $first  First value
+     * @param string $second Second value
+     * @param bool   $loose  Whether a string neither matching 1 or 2 should be changed
      *
      * @return string The toggled string
      */
     public static function toggle($string, $first, $second, $loose = false)
     {
         // If the string given match none of the other two, and we're in strict mode, return it
-        if (!$loose and !in_array($string, array($first, $second))) {
+        if (!$loose and !in_array($string, [$first, $second], true)) {
             return $string;
         }
 
-        return $string == $first ? $second : $first;
+        return $string === $first ? $second : $first;
     }
 
     /**
      * Generate a URL friendly "slug" from a given string.
      *
-     * @param  string  $title
-     * @param  string  $separator
+     * @param string $title
+     * @param string $separator
+     *
      * @return string
+     *
      * @author Taylor Otwell
      */
     protected static function slug($title, $separator = '-')
@@ -369,7 +381,7 @@ class StringMethods
         $title = Utf8::toAscii($title);
 
         // Convert all dashes/underscores into separator
-        $flip = $separator == '-' ? '_' : '-';
+        $flip = $separator === '-' ? '_' : '-';
 
         $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
 
@@ -383,7 +395,7 @@ class StringMethods
     }
 
     /**
-     * Slugifies a string
+     * Slugifies a string.
      */
     public static function slugify($string, $separator = '-')
     {
@@ -393,7 +405,7 @@ class StringMethods
     }
 
     /**
-     * Explode a string into an array
+     * Explode a string into an array.
      */
     public static function explode($string, $with, $limit = null)
     {
@@ -405,7 +417,7 @@ class StringMethods
     }
 
     /**
-     * Lowercase a string
+     * Lowercase a string.
      *
      * @param string $string
      *
@@ -419,8 +431,9 @@ class StringMethods
     /**
      * Get the plural form of an English word.
      *
-     * @param  string  $value
-     * @param  int     $count
+     * @param string $value
+     * @param int    $count
+     *
      * @return string
      */
     public static function plural($value)
@@ -431,7 +444,8 @@ class StringMethods
     /**
      * Get the singular form of an English word.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function singular($value)
@@ -440,7 +454,7 @@ class StringMethods
     }
 
     /**
-     * Lowercase a string
+     * Lowercase a string.
      *
      * @param string $string
      *
@@ -452,7 +466,7 @@ class StringMethods
     }
 
     /**
-     * Convert a string to title case
+     * Convert a string to title case.
      *
      * @param string $string
      *
@@ -460,16 +474,18 @@ class StringMethods
      */
     public static function title($string)
     {
-        return mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
+        return mb_convert_case($string, MB_CASE_TITLE, 'UTF-8');
     }
 
     /**
      * Limit the number of words in a string.
      *
-     * @param  string  $value
-     * @param  int     $words
-     * @param  string  $end
+     * @param string $value
+     * @param int    $words
+     * @param string $end
+     *
      * @return string
+     *
      * @author Taylor Otwell
      */
     public static function words($value, $words = 100, $end = '...')
@@ -488,7 +504,7 @@ class StringMethods
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Convert a string to PascalCase
+     * Convert a string to PascalCase.
      *
      * @param string $string
      *
@@ -500,7 +516,7 @@ class StringMethods
     }
 
     /**
-     * Convert a string to snake_case
+     * Convert a string to snake_case.
      *
      * @param string $string
      *
@@ -514,7 +530,7 @@ class StringMethods
     }
 
     /**
-     * Convert a string to camelCase
+     * Convert a string to camelCase.
      *
      * @param string $string
      *

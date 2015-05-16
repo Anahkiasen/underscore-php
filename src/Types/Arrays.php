@@ -5,26 +5,26 @@ use Underscore\Methods\ArraysMethods;
 use Underscore\Traits\Repository;
 
 /**
- * Arrays repository
+ * Arrays repository.
  *
  * @mixin ArraysMethods
  */
 class Arrays extends Repository
 {
     /**
-     * The method used to convert new subjects
+     * The method used to convert new subjects.
      *
-     * @var string
+     * @type string
      */
     protected $typecaster = 'toArray';
 
     /**
-     * Get a default value for a new repository
+     * Get a default value for a new repository.
      *
      * @return mixed
      */
     protected function getDefault()
     {
-        return array();
+        return [];
     }
 }

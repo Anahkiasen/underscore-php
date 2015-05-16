@@ -9,22 +9,22 @@ class DispatchTest extends UnderscoreTestCase
 
     public function provideTypes()
     {
-        return array(
-            array('string', 'String'),
-            array(5.14, 'Number'),
-            array(512, 'Number'),
-            array(1.2e3, 'Number'),
-            array(7E-10, 'Number'),
-            array(array(), 'Arrays'),
-            array(new StdClass(), 'Object'),
-            array(
+        return [
+            ['string', 'String'],
+            [5.14, 'Number'],
+            [512, 'Number'],
+            [1.2e3, 'Number'],
+            [7E-10, 'Number'],
+            [[], 'Arrays'],
+            [new StdClass(), 'Object'],
+            [
                 function () {
                     return;
                 },
                 'Functions',
-            ),
-            array(null, 'String'),
-        );
+            ],
+            [null, 'String'],
+        ];
     }
 
     /**
@@ -41,7 +41,7 @@ class DispatchTest extends UnderscoreTestCase
     {
         $this->setExpectedException('InvalidArgumentException');
 
-        $file     = fopen('../.travis.yml', 'w+');
+        $file = fopen('../.travis.yml', 'w+');
         $dispatch = Dispatch::toClass($file);
     }
 }

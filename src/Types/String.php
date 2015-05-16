@@ -5,16 +5,16 @@ use Underscore\Methods\StringMethods;
 use Underscore\Traits\Repository;
 
 /**
- * String repository
+ * String repository.
  *
  * @mixin StringMethods
  */
 class String extends Repository
 {
     /**
-     * The method used to convert new subjects
+     * The method used to convert new subjects.
      *
-     * @var string
+     * @type string
      */
     protected $typecaster = 'toString';
 }

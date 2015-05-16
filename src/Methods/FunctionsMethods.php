@@ -2,37 +2,37 @@
 namespace Underscore\Methods;
 
 /**
- * Methods to manage functions
+ * Methods to manage functions.
  */
 class FunctionsMethods
 {
     /**
-     * An array of functions to be called X times
+     * An array of functions to be called X times.
      *
-     * @var array
+     * @type array
      */
-    public static $canBeCalledTimes = array();
+    public static $canBeCalledTimes = [];
 
     /**
-     * An array of cached function results
+     * An array of cached function results.
      *
-     * @var array
+     * @type array
      */
-    public static $cached = array();
+    public static $cached = [];
 
     /**
-     * An array tracking the last time a function was called
+     * An array tracking the last time a function was called.
      *
-     * @var array
+     * @type array
      */
-    public static $throttle = array();
+    public static $throttle = [];
 
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// LIMITERS ////////////////////////////
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a function that can only be called once
+     * Create a function that can only be called once.
      *
      * @param Callable $function The function
      *
@@ -44,10 +44,10 @@ class FunctionsMethods
     }
 
     /**
-     * Create a function that can only be called $times times
+     * Create a function that can only be called $times times.
      *
      * @param Callable $function
-     * @param integer  $times    The number of times
+     * @param int      $times    The number of times
      *
      * @return Closure
      */
@@ -78,10 +78,10 @@ class FunctionsMethods
     }
 
     /**
-     * Create a function that can only be called after $times times
+     * Create a function that can only be called after $times times.
      *
      * @param Callable $function
-     * @param integer  $times
+     * @param int      $times
      *
      * @return Closure
      */
@@ -111,7 +111,7 @@ class FunctionsMethods
     }
 
     /**
-     * Caches the result of a function and refer to it ever after
+     * Caches the result of a function and refer to it ever after.
      *
      * @param Callable $function
      *
@@ -131,7 +131,7 @@ class FunctionsMethods
                 return FunctionsMethods::$cached[$signature];
             }
 
-            $result                               = call_user_func_array($function, $arguments);
+            $result = call_user_func_array($function, $arguments);
             FunctionsMethods::$cached[$signature] = $result;
 
             return $result;
@@ -139,10 +139,10 @@ class FunctionsMethods
     }
 
     /**
-     * Only allow a function to be called every X ms
+     * Only allow a function to be called every X ms.
      *
      * @param Callable $function
-     * @param integer  $ms
+     * @param int      $ms
      *
      * @return Closure
      */
@@ -157,11 +157,11 @@ class FunctionsMethods
             $signature = FunctionsMethods::getSignature($unique, $function, $arguments);
 
             // Check last called time and update it if necessary
-            $last       = FunctionsMethods::getLastCalledTime($signature);
+            $last = FunctionsMethods::getLastCalledTime($signature);
             $difference = time() - $last;
 
             // Execute the function if the conditions are here
-            if ($last == time() or $difference > $ms) {
+            if ($last === time() or $difference > $ms) {
                 FunctionsMethods::$throttle[$signature] = time();
 
                 return call_user_func_array($function, $arguments);
@@ -177,6 +177,7 @@ class FunctionsMethods
      * @param Callable $func
      *
      * @return Closure
+     *
      * @author Jeremy Ashkenas
      */
     public static function partial(callable $func)
@@ -201,11 +202,11 @@ class FunctionsMethods
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Get the last time a function was called
+     * Get the last time a function was called.
      *
      * @param string $unique The function unique ID
      *
-     * @return integer
+     * @return int
      */
     public static function getLastCalledTime($unique)
     {
@@ -213,11 +214,11 @@ class FunctionsMethods
     }
 
     /**
-     * Get the number of times a function has been called
+     * Get the number of times a function has been called.
      *
      * @param string $unique The function unique ID
      *
-     * @return integer
+     * @return int
      */
     public static function hasBeenCalledTimes($unique)
     {
@@ -225,7 +226,7 @@ class FunctionsMethods
     }
 
     /**
-     * Get a function's signature
+     * Get a function's signature.
      *
      * @param Closure $function  The function
      * @param array   $arguments Its arguments
@@ -234,7 +235,7 @@ class FunctionsMethods
      */
     public static function getSignature($unique, $function, $arguments)
     {
-        $function  = var_export($function, true);
+        $function = var_export($function, true);
         $arguments = var_export($arguments, true);
 
         return md5($unique.'_'.$function.'_'.$arguments);

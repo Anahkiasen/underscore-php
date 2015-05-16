@@ -11,26 +11,26 @@ class ParseTest extends UnderscoreTestCase
 
     public function provideSwitchers()
     {
-        return array(
-            array('toArray', null, array()),
-            array('toArray', 15, array(15)),
-            array('toArray', 'foobar', array('foobar')),
-            array('toArray', (object) $this->array, $this->array),
-            array('toArray', new DummyDefault(), array('foo', 'bar')),
-            array('toString', 15, '15'),
-            array('toString', array('foo', 'bar'), '["foo","bar"]'),
-            array('toInteger', 'foo', 3),
-            array('toInteger', '', 0),
-            array('toInteger', '15', 15),
-            array('toInteger', array(1, 2, 3), 3),
-            array('toInteger', array(), 0),
-            array('toObject', $this->array, (object) $this->array),
-            array('toBoolean', '', false),
-            array('toBoolean', 'foo', true),
-            array('toBoolean', 15, true),
-            array('toBoolean', 0, false),
-            array('toBoolean', array(), false),
-        );
+        return [
+            ['toArray', null, []],
+            ['toArray', 15, [15]],
+            ['toArray', 'foobar', ['foobar']],
+            ['toArray', (object) $this->array, $this->array],
+            ['toArray', new DummyDefault(), ['foo', 'bar']],
+            ['toString', 15, '15'],
+            ['toString', ['foo', 'bar'], '["foo","bar"]'],
+            ['toInteger', 'foo', 3],
+            ['toInteger', '', 0],
+            ['toInteger', '15', 15],
+            ['toInteger', [1, 2, 3], 3],
+            ['toInteger', [], 0],
+            ['toObject', $this->array, (object) $this->array],
+            ['toBoolean', '', false],
+            ['toBoolean', 'foo', true],
+            ['toBoolean', 15, true],
+            ['toBoolean', 0, false],
+            ['toBoolean', [], false],
+        ];
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@ class ParseTest extends UnderscoreTestCase
 
     public function testCanCreateCsvFiles()
     {
-        $csv     = Parse::toCSV($this->arrayMulti);
+        $csv = Parse::toCSV($this->arrayMulti);
         $matcher = '"bar";"ter"'.PHP_EOL.'"bar";"ter"'.PHP_EOL.'"foo";"ter"';
 
         $this->assertEquals($matcher, $csv);
@@ -47,7 +47,7 @@ class ParseTest extends UnderscoreTestCase
 
     public function testCanUseCustomCsvDelimiter()
     {
-        $csv     = Parse::toCSV($this->arrayMulti, ',');
+        $csv = Parse::toCSV($this->arrayMulti, ',');
         $matcher = '"bar","ter"'.PHP_EOL.'"bar","ter"'.PHP_EOL.'"foo","ter"';
 
         $this->assertEquals($matcher, $csv);
@@ -55,7 +55,7 @@ class ParseTest extends UnderscoreTestCase
 
     public function testCanOutputCsvHeaders()
     {
-        $csv     = Parse::toCSV($this->arrayMulti, ',', true);
+        $csv = Parse::toCSV($this->arrayMulti, ',', true);
         $matcher = 'foo,bis'.PHP_EOL.'"bar","ter"'.PHP_EOL.'"bar","ter"'.PHP_EOL.'"foo","ter"';
 
         $this->assertEquals($matcher, $csv);
@@ -63,7 +63,7 @@ class ParseTest extends UnderscoreTestCase
 
     public function testCanConvertToJson()
     {
-        $json    = Parse::toJSON($this->arrayMulti);
+        $json = Parse::toJSON($this->arrayMulti);
         $matcher = '[{"foo":"bar","bis":"ter"},{"foo":"bar","bis":"ter"},{"bar":"foo","bis":"ter"}]';
 
         $this->assertEquals($matcher, $json);
@@ -71,7 +71,7 @@ class ParseTest extends UnderscoreTestCase
 
     public function testCanParseJson()
     {
-        $json  = Parse::toJSON($this->arrayMulti);
+        $json = Parse::toJSON($this->arrayMulti);
         $array = Parse::fromJSON($json);
 
         $this->assertEquals($this->arrayMulti, $array);
@@ -79,24 +79,24 @@ class ParseTest extends UnderscoreTestCase
 
     public function testCanParseXML()
     {
-        $array   = Parse::fromXML('<article><name>foo</name><content>bar</content></article>');
-        $matcher = array('name' => 'foo', 'content' => 'bar');
+        $array = Parse::fromXML('<article><name>foo</name><content>bar</content></article>');
+        $matcher = ['name' => 'foo', 'content' => 'bar'];
 
         $this->assertEquals($matcher, $array);
     }
 
     public function testCanParseCSV()
     {
-        $array   = Parse::fromCSV("foo;bar;bis\nbar\tfoo\tter");
-        $results = array(array('foo', 'bar', 'bis'), array('bar', 'foo', 'ter'));
+        $array = Parse::fromCSV("foo;bar;bis\nbar\tfoo\tter");
+        $results = [['foo', 'bar', 'bis'], ['bar', 'foo', 'ter']];
 
         $this->assertEquals($results, $array);
     }
 
     public function testCanParseCSVWithHeaders($value = '')
     {
-        $array   = Parse::fromCSV("foo;bar;bis".PHP_EOL."bar\tfoo\tter", true);
-        $results = array(array('foo' => 'bar', 'bar' => 'foo', 'bis' => 'ter'));
+        $array = Parse::fromCSV('foo;bar;bis'.PHP_EOL."bar\tfoo\tter", true);
+        $results = [['foo' => 'bar', 'bar' => 'foo', 'bis' => 'ter']];
 
         $this->assertEquals($results, $array);
     }
