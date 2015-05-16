@@ -76,4 +76,14 @@ class FunctionsTest extends UnderscoreTestCase
 
         $this->assertEquals(2, $number);
     }
+
+    public function testCanPartiallyApplyArguments()
+    {
+        $function = Functions::partial(function () {
+            return implode('', func_get_args());
+        }, 2, null, 6);
+
+        $this->assertEquals('246', $function(4));
+        $this->assertEquals('2468', $function(4, 8));
+    }
 }
