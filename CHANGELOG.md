@@ -8,6 +8,7 @@
 
 ### Deprecated
 
+- `String` and `StringMethods` renamed to `Strings` and `StringsMethods` for PHP7 compatibility
 - Package doesn't rely anymore on `illuminate/support` and should now be installable on any version of Laravel
 
 ## 1.3.1
