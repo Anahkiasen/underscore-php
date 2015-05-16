@@ -4,7 +4,7 @@ namespace Underscore\Methods;
 use Doctrine\Common\Inflector\Inflector;
 use Patchwork\Utf8;
 use RuntimeException;
-use Underscore\Types\String;
+use Underscore\Types\Strings;
 
 /**
  * Methods to manage strings.
@@ -94,7 +94,7 @@ class StringMethods
      */
     public static function randomStrings($words, $length = 10)
     {
-        return String::from('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        return Strings::from('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
                      ->shuffle()
                      ->split($length)
                      ->slice(0, $words)

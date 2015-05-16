@@ -10,7 +10,7 @@ class DispatchTest extends UnderscoreTestCase
     public function provideTypes()
     {
         return [
-            ['string', 'String'],
+            ['string', 'Strings'],
             [5.14, 'Number'],
             [512, 'Number'],
             [1.2e3, 'Number'],
@@ -23,7 +23,7 @@ class DispatchTest extends UnderscoreTestCase
                 },
                 'Functions',
             ],
-            [null, 'String'],
+            [null, 'Strings'],
         ];
     }
 

@@ -166,7 +166,7 @@ class Method
      */
     public static function findInClasses($originalClass, $method)
     {
-        $classes = ['Arrays', 'Collection', 'Functions', 'Number', 'Object', 'String'];
+        $classes = ['Arrays', 'Collection', 'Functions', 'Number', 'Object', 'Strings'];
         foreach ($classes as $class) {
             if (method_exists('\Underscore\Methods\\'.$class.'Methods', $method)) {
                 return '\Underscore\Types\\'.$class;

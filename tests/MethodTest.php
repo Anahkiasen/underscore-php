@@ -2,7 +2,7 @@
 namespace Underscore;
 
 use Underscore\Types\Arrays;
-use Underscore\Types\String;
+use Underscore\Types\Strings;
 
 class MethodTest extends UnderscoreTestCase
 {
@@ -20,10 +20,10 @@ class MethodTest extends UnderscoreTestCase
 
         $this->assertEquals(['foo' => 'bar'], $array->obtain());
 
-        $string = String::repeat('foo', 2);
+        $string = Strings::repeat('foo', 2);
         $this->assertEquals('foofoo', $string);
 
-        $string = String::from('   foo  ')->trim();
+        $string = Strings::from('   foo  ')->trim();
         $this->assertEquals('foo', $string->obtain());
     }
 

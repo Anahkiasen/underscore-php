@@ -28,14 +28,14 @@
 ## 1.2.1
 
 ### Added
-- Added `String::isIp`, `String::isEmail` and `String::isUrl` from @robclancy Str class
-- Added `String::prepend` and `String::append`
-- Added `String::baseClass` to get the class out of a namespace (ie `Class` from `Namespace\My\Class`)
+- Added `Strings::isIp`, `Strings::isEmail` and `Strings::isUrl` from @robclancy Str class
+- Added `Strings::prepend` and `Strings::append`
+- Added `Strings::baseClass` to get the class out of a namespace (ie `Class` from `Namespace\My\Class`)
 
 ## 1.2.0
 
 ### Changed
-- Underscore.php now uses Illuminate's String class instead of Laravel 3's
+- Underscore.php now uses Illuminate's Strings class instead of Laravel 3's
 - The `Underscore::chain` method was renamed to `Underscore::from` to match Repositories behavior
 
 ## 1.1.1
@@ -50,7 +50,7 @@
 ## 1.1.0
 
 ### Added
-- Add String::randomStrings
+- Add Strings::randomStrings
 - Repositories can now call the `->isEmpty` method to check if the subject is empty
 
 ### Changed

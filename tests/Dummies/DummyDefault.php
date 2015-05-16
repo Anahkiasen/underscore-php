@@ -1,9 +1,9 @@
 <?php
 namespace Underscore\Dummies;
 
-use Underscore\Types\String;
+use Underscore\Types\Strings;
 
-class DummyDefault extends String
+class DummyDefault extends Strings
 {
     /**
      * Get the default value.

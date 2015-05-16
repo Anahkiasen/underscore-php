@@ -4,7 +4,7 @@ namespace Underscore;
 use Underscore\Dummies\DummyClass;
 use Underscore\Dummies\DummyDefault;
 use Underscore\Types\Arrays;
-use Underscore\Types\String;
+use Underscore\Types\Strings;
 
 class UnderscoreTest extends UnderscoreTestCase
 {
@@ -28,7 +28,7 @@ class UnderscoreTest extends UnderscoreTestCase
 
     public function testCanSwitchTypesMidCourse()
     {
-        $stringToArray = String::from('FOO.BAR')->lower()->explode('.')->last()->title();
+        $stringToArray = Strings::from('FOO.BAR')->lower()->explode('.')->last()->title();
 
         $this->assertEquals('Bar', $stringToArray->obtain());
     }
@@ -61,10 +61,10 @@ class UnderscoreTest extends UnderscoreTestCase
         });
         $this->assertEquals('bar', Arrays::fooify(['foo']));
 
-        String::extend('unfooer', function ($string) {
-            return String::replace($string, 'foo', 'bar');
+        Strings::extend('unfooer', function ($string) {
+            return Strings::replace($string, 'foo', 'bar');
         });
-        $this->assertEquals('bar', String::unfooer('foo'));
+        $this->assertEquals('bar', Strings::unfooer('foo'));
     }
 
     public function testBreakersCantAlterTheOriginalValue()
@@ -105,14 +105,14 @@ class UnderscoreTest extends UnderscoreTestCase
 
     public function testMacrosCantConflictBetweenTypes()
     {
-        String::extend('foobar', function () {
+        Strings::extend('foobar', function () {
             return 'string';
         });
         Arrays::extend('foobar', function () {
             return 'arrays';
         });
 
-        $this->assertEquals('string', String::foobar());
+        $this->assertEquals('string', Strings::foobar());
         $this->assertEquals('arrays', Arrays::foobar());
     }
 

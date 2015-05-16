@@ -25,10 +25,10 @@ class Dispatch
         'closure' => 'Functions',
         'float' => 'Number',
         'integer' => 'Number',
-        'NULL' => 'String',
+        'NULL' => 'Strings',
         'object' => 'Object',
         'real' => 'Number',
-        'string' => 'String',
+        'string' => 'Strings',
     ];
 
     /**
@@ -75,7 +75,7 @@ class Dispatch
                 $prefix = 'array_';
                 break;
 
-            case static::TYPES.'String':
+            case static::TYPES.'Strings':
                 $prefix = 'str_';
                 break;
         }

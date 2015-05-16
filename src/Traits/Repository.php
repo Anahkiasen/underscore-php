@@ -58,7 +58,7 @@ abstract class Repository
     }
 
     /**
-     * Transform subject to String on toString.
+     * Transform subject to Strings on toString.
      *
      * @return string
      */

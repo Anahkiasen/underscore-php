@@ -173,7 +173,7 @@ class Parse
      */
     public static function toString($data)
     {
-        // Avoid Array to String conversion exception
+        // Avoid Array to Strings conversion exception
         if (is_array($data)) {
             return static::toJSON($data);
         }

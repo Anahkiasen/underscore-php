@@ -5,11 +5,11 @@ use Underscore\Methods\StringMethods;
 use Underscore\Traits\Repository;
 
 /**
- * String repository.
+ * Strings repository.
  *
  * @mixin StringMethods
  */
-class String extends Repository
+class Strings extends Repository
 {
     /**
      * The method used to convert new subjects.
