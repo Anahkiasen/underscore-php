@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2.0.0
+
+### Added
+
+- Added `Functions::partial`
+
+### Deprecated
+
+- Package doesn't rely anymore on `illuminate/support` and should now be installable on any version of Laravel
+
 ## 1.3.1
 
 ### Changed
