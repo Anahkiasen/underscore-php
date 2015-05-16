@@ -85,6 +85,7 @@ class Parse
         }
 
         // Parse the columns in each row
+        $array = [];
         foreach ($data as $row => $columns) {
             foreach ($columns as $columnNumber => $column) {
                 $array[$row][$headers[$columnNumber]] = $column;
@@ -97,7 +98,9 @@ class Parse
     /**
      * Converts data to CSV.
      *
-     * @param mixed $data The data to convert
+     * @param mixed  $data The data to convert
+     * @param string $delimiter
+     * @param bool   $exportHeaders
      *
      * @return string Converted data
      */
@@ -118,7 +121,7 @@ class Parse
         // Fetch headers if requested
         if ($exportHeaders) {
             $headers = array_keys(ArraysMethods::first($data));
-            $csv[] = implode($delimiter, $headers);
+            $csv[]   = implode($delimiter, $headers);
         }
 
         // Quote values and create row
@@ -148,6 +151,8 @@ class Parse
      * Converts data to an array.
      *
      * @param string|object $data
+     *
+     * @return array
      */
     public static function toArray($data)
     {
@@ -163,6 +168,8 @@ class Parse
      * Converts data to a string.
      *
      * @param array|object $data
+     *
+     * @return string
      */
     public static function toString($data)
     {
@@ -178,6 +185,8 @@ class Parse
      * Converts data to an integer.
      *
      * @param array|string|object $data
+     *
+     * @return int
      */
     public static function toInteger($data)
     {
@@ -198,6 +207,8 @@ class Parse
      * Converts data to a boolean.
      *
      * @param array|sring|object $data
+     *
+     * @return bool
      */
     public static function toBoolean($data)
     {
@@ -208,6 +219,8 @@ class Parse
      * Converts data to an object.
      *
      * @param array|string $data
+     *
+     * @return object
      */
     public static function toObject($data)
     {
