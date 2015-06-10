@@ -365,6 +365,18 @@ class ArraysTest extends UnderscoreTestCase
     $this->assertEquals($matcher, $under);
   }
 
+  public function testCanGroupValuesWithSavingKeys()
+  {
+    $grouper = function ($value) {
+        return $value % 2 == 0;
+    };
+    $under = Arrays::group(range(1, 5), $grouper, true);
+    $matcher = array(
+      array(0 => 1, 2 => 3, 4 => 5), array(1 => 2, 3 => 4),
+    );
+
+    $this->assertEquals($matcher, $under);
+  }
   public function testCanCreateFromRange()
   {
     $range = Arrays::range(5);
