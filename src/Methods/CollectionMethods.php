@@ -43,27 +43,21 @@ abstract class CollectionMethods
             return $collection;
         }
 
-        if (!is_object($collection) && isset($collection[$key])) {
+        $collection = (array) $collection;
+
+        if (isset($collection[$key])) {
             return $collection[$key];
         }
 
         // Crawl through collection, get key according to object or not
         foreach (explode('.', $key) as $segment) {
-            // If object
-            if (is_object($collection)) {
-                if (!isset($collection->{$segment})) {
-                    return $default instanceof Closure ? $default() : $default;
-                } else {
-                    $collection = $collection->$segment;
-                }
-                // If array
-            } else {
-                if (!isset($collection[$segment])) {
-                    return $default instanceof Closure ? $default() : $default;
-                } else {
-                    $collection = $collection[$segment];
-                }
+            $collection = (array) $collection;
+
+            if (!isset($collection[$segment])) {
+                return $default instanceof Closure ? $default() : $default;
             }
+
+            $collection = $collection[$segment];
         }
 
         return $collection;
