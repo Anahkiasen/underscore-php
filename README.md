@@ -53,7 +53,7 @@ $array->filter(...)->sort(...)->get(2)
 For those nostalgic of ye old `__()` a generic `Underscore` class is provided that is able to go and fetch methods in all of Underscore.php's methods. For this it looks into the methods it knows and analyzes the subject of the method (meaning if you do `Underscore::contains('foobar', 'foo')` it knows you're not looking for `Arrays::contains`).
 
 On types : it's important to note that using a specific type class to create an Underscore repository will convert the type of provided subject. Say you have an object and do `new Arrays($myObject)` – this will convert the object to an array and allow you to use Arrays methods on it.
-For this Underscore uses its **Parse** class's methods that for the most part just type cast and return (like this `(array) $object`) but it also sometimes go the extra mile to understand what you want to do : if you convert an array to a string, it will transform it to JSON, it you transform an array into an integer, it returns the size of the array, etc.
+For this Underscore uses its **Parse** class's methods that for the most part just type cast and return (like this `(array) $object`) but it also sometimes go the extra mile to understand what you want to do : if you convert an array to a string, it will transform it to JSON, if you transform an array into an integer, it returns the size of the array, etc.
 
 The core concept is this : static calls return values from their methods, while chained calls update the value of the object they're working on. Which means that an Underscore object don't return its value until you call the `->obtain` method on it — until then you can chain as long as you want, it will remain an object.
 The exception are certains properties that are considered _breakers_ and that will return the object's value. An example is `Arrays->get`.
@@ -89,7 +89,7 @@ You can also give custom aliases to all of Underscore's methods, in the provided
 Underscore.php's classes are extendable as well in an OOP sense. You can update an Underscore repository with the `setSubject` method (or directly via `$this->subject =` granted you return `$this` at the end).
 When creating an Underscore repository, by default it's subject is an empty string, you can change that by returning whatever you want in the `getDefault` method.
 
-```
+```php
 class Users extends Arrays
 {
   public function getDefault()
