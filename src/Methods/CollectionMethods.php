@@ -267,22 +267,24 @@ abstract class CollectionMethods
     }
 
     /**
-     * Group values from a collection according to the results of a closure.
+     * Group values from a collection according to the results of a closure
      */
-    public static function group($collection, $grouper)
+    public static function group($collection, $grouper, $saveKeys = false)
     {
         $collection = (array) $collection;
         $result = [];
 
         // Iterate over values, group by property/results from closure
         foreach ($collection as $key => $value) {
-            $key = is_callable($grouper) ? $grouper($value, $key) : ArraysMethods::get($value, $grouper);
-            if (!isset($result[$key])) {
-                $result[$key] = [];
-            }
+            $groupKey = is_callable($grouper) ? $grouper($value, $key) : ArraysMethods::get($value, $grouper);
+            if (!isset($result[$groupKey])) $result[$groupKey] = [];
 
             // Add to results
-            $result[$key][] = $value;
+            if ($saveKeys) {
+                $result[$groupKey][$key] = $value;
+            } else {
+                $result[$groupKey][] = $value;
+            }
         }
 
         return $result;
