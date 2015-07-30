@@ -196,12 +196,12 @@ class StringsMethods
     {
         // If several needles
         if (is_array($needle) or is_array($string)) {
+            $sliceFrom = $string;
+            $sliceTo = $needle;
+
             if (is_array($needle)) {
                 $sliceFrom = $needle;
                 $sliceTo = $string;
-            } else {
-                $sliceFrom = $string;
-                $sliceTo = $needle;
             }
 
             $found = 0;
@@ -326,16 +326,12 @@ class StringsMethods
      */
     public static function remove($string, $remove)
     {
-        // If we only have one string to remove
-        if (!is_array($remove)) {
-            $string = str_replace($remove, null, $string);
-        } // Else, use Regex
-        else {
+        if (is_array($remove)) {
             $string = preg_replace('#('.implode('|', $remove).')#', null, $string);
         }
-
+        
         // Trim and return
-        return trim($string);
+        return trim(str_replace($remove, null, $string));
     }
 
     /**
