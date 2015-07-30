@@ -185,9 +185,7 @@ abstract class CollectionMethods
             $comparisonOp
         ) {
             $item = (array) $item;
-            if (!isset($item[$property])) {
-                $item[$property] = null;
-            }
+            $item[$property] = static::get($item, $property, []);
 
             return $ops[$comparisonOp]($item, $property, $value);
         }));
@@ -277,7 +275,7 @@ abstract class CollectionMethods
         // Iterate over values, group by property/results from closure
         foreach ($collection as $key => $value) {
             $groupKey = is_callable($grouper) ? $grouper($value, $key) : ArraysMethods::get($value, $grouper);
-            if (!isset($result[$groupKey])) $result[$groupKey] = [];
+            $result[$groupKey] = static::get($result, $groupKey);
 
             // Add to results
             if ($saveKeys) {
@@ -312,15 +310,11 @@ abstract class CollectionMethods
 
             // If we're dealing with an object
             if (is_object($collection)) {
-                if (!isset($collection->$key) or !is_array($collection->$key)) {
-                    $collection->$key = [];
-                }
+                $collection->$key = static::get($collection, $key, []);
                 $collection = &$collection->$key;
                 // If we're dealing with an array
             } else {
-                if (!isset($collection[$key]) or !is_array($collection[$key])) {
-                    $collection[$key] = [];
-                }
+                $collection[$key] = static::get($collection, $key, []);
                 $collection = &$collection[$key];
             }
         }
@@ -346,17 +340,15 @@ abstract class CollectionMethods
         while (count($keys) > 1) {
             $key = array_shift($keys);
 
+            if (!static::has($collection, $key)) {
+                return false;
+            }
+
             // If we're dealing with an object
             if (is_object($collection)) {
-                if (!isset($collection->$key)) {
-                    return false;
-                }
                 $collection = &$collection->$key;
                 // If we're dealing with an array
             } else {
-                if (!isset($collection[$key])) {
-                    return false;
-                }
                 $collection = &$collection[$key];
             }
         }
