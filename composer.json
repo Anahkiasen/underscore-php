@@ -31,5 +31,9 @@
     "psr-4": {
       "Underscore\\": "tests"
     }
+  },
+  "scripts": {
+    "test": ["php-cs-fixer fix --dry-run", "phpunit --verbose"],
+    "lint": "php-cs-fixer fix"
   }
 }
