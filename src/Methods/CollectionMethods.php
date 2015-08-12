@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore\Methods;
 
 use Closure;
@@ -265,7 +275,7 @@ abstract class CollectionMethods
     }
 
     /**
-     * Group values from a collection according to the results of a closure
+     * Group values from a collection according to the results of a closure.
      */
     public static function group($collection, $grouper, $saveKeys = false)
     {

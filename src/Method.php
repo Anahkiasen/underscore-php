@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore;
 
 /**
@@ -9,7 +19,7 @@ class Method
     /**
      * A list of methods to automatically defer to PHP.
      *
-     * @type array
+     * @var array
      */
     public static $defer = [
         'trim',
@@ -30,7 +40,7 @@ class Method
      * A list of methods where the subject
      * isn't to be added to the arguments.
      *
-     * @type array
+     * @var array
      */
     protected static $subjectless = [
         'fill',
@@ -40,7 +50,7 @@ class Method
      * A list of methods that are allowed
      * to break the chain.
      *
-     * @type array
+     * @var array
      */
     protected static $breakers = [
         'get',
@@ -56,7 +66,7 @@ class Method
     /**
      * Unchainable methods.
      *
-     * @type array
+     * @var array
      */
     protected static $unchainable = [
         'Arrays::range',
@@ -66,7 +76,7 @@ class Method
     /**
      * A cache for better findInClasses performances.
      *
-     * @type array
+     * @var array
      */
     protected static $findCache = [];
 

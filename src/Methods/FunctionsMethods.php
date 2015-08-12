@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore\Methods;
 
 /**
@@ -9,21 +19,21 @@ class FunctionsMethods
     /**
      * An array of functions to be called X times.
      *
-     * @type array
+     * @var array
      */
     public static $canBeCalledTimes = [];
 
     /**
      * An array of cached function results.
      *
-     * @type array
+     * @var array
      */
     public static $cached = [];
 
     /**
      * An array tracking the last time a function was called.
      *
-     * @type array
+     * @var array
      */
     public static $throttle = [];
 
@@ -70,7 +80,7 @@ class FunctionsMethods
             if ($numberOfTimesCalled >= $canBeCalledTimes) {
                 return false;
             } else {
-                FunctionsMethods::$canBeCalledTimes[$signature]++;
+                ++FunctionsMethods::$canBeCalledTimes[$signature];
             }
 
             return call_user_func_array($function, $arguments);
@@ -189,7 +199,7 @@ class FunctionsMethods
             $calledArgs = func_get_args();
             $position = 0;
 
-            for ($i = 0, $len = count($boundArgs); $i < $len; $i++) {
+            for ($i = 0, $len = count($boundArgs); $i < $len; ++$i) {
                 $args[] = $boundArgs[$i] === null ? $calledArgs[$position++] : $boundArgs[$i];
             }
 

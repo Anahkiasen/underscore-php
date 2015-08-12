@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore\Methods;
 
 use Doctrine\Common\Inflector\Inflector;
@@ -46,8 +56,8 @@ class StringsMethods
      * @param int $length
      *
      * @throws \RuntimeException
-     * @return string
      *
+     * @return string
      *
      * @author Taylor Otwell
      */
@@ -207,7 +217,7 @@ class StringsMethods
             $found = 0;
             foreach ($sliceFrom as $need) {
                 if (static::find($sliceTo, $need, $absolute, $caseSensitive)) {
-                    $found++;
+                    ++$found;
                 }
             }
 
@@ -329,7 +339,7 @@ class StringsMethods
         if (is_array($remove)) {
             $string = preg_replace('#('.implode('|', $remove).')#', null, $string);
         }
-        
+
         // Trim and return
         return trim(str_replace($remove, null, $string));
     }

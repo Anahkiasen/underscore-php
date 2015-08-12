@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore\Traits;
 
 use BadMethodCallException;
@@ -16,21 +26,21 @@ abstract class Repository
     /**
      * The subject of the repository.
      *
-     * @type mixed
+     * @var mixed
      */
     protected $subject;
 
     /**
      * Custom functions.
      *
-     * @type array
+     * @var array
      */
     protected static $macros = [];
 
     /**
      * The method used to convert new subjects.
      *
-     * @type string
+     * @var string
      */
     protected $typecaster;
 

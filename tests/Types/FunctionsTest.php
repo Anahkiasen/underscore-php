@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore\Types;
 
 use Underscore\UnderscoreTestCase;
@@ -9,7 +19,7 @@ class FunctionsTest extends UnderscoreTestCase
     {
         $number = 0;
         $function = Functions::once(function () use (&$number) {
-            $number++;
+            ++$number;
         });
 
         $function();
@@ -22,7 +32,7 @@ class FunctionsTest extends UnderscoreTestCase
     {
         $number = 0;
         $function = Functions::only(function () use (&$number) {
-            $number++;
+            ++$number;
         }, 3);
 
         $function();
@@ -38,7 +48,7 @@ class FunctionsTest extends UnderscoreTestCase
     {
         $number = 0;
         $function = Functions::after(function () use (&$number) {
-            $number++;
+            ++$number;
         }, 3);
 
         $function();
@@ -66,7 +76,7 @@ class FunctionsTest extends UnderscoreTestCase
     {
         $number = 0;
         $function = Functions::throttle(function () use (&$number) {
-            $number++;
+            ++$number;
         }, 1);
 
         $function();

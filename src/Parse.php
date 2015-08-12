@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore;
 
 use Underscore\Methods\ArraysMethods;
@@ -98,7 +108,7 @@ class Parse
     /**
      * Converts data to CSV.
      *
-     * @param mixed  $data The data to convert
+     * @param mixed  $data          The data to convert
      * @param string $delimiter
      * @param bool   $exportHeaders
      *
@@ -121,7 +131,7 @@ class Parse
         // Fetch headers if requested
         if ($exportHeaders) {
             $headers = array_keys(ArraysMethods::first($data));
-            $csv[]   = implode($delimiter, $headers);
+            $csv[] = implode($delimiter, $headers);
         }
 
         // Quote values and create row

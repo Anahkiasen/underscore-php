@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Underscore.php
+ *
+ * (c) Maxime Fabre <ehtnam6@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Underscore;
 
 use Closure;
@@ -17,7 +27,7 @@ class Dispatch
     /**
      * An array of PHP types and what classes they map to.
      *
-     * @type array
+     * @var array
      */
     protected static $classmap = [
         'array' => 'Arrays',
