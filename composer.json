@@ -24,7 +24,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Underscore\\": ["src", "tests"]
+      "Underscore\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Underscore\\": "tests"
     }
   }
 }
