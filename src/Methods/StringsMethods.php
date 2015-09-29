@@ -180,7 +180,7 @@ class StringsMethods
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle !== '' && strpos($haystack, $needle) === 0) {
+            if ($needle !== '' && strpos($haystack, (string)$needle) === 0) {
                 return true;
             }
         }

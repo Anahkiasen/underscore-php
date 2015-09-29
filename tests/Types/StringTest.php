@@ -136,6 +136,13 @@ class StringTest extends UnderscoreTestCase
         $this->assertFalse(Strings::startsWith('barfoo', 'foo'));
     }
 
+    public function testCanAssertAStringStartsWithInteger()
+    {
+        $this->assertTrue(Strings::startsWith('123456.something', 123456));
+        $this->assertTrue(Strings::startsWith('123456.something', [123456]));
+        $this->assertFalse(Strings::startsWith('654321.something', 123456));
+    }
+
     public function testCanAssertAStringEndsWith()
     {
         $this->assertTrue(Strings::endsWith('foobar', 'bar'));
