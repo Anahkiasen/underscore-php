@@ -395,6 +395,12 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertEquals($matcher, $under);
     }
 
+    public function testCanGroupValuesWithNonExistingKey()
+    {
+        $this->assertEquals([], Arrays::group(range(1, 5), 'unknown', true));
+        $this->assertEquals([], Arrays::group(range(1, 5), 'unknown', false));
+    }
+
     public function testCanCreateFromRange()
     {
         $range = Arrays::range(5);
