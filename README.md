@@ -138,7 +138,7 @@ There is technically another port of Underscore.js to PHP available [on Github][
 This revamped Underscore.php doesn't aim to be a direct port of Underscore.js. It sometimes omits methods that aren't relevant to PHP developers, rename others to match terms that are more common to them, provides a richer syntax, adds a whole lot of methods, and leaves room for future ones to be added all the time — whereas the previous port quickly recoded all JS methods to PHP and left it at that.
 
 If you come from Javascript and are confused by some of the changes, don't put all the blame on me for trying to mess everything up. A basic example is the `map` function : in PHP it has a completely different sense because there exists an `array_map` function that basically does what `__::invoke` does in JS. So `map` is now `Arrays::each`.
-Always keep in mind this was made for _PHP_ developpers first, and differences **do** exist between the two to accomdate the common terms in PHP.
+Always keep in mind this was made for _PHP_ developpers first, and differences **do** exist between the two to accommodate the common terms in PHP.
 
 [CHANGELOG]: https://github.com/Anahkiasen/underscore-php/blob/master/CHANGELOG.md
 [official page]: http://anahkiasen.github.com/underscore-php/
