@@ -396,10 +396,10 @@ class ArraysMethods extends CollectionMethods
         $direction = (strtolower($direction) === 'desc') ? SORT_DESC : SORT_ASC;
         if ($direction === SORT_ASC) {
             ksort($array);
-            return $array;
+        } else {
+            krsort($array);
         }
 
-        krsort($array);
         return $array;
     }
 
@@ -458,11 +458,9 @@ class ArraysMethods extends CollectionMethods
         foreach ($_flattened as $key => $value) {
             if (is_array($value)) {
                 $flattened = array_merge($flattened, $value);
-                continue;
+            } else {
+                $flattened[$key] = $value;
             }
-            
-            $flattened[$key] = $value;
-
         }
 
         return $flattened;
