@@ -285,12 +285,14 @@ abstract class CollectionMethods
         // Iterate over values, group by property/results from closure
         foreach ($collection as $key => $value) {
             $groupKey = is_callable($grouper) ? $grouper($value, $key) : ArraysMethods::get($value, $grouper);
-            $result[$groupKey] = static::get($result, $groupKey);
+            $newValue = static::get($result, $groupKey);
 
             // Add to results
-            if ($saveKeys) {
+            if ($groupKey !== null && $saveKeys) {
+                $result[$groupKey] = $newValue;
                 $result[$groupKey][$key] = $value;
-            } else {
+            } elseif ($groupKey !== null) {
+                $result[$groupKey] = $newValue;
                 $result[$groupKey][] = $value;
             }
         }
