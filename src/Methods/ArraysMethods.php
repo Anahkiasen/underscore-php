@@ -565,4 +565,18 @@ class ArraysMethods extends CollectionMethods
 
         return $array;
     }
+
+    /*
+     *  Return a duplicate free copy of an array
+     * */
+    public static function unique($array)
+    {
+        return array_reduce($array, function ($resultArray, $value) {
+            if (!static::contains($resultArray, $value)) {
+                array_push($resultArray, $value);
+            }
+
+            return $resultArray;
+        }, []);
+    }
 }

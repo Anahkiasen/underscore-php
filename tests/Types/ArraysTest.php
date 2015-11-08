@@ -691,4 +691,12 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertContains('ter', array_values(Arrays::removeValue($a, 'bar')));
         $this->assertContains('two', array_values(Arrays::removeValue($a, 'bar')));
     }
+
+    public function testCanGetUniqueArray()
+    {
+        $a = [1, 1, 2];
+        $result = Arrays::unique($a);
+
+        $this->assertEquals([1, 2], $result);
+    }
 }
