@@ -571,8 +571,7 @@ class ArraysMethods extends CollectionMethods
      * */
     public static function unique($array)
     {
-        return array_reduce($array, function($resultArray, $value)
-        {
+        return array_reduce($array, function ($resultArray, $value) {
             if (!static::contains($resultArray, $value)) {
                 array_push($resultArray, $value);
             }

@@ -697,6 +697,6 @@ class ArraysTest extends UnderscoreTestCase
         $a = [1, 1, 2];
         $result = Arrays::unique($a);
 
-        $this->assertEquals([1,2], $result);
+        $this->assertEquals([1, 2], $result);
     }
 }
