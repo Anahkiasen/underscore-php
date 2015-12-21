@@ -381,6 +381,7 @@ abstract class CollectionMethods
      *
      * @param array $array
      * @param mixed $key
+     *
      * @return array
      */
     public static function indexBy(array $array, $key)
