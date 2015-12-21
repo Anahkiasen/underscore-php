@@ -599,8 +599,8 @@ class ArraysTest extends UnderscoreTestCase
             ['id' => 456, 'name' => 'bar', 'group' => 'primary', 'value' => 1468, 'when' => '2014-07-15'],
             ['id' => 499, 'name' => 'baz', 'group' => 'secondary', 'value' => 2365, 'when' => '2014-08-23'],
             ['id' => 789, 'name' => 'ter', 'group' => 'primary', 'value' => 2468, 'when' => '2010-03-01'],
-            ['id' => 888,'name' => 'qux','value' => 6868,'when' => '2015-01-01'],
-            ['id' => 999,'name' => 'flux','group' => null,'value' => 6868,'when' => '2015-01-01'],
+            ['id' => 888, 'name' => 'qux', 'value' => 6868, 'when' => '2015-01-01'],
+            ['id' => 999, 'name' => 'flux', 'group' => null, 'value' => 6868, 'when' => '2015-01-01'],
         ];
 
         $b = Arrays::filterBy($a, 'name', 'baz');

@@ -409,7 +409,7 @@ class ArraysMethods extends CollectionMethods
      * @param array  $array The array
      * @param string $with  What to implode it with
      *
-     * @return String
+     * @return string
      */
     public static function implode($array, $with = '')
     {
