@@ -44,7 +44,7 @@ class FunctionsMethods
     /**
      * Create a function that can only be called once.
      *
-     * @param Callable $function The function
+     * @param callable $function The function
      *
      * @return Closure
      */
@@ -56,7 +56,7 @@ class FunctionsMethods
     /**
      * Create a function that can only be called $times times.
      *
-     * @param Callable $function
+     * @param callable $function
      * @param int      $times    The number of times
      *
      * @return Closure
@@ -90,7 +90,7 @@ class FunctionsMethods
     /**
      * Create a function that can only be called after $times times.
      *
-     * @param Callable $function
+     * @param callable $function
      * @param int      $times
      *
      * @return Closure
@@ -123,7 +123,7 @@ class FunctionsMethods
     /**
      * Caches the result of a function and refer to it ever after.
      *
-     * @param Callable $function
+     * @param callable $function
      *
      * @return Closure
      */
@@ -151,7 +151,7 @@ class FunctionsMethods
     /**
      * Only allow a function to be called every X ms.
      *
-     * @param Callable $function
+     * @param callable $function
      * @param int      $ms
      *
      * @return Closure
@@ -184,7 +184,7 @@ class FunctionsMethods
     /**
      * Prefill function arguments.
      *
-     * @param Callable $func
+     * @param callable $func
      *
      * @return Closure
      *
