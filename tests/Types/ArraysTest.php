@@ -699,4 +699,48 @@ class ArraysTest extends UnderscoreTestCase
 
         $this->assertEquals([1, 2], $result);
     }
+
+    public function testCanIndexBy()
+    {
+        $array = [
+            ['name' => 'moe', 'age' => 40],
+            ['name' => 'larry', 'age' => 50],
+            ['name' => 'curly', 'age' => 60],
+        ];
+
+        $expected = [
+            40 => ['name' => 'moe', 'age' => 40],
+            50 => ['name' => 'larry', 'age' => 50],
+            60 => ['name' => 'curly', 'age' => 60],
+        ];
+
+        $this->assertEquals($expected, Arrays::indexBy($array, 'age'));
+    }
+
+    public function testIndexByReturnSome()
+    {
+        $array = [
+            ['name' => 'moe', 'age' => 40],
+            ['name' => 'larry', 'age' => 50],
+            ['name' => 'curly'],
+        ];
+
+        $expected = [
+            40 => ['name' => 'moe', 'age' => 40],
+            50 => ['name' => 'larry', 'age' => 50],
+        ];
+
+        $this->assertEquals($expected, Arrays::indexBy($array, 'age'));
+    }
+
+    public function testIndexByReturnEmpty()
+    {
+        $array = [
+            ['name' => 'moe', 'age' => 40],
+            ['name' => 'larry', 'age' => 50],
+            ['name' => 'curly'],
+        ];
+
+        $this->assertEquals([], Arrays::indexBy($array, 'vaaaa'));
+    }
 }
