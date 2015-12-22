@@ -532,10 +532,10 @@ class ArraysMethods extends CollectionMethods
     {
         $isNumericArray = true;
         foreach ($array as $key => $item) {
+            if (!is_int($key)) {
+                $isNumericArray = false;
+            }
             if ($item === $value) {
-                if (!is_int($key)) {
-                    $isNumericArray = false;
-                }
                 unset($array[$key]);
             }
         }
