@@ -203,7 +203,7 @@ class ArraysMethods extends CollectionMethods
             }
         }
 
-        return;
+        return false;
     }
 
     /**
