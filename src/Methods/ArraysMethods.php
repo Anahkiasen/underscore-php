@@ -505,9 +505,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function removeFirst($array)
     {
-        array_shift($array);
-
-        return $array;
+        return array_slice($array, 1);
     }
 
     /**
@@ -515,9 +513,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function removeLast($array)
     {
-        array_pop($array);
-
-        return $array;
+        return array_slice($array, 0, -1);
     }
 
     /**
