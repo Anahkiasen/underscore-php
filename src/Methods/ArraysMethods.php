@@ -505,9 +505,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function removeFirst($array)
     {
-        array_shift($array);
-
-        return $array;
+        return array_slice($array, 1);
     }
 
     /**
@@ -515,9 +513,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function removeLast($array)
     {
-        array_pop($array);
-
-        return $array;
+        return array_slice($array, 0, -1);
     }
 
     /**
@@ -551,9 +547,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function prepend($array, $value)
     {
-        array_unshift($array, $value);
-
-        return $array;
+        return array_merge([$value], $array);
     }
 
     /**
@@ -561,9 +555,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function append($array, $value)
     {
-        array_push($array, $value);
-
-        return $array;
+        return  array_merge($array, [$value]);
     }
 
     /*
