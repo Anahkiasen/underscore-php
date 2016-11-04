@@ -551,9 +551,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function prepend($array, $value)
     {
-        array_unshift($array, $value);
-
-        return $array;
+        return array_merge([$value], $array);
     }
 
     /**
@@ -561,9 +559,7 @@ class ArraysMethods extends CollectionMethods
      */
     public static function append($array, $value)
     {
-        array_push($array, $value);
-
-        return $array;
+        return  array_merge($array, [$value]);
     }
 
     /*
