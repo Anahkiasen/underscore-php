@@ -116,7 +116,7 @@ class ArraysMethods extends CollectionMethods
 
         // Check the results
         if (count($array) === 0) {
-            return true;
+            return false;
         }
         $array = array_search(true, $array, false);
 
