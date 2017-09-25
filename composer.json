@@ -33,7 +33,7 @@
     }
   },
   "scripts": {
-    "test": ["php-cs-fixer fix --dry-run", "phpunit --verbose"],
+    "test": ["php-cs-fixer fix --dry-run --verbose", "phpunit --verbose"],
     "lint": "php-cs-fixer fix"
   }
 }
