@@ -19,7 +19,7 @@
     "patchwork/utf8": "^1.2"
   },
   "require-dev": {
-    "fabpot/php-cs-fixer": "^1.10",
+    "friendsofphp/php-cs-fixer": "^2.6.0",
     "phpunit/phpunit": "^4.8"
   },
   "autoload": {
@@ -33,7 +33,7 @@
     }
   },
   "scripts": {
-    "test": ["php-cs-fixer fix --dry-run", "phpunit --verbose"],
+    "test": ["php-cs-fixer fix --dry-run --verbose", "phpunit --verbose"],
     "lint": "php-cs-fixer fix"
   }
 }

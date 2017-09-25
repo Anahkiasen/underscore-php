@@ -78,6 +78,102 @@ abstract class Repository
     }
 
     /**
+     * Get a key from the subject.
+     *
+     * @param mixed $key
+     */
+    public function __get($key)
+    {
+        return ArraysMethods::get($this->subject, $key);
+    }
+
+    /**
+     * Set a value on the subject.
+     *
+     * @param mixed $key
+     * @param mixed $value
+     */
+    public function __set($key, $value)
+    {
+        $this->subject = ArraysMethods::set($this->subject, $key, $value);
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    //////////////////////// METHODS DISPATCHING ///////////////////////
+    ////////////////////////////////////////////////////////////////////
+
+    /**
+     * Catch aliases and reroute them to the right methods.
+     *
+     * @param mixed $method
+     * @param mixed $parameters
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        // Get base class and methods class
+        $callingClass = static::computeClassToCall(get_called_class(), $method, $parameters);
+        $methodsClass = Method::getMethodsFromType($callingClass);
+
+        // Defer to Methods class
+        if (method_exists($methodsClass, $method)) {
+            return self::callMethod($methodsClass, $method, $parameters);
+        }
+
+        // Check for an alias
+        if ($alias = Method::getAliasOf($method)) {
+            return self::callMethod($methodsClass, $alias, $parameters);
+        }
+
+        // Check for parsers
+        if (method_exists('Underscore\Parse', $method)) {
+            return self::callMethod('Underscore\Parse', $method, $parameters);
+        }
+
+        // Defered methods
+        if ($defered = Dispatch::toNative($callingClass, $method)) {
+            return call_user_func_array($defered, $parameters);
+        }
+
+        // Look in the macros
+        if ($macro = ArraysMethods::get(static::$macros, $callingClass.'.'.$method)) {
+            return call_user_func_array($macro, $parameters);
+        }
+
+        throw new BadMethodCallException('The method '.$callingClass.'::'.$method.' does not exist');
+    }
+
+    /**
+     * Allow the chained calling of methods.
+     *
+     * @param mixed $method
+     * @param mixed $arguments
+     */
+    public function __call($method, $arguments)
+    {
+        // Get correct class
+        $class = Dispatch::toClass($this->subject);
+
+        // Check for unchainable methods
+        if (Method::isUnchainable($class, $method)) {
+            throw new BadMethodCallException('The method '.$class.'::'.$method.' can\'t be chained');
+        }
+
+        // Prepend subject to arguments and call the method
+        if (!Method::isSubjectless($method)) {
+            array_unshift($arguments, $this->subject);
+        }
+        $result = $class::__callStatic($method, $arguments);
+
+        // If the method is a breaker, return just the result
+        if (Method::isBreaker($method)) {
+            return $result;
+        }
+        $this->subject = $result;
+
+        return $this;
+    }
+
+    /**
      * Create a new Repository.
      */
     public static function create()
@@ -87,26 +183,12 @@ abstract class Repository
 
     /**
      * Create a new Repository from a subject.
+     *
+     * @param mixed $subject
      */
     public static function from($subject)
     {
         return new static($subject);
-    }
-
-    /**
-     * Get a key from the subject.
-     */
-    public function __get($key)
-    {
-        return ArraysMethods::get($this->subject, $key);
-    }
-
-    /**
-     * Set a value on the subject.
-     */
-    public function __set($key, $value)
-    {
-        $this->subject = ArraysMethods::set($this->subject, $key, $value);
     }
 
     /**
@@ -150,76 +232,6 @@ abstract class Repository
     public static function extend($method, $closure)
     {
         static::$macros[get_called_class()][$method] = $closure;
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    //////////////////////// METHODS DISPATCHING ///////////////////////
-    ////////////////////////////////////////////////////////////////////
-
-    /**
-     * Catch aliases and reroute them to the right methods.
-     */
-    public static function __callStatic($method, $parameters)
-    {
-        // Get base class and methods class
-        $callingClass = static::computeClassToCall(get_called_class(), $method, $parameters);
-        $methodsClass = Method::getMethodsFromType($callingClass);
-
-        // Defer to Methods class
-        if (method_exists($methodsClass, $method)) {
-            return self::callMethod($methodsClass, $method, $parameters);
-        }
-
-        // Check for an alias
-        if ($alias = Method::getAliasOf($method)) {
-            return self::callMethod($methodsClass, $alias, $parameters);
-        }
-
-        // Check for parsers
-        if (method_exists('Underscore\Parse', $method)) {
-            return self::callMethod('Underscore\Parse', $method, $parameters);
-        }
-
-        // Defered methods
-        if ($defered = Dispatch::toNative($callingClass, $method)) {
-            return call_user_func_array($defered, $parameters);
-        }
-
-        // Look in the macros
-        if ($macro = ArraysMethods::get(static::$macros, $callingClass.'.'.$method)) {
-            return call_user_func_array($macro, $parameters);
-        }
-
-        throw new BadMethodCallException('The method '.$callingClass.'::'.$method.' does not exist');
-    }
-
-    /**
-     * Allow the chained calling of methods.
-     */
-    public function __call($method, $arguments)
-    {
-        // Get correct class
-        $class = Dispatch::toClass($this->subject);
-
-        // Check for unchainable methods
-        if (Method::isUnchainable($class, $method)) {
-            throw new BadMethodCallException('The method '.$class.'::'.$method.' can\'t be chained');
-        }
-
-        // Prepend subject to arguments and call the method
-        if (!Method::isSubjectless($method)) {
-            array_unshift($arguments, $this->subject);
-        }
-        $result = $class::__callStatic($method, $arguments);
-
-        // If the method is a breaker, return just the result
-        if (Method::isBreaker($method)) {
-            return $result;
-        } else {
-            $this->subject = $result;
-        }
-
-        return $this;
     }
 
     ////////////////////////////////////////////////////////////////////

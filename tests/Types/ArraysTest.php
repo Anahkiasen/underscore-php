@@ -14,6 +14,9 @@ namespace Underscore\Types;
 use Underscore\Underscore;
 use Underscore\UnderscoreTestCase;
 
+/**
+ * @coversNothing
+ */
 class ArraysTest extends UnderscoreTestCase
 {
     // Tests --------------------------------------------------------- /
@@ -22,14 +25,14 @@ class ArraysTest extends UnderscoreTestCase
     {
         $array = Arrays::create();
 
-        $this->assertEquals([], $array->obtain());
+        $this->assertSame([], $array->obtain());
     }
 
     public function testCanUseClassDirectly()
     {
         $under = Arrays::get($this->array, 'foo');
 
-        $this->assertEquals('bar', $under);
+        $this->assertSame('bar', $under);
     }
 
     public function testCanCreateChainableObject()
@@ -37,21 +40,21 @@ class ArraysTest extends UnderscoreTestCase
         $under = Underscore::from($this->arrayNumbers);
         $under = $under->get(1);
 
-        $this->assertEquals(2, $under);
+        $this->assertSame(2, $under);
     }
 
     public function testCanGetKeys()
     {
         $array = Arrays::keys($this->array);
 
-        $this->assertEquals(['foo', 'bis'], $array);
+        $this->assertSame(['foo', 'bis'], $array);
     }
 
     public function testCanGetValues()
     {
         $array = Arrays::values($this->array);
 
-        $this->assertEquals(['bar', 'ter'], $array);
+        $this->assertSame(['bar', 'ter'], $array);
     }
 
     public function testCanSetValues()
@@ -59,7 +62,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['foo' => ['foo' => 'bar'], 'bar' => 'bis'];
         $array = Arrays::set($array, 'foo.bar.bis', 'ter');
 
-        $this->assertEquals('ter', $array['foo']['bar']['bis']);
+        $this->assertSame('ter', $array['foo']['bar']['bis']);
         $this->assertArrayHasKey('bar', $array);
     }
 
@@ -69,17 +72,16 @@ class ArraysTest extends UnderscoreTestCase
         $matcher = $this->arrayMulti;
         unset($matcher[0]['foo']);
 
-        $this->assertEquals($matcher, $array);
+        $this->assertSame($matcher, $array);
     }
 
     public function testCanRemoveMultipleValues()
     {
         $array = Arrays::remove($this->arrayMulti, ['0.foo', '1.foo']);
         $matcher = $this->arrayMulti;
-        unset($matcher[0]['foo']);
-        unset($matcher[1]['foo']);
+        unset($matcher[0]['foo'], $matcher[1]['foo']);
 
-        $this->assertEquals($matcher, $array);
+        $this->assertSame($matcher, $array);
     }
 
     public function testCanReturnAnArrayWithoutSomeValues()
@@ -87,7 +89,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['foo', 'foo', 'bar', 'bis', 'bar', 'bis', 'ter'];
         $array = Arrays::without($array, 'foo', 'bar');
 
-        $this->assertEquals([3 => 'bis', 5 => 'bis', 6 => 'ter'], $array);
+        $this->assertSame([3 => 'bis', 5 => 'bis', 6 => 'ter'], $array);
         $this->assertNotContains('foo', Arrays::without($array, 'foo', 'bar'));
         $this->assertNotContains('bar', Arrays::without($array, 'foo', 'bar'));
         // new use case
@@ -100,14 +102,14 @@ class ArraysTest extends UnderscoreTestCase
     {
         $array = Arrays::sum([1, 2, 3]);
 
-        $this->assertEquals(6, $array);
+        $this->assertSame(6, $array);
     }
 
     public function testCanGetcountArray()
     {
         $array = Arrays::size([1, 2, 3]);
 
-        $this->assertEquals(3, $array);
+        $this->assertSame(3, $array);
     }
 
     public function testCanSeeIfArrayContainsValue()
@@ -131,7 +133,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['foo' => ['bar' => 'bis']];
         $under = Arrays::get($array, 'foo.bar');
 
-        $this->assertEquals('bis', $under);
+        $this->assertSame('bis', $under);
     }
 
     public function testCantConflictWithNativeFunctions()
@@ -139,7 +141,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['foo' => ['bar' => 'bis']];
         $under = Arrays::get($array, 'ter', 'str_replace');
 
-        $this->assertEquals('str_replace', $under);
+        $this->assertSame('str_replace', $under);
     }
 
     public function testCanFallbackClosure()
@@ -149,7 +151,7 @@ class ArraysTest extends UnderscoreTestCase
             return 'closure';
         });
 
-        $this->assertEquals('closure', $under);
+        $this->assertSame('closure', $under);
     }
 
     public function testCanDoSomethingAtEachValue()
@@ -173,18 +175,18 @@ class ArraysTest extends UnderscoreTestCase
         $under = Arrays::each($this->array, $closure);
         $result = ['foo' => 'foo:bar', 'bis' => 'bis:ter'];
 
-        $this->assertEquals($result, $under);
+        $this->assertSame($result, $under);
     }
 
     public function testCanFindAValueInAnArray()
     {
         $under = Arrays::find($this->arrayNumbers, function ($value) {
-            return $value % 2 === 0;
+            return 0 === $value % 2;
         });
-        $this->assertEquals(2, $under);
+        $this->assertSame(2, $under);
 
         $unfound = Arrays::find($this->arrayNumbers, function ($value) {
-            return $value === 5;
+            return 5 === $value;
         });
         $this->assertNull($unfound);
     }
@@ -192,19 +194,19 @@ class ArraysTest extends UnderscoreTestCase
     public function testCanFilterValuesFromAnArray()
     {
         $under = Arrays::filter($this->arrayNumbers, function ($value) {
-            return $value % 2 !== 0;
+            return 0 !== $value % 2;
         });
 
-        $this->assertEquals([0 => 1, 2 => 3], $under);
+        $this->assertSame([0 => 1, 2 => 3], $under);
     }
 
     public function testCanFilterRejectedValuesFromAnArray()
     {
         $under = Arrays::reject($this->arrayNumbers, function ($value) {
-            return $value % 2 !== 0;
+            return 0 !== $value % 2;
         });
 
-        $this->assertEquals([1 => 2], $under);
+        $this->assertSame([1 => 2], $under);
     }
 
     public function testCanMatchAnArrayContent()
@@ -219,7 +221,7 @@ class ArraysTest extends UnderscoreTestCase
     public function testCanMatchPathOfAnArrayContent()
     {
         $under = Arrays::matchesAny($this->arrayNumbers, function ($value) {
-            return $value === 2;
+            return 2 === $value;
         });
 
         $this->assertTrue($under);
@@ -230,7 +232,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['   foo  ', '   bar   '];
         $array = Arrays::invoke($array, 'trim');
 
-        $this->assertEquals(['foo', 'bar'], $array);
+        $this->assertSame(['foo', 'bar'], $array);
     }
 
     public function testCanInvokeFunctionsOnValuesWithSingleArgument()
@@ -238,7 +240,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['_____foo', '____bar   '];
         $array = Arrays::invoke($array, 'trim', ' _');
 
-        $this->assertEquals(['foo', 'bar'], $array);
+        $this->assertSame(['foo', 'bar'], $array);
     }
 
     public function testCanInvokeFunctionsWithDifferentArguments()
@@ -246,7 +248,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = ['_____foo  ', '__bar   '];
         $array = Arrays::invoke($array, 'trim', ['_', ' ']);
 
-        $this->assertEquals(['foo  ', '__bar'], $array);
+        $this->assertSame(['foo  ', '__bar'], $array);
     }
 
     public function testCanPluckColumns()
@@ -254,7 +256,7 @@ class ArraysTest extends UnderscoreTestCase
         $under = Arrays::pluck($this->arrayMulti, 'foo');
         $matcher = ['bar', 'bar', null];
 
-        $this->assertEquals($matcher, $under);
+        $this->assertSame($matcher, $under);
     }
 
     public function testCanCalculateAverageValue()
@@ -267,9 +269,9 @@ class ArraysTest extends UnderscoreTestCase
         $average2 = Arrays::average($average2);
         $average3 = Arrays::average($average3);
 
-        $this->assertEquals(13, $average1);
-        $this->assertEquals(0, $average2);
-        $this->assertEquals(10, $average3);
+        $this->assertSame(13, $average1);
+        $this->assertSame(0, $average2);
+        $this->assertSame(10, $average3);
     }
 
     public function testCanGetFirstValue()
@@ -277,36 +279,36 @@ class ArraysTest extends UnderscoreTestCase
         $under1 = Arrays::first($this->array);
         $under2 = Arrays::first($this->arrayNumbers, 2);
 
-        $this->assertEquals('bar', $under1);
-        $this->assertEquals([1, 2], $under2);
+        $this->assertSame('bar', $under1);
+        $this->assertSame([1, 2], $under2);
     }
 
     public function testCanGetLastValue()
     {
         $under = Arrays::last($this->array);
 
-        $this->assertEquals('ter', $under);
+        $this->assertSame('ter', $under);
     }
 
     public function testCanGetLastElements()
     {
         $under = Arrays::last($this->arrayNumbers, 2);
 
-        $this->assertEquals([2, 3], $under);
+        $this->assertSame([2, 3], $under);
     }
 
     public function testCanXInitialElements()
     {
         $under = Arrays::initial($this->arrayNumbers, 1);
 
-        $this->assertEquals([1, 2], $under);
+        $this->assertSame([1, 2], $under);
     }
 
     public function testCanGetRestFromArray()
     {
         $under = Arrays::rest($this->arrayNumbers, 1);
 
-        $this->assertEquals([2, 3], $under);
+        $this->assertSame([2, 3], $under);
     }
 
     public function testCanCleanArray()
@@ -314,14 +316,14 @@ class ArraysTest extends UnderscoreTestCase
         $array = [false, true, 0, 1, 'full', ''];
         $array = Arrays::clean($array);
 
-        $this->assertEquals([1 => true, 3 => 1, 4 => 'full'], $array);
+        $this->assertSame([1 => true, 3 => 1, 4 => 'full'], $array);
     }
 
     public function testCanGetMaxValueFromAnArray()
     {
         $under = Arrays::max($this->arrayNumbers);
 
-        $this->assertEquals(3, $under);
+        $this->assertSame(3, $under);
     }
 
     public function testCanGetMaxValueFromAnArrayWithClosure()
@@ -330,14 +332,14 @@ class ArraysTest extends UnderscoreTestCase
             return $value * -1;
         });
 
-        $this->assertEquals(-1, $under);
+        $this->assertSame(-1, $under);
     }
 
     public function testCanGetMinValueFromAnArray()
     {
         $under = Arrays::min($this->arrayNumbers);
 
-        $this->assertEquals(1, $under);
+        $this->assertSame(1, $under);
     }
 
     public function testCanGetMinValueFromAnArrayWithClosure()
@@ -346,71 +348,71 @@ class ArraysTest extends UnderscoreTestCase
             return $value * -1;
         });
 
-        $this->assertEquals(-3, $under);
+        $this->assertSame(-3, $under);
     }
 
     public function testCanSortKeys()
     {
         $under = Arrays::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
-        $this->assertEquals(['b' => 1, 'r' => 2, 'z' => 0], $under);
+        $this->assertSame(['b' => 1, 'r' => 2, 'z' => 0], $under);
 
         $under = Arrays::sortKeys(['z' => 0, 'b' => 1, 'r' => 2], 'desc');
-        $this->assertEquals(['z' => 0, 'r' => 2, 'b' => 1], $under);
+        $this->assertSame(['z' => 0, 'r' => 2, 'b' => 1], $under);
     }
 
     public function testCanSortValues()
     {
         $under = Arrays::sort([5, 3, 1, 2, 4], null, 'desc');
-        $this->assertEquals([5, 4, 3, 2, 1], $under);
+        $this->assertSame([5, 4, 3, 2, 1], $under);
 
         $under = Arrays::sort(range(1, 5), function ($value) {
-            return $value % 2 === 0;
+            return 0 === $value % 2;
         });
-        $this->assertEquals([1, 3, 5, 2, 4], $under);
+        $this->assertSame([1, 3, 5, 2, 4], $under);
     }
 
     public function testCanGroupValues()
     {
         $under = Arrays::group(range(1, 5), function ($value) {
-            return $value % 2 === 0;
+            return 0 === $value % 2;
         });
         $matcher = [
             [1, 3, 5],
             [2, 4],
         ];
 
-        $this->assertEquals($matcher, $under);
+        $this->assertSame($matcher, $under);
     }
 
     public function testCanGroupValuesWithSavingKeys()
     {
         $grouper = function ($value) {
-            return $value % 2 === 0;
+            return 0 === $value % 2;
         };
         $under = Arrays::group(range(1, 5), $grouper, true);
         $matcher = [
             [0 => 1, 2 => 3, 4 => 5], [1 => 2, 3 => 4],
         ];
 
-        $this->assertEquals($matcher, $under);
+        $this->assertSame($matcher, $under);
     }
 
     public function testCanGroupValuesWithNonExistingKey()
     {
-        $this->assertEquals([], Arrays::group(range(1, 5), 'unknown', true));
-        $this->assertEquals([], Arrays::group(range(1, 5), 'unknown', false));
+        $this->assertSame([], Arrays::group(range(1, 5), 'unknown', true));
+        $this->assertSame([], Arrays::group(range(1, 5), 'unknown', false));
     }
 
     public function testCanCreateFromRange()
     {
         $range = Arrays::range(5);
-        $this->assertEquals([1, 2, 3, 4, 5], $range);
+        $this->assertSame([1, 2, 3, 4, 5], $range);
 
         $range = Arrays::range(-2, 2);
-        $this->assertEquals([-2, -1, 0, 1, 2], $range);
+        $this->assertSame([-2, -1, 0, 1, 2], $range);
 
         $range = Arrays::range(1, 10, 2);
-        $this->assertEquals([1, 3, 5, 7, 9], $range);
+        $this->assertSame([1, 3, 5, 7, 9], $range);
     }
 
     public function testCantChainRange()
@@ -424,14 +426,14 @@ class ArraysTest extends UnderscoreTestCase
     {
         $repeat = Arrays::repeat('foo', 3);
 
-        $this->assertEquals(['foo', 'foo', 'foo'], $repeat);
+        $this->assertSame(['foo', 'foo', 'foo'], $repeat);
     }
 
     public function testCanMergeArrays()
     {
         $array = Arrays::merge($this->array, ['foo' => 3], ['kal' => 'mon']);
 
-        $this->assertEquals(['foo' => 3, 'bis' => 'ter', 'kal' => 'mon'], $array);
+        $this->assertSame(['foo' => 3, 'bis' => 'ter', 'kal' => 'mon'], $array);
     }
 
     public function testCanGetRandomValue()
@@ -453,7 +455,7 @@ class ArraysTest extends UnderscoreTestCase
     {
         $array = Arrays::search($this->array, 'ter');
 
-        $this->assertEquals('bis', $array);
+        $this->assertSame('bis', $array);
     }
 
     public function testCanDiffBetweenArrays()
@@ -461,29 +463,29 @@ class ArraysTest extends UnderscoreTestCase
         $array = Arrays::diff($this->array, ['foo' => 'bar', 'ter' => 'kal']);
         $chain = Arrays::from($this->array)->diff(['foo' => 'bar', 'ter' => 'kal']);
 
-        $this->assertEquals(['bis' => 'ter'], $array);
-        $this->assertEquals(['bis' => 'ter'], $chain->obtain());
+        $this->assertSame(['bis' => 'ter'], $array);
+        $this->assertSame(['bis' => 'ter'], $chain->obtain());
     }
 
     public function testCanRemoveFirstValueFromAnArray()
     {
         $array = Arrays::removeFirst($this->array);
 
-        $this->assertEquals(['bis' => 'ter'], $array);
+        $this->assertSame(['bis' => 'ter'], $array);
     }
 
     public function testCanRemoveLasttValueFromAnArray()
     {
         $array = Arrays::removeLast($this->array);
 
-        $this->assertEquals(['foo' => 'bar'], $array);
+        $this->assertSame(['foo' => 'bar'], $array);
     }
 
     public function testCanImplodeAnArray()
     {
         $array = Arrays::implode($this->array, ',');
 
-        $this->assertEquals('bar,ter', $array);
+        $this->assertSame('bar,ter', $array);
     }
 
     public function testCanFlattenArraysToDotNotation()
@@ -505,7 +507,7 @@ class ArraysTest extends UnderscoreTestCase
 
         $flatten = Arrays::flatten($array);
 
-        $this->assertEquals($flatten, $flattened);
+        $this->assertSame($flatten, $flattened);
     }
 
     public function testCanFlattenArraysToCustomNotation()
@@ -527,7 +529,7 @@ class ArraysTest extends UnderscoreTestCase
 
         $flatten = Arrays::flatten($array, '/');
 
-        $this->assertEquals($flatten, $flattened);
+        $this->assertSame($flatten, $flattened);
     }
 
     public function testCanReplaceValues()
@@ -535,7 +537,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = Arrays::replace($this->array, 'foo', 'notfoo', 'notbar');
         $matcher = ['notfoo' => 'notbar', 'bis' => 'ter'];
 
-        $this->assertEquals($matcher, $array);
+        $this->assertSame($matcher, $array);
     }
 
     public function testCanPrependValuesToArrays()
@@ -543,7 +545,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = Arrays::prepend($this->array, 'foo');
         $matcher = [0 => 'foo', 'foo' => 'bar', 'bis' => 'ter'];
 
-        $this->assertEquals($matcher, $array);
+        $this->assertSame($matcher, $array);
     }
 
     public function testCanAppendValuesToArrays()
@@ -551,7 +553,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = Arrays::append($this->array, 'foo');
         $matcher = ['foo' => 'bar', 'bis' => 'ter', 0 => 'foo'];
 
-        $this->assertEquals($matcher, $array);
+        $this->assertSame($matcher, $array);
     }
 
     public function testCanReplaceValuesInArrays()
@@ -559,7 +561,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = $this->array;
         $array = Arrays::replaceValue($array, 'bar', 'replaced');
 
-        $this->assertEquals('replaced', $array['foo']);
+        $this->assertSame('replaced', $array['foo']);
     }
 
     public function testCanReplaceKeysInArray()
@@ -567,7 +569,7 @@ class ArraysTest extends UnderscoreTestCase
         $array = $this->array;
         $array = Arrays::replaceKeys($array, ['bar', 'ter']);
 
-        $this->assertEquals(['bar' => 'bar', 'ter' => 'ter'], $array);
+        $this->assertSame(['bar' => 'bar', 'ter' => 'ter'], $array);
     }
 
     public function testCanGetIntersectionOfTwoArrays()
@@ -576,7 +578,7 @@ class ArraysTest extends UnderscoreTestCase
         $b = ['bar', 'baz'];
         $array = Arrays::intersection($a, $b);
 
-        $this->assertEquals(['bar'], $array);
+        $this->assertSame(['bar'], $array);
     }
 
     public function testIntersectsBooleanFlag()
@@ -605,22 +607,22 @@ class ArraysTest extends UnderscoreTestCase
 
         $b = Arrays::filterBy($a, 'name', 'baz');
         $this->assertCount(1, $b);
-        $this->assertEquals(2365, $b[0]['value']);
+        $this->assertSame(2365, $b[0]['value']);
 
         $b = Arrays::filterBy($a, 'name', ['baz']);
         $this->assertCount(1, $b);
-        $this->assertEquals(2365, $b[0]['value']);
+        $this->assertSame(2365, $b[0]['value']);
 
         $c = Arrays::filterBy($a, 'value', 2468);
         $this->assertCount(1, $c);
-        $this->assertEquals('primary', $c[0]['group']);
+        $this->assertSame('primary', $c[0]['group']);
 
         $d = Arrays::filterBy($a, 'group', 'primary');
         $this->assertCount(3, $d);
 
         $e = Arrays::filterBy($a, 'value', 2000, 'lt');
         $this->assertCount(1, $e);
-        $this->assertEquals(1468, $e[0]['value']);
+        $this->assertSame(1468, $e[0]['value']);
 
         $e = Arrays::filterBy($a, 'value', [2468, 2365], 'contains');
         $this->assertCount(2, $e);
@@ -649,27 +651,27 @@ class ArraysTest extends UnderscoreTestCase
         ];
 
         $b = Arrays::findBy($a, 'name', 'baz');
-        $this->assertTrue(is_array($b));
+        $this->assertInternalType('array', $b);
         $this->assertCount(4, $b); // this is counting the number of keys in the array (id,name,group,value)
-        $this->assertEquals(2365, $b['value']);
+        $this->assertSame(2365, $b['value']);
         $this->assertArrayHasKey('name', $b);
         $this->assertArrayHasKey('group', $b);
         $this->assertArrayHasKey('value', $b);
 
         $c = Arrays::findBy($a, 'value', 2468);
-        $this->assertTrue(is_array($c));
+        $this->assertInternalType('array', $c);
         $this->assertCount(4, $c);
-        $this->assertEquals('primary', $c['group']);
+        $this->assertSame('primary', $c['group']);
 
         $d = Arrays::findBy($a, 'group', 'primary');
-        $this->assertTrue(is_array($d));
+        $this->assertInternalType('array', $d);
         $this->assertCount(4, $d);
-        $this->assertEquals('foo', $d['name']);
+        $this->assertSame('foo', $d['name']);
 
         $e = Arrays::findBy($a, 'value', 2000, 'lt');
-        $this->assertTrue(is_array($e));
+        $this->assertInternalType('array', $e);
         $this->assertCount(4, $e);
-        $this->assertEquals(1468, $e['value']);
+        $this->assertSame(1468, $e['value']);
     }
 
     public function testRemoveValue()
@@ -697,7 +699,7 @@ class ArraysTest extends UnderscoreTestCase
         $a = [1, 1, 2];
         $result = Arrays::unique($a);
 
-        $this->assertEquals([1, 2], $result);
+        $this->assertSame([1, 2], $result);
     }
 
     public function testCanIndexBy()
@@ -714,7 +716,7 @@ class ArraysTest extends UnderscoreTestCase
             60 => ['name' => 'curly', 'age' => 60],
         ];
 
-        $this->assertEquals($expected, Arrays::indexBy($array, 'age'));
+        $this->assertSame($expected, Arrays::indexBy($array, 'age'));
     }
 
     public function testIndexByReturnSome()
@@ -730,7 +732,7 @@ class ArraysTest extends UnderscoreTestCase
             50 => ['name' => 'larry', 'age' => 50],
         ];
 
-        $this->assertEquals($expected, Arrays::indexBy($array, 'age'));
+        $this->assertSame($expected, Arrays::indexBy($array, 'age'));
     }
 
     public function testIndexByReturnEmpty()
@@ -741,6 +743,6 @@ class ArraysTest extends UnderscoreTestCase
             ['name' => 'curly'],
         ];
 
-        $this->assertEquals([], Arrays::indexBy($array, 'vaaaa'));
+        $this->assertSame([], Arrays::indexBy($array, 'vaaaa'));
     }
 }

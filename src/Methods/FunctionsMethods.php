@@ -57,7 +57,8 @@ class FunctionsMethods
      * Create a function that can only be called $times times.
      *
      * @param callable $function
-     * @param int      $times    The number of times
+     * @param int      $times            The number of times
+     * @param mixed    $canBeCalledTimes
      *
      * @return Closure
      */
@@ -67,7 +68,6 @@ class FunctionsMethods
 
         // Create a closure that check if the function was already called
         return function () use ($function, $canBeCalledTimes, $unique) {
-
             // Generate unique hash of the function
             $arguments = func_get_args();
             $signature = FunctionsMethods::getSignature($unique, $function, $arguments);
@@ -79,9 +79,8 @@ class FunctionsMethods
             // Else, increment the count
             if ($numberOfTimesCalled >= $canBeCalledTimes) {
                 return false;
-            } else {
-                ++FunctionsMethods::$canBeCalledTimes[$signature];
             }
+            ++FunctionsMethods::$canBeCalledTimes[$signature];
 
             return call_user_func_array($function, $arguments);
         };
@@ -101,7 +100,6 @@ class FunctionsMethods
 
         // Create a closure that check if the function was already called
         return function () use ($function, $times, $unique) {
-
             // Generate unique hash of the function
             $arguments = func_get_args();
             $signature = FunctionsMethods::getSignature($unique, $function, $arguments);
@@ -132,7 +130,6 @@ class FunctionsMethods
         $unique = mt_rand();
 
         return function () use ($function, $unique) {
-
             // Generate unique hash of the function
             $arguments = func_get_args();
             $signature = FunctionsMethods::getSignature($unique, $function, $arguments);
@@ -161,7 +158,6 @@ class FunctionsMethods
         $unique = mt_rand();
 
         return function () use ($function, $ms, $unique) {
-
             // Generate unique hash of the function
             $arguments = func_get_args();
             $signature = FunctionsMethods::getSignature($unique, $function, $arguments);
@@ -200,7 +196,7 @@ class FunctionsMethods
             $position = 0;
 
             for ($i = 0, $len = count($boundArgs); $i < $len; ++$i) {
-                $args[] = $boundArgs[$i] === null ? $calledArgs[$position++] : $boundArgs[$i];
+                $args[] = null === $boundArgs[$i] ? $calledArgs[$position++] : $boundArgs[$i];
             }
 
             return call_user_func_array($func, array_merge($args, array_slice($calledArgs, $position)));
@@ -240,6 +236,7 @@ class FunctionsMethods
      *
      * @param Closure $function  The function
      * @param array   $arguments Its arguments
+     * @param mixed   $unique
      *
      * @return string The unique id
      */

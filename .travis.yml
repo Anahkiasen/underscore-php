@@ -4,23 +4,23 @@ sudo: false
 # Setup build matrix
 language: php
 php:
-  - 5.4
-  - 5.5
   - 5.6
   - 7.0
-  - hhvm
 
 env:
+  global:
+    - COMPOSER_DISABLE_XDEBUG_WARN=1
   matrix:
     - PREFER_LOWEST="--prefer-lowest"
     - PREFER_LOWEST=""
 
 # Dependencies
 before_install:
+  - if [[ "$TRAVIS_PHP_VERSION" != "hhvm" ]]; then phpenv config-rm xdebug.ini; fi
   - composer self-update
 
 install:
-  - travis_retry composer update --no-interaction --prefer-source --dev $PREFER_LOWEST
+  - travis_retry composer update --no-interaction --prefer-source $PREFER_LOWEST
 
 script: composer test
 

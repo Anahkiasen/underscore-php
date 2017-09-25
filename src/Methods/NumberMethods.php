@@ -18,6 +18,10 @@ class NumberMethods
 {
     /**
      * Add 0 padding to an integer.
+     *
+     * @param mixed $number
+     * @param mixed $padding
+     * @param mixed $direction
      */
     public static function padding($number, $padding = 1, $direction = STR_PAD_BOTH)
     {
@@ -26,6 +30,9 @@ class NumberMethods
 
     /**
      * Add 0 padding on the left of an integer.
+     *
+     * @param mixed $number
+     * @param mixed $padding
      */
     public static function paddingLeft($number, $padding = 1)
     {
@@ -34,6 +41,9 @@ class NumberMethods
 
     /**
      * Add 0 padding on the right of an integer.
+     *
+     * @param mixed $number
+     * @param mixed $padding
      */
     public static function paddingRight($number, $padding = 1)
     {

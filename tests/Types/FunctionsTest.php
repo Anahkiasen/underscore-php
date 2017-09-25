@@ -13,6 +13,9 @@ namespace Underscore\Types;
 
 use Underscore\UnderscoreTestCase;
 
+/**
+ * @coversNothing
+ */
 class FunctionsTest extends UnderscoreTestCase
 {
     public function testCanCallFunctionOnlyOnce()
@@ -25,7 +28,7 @@ class FunctionsTest extends UnderscoreTestCase
         $function();
         $function();
 
-        $this->assertEquals(1, $number);
+        $this->assertSame(1, $number);
     }
 
     public function testCanCallFunctionOnlyXTimes()
@@ -41,7 +44,7 @@ class FunctionsTest extends UnderscoreTestCase
         $function();
         $function();
 
-        $this->assertEquals(3, $number);
+        $this->assertSame(3, $number);
     }
 
     public function testCanCallFunctionAfterXTimes()
@@ -57,7 +60,7 @@ class FunctionsTest extends UnderscoreTestCase
         $function();
         $function();
 
-        $this->assertEquals(2, $number);
+        $this->assertSame(2, $number);
     }
 
     public function testCanCacheFunctionResults()
@@ -68,8 +71,8 @@ class FunctionsTest extends UnderscoreTestCase
 
         $result = $function('foobar');
 
-        $this->assertEquals($result, $function('foobar'));
-        $this->assertNotEquals($result, $function('barfoo'));
+        $this->assertSame($result, $function('foobar'));
+        $this->assertNotSame($result, $function('barfoo'));
     }
 
     public function testCanThrottleFunctions()
@@ -84,7 +87,7 @@ class FunctionsTest extends UnderscoreTestCase
         sleep(1);
         $function();
 
-        $this->assertEquals(2, $number);
+        $this->assertSame(2, $number);
     }
 
     public function testCanPartiallyApplyArguments()
@@ -93,7 +96,7 @@ class FunctionsTest extends UnderscoreTestCase
             return implode('', func_get_args());
         }, 2, null, 6);
 
-        $this->assertEquals('246', $function(4));
-        $this->assertEquals('2468', $function(4, 8));
+        $this->assertSame('246', $function(4));
+        $this->assertSame('2468', $function(4, 8));
     }
 }

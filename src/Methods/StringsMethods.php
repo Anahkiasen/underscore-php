@@ -37,10 +37,10 @@ class StringsMethods
      */
     public static function accord($count, $many, $one, $zero = null)
     {
-        if ($count === 1) {
+        if (1 === $count) {
             $output = $one;
         } else {
-            if ($count === 0 and !empty($zero)) {
+            if (0 === $count and !empty($zero)) {
                 $output = $zero;
             } else {
                 $output = $many;
@@ -66,7 +66,7 @@ class StringsMethods
         if (function_exists('openssl_random_pseudo_bytes')) {
             $bytes = openssl_random_pseudo_bytes($length * 2);
 
-            if ($bytes === false) {
+            if (false === $bytes) {
                 throw new RuntimeException('Unable to generate random string.');
             }
 
@@ -120,7 +120,7 @@ class StringsMethods
      * Determine if a given string ends with a given substring.
      *
      * @param string       $haystack
-     * @param string|array $needles
+     * @param array|string $needles
      *
      * @return bool
      *
@@ -140,38 +140,44 @@ class StringsMethods
     /**
      * Check if a string is an IP.
      *
+     * @param mixed $string
+     *
      * @return bool
      */
     public static function isIp($string)
     {
-        return filter_var($string, FILTER_VALIDATE_IP) !== false;
+        return false !== filter_var($string, FILTER_VALIDATE_IP);
     }
 
     /**
      * Check if a string is an email.
      *
+     * @param mixed $string
+     *
      * @return bool
      */
     public static function isEmail($string)
     {
-        return filter_var($string, FILTER_VALIDATE_EMAIL) !== false;
+        return false !== filter_var($string, FILTER_VALIDATE_EMAIL);
     }
 
     /**
      * Check if a string is an url.
      *
+     * @param mixed $string
+     *
      * @return bool
      */
     public static function isUrl($string)
     {
-        return filter_var($string, FILTER_VALIDATE_URL) !== false;
+        return false !== filter_var($string, FILTER_VALIDATE_URL);
     }
 
     /**
      * Determine if a given string starts with a given substring.
      *
      * @param string       $haystack
-     * @param string|array $needles
+     * @param array|string $needles
      *
      * @return bool
      *
@@ -180,7 +186,7 @@ class StringsMethods
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle !== '' && strpos($haystack, $needle) === 0) {
+            if ('' !== $needle && 0 === strpos($haystack, $needle)) {
                 return true;
             }
         }
@@ -233,11 +239,14 @@ class StringsMethods
         // If string found
         $pos = strpos($string, $needle);
 
-        return !($pos === false);
+        return !(false === $pos);
     }
 
     /**
      * Slice a string with another string.
+     *
+     * @param mixed $string
+     * @param mixed $slice
      */
     public static function slice($string, $slice)
     {
@@ -249,6 +258,9 @@ class StringsMethods
 
     /**
      * Slice a string from a certain point.
+     *
+     * @param mixed $string
+     * @param mixed $slice
      */
     public static function sliceFrom($string, $slice)
     {
@@ -259,6 +271,9 @@ class StringsMethods
 
     /**
      * Slice a string up to a certain point.
+     *
+     * @param mixed $string
+     * @param mixed $slice
      */
     public static function sliceTo($string, $slice)
     {
@@ -333,6 +348,9 @@ class StringsMethods
 
     /**
      * Remove part of a string.
+     *
+     * @param mixed $string
+     * @param mixed $remove
      */
     public static function remove($string, $remove)
     {
@@ -346,6 +364,10 @@ class StringsMethods
 
     /**
      * Correct arguments order for str_replace.
+     *
+     * @param mixed $string
+     * @param mixed $replace
+     * @param mixed $with
      */
     public static function replace($string, $replace, $with)
     {
@@ -373,35 +395,10 @@ class StringsMethods
     }
 
     /**
-     * Generate a URL friendly "slug" from a given string.
-     *
-     * @param string $title
-     * @param string $separator
-     *
-     * @return string
-     *
-     * @author Taylor Otwell
-     */
-    protected static function slug($title, $separator = '-')
-    {
-        $title = Utf8::toAscii($title);
-
-        // Convert all dashes/underscores into separator
-        $flip = $separator === '-' ? '_' : '-';
-
-        $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
-
-        // Remove all characters that are not the separator, letters, numbers, or whitespace.
-        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
-
-        // Replace all separator characters and whitespace by a single separator
-        $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
-
-        return trim($title, $separator);
-    }
-
-    /**
      * Slugifies a string.
+     *
+     * @param mixed $string
+     * @param mixed $separator
      */
     public static function slugify($string, $separator = '-')
     {
@@ -412,6 +409,10 @@ class StringsMethods
 
     /**
      * Explode a string into an array.
+     *
+     * @param mixed      $string
+     * @param mixed      $with
+     * @param null|mixed $limit
      */
     public static function explode($string, $with, $limit = null)
     {
@@ -545,5 +546,33 @@ class StringsMethods
     public static function toCamelCase($string)
     {
         return Inflector::camelize($string);
+    }
+
+    /**
+     * Generate a URL friendly "slug" from a given string.
+     *
+     * @param string $title
+     * @param string $separator
+     *
+     * @return string
+     *
+     * @author Taylor Otwell
+     */
+    protected static function slug($title, $separator = '-')
+    {
+        $title = Utf8::toAscii($title);
+
+        // Convert all dashes/underscores into separator
+        $flip = '-' === $separator ? '_' : '-';
+
+        $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
+
+        // Remove all characters that are not the separator, letters, numbers, or whitespace.
+        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
+
+        // Replace all separator characters and whitespace by a single separator
+        $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
+
+        return trim($title, $separator);
     }
 }

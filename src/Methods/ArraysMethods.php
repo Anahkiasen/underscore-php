@@ -34,7 +34,7 @@ class ArraysMethods extends CollectionMethods
     public static function range($_base, $stop = null, $step = 1)
     {
         // Dynamic arguments
-        if (!is_null($stop)) {
+        if (null !== $stop) {
             $start = $_base;
         } else {
             $start = 1;
@@ -55,7 +55,7 @@ class ArraysMethods extends CollectionMethods
     public static function repeat($data, $times)
     {
         $times = abs($times);
-        if ($times === 0) {
+        if (0 === $times) {
             return [];
         }
 
@@ -93,7 +93,7 @@ class ArraysMethods extends CollectionMethods
         $array = (array) static::each($array, $closure);
 
         // Check the results
-        if (count($array) === 0) {
+        if (0 === count($array)) {
             return true;
         }
         $array = array_search(false, $array, false);
@@ -115,7 +115,7 @@ class ArraysMethods extends CollectionMethods
         $array = (array) static::each($array, $closure);
 
         // Check the results
-        if (count($array) === 0) {
+        if (0 === count($array)) {
             return true;
         }
         $array = array_search(true, $array, false);
@@ -125,6 +125,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Check if an item is in an array.
+     *
+     * @param mixed $array
+     * @param mixed $value
      */
     public static function contains($array, $value)
     {
@@ -146,6 +149,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get the size of an array.
+     *
+     * @param mixed $array
      */
     public static function size($array)
     {
@@ -156,7 +161,7 @@ class ArraysMethods extends CollectionMethods
      * Get the max value from an array.
      *
      * @param array        $array
-     * @param Closure|null $closure
+     * @param null|Closure $closure
      *
      * @return mixed
      */
@@ -174,7 +179,7 @@ class ArraysMethods extends CollectionMethods
      * Get the min value from an array.
      *
      * @param array        $array
-     * @param Closure|null $closure
+     * @param null|Closure $closure
      *
      * @return mixed
      */
@@ -194,6 +199,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Find the first item in an array that passes the truth test.
+     *
+     * @param mixed $array
      */
     public static function find($array, Closure $closure)
     {
@@ -202,12 +209,12 @@ class ArraysMethods extends CollectionMethods
                 return $value;
             }
         }
-
-        return;
     }
 
     /**
      * Clean all falsy values from an array.
+     *
+     * @param mixed $array
      */
     public static function clean($array)
     {
@@ -218,6 +225,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get a random string from an array.
+     *
+     * @param mixed      $array
+     * @param null|mixed $take
      */
     public static function random($array, $take = null)
     {
@@ -238,7 +248,7 @@ class ArraysMethods extends CollectionMethods
         $arguments = func_get_args();
         $array = array_shift($arguments);
         // if singular argument and is an array treat this AS the array to run without agains
-        if (is_array($arguments[0]) && count($arguments) === 1) {
+        if (is_array($arguments[0]) && 1 === count($arguments)) {
             $arguments = $arguments[0];
         }
 
@@ -249,6 +259,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Return an array with all elements found in both input arrays.
+     *
+     * @param mixed $a
+     * @param mixed $b
      */
     public static function intersection($a, $b)
     {
@@ -260,6 +273,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Return a boolean flag which indicates whether the two input arrays have any common elements.
+     *
+     * @param mixed $a
+     * @param mixed $b
      */
     public static function intersects($a, $b)
     {
@@ -275,6 +291,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get the first value from an array.
+     *
+     * @param mixed      $array
+     * @param null|mixed $take
      */
     public static function first($array, $take = null)
     {
@@ -287,6 +306,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get the last value from an array.
+     *
+     * @param mixed      $array
+     * @param null|mixed $take
      */
     public static function last($array, $take = null)
     {
@@ -299,6 +321,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get everything but the last $to items.
+     *
+     * @param mixed $array
+     * @param mixed $to
      */
     public static function initial($array, $to = 1)
     {
@@ -309,6 +334,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Get the last elements from index $from.
+     *
+     * @param mixed $array
+     * @param mixed $from
      */
     public static function rest($array, $from = 1)
     {
@@ -321,6 +349,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Iterate over an array and execute a callback for each loop.
+     *
+     * @param mixed $array
      */
     public static function at($array, Closure $closure)
     {
@@ -368,6 +398,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Iterate over an array and modify the array's value.
+     *
+     * @param mixed $array
      */
     public static function each($array, Closure $closure)
     {
@@ -380,6 +412,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Shuffle an array.
+     *
+     * @param mixed $array
      */
     public static function shuffle($array)
     {
@@ -390,11 +424,14 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Sort an array by key.
+     *
+     * @param mixed $array
+     * @param mixed $direction
      */
     public static function sortKeys($array, $direction = 'ASC')
     {
-        $direction = (strtolower($direction) === 'desc') ? SORT_DESC : SORT_ASC;
-        if ($direction === SORT_ASC) {
+        $direction = ('desc' === strtolower($direction)) ? SORT_DESC : SORT_ASC;
+        if (SORT_ASC === $direction) {
             ksort($array);
         } else {
             krsort($array);
@@ -418,6 +455,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Find all items in an array that pass the truth test.
+     *
+     * @param mixed      $array
+     * @param null|mixed $closure
      */
     public static function filter($array, $closure = null)
     {
@@ -468,6 +508,10 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Invoke a function on all of an array's values.
+     *
+     * @param mixed $array
+     * @param mixed $callable
+     * @param mixed $arguments
      */
     public static function invoke($array, $callable, $arguments = [])
     {
@@ -486,6 +530,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Return all items that fail the truth test.
+     *
+     * @param mixed $array
      */
     public static function reject($array, Closure $closure)
     {
@@ -502,6 +548,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Remove the first value from an array.
+     *
+     * @param mixed $array
      */
     public static function removeFirst($array)
     {
@@ -512,6 +560,8 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Remove the last value from an array.
+     *
+     * @param mixed $array
      */
     public static function removeLast($array)
     {
@@ -548,6 +598,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Prepend a value to an array.
+     *
+     * @param mixed $array
+     * @param mixed $value
      */
     public static function prepend($array, $value)
     {
@@ -558,6 +611,9 @@ class ArraysMethods extends CollectionMethods
 
     /**
      * Append a value to an array.
+     *
+     * @param mixed $array
+     * @param mixed $value
      */
     public static function append($array, $value)
     {
@@ -566,9 +622,7 @@ class ArraysMethods extends CollectionMethods
         return $array;
     }
 
-    /*
-     *  Return a duplicate free copy of an array
-     * */
+    // Return a duplicate free copy of an array
     public static function unique($array)
     {
         return array_reduce($array, function ($resultArray, $value) {
