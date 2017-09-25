@@ -13,6 +13,9 @@ namespace Underscore;
 
 use Underscore\Dummies\DummyDefault;
 
+/**
+ * @coversNothing
+ */
 class ParseTest extends UnderscoreTestCase
 {
     ////////////////////////////////////////////////////////////////////
@@ -52,7 +55,7 @@ class ParseTest extends UnderscoreTestCase
         $csv = Parse::toCSV($this->arrayMulti);
         $matcher = '"bar";"ter"'.PHP_EOL.'"bar";"ter"'.PHP_EOL.'"foo";"ter"';
 
-        $this->assertEquals($matcher, $csv);
+        $this->assertSame($matcher, $csv);
     }
 
     public function testCanUseCustomCsvDelimiter()
@@ -60,7 +63,7 @@ class ParseTest extends UnderscoreTestCase
         $csv = Parse::toCSV($this->arrayMulti, ',');
         $matcher = '"bar","ter"'.PHP_EOL.'"bar","ter"'.PHP_EOL.'"foo","ter"';
 
-        $this->assertEquals($matcher, $csv);
+        $this->assertSame($matcher, $csv);
     }
 
     public function testCanOutputCsvHeaders()
@@ -68,7 +71,7 @@ class ParseTest extends UnderscoreTestCase
         $csv = Parse::toCSV($this->arrayMulti, ',', true);
         $matcher = 'foo,bis'.PHP_EOL.'"bar","ter"'.PHP_EOL.'"bar","ter"'.PHP_EOL.'"foo","ter"';
 
-        $this->assertEquals($matcher, $csv);
+        $this->assertSame($matcher, $csv);
     }
 
     public function testCanConvertToJson()
@@ -76,7 +79,7 @@ class ParseTest extends UnderscoreTestCase
         $json = Parse::toJSON($this->arrayMulti);
         $matcher = '[{"foo":"bar","bis":"ter"},{"foo":"bar","bis":"ter"},{"bar":"foo","bis":"ter"}]';
 
-        $this->assertEquals($matcher, $json);
+        $this->assertSame($matcher, $json);
     }
 
     public function testCanParseJson()
@@ -84,7 +87,7 @@ class ParseTest extends UnderscoreTestCase
         $json = Parse::toJSON($this->arrayMulti);
         $array = Parse::fromJSON($json);
 
-        $this->assertEquals($this->arrayMulti, $array);
+        $this->assertSame($this->arrayMulti, $array);
     }
 
     public function testCanParseXML()
@@ -92,7 +95,7 @@ class ParseTest extends UnderscoreTestCase
         $array = Parse::fromXML('<article><name>foo</name><content>bar</content></article>');
         $matcher = ['name' => 'foo', 'content' => 'bar'];
 
-        $this->assertEquals($matcher, $array);
+        $this->assertSame($matcher, $array);
     }
 
     public function testCanParseCSV()
@@ -100,7 +103,7 @@ class ParseTest extends UnderscoreTestCase
         $array = Parse::fromCSV("foo;bar;bis\nbar\tfoo\tter");
         $results = [['foo', 'bar', 'bis'], ['bar', 'foo', 'ter']];
 
-        $this->assertEquals($results, $array);
+        $this->assertSame($results, $array);
     }
 
     public function testCanParseCSVWithHeaders($value = '')
@@ -108,7 +111,7 @@ class ParseTest extends UnderscoreTestCase
         $array = Parse::fromCSV('foo;bar;bis'.PHP_EOL."bar\tfoo\tter", true);
         $results = [['foo' => 'bar', 'bar' => 'foo', 'bis' => 'ter']];
 
-        $this->assertEquals($results, $array);
+        $this->assertSame($results, $array);
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -117,11 +120,15 @@ class ParseTest extends UnderscoreTestCase
 
     /**
      * @dataProvider provideSwitchers
+     *
+     * @param mixed $method
+     * @param mixed $from
+     * @param mixed $to
      */
     public function testCanSwitchTypes($method, $from, $to)
     {
         $from = Parse::$method($from);
 
-        $this->assertEquals($to, $from);
+        $this->assertSame($to, $from);
     }
 }

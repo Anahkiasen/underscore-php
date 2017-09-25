@@ -13,6 +13,9 @@ namespace Underscore;
 
 use StdClass;
 
+/**
+ * @coversNothing
+ */
 class DispatchTest extends UnderscoreTestCase
 {
     // Data providers ------------------------------------------------ /
@@ -29,7 +32,6 @@ class DispatchTest extends UnderscoreTestCase
             [new StdClass(), 'Object'],
             [
                 function () {
-                    return;
                 },
                 'Functions',
             ],
@@ -39,12 +41,15 @@ class DispatchTest extends UnderscoreTestCase
 
     /**
      * @dataProvider provideTypes
+     *
+     * @param mixed $subject
+     * @param mixed $expected
      */
     public function testCanGetClassFromType($subject, $expected)
     {
         $dispatch = Dispatch::toClass($subject);
 
-        $this->assertEquals('Underscore\Types\\'.$expected, $dispatch);
+        $this->assertSame('Underscore\Types\\'.$expected, $dispatch);
     }
 
     public function testCanThrowExceptionAtUnknownTypes()

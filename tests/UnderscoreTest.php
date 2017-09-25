@@ -16,6 +16,9 @@ use Underscore\Dummies\DummyDefault;
 use Underscore\Types\Arrays;
 use Underscore\Types\Strings;
 
+/**
+ * @coversNothing
+ */
 class UnderscoreTest extends UnderscoreTestCase
 {
     // Tests --------------------------------------------------------- /
@@ -33,14 +36,14 @@ class UnderscoreTest extends UnderscoreTestCase
     {
         $under = Underscore::contains([1, 2, 3], 3);
 
-        $this->assertEquals(2, $under);
+        $this->assertSame(2, $under);
     }
 
     public function testCanSwitchTypesMidCourse()
     {
         $stringToArray = Strings::from('FOO.BAR')->lower()->explode('.')->last()->title();
 
-        $this->assertEquals('Bar', $stringToArray->obtain());
+        $this->assertSame('Bar', $stringToArray->obtain());
     }
 
     public function testCanWrapWithShortcutFunction()
@@ -58,10 +61,10 @@ class UnderscoreTest extends UnderscoreTestCase
     public function testCanHaveAliasesForMethods()
     {
         $under = Arrays::select($this->arrayNumbers, function ($value) {
-            return $value === 1;
+            return 1 === $value;
         });
 
-        $this->assertEquals([1], $under);
+        $this->assertSame([1], $under);
     }
 
     public function testUserCanExtendWithCustomFunctions()
@@ -69,12 +72,12 @@ class UnderscoreTest extends UnderscoreTestCase
         Arrays::extend('fooify', function ($array) {
             return 'bar';
         });
-        $this->assertEquals('bar', Arrays::fooify(['foo']));
+        $this->assertSame('bar', Arrays::fooify(['foo']));
 
         Strings::extend('unfooer', function ($string) {
             return Strings::replace($string, 'foo', 'bar');
         });
-        $this->assertEquals('bar', Strings::unfooer('foo'));
+        $this->assertSame('bar', Strings::unfooer('foo'));
     }
 
     public function testBreakersCantAlterTheOriginalValue()
@@ -82,8 +85,8 @@ class UnderscoreTest extends UnderscoreTestCase
         $object = Arrays::from([1, 2, 3]);
         $sum = $object->sum();
 
-        $this->assertEquals(6, $sum);
-        $this->assertEquals([1, 2, 3], $object->obtain());
+        $this->assertSame(6, $sum);
+        $this->assertSame([1, 2, 3], $object->obtain());
     }
 
     public function testClassesCanExtendCoreTypes()
@@ -91,8 +94,8 @@ class UnderscoreTest extends UnderscoreTestCase
         $class = new DummyClass();
         $class->set('foo', 'bar');
 
-        $this->assertEquals('foobar', DummyDefault::create()->obtain());
-        $this->assertEquals('{"foo":"bar"}', $class->toJSON());
+        $this->assertSame('foobar', DummyDefault::create()->obtain());
+        $this->assertSame('{"foo":"bar"}', $class->toJSON());
     }
 
     public function testClassesCanUpdateSubject()
@@ -101,8 +104,8 @@ class UnderscoreTest extends UnderscoreTestCase
         $class = $class->getUsers()->toJSON();
         $class2 = DummyClass::create()->getUsers()->toJSON();
 
-        $this->assertEquals('[{"foo":"bar"},{"bar":"foo"}]', $class);
-        $this->assertEquals($class, $class2);
+        $this->assertSame('[{"foo":"bar"},{"bar":"foo"}]', $class);
+        $this->assertSame($class, $class2);
     }
 
     public function testClassesCanOverwriteUnderscore()
@@ -110,7 +113,7 @@ class UnderscoreTest extends UnderscoreTestCase
         $class = new DummyClass();
         $class = $class->map(3)->paddingLeft(3)->toJSON();
 
-        $this->assertEquals('"009"', $class);
+        $this->assertSame('"009"', $class);
     }
 
     public function testMacrosCantConflictBetweenTypes()
@@ -122,8 +125,8 @@ class UnderscoreTest extends UnderscoreTestCase
             return 'arrays';
         });
 
-        $this->assertEquals('string', Strings::foobar());
-        $this->assertEquals('arrays', Arrays::foobar());
+        $this->assertSame('string', Strings::foobar());
+        $this->assertSame('arrays', Arrays::foobar());
     }
 
     public function testCanCheckIfSubjectIsEmpty()
@@ -137,7 +140,7 @@ class UnderscoreTest extends UnderscoreTestCase
     {
         $array = Arrays::from($this->array);
 
-        $this->assertEquals('{"foo":"bar","bis":"ter"}', $array->__toString());
+        $this->assertSame('{"foo":"bar","bis":"ter"}', $array->__toString());
     }
 
     public function testUnderscoreFindsRightClassToCall()
@@ -147,6 +150,6 @@ class UnderscoreTest extends UnderscoreTestCase
             return $w * $v;
         }, 1);
 
-        $this->assertEquals(60, $product);
+        $this->assertSame(60, $product);
     }
 }

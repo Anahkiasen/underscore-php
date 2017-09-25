@@ -14,6 +14,9 @@ namespace Underscore;
 use Underscore\Types\Arrays;
 use Underscore\Types\Strings;
 
+/**
+ * @coversNothing
+ */
 class MethodTest extends UnderscoreTestCase
 {
     public function testThrowsErrorIfIncorrectMethod()
@@ -28,13 +31,13 @@ class MethodTest extends UnderscoreTestCase
         $array = Arrays::from($this->array);
         $array = $array->intersect(['foo' => 'bar', 'kal' => 'mon']);
 
-        $this->assertEquals(['foo' => 'bar'], $array->obtain());
+        $this->assertSame(['foo' => 'bar'], $array->obtain());
 
         $string = Strings::repeat('foo', 2);
-        $this->assertEquals('foofoo', $string);
+        $this->assertSame('foofoo', $string);
 
         $string = Strings::from('   foo  ')->trim();
-        $this->assertEquals('foo', $string->obtain());
+        $this->assertSame('foo', $string->obtain());
     }
 
     public function testCantChainCertainMethods()
@@ -48,27 +51,29 @@ class MethodTest extends UnderscoreTestCase
     {
         $method = Method::getMethodsFromType('\Underscore\Types\Arrays');
 
-        $this->assertEquals('\Underscore\Methods\ArraysMethods', $method);
+        $this->assertSame('\Underscore\Methods\ArraysMethods', $method);
     }
 
     public function testCanGetAliasesOfFunctions()
     {
         $method = Method::getAliasOf('select');
 
-        $this->assertEquals('filter', $method);
+        $this->assertSame('filter', $method);
     }
 
     public function testCanFindMethodsInClasses()
     {
         $method = Method::findInClasses('\Underscore\Underscore', 'range');
 
-        $this->assertEquals('\Underscore\Types\\Arrays', $method);
+        $this->assertSame('\Underscore\Types\\Arrays', $method);
     }
 
     public function testCanThrowExceptionAtUnknownMethods()
     {
-        $this->setExpectedException('BadMethodCallException',
-            'The method Underscore\Types\Arrays::fuck does not exist');
+        $this->setExpectedException(
+            'BadMethodCallException',
+            'The method Underscore\Types\Arrays::fuck does not exist'
+        );
 
         $test = Arrays::fuck($this);
     }

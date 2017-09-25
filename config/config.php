@@ -10,7 +10,6 @@
  */
 
 return [
-
     // The alias Underscore will be mapped to
     'alias' => 'Underscore',
 
@@ -21,5 +20,4 @@ return [
         'select' => 'filter',
         'sortBy' => 'sort',
     ],
-
 ];

@@ -25,6 +25,9 @@ abstract class CollectionMethods
 
     /**
      * Check if an array has a given key.
+     *
+     * @param mixed $array
+     * @param mixed $key
      */
     public static function has($array, $key)
     {
@@ -49,7 +52,7 @@ abstract class CollectionMethods
      */
     public static function get($collection, $key, $default = null)
     {
-        if (is_null($key)) {
+        if (null === $key) {
             return $collection;
         }
 
@@ -110,6 +113,9 @@ abstract class CollectionMethods
 
     /**
      * Remove a value from an array using dot notation.
+     *
+     * @param mixed $collection
+     * @param mixed $key
      */
     public static function remove($collection, $key)
     {
@@ -129,6 +135,9 @@ abstract class CollectionMethods
 
     /**
      * Fetches all columns $property from a multimensionnal array.
+     *
+     * @param mixed $collection
+     * @param mixed $property
      */
     public static function pluck($collection, $property)
     {
@@ -150,6 +159,7 @@ abstract class CollectionMethods
      * @param string $property
      * @param string $value
      * @param string $comparisonOp
+     * @param mixed  $collection
      */
     public static function filterBy($collection, $property, $value, $comparisonOp = null)
     {
@@ -219,6 +229,8 @@ abstract class CollectionMethods
 
     /**
      * Get all keys from a collection.
+     *
+     * @param mixed $collection
      */
     public static function keys($collection)
     {
@@ -227,6 +239,8 @@ abstract class CollectionMethods
 
     /**
      * Get all values from a collection.
+     *
+     * @param mixed $collection
      */
     public static function values($collection)
     {
@@ -239,6 +253,11 @@ abstract class CollectionMethods
 
     /**
      * Replace a key with a new key/value pair.
+     *
+     * @param mixed $collection
+     * @param mixed $replace
+     * @param mixed $key
+     * @param mixed $value
      */
     public static function replace($collection, $replace, $key, $value)
     {
@@ -251,13 +270,17 @@ abstract class CollectionMethods
     /**
      * Sort a collection by value, by a closure or by a property
      * If the sorter is null, the collection is sorted naturally.
+     *
+     * @param mixed      $collection
+     * @param null|mixed $sorter
+     * @param mixed      $direction
      */
     public static function sort($collection, $sorter = null, $direction = 'asc')
     {
         $collection = (array) $collection;
 
         // Get correct PHP constant for direction
-        $direction = (strtolower($direction) === 'desc') ? SORT_DESC : SORT_ASC;
+        $direction = ('desc' === strtolower($direction)) ? SORT_DESC : SORT_ASC;
 
         // Transform all values into their results
         if ($sorter) {
@@ -276,6 +299,10 @@ abstract class CollectionMethods
 
     /**
      * Group values from a collection according to the results of a closure.
+     *
+     * @param mixed $collection
+     * @param mixed $grouper
+     * @param mixed $saveKeys
      */
     public static function group($collection, $grouper, $saveKeys = false)
     {
@@ -288,10 +315,10 @@ abstract class CollectionMethods
             $newValue = static::get($result, $groupKey);
 
             // Add to results
-            if ($groupKey !== null && $saveKeys) {
+            if (null !== $groupKey && $saveKeys) {
                 $result[$groupKey] = $newValue;
                 $result[$groupKey][$key] = $value;
-            } elseif ($groupKey !== null) {
+            } elseif (null !== $groupKey) {
                 $result[$groupKey] = $newValue;
                 $result[$groupKey][] = $value;
             }
@@ -300,16 +327,43 @@ abstract class CollectionMethods
         return $result;
     }
 
+    /**
+     * Given a list, and an iteratee function that returns
+     * a key for each element in the list (or a property name),
+     * returns an object with an index of each item.
+     * Just like groupBy, but for when you know your keys are unique.
+     *
+     * @param array $array
+     * @param mixed $key
+     *
+     * @return array
+     */
+    public static function indexBy(array $array, $key)
+    {
+        $results = [];
+
+        foreach ($array as $a) {
+            if (isset($a[$key])) {
+                $results[$a[$key]] = $a;
+            }
+        }
+
+        return $results;
+    }
+
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// HELPERS /////////////////////////////
     ////////////////////////////////////////////////////////////////////
 
     /**
      * Internal mechanic of set method.
+     *
+     * @param mixed $key
+     * @param mixed $value
      */
     protected static function internalSet(&$collection, $key, $value)
     {
-        if (is_null($key)) {
+        if (null === $key) {
             return $collection = $value;
         }
 
@@ -342,6 +396,8 @@ abstract class CollectionMethods
 
     /**
      * Internal mechanics of remove method.
+     *
+     * @param mixed $key
      */
     protected static function internalRemove(&$collection, $key)
     {
@@ -371,29 +427,5 @@ abstract class CollectionMethods
         } else {
             unset($collection[$key]);
         }
-    }
-
-    /**
-     * Given a list, and an iteratee function that returns
-     * a key for each element in the list (or a property name),
-     * returns an object with an index of each item.
-     * Just like groupBy, but for when you know your keys are unique.
-     *
-     * @param array $array
-     * @param mixed $key
-     *
-     * @return array
-     */
-    public static function indexBy(array $array, $key)
-    {
-        $results = [];
-
-        foreach ($array as $a) {
-            if (isset($a[$key])) {
-                $results[$a[$key]] = $a;
-            }
-        }
-
-        return $results;
     }
 }

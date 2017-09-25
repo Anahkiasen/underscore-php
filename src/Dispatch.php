@@ -83,10 +83,11 @@ class Dispatch
         switch ($class) {
             case static::TYPES.'Arrays':
                 $prefix = 'array_';
-                break;
 
+                break;
             case static::TYPES.'Strings':
                 $prefix = 'str_';
+
                 break;
         }
 

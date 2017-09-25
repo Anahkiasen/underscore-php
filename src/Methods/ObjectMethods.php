@@ -18,6 +18,8 @@ class ObjectMethods extends CollectionMethods
 {
     /**
      * Get all methods from an object.
+     *
+     * @param mixed $object
      */
     public static function methods($object)
     {
@@ -26,6 +28,9 @@ class ObjectMethods extends CollectionMethods
 
     /**
      * Unpack an object's properties.
+     *
+     * @param mixed      $object
+     * @param null|mixed $attribute
      */
     public static function unpack($object, $attribute = null)
     {

@@ -139,6 +139,7 @@ class Parse
             // If single column
             if (!is_array($row)) {
                 $csv[] = '"'.$header.'"'.$delimiter.'"'.$row.'"';
+
                 continue;
             }
 
@@ -160,7 +161,7 @@ class Parse
     /**
      * Converts data to an array.
      *
-     * @param string|object $data
+     * @param object|string $data
      *
      * @return array
      */
@@ -194,7 +195,7 @@ class Parse
     /**
      * Converts data to an integer.
      *
-     * @param array|string|object $data
+     * @param array|object|string $data
      *
      * @return int
      */
@@ -216,7 +217,7 @@ class Parse
     /**
      * Converts data to a boolean.
      *
-     * @param array|sring|object $data
+     * @param array|object|sring $data
      *
      * @return bool
      */
@@ -255,11 +256,11 @@ class Parse
 
         foreach ($delimiters as $delimiter) {
             $array = explode($delimiter, $string);
-            if (count($array) === 1) {
+            if (1 === count($array)) {
                 continue;
-            } else {
-                return $array;
             }
+
+            return $array;
         }
 
         return $array;
