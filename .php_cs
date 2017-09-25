@@ -1,15 +1,5 @@
 <?php
 
-$header = <<<'EOF'
-This file is part of PHP CS Fixer.
-
-(c) Fabien Potencier <fabien@symfony.com>
-    Dariusz Rumiński <dariusz.ruminski@gmail.com>
-
-This source file is subject to the MIT license that is bundled
-with this source code in the file LICENSE.
-EOF;
-
 $config = PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
@@ -23,7 +13,6 @@ $config = PhpCsFixer\Config::create()
         'combine_consecutive_unsets' => true,
         // one should use PHPUnit methods to set up expected exception instead of annotations
         'general_phpdoc_annotation_remove' => ['annotations' => ['expectedException', 'expectedExceptionMessage', 'expectedExceptionMessageRegExp']],
-        'header_comment' => ['header' => $header],
         'heredoc_to_nowdoc' => true,
         'list_syntax' => ['syntax' => 'long'],
         'method_argument_space' => ['ensure_fully_multiline' => true],
