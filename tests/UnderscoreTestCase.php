@@ -23,6 +23,9 @@ abstract class UnderscoreTestCase extends PHPUnit_Framework_TestCase
         ['bar' => 'foo', 'bis' => 'ter'],
     ];
     public $object;
+    public $arrayObjectNumbers;
+    public $arrayObjectMulti;
+    public $arrayObjectMulti2;
 
     /**
      * Restore data just in case.
@@ -34,6 +37,22 @@ abstract class UnderscoreTestCase extends PHPUnit_Framework_TestCase
             (object) $this->arrayMulti[0],
             (object) $this->arrayMulti[1],
             (object) $this->arrayMulti[2],
+        ];
+
+        $this->arrayObjectNumbers = new \ArrayObject();
+        $this->arrayObjectNumbers[] = (object) ['value' => 1];
+        $this->arrayObjectNumbers[] = (object) ['value' => 2];
+        $this->arrayObjectNumbers[] = (object) ['value' => 3];
+
+        $this->arrayObjectMulti = new \ArrayObject();
+        $this->arrayObjectMulti['a'] = new \ArrayObject();
+        $this->arrayObjectMulti['a']['b'] = 1;
+        $this->arrayObjectMulti['a']['c'] = 2;
+
+        $this->arrayObjectMulti2 = new \ArrayObject();
+        $this->arrayObjectMulti2['a'] = [
+            'b' => 1,
+            'c' => 2,
         ];
     }
 }

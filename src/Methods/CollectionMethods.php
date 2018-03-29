@@ -114,7 +114,7 @@ abstract class CollectionMethods
     public static function remove($collection, $key)
     {
         // Recursive call
-        if (is_array($key)) {
+        if (static::isArrayLike($key)) {
             foreach ($key as $k) {
                 static::internalRemove($collection, $k);
             }
@@ -137,7 +137,7 @@ abstract class CollectionMethods
         }, (array) $collection);
 
         // Convert back to object if necessary
-        if (is_object($collection)) {
+        if (static::isNonArrayAccessObject($collection)) {
             $plucked = (object) $plucked;
         }
 
@@ -199,7 +199,7 @@ abstract class CollectionMethods
 
             return $ops[$comparisonOp]($item, $property, $value);
         }));
-        if (is_object($collection)) {
+        if (static::isNonArrayAccessObject($collection)) {
             $result = (object) $result;
         }
 
@@ -300,6 +300,16 @@ abstract class CollectionMethods
         return $result;
     }
 
+    protected static function isNonArrayAccessObject($collection)
+    {
+        return is_object($collection) && !($collection instanceof \ArrayAccess);
+    }
+
+    protected static function isArrayLike($collection)
+    {
+        return is_array($collection) || $collection instanceof \ArrayAccess;
+    }
+
     ////////////////////////////////////////////////////////////////////
     ////////////////////////////// HELPERS /////////////////////////////
     ////////////////////////////////////////////////////////////////////
@@ -321,10 +331,10 @@ abstract class CollectionMethods
             $key = array_shift($keys);
 
             // If we're dealing with an object
-            if (is_object($collection)) {
+            if (static::isNonArrayAccessObject($collection)) {
                 $collection->$key = static::get($collection, $key, []);
                 $collection = &$collection->$key;
-                // If we're dealing with an array
+            // If we're dealing with an array
             } else {
                 $collection[$key] = static::get($collection, $key, []);
                 $collection = &$collection[$key];
@@ -333,7 +343,7 @@ abstract class CollectionMethods
 
         // Bind final tree on the collection
         $key = array_shift($keys);
-        if (is_array($collection)) {
+        if (static::isArrayLike($collection)) {
             $collection[$key] = $value;
         } else {
             $collection->$key = $value;
@@ -357,16 +367,16 @@ abstract class CollectionMethods
             }
 
             // If we're dealing with an object
-            if (is_object($collection)) {
+            if (static::isNonArrayAccessObject($collection)) {
                 $collection = &$collection->$key;
-                // If we're dealing with an array
+            // If we're dealing with an array
             } else {
                 $collection = &$collection[$key];
             }
         }
 
         $key = array_shift($keys);
-        if (is_object($collection)) {
+        if (static::isNonArrayAccessObject($collection)) {
             unset($collection->$key);
         } else {
             unset($collection[$key]);
