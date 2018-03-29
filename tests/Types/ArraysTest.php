@@ -14,6 +14,10 @@ namespace Underscore\Types;
 use Underscore\Underscore;
 use Underscore\UnderscoreTestCase;
 
+class MyArrayAccess extends \ArrayObject
+{
+}
+
 class ArraysTest extends UnderscoreTestCase
 {
     // Tests --------------------------------------------------------- /
@@ -61,6 +65,14 @@ class ArraysTest extends UnderscoreTestCase
 
         $this->assertEquals('ter', $array['foo']['bar']['bis']);
         $this->assertArrayHasKey('bar', $array);
+
+        $array = Arrays::set($this->arrayObjectMulti, 'a.d', 3);
+        $this->assertEquals(2, Arrays::get($array, 'a.c'));
+        $this->assertEquals(3, Arrays::get($array, 'a.d'));
+
+        $array = Arrays::set($this->arrayObjectMulti2, 'a.d', 3);
+        $this->assertEquals(2, Arrays::get($array, 'a.c'));
+        $this->assertEquals(3, Arrays::get($array, 'a.d'));
     }
 
     public function testCanRemoveValues()
@@ -70,6 +82,14 @@ class ArraysTest extends UnderscoreTestCase
         unset($matcher[0]['foo']);
 
         $this->assertEquals($matcher, $array);
+
+        $array = Arrays::remove($this->arrayObjectMulti, 'a.b');
+        $this->assertEquals(2, Arrays::get($array, 'a.c'));
+        $this->assertEquals(null, Arrays::get($array, 'a.b'));
+
+        $array = Arrays::remove($this->arrayObjectMulti2, 'a.b');
+        $this->assertEquals(2, Arrays::get($array, 'a.c'));
+        $this->assertEquals(null, Arrays::get($array, 'a.b'));
     }
 
     public function testCanRemoveMultipleValues()
@@ -103,7 +123,7 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertEquals(6, $array);
     }
 
-    public function testCanGetcountArray()
+    public function testCanGetCountArray()
     {
         $array = Arrays::size([1, 2, 3]);
 
@@ -637,6 +657,9 @@ class ArraysTest extends UnderscoreTestCase
         $this->assertCount(3, $f, 'Count should pick up groups which are explicitly set as null AND those which don\'t have the property at all');
         $this->assertContains('qux', Arrays::pluck($f, 'name'));
         $this->assertContains('flux', Arrays::pluck($f, 'name'));
+
+        $under = Arrays::filterBy($this->arrayObjectNumbers, 'value', 1, 'gt');
+        $this->assertEquals([(object) ['value' => 2], (object) ['value' => 3]], $under);
     }
 
     public function testFindBy()
