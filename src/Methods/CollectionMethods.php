@@ -334,7 +334,7 @@ abstract class CollectionMethods
             if (static::isNonArrayAccessObject($collection)) {
                 $collection->$key = static::get($collection, $key, []);
                 $collection = &$collection->$key;
-                // If we're dealing with an array
+            // If we're dealing with an array
             } else {
                 $collection[$key] = static::get($collection, $key, []);
                 $collection = &$collection[$key];
@@ -369,7 +369,7 @@ abstract class CollectionMethods
             // If we're dealing with an object
             if (static::isNonArrayAccessObject($collection)) {
                 $collection = &$collection->$key;
-                // If we're dealing with an array
+            // If we're dealing with an array
             } else {
                 $collection = &$collection[$key];
             }
